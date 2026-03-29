@@ -11,7 +11,9 @@ const AdminSchema = mongoose.Schema({
     phone: { required: true, unique: true, type: String },
     location: { required: true, unique: true, type: String },
     joined_at: {type: Date, default: Date.now() },
+    password: { type: String },
+    last_login: { type: Date },
 });
 
-StudentSchema.plugin(AutoIncrement, { inc_field: 'student_id'});
+AdminSchema.plugin(AutoIncrement, { inc_field: 'student_id'});
 export default mongoose.model("student", StudentSchema);

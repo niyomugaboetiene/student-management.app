@@ -7,9 +7,9 @@ const AutoIncrement = AutoIncrementFactory(mongoose);
 const StudentSchema = mongoose.Schema({
     student_id: { required: true, unique: true, type: Number },
     full_name: { required: true, type: String },
-    roll: { required: true, type: Number, ref: "class" },
+    roll: { required: true, type: mongoose.Schema.Types.ObjectId, ref: "class" },
     email: { required: true, unique: true, type: String },
-    course: { required: true, type: Number, ref: "course" },
+    course: { required: true, type: mongoose.Schema.Types.ObjectId, ref: "course" },
     phone: { required: true, unique: true, type: String },
     location: { required: true, unique: true, type: String },
     joined_at: {type: Date, default: Date.now() },
