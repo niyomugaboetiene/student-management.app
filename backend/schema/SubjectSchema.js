@@ -3,7 +3,6 @@ import AutoIncrementFactory from "mongoose-sequence"
 
 const AutoIncrement = AutoIncrementFactory(mongoose);
 
-
 const SubjectSchema = mongoose.Schema({
     subject_id: { required: true, unique: true, type: Number },
     subject_name: { required: true, type: String },
