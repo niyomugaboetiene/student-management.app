@@ -7,8 +7,7 @@ const TradeSchema = mongoose.Schema({
     trade_id: { required: true, unique: true, type: Number },
     trade_name: { required: true, type: String },
     code: { required: true, type: String },
-    instructor: { required: true, type: String },
-    credits: {type: Number },
+    students: [{ required: true, type: mongoose.Schema.Types.ObjectId, ref: "student" }],
 });
 
 TradeSchema.plugin(AutoIncrement, { inc_field: 'subject_id' });
