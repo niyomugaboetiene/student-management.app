@@ -12,7 +12,7 @@ const TeacherSchema = mongoose.Schema({
     exprerience: {type: Number, required: true },
     department: { type: Number, required: true },
     salary: { type: Number, required: true },
-    class: [{ type: Number, required: true, type: mongoose.Schema.Types.ObjectId, ref: "class" }],
+    class: [{ required: true, type: mongoose.Schema.Types.ObjectId, ref: "class" }],
 });
 
 TeacherSchema.plugin(AutoIncrement, { inc_field: 'teacher_id' });
