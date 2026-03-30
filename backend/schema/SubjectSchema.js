@@ -4,17 +4,17 @@ import AutoIncrementFactory from "mongoose-sequence"
 const AutoIncrement = AutoIncrementFactory(mongoose);
 
 
-const CourseSchema = mongoose.Schema({
-    course_id: { required: true, unique: true, type: Number },
-    course_name: { required: true, type: String },
+const SubjectSchema = mongoose.Schema({
+    subject_id: { required: true, unique: true, type: Number },
+    subject_name: { required: true, type: String },
     code: { required: true, type: String },
     instructor: { required: true, type: String },
-    students: { required: true, type: Number },
+    students: [{ required: true, type: mongoose.Schema.Types.ObjectId, ref: "student" }],
     duration: {type: Date, required: true },
     fees: { type: Number, required: true },
 });
 
-CourseSchema.plugin(AutoIncrement, { inc_field: 'admin_id' });
-export default mongoose.model("student", CourseSchema);
+SubjectSchema.plugin(AutoIncrement, { inc_field: 'admin_id' });
+export default mongoose.model("student", SubjectSchema);
 
 // https://www.figma.com/design/xdsivDGz4yOY8mjdnAfH8j/student-management-system--Community-?node-id=2-150&t=C1q1pmd5EEJWZHOR-0
