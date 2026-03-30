@@ -12,7 +12,7 @@ const MarkSchema = mongoose.Schema({
     students: { required: true, type: Number },
     duration: {type: Date, required: true },
     fees: { type: Number, required: true },
-});
+}, { timestamp: true});
 
 MarkSchema.plugin(AutoIncrement, { inc_field: 'marks_id' });
 export default mongoose.model("student", MarkSchema);

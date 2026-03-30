@@ -17,7 +17,7 @@ const StudentSchema = mongoose.Schema({
     password: { type: String },
     last_login: { type: Date },
     is_approved: { type: Boolean, default: false }
-});
+}, { timestamp: true });
 
 StudentSchema.plugin(AutoIncrement, { inc_field: 'student_id'});
 export default mongoose.model("student", StudentSchema);

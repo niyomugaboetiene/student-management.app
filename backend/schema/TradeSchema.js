@@ -8,6 +8,7 @@ const TradeSchema = mongoose.Schema({
     trade_name: { required: true, type: String },
     code: { required: true, type: String },
     students: [{ required: true, type: mongoose.Schema.Types.ObjectId, ref: "student" }],
+    department: [{ required: true, type: mongoose.Schema.Types.ObjectId, ref: "department" }],
     duration: { type: String }
 }, { timestamp: true });
 
