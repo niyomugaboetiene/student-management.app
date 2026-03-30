@@ -10,7 +10,6 @@ const AdminSchema = mongoose.Schema({
     email: { required: true, unique: true, type: String },
     phone: { required: true, unique: true, type: String },
     location: { required: true, unique: true, type: String },
-    joined_at: {type: Date, default: Date.now() },
     password: { type: String },
     last_login: { type: Date },
 }, { timestamps: true });

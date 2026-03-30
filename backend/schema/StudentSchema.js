@@ -14,7 +14,6 @@ const StudentSchema = mongoose.Schema({
     phone: { required: true, unique: true, type: String },
     location: { required: true, unique: true, type: String },
     class: { required: true, type: mongoose.Schema.Types.ObjectId, ref: "class" },
-    joined_at: {type: Date, default: Date.now() },
     password: { type: String },
     last_login: { type: Date },
     is_approved: { type: Boolean, default: false }
