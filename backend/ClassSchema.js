@@ -9,7 +9,7 @@ const ClassSchema = mongoose.Schema({
     class_name: { required: true, type: String },
     code: { required: true, type: String },
     year: { required: true, type: Number },
-    teacher: {type: Date, required: true },
+    teacher: {type: mongoose.Schema.Types.ObjectId, required: true, ref: "teacher" },
     createdBy: { type: mongoose.Schema.Types.ObjectId, ref: "admin" }
 });
 

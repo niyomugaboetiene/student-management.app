@@ -8,8 +8,9 @@ const AttendanceSchema = mongoose.Schema({
     student: { required: true, type: mongoose.Schema.Types.ObjectId, ref: "student" },
     class: { type: mongoose.Schema.Types.ObjectId, required: true, ref: "class" },
     course: { required: true, type: mongoose.Schema.Types.ObjectId, ref: "course" },
+    marked_by: { required: true, type: mongoose.Schema.Types.ObjectId, ref: "teacher" },
     date: { type: Date, required: true },
-    status: { type: String, enum: ["present", "absent"], default: "absent"}
+    status: { type: String, enum: ["present", "absent"], default: "absent" }
 });
 
 AttendanceSchema.plugin(AutoIncrement, { inc_field: 'department_id' });
