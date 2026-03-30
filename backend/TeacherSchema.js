@@ -3,7 +3,6 @@ import AutoIncrementFactory from "mongoose-sequence"
 
 const AutoIncrement = AutoIncrementFactory(mongoose);
 
-
 const TeacherSchema = mongoose.Schema({
     teacher_id: { required: true, unique: true, type: Number },
     full_name: { required: true, type: String },
@@ -16,5 +15,5 @@ const TeacherSchema = mongoose.Schema({
     class: [{ type: Number, required: true, type: mongoose.Schema.Types.ObjectId, ref: "class" }],
 });
 
-TeacherSchema.plugin(AutoIncrement, { inc_field: 'admin_id' });
+TeacherSchema.plugin(AutoIncrement, { inc_field: 'teacher_id' });
 export default mongoose.model("teacher", TeacherSchema);
