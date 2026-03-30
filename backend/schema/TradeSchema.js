@@ -8,7 +8,8 @@ const TradeSchema = mongoose.Schema({
     trade_name: { required: true, type: String },
     code: { required: true, type: String },
     students: [{ required: true, type: mongoose.Schema.Types.ObjectId, ref: "student" }],
-});
+    duration: { type: String }
+}, { timestamp: true });
 
 TradeSchema.plugin(AutoIncrement, { inc_field: 'subject_id' });
 export default mongoose.model("subject", TradeSchema);
