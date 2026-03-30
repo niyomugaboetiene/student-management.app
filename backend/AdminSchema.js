@@ -15,5 +15,5 @@ const AdminSchema = mongoose.Schema({
     last_login: { type: Date },
 });
 
-AdminSchema.plugin(AutoIncrement, { inc_field: 'student_id'});
+AdminSchema.plugin(AutoIncrement, { inc_field: 'admin_id' });
 export default mongoose.model("student", StudentSchema);
