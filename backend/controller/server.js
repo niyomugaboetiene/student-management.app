@@ -13,6 +13,7 @@ app.use(express.json());
 app.use(cors());
 
 // * Middle ware
+app.use("/admin", AdminRoute);
 
 const PORT = process.env.PORT;
 app.listen(PORT, () => {
