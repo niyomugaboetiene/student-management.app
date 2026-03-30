@@ -10,7 +10,7 @@ const SubjectSchema = mongoose.Schema({
     instructor: { required: true, type: String },
     students: [{ required: true, type: mongoose.Schema.Types.ObjectId, ref: "student" }],
     credits: {type: Number },
-}, { timestamp: true});
+}, { timestamps: true});
 
 SubjectSchema.plugin(AutoIncrement, { inc_field: 'subject_id' });
 export default mongoose.model("subject", SubjectSchema);

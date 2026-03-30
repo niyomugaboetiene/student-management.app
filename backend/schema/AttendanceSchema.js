@@ -11,7 +11,7 @@ const AttendanceSchema = mongoose.Schema({
     marked_by: { required: true, type: mongoose.Schema.Types.ObjectId, ref: "teacher" },
     date: { type: Date, required: true },
     status: { type: String, enum: ["present", "absent"], default: "absent" }
-}, { timestamp: true });
+}, { timestamps: true });
 
 AttendanceSchema.plugin(AutoIncrement, { inc_field: 'attendance_id' });
 export default mongoose.model("attendance", AttendanceSchema);

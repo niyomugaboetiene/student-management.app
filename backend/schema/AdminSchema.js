@@ -5,7 +5,7 @@ const AutoIncrement = AutoIncrementFactory(mongoose);
 
 
 const AdminSchema = mongoose.Schema({
-    admin_id: { required: true, unique: true, type: Number },
+    admin_id: { unique: true, type: Number },
     full_name: { required: true, type: String },
     email: { required: true, unique: true, type: String },
     phone: { required: true, unique: true, type: String },
@@ -13,7 +13,7 @@ const AdminSchema = mongoose.Schema({
     joined_at: {type: Date, default: Date.now() },
     password: { type: String },
     last_login: { type: Date },
-}, { timestamp: true });
+}, { timestamps: true });
 
 AdminSchema.plugin(AutoIncrement, { inc_field: 'admin_id' });
 export default mongoose.model("admin", AdminSchema);

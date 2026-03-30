@@ -11,7 +11,7 @@ const DepartmentSchema = mongoose.Schema({
     HOD: { type: mongoose.Schema.Types.ObjectId, ref: "teacher"},
     teachers: [{ type: mongoose.Schema.Types.ObjectId, ref: "teacher" }],
     course: [{ type: mongoose.Schema.Types.ObjectId, ref: "course" }],
-}, { timestamp: true});
+}, { timestamps: true});
 
 DepartmentSchema.plugin(AutoIncrement, { inc_field: 'department_id' });
 export default mongoose.model("department", DepartmentSchema);

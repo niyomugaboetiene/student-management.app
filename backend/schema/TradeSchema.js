@@ -10,7 +10,7 @@ const TradeSchema = mongoose.Schema({
     students: [{ required: true, type: mongoose.Schema.Types.ObjectId, ref: "student" }],
     department: [{ required: true, type: mongoose.Schema.Types.ObjectId, ref: "department" }],
     duration: { type: String }
-}, { timestamp: true });
+}, { timestamps: true });
 
 TradeSchema.plugin(AutoIncrement, { inc_field: 'subject_id' });
 export default mongoose.model("subject", TradeSchema);

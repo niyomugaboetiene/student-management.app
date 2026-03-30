@@ -1,6 +1,6 @@
 import express from "express";
 import AdminSchema from "../schema/AdminSchema.js"
-import bcrypt from "bcrypt;"
+import bcrypt from "bcrypt";
 
 const router = express();
 
@@ -16,13 +16,13 @@ router.post('/register', async (req, res) => {
     const salt = await bcrypt.genSalt(10);
     const hashedPassword = await bcrypt.hash(password, salt);
 
-    const joined_at = new Date.now();
+    const joined_at = new Date();
     await AdminSchema.create({
         full_name,
         email,
         phone,
         location,
-        hashedPassword,
+        password: hashedPassword,
         joined_at
     });
 
