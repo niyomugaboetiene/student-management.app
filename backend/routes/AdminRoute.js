@@ -36,4 +36,19 @@ router.post('/register', async (req, res) => {
    }
 });
 
+router.get('/:_id', async (req, res) => {
+    try {
+        const { _id } = req.params;
+
+        const adminUsers = await AdminSchema.findOne({_id: _id});
+        if (adminUsers.length === 0) {
+            return res.status(404).json({ message: "Entered Ids is not found. try new Id" });
+        }
+
+        return res.status(200).json({ message: "Admin Users", Admin_Users: adminUsers });
+    } catch (err) {
+        console.error("ERROR", err);
+        return res.status(500).json({ message: "Server error" });
+    }
+}) 
 export default router
