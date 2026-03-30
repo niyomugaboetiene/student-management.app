@@ -16,4 +16,4 @@ const AdminSchema = mongoose.Schema({
 });
 
 AdminSchema.plugin(AutoIncrement, { inc_field: 'admin_id' });
-export default mongoose.model("student", StudentSchema);
+export default mongoose.model("admin", StudentSchema);
