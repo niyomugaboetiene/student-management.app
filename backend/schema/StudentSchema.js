@@ -9,7 +9,7 @@ const StudentSchema = mongoose.Schema({
     full_name: { required: true, type: String },
     roll: { required: true, type: mongoose.Schema.Types.ObjectId, ref: "class" },
     email: { required: true, unique: true, type: String },
-    course: { required: true, type: mongoose.Schema.Types.ObjectId, ref: "course" },
+    trade: { required: true, type: mongoose.Schema.Types.ObjectId, ref: "trade" },
     phone: { required: true, unique: true, type: String },
     location: { required: true, unique: true, type: String },
     class: { required: true, type: mongoose.Schema.Types.ObjectId, ref: "class" },

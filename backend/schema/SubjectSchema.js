@@ -12,7 +12,7 @@ const SubjectSchema = mongoose.Schema({
     credits: {type: Number },
 });
 
-SubjectSchema.plugin(AutoIncrement, { inc_field: 'admin_id' });
-export default mongoose.model("student", SubjectSchema);
+SubjectSchema.plugin(AutoIncrement, { inc_field: 'subject_id' });
+export default mongoose.model("subject", SubjectSchema);
 
 // https://www.figma.com/design/xdsivDGz4yOY8mjdnAfH8j/student-management-system--Community-?node-id=2-150&t=C1q1pmd5EEJWZHOR-0
