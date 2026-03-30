@@ -1,8 +1,11 @@
 import mongoose from "mongoose";
+import dotenv from "dotenv";
+dotenv.config();
+
 
 const connection = async () => {
     try {
-           await mongoose.connect("mongodb://127.0.0.1:27017/student-management-system");
+           await mongoose.connect(`${process.env.MONG_URL}`);
             console.log("connected successfully");
     } catch (err) {
         console.error("error", err);

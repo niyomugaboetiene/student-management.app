@@ -1,6 +1,6 @@
 import connection from "../db/connection.js";
 import express from "express";
-import mongoose from "mongoose";
+
 connection();
 
 const router = express();
