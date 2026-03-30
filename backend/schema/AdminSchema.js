@@ -13,7 +13,7 @@ const AdminSchema = mongoose.Schema({
     joined_at: {type: Date, default: Date.now() },
     password: { type: String },
     last_login: { type: Date },
-});
+}, { timestamp: true });
 
 AdminSchema.plugin(AutoIncrement, { inc_field: 'admin_id' });
 export default mongoose.model("admin", StudentSchema);

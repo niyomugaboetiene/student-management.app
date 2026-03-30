@@ -13,5 +13,5 @@ const AttendanceSchema = mongoose.Schema({
     status: { type: String, enum: ["present", "absent"], default: "absent" }
 }, { timestamp: true });
 
-AttendanceSchema.plugin(AutoIncrement, { inc_field: 'department_id' });
-export default mongoose.model("teacher", AttendanceSchema);
+AttendanceSchema.plugin(AutoIncrement, { inc_field: 'attendance_id' });
+export default mongoose.model("attendance", AttendanceSchema);
