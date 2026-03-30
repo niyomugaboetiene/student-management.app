@@ -15,6 +15,6 @@ const CourseSchema = mongoose.Schema({
 });
 
 CourseSchema.plugin(AutoIncrement, { inc_field: 'admin_id' });
-export default mongoose.model("student", StudentSchema);
+export default mongoose.model("student", CourseSchema);
 
 // https://www.figma.com/design/xdsivDGz4yOY8mjdnAfH8j/student-management-system--Community-?node-id=2-150&t=C1q1pmd5EEJWZHOR-0
