@@ -5,14 +5,13 @@ const AutoIncrement = AutoIncrementFactory(mongoose);
 
 
 const CourseSchema = mongoose.Schema({
-    admin_id: { required: true, unique: true, type: Number },
-    full_name: { required: true, type: String },
-    email: { required: true, unique: true, type: String },
-    phone: { required: true, unique: true, type: String },
-    location: { required: true, unique: true, type: String },
-    joined_at: {type: Date, default: Date.now() },
-    password: { type: String },
-    last_login: { type: Date },
+    course_id: { required: true, unique: true, type: Number },
+    course_name: { required: true, type: String },
+    code: { required: true, type: String },
+    instructor: { required: true, type: String },
+    students: { required: true, type: Number },
+    duration: {type: Date, required: true },
+    fees: { type: Number, required: true },
 });
 
 CourseSchema.plugin(AutoIncrement, { inc_field: 'admin_id' });
