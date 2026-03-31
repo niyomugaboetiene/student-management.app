@@ -91,8 +91,24 @@ router.put('/update/:_id', async ( req, res) => {
          console.error("ERROR", err);
         return res.status(500).json({ message: "Server error" });
     }
+});
 
+router.delete('/delete:_id', async (req, res) => {
+    try {
+        const { _id } = req.params._id;
 
+        const isExist = await AdminSchema.findOne({ _id: _id });
 
+        if (!isExist) {
+          return res.status(404).json({ message: "Entered Ids is not found. try new Id" });
+        }
+
+        await AdminSchema.findByIdAndDelete(_id);
+
+        return res.status(200).json({ message: 'Admin user deleted successfully' });
+    } catch (err) {
+        console.error(err);
+        return res.status(500).json({ error: 'Server error' });
+    }
 })
 export default router
