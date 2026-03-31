@@ -2,7 +2,8 @@
 
     import TeacherSchema from "../schema/TeacherSchema.js";
     import express from "express";
-    
+    import bcrypt from "bcrypt";
+
     const router = express();
     
     router.post('/register', async (req, res) => {
