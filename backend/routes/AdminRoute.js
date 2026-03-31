@@ -50,5 +50,42 @@ router.get('/:_id', async (req, res) => {
         console.error("ERROR", err);
         return res.status(500).json({ message: "Server error" });
     }
-}) 
+});
+
+router.put('/update/:_id', async ( req, res) => {
+    try {
+        const { full_name, email, phone, location, password } = req.body;
+        const { _id } = req.params;
+
+        const adminUsers = await AdminSchema.findOne({_id: _id});
+        if (adminUsers.length === 0) {
+            return res.status(404).json({ message: "Entered Ids is not found. try new Id" });
+        }
+
+          const salt = await bcrypt.genSalt(10);
+          const hashedPassword = await bcrypt.hash(password, salt);
+        
+
+        await AdminSchema.findByIdAndUpdate(_id, { $set: {
+            full_name: full_name,
+            email: email,
+            phone: phone,
+            password: hashedPassword,
+            location: location   
+        }
+        }, { new: true});
+
+       return res.status(200).json({ 
+          success: true,
+          message: "Admin account updated successfully"
+      });
+
+    } catch (err) {
+         console.error("ERROR", err);
+        return res.status(500).json({ message: "Server error" });
+    }
+
+
+
+})
 export default router
