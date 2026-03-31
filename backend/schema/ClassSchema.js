@@ -11,6 +11,7 @@ const ClassSchema = mongoose.Schema({
     year: { required: true, type: Number },
     teacher: {type: mongoose.Schema.Types.ObjectId, required: true, ref: "teacher" },
     createdBy: { type: mongoose.Schema.Types.ObjectId, ref: "admin" }
+    
 }, { timestamps: true });
 
 ClassSchema.plugin(AutoIncrement, { inc_field: 'class_id' });

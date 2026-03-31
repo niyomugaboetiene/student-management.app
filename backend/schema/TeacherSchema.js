@@ -15,6 +15,7 @@ const TeacherSchema = mongoose.Schema({
     salary: { type: Number, required: true },
     password: { type: String, required: true },
     last_login: { type: Date },
+    is_approved: { tyoe: Boolean, default: false}, 
     class: [{ required: true, type: mongoose.Schema.Types.ObjectId, ref: "class" }],
 
 }, { timestamps: true });

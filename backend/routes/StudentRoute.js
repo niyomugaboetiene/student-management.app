@@ -28,6 +28,8 @@ router.post('/register', async (req, res) => {
                 class: classe,
                 password: hashedPassword
             });
+
+            
         } catch (err) {
             console.error(err);
             return res.status(500).json({ message: 'Server error'});

@@ -8,7 +8,6 @@
     
     router.post('/register', async (req, res) => {
         //     student_id, full_name,  email, qualification, phone, gender, experience, department, salary, class
-    
             try {
                 const { full_name, email, qualification, phone, gender, experience, department, salary, password, classe } = req.body;
     
@@ -19,7 +18,7 @@
                 const salt = await bcrypt.genSalt(10);
                 const hashedPassword = await bcrypt.hash(password, salt);
     
-                await StudentSchema.create({
+                await TeacherSchema.create({
                     full_name,
                     gender,
                     email,
@@ -32,6 +31,12 @@
                     password: hashedPassword,
                     class: classe,
                 });
+           
+                return res.status(201).json({ 
+                    success: true,
+                    message: "Teacher successfully created account"
+                });
+
             } catch (err) {
                 console.error(err);
                 return res.status(500).json({ message: 'Server error'});
