@@ -55,7 +55,7 @@ router.get('/:_id', async (req, res) => {
 router.put('/update/:_id', async ( req, res) => {
     try {
         const { full_name, email, phone, location, password } = req.body;
-        const { _id } = req.params;
+        const { _id } = req.params._id;
 
         const adminUsers = await AdminSchema.findOne({_id: _id});
 
