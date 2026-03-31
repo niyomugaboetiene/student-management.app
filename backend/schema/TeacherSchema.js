@@ -9,10 +9,14 @@ const TeacherSchema = mongoose.Schema({
     email: { required: true, type: String },
     qualification: { required: true, type: String },
     phone: { required: true, type: Number },
+    gender: { required: true, type: String },
     exprerience: {type: Number, required: true },
     department: { type: Number, required: true },
     salary: { type: Number, required: true },
+    password: { type: String, required: true },
+    last_login: { type: Date },
     class: [{ required: true, type: mongoose.Schema.Types.ObjectId, ref: "class" }],
+
 }, { timestamps: true });
 
 TeacherSchema.plugin(AutoIncrement, { inc_field: 'teacher_id' });
