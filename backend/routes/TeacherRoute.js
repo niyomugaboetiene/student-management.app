@@ -11,7 +11,7 @@
             try {
                 const { full_name, email, qualification, phone, gender, experience, department, salary, password, classe } = req.body;
     
-                if (!full_name || !gender || !email || !qualification || !experience || !department || !salary || !password || !classe ) {
+                if (!full_name || !gender || !email || !qualification || !phone || !experience || !department || !salary || !password || !classe ) {
                      return res.status(404).json({ message: 'Fill some missing fields' }); 
                 }
     
@@ -23,11 +23,13 @@
                     gender,
                     email,
                     roll,
-                    trade,
+                    qualification,
                     phone,
-                    location,
+                    experience,
+                    department,
+                    salary,
+                    password: hashedPassword,
                     class: classe,
-                    password: hashedPassword
                 });
             } catch (err) {
                 console.error(err);
