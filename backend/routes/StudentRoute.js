@@ -5,8 +5,7 @@ import bcrypt from "bcrypt";
 const router = express();
 
 router.post('/register', async (req, res) => {
-    //     student_id
-        // full_name,  gender, roll, email, trade, phone, location, class, password, last_login, is_approved
+    //     student_id, full_name,  gender, roll, email, trade, phone, location, class, password, last_login, is_approved
 
         try {
             const { full_name, gender, email, roll, trade, phone, location, classe, password } = req.body;
