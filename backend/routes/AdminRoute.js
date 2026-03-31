@@ -1,6 +1,6 @@
 import express from "express";
 import AdminSchema from "../schema/AdminSchema.js"
-import bcrypt from "bcrypt";
+import bcrypt, { hash } from "bcrypt";
 
 const router = express();
 
@@ -58,26 +58,33 @@ router.put('/update/:_id', async ( req, res) => {
         const { _id } = req.params;
 
         const adminUsers = await AdminSchema.findOne({_id: _id});
-        if (adminUsers.length === 0) {
+
+        if(!adminUsers) {
             return res.status(404).json({ message: "Entered Ids is not found. try new Id" });
         }
 
+        let updateFields = {};
+
+        if (full_name) updateFields.full_name = full_name;
+        if (email) updateFields.email = email;
+        if (phone) updateFields.phone = phone;
+        if (location) updateFields.location = location;
+        if (password) {
           const salt = await bcrypt.genSalt(10);
           const hashedPassword = await bcrypt.hash(password, salt);
+          updateFields.password = hashedPassword;
+        }
+
         
 
-        await AdminSchema.findByIdAndUpdate(_id, { $set: {
-            full_name: full_name,
-            email: email,
-            phone: phone,
-            password: hashedPassword,
-            location: location   
-        }
-        }, { new: true});
+        const updatedAdmin = await AdminSchema.findByIdAndUpdate(_id, { $set: updateFields }, 
+            { new: true, runValidators: true }
+        );
 
        return res.status(200).json({ 
           success: true,
-          message: "Admin account updated successfully"
+          message: "Admin account updated successfully",
+          admin: updatedAdmin
       });
 
     } catch (err) {
