@@ -5,7 +5,7 @@ const AutoIncrement = AutoIncrementFactory(mongoose);
 
 
 const StudentSchema = mongoose.Schema({
-    student_id: { required: true, unique: true, type: Number },
+    student_id: { unique: true, type: Number },
     full_name: { required: true, type: String },
     gender: { required: true, type: String, enum: ["male", "female"] },
     roll: { required: true, type: mongoose.Schema.Types.ObjectId, ref: "class" },

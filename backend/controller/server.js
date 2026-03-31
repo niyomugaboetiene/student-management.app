@@ -3,6 +3,7 @@ import cors from "cors";
 import dotenv from "dotenv";
 import connection from "../db/connection.js";
 import AdminRoute from "../routes/AdminRoute.js";
+import StudentRoute from "../routes/StudentRoute.js";
 dotenv.config();
 
 connection();
@@ -13,6 +14,7 @@ app.use(cors());
 
 // * Middle ware
 app.use("/admin", AdminRoute);
+app.use("/student", StudentRoute);
 
 const PORT = process.env.PORT;
 app.listen(PORT, () => {

@@ -16,7 +16,7 @@ router.post('/register', async (req, res) => {
             }
 
             const salt = await bcrypt.genSalt(10);
-            const hashedPassword = await bcrypt.hash(password, 10);
+            const hashedPassword = await bcrypt.hash(password, salt);
 
             await StudentSchema.create({
                 full_name,
@@ -34,3 +34,5 @@ router.post('/register', async (req, res) => {
             return res.status(500).json({ message: 'Server error'});
         }
 })
+
+export default router;
