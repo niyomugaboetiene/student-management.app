@@ -8,9 +8,9 @@ router.post('/register', async (req, res) => {
     //     student_id, full_name,  gender, roll, email, trade, phone, location, class, password, last_login, is_approved
 
         try {
-            const { full_name, gender, email, roll, trade, phone, location, classe, password } = req.body;
+            const { full_name, gender, email, trade, phone, location, classe, password } = req.body;
 
-            if (!full_name || !gender || !email || !roll || !trade || !phone || !location || !classe || !password) {
+            if (!full_name || !gender || !email || !trade || !phone || !location || !classe || !password) {
                  return res.status(404).json({ message: 'Fill some missing fields' }); 
             }
 
@@ -21,7 +21,6 @@ router.post('/register', async (req, res) => {
                 full_name,
                 gender,
                 email,
-                roll,
                 trade,
                 phone,
                 location,
@@ -29,6 +28,10 @@ router.post('/register', async (req, res) => {
                 password: hashedPassword
             });
 
+            return res.status(201).json({ 
+                success: true,
+                message: "Student successfully account created"
+           });
             
         } catch (err) {
             console.error(err);
