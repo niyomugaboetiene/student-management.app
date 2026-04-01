@@ -84,5 +84,18 @@ router.put('/update/:id', async (req, res) => {
         console.error(err);
         return res.status(500).json({ message: 'Server error' });
     }
+});
+
+router.delete('/delete/:_id', async (req, res) => {
+    try {
+        const _id = req.params;
+
+        if (!_id) {
+            return res.status(403).json({ message: 'Id is required' });
+        }
+
+        await ClassSchema.findByIdAndDelete(_id);
+
+    }
 })
 export default router;
