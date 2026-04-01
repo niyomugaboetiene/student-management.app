@@ -5,10 +5,10 @@ const AutoIncrement = AutoIncrementFactory(mongoose);
 
 
 const ClassSchema = mongoose.Schema({
-    class_id: { required: true, unique: true, type: Number },
+    class_id: {  unique: true, type: Number },
     class_name: { required: true, type: String },
-    code: { required: true, type: String },
-    year: { required: true, type: Number },
+    code: { type: String },
+    year: {  type: String },
     teacher: {type: mongoose.Schema.Types.ObjectId, required: true, ref: "teacher" },
     createdBy: { type: mongoose.Schema.Types.ObjectId, ref: "admin" }
     

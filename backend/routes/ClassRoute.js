@@ -5,13 +5,13 @@
 
     const router = express();
     
-    router.post('/register', async (req, res) => {
+    router.post('/add', async (req, res) => {
         // class_name, code, year, teacher, createdBy
     
             try {
                 const { class_name, code, year, teacher, createdBy } = req.body;
     
-                if (!class_name || !code || !year || !teacher || !createdBy) {
+                if (!class_name || !teacher || !createdBy) {
                      return res.status(404).json({ message: 'Fill some missing fields' }); 
                 }
     
