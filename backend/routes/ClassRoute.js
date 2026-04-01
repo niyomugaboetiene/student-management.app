@@ -61,6 +61,17 @@ router.put('/update/:id', async (req, res) => {
         const _id = req.params;
        const { class_name, code, year, teacher, createdBy } = req.body;
     
+
+        if (!_id) {
+            return res.status(403).json({ message: 'Id required' });
+        }
+
+        const ClassList = await ClassSchema.findOne(_id);
+
+        if (!ClassList) {
+            return res.status(404).json({ message: 'Id does not exist' });
+        }
+        
        if (!class_name || !teacher || !createdBy) {
             return res.status(404).json({ message: 'Fill some missing fields' }); 
       }
@@ -96,6 +107,11 @@ router.delete('/delete/:_id', async (req, res) => {
 
         await ClassSchema.findByIdAndDelete(_id);
 
+        return res.status(200).json({ message: 'Class deleted successfully' });
+    } catch (err) {
+        console.error(err);
+        return res.status(500).json("Server error");
     }
-})
+});
+
 export default router;
