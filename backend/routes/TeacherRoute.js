@@ -25,7 +25,8 @@
                 const hashedPassword = await bcrypt.hash(password, salt);
 
 
-    
+         
+                console.log("experience", experience);
                 await TeacherSchema.create({
                     full_name,
                     gender,
