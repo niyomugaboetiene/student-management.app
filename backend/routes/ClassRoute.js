@@ -36,7 +36,7 @@
 
 router.get("/:id", async (req, res) => {
     try {
-        const { _id } = req.params;
+        const _id  = req.params;
 
         if (!_id) {
             return res.status(403).json({ message: 'Id required' });
@@ -54,6 +54,35 @@ router.get("/:id", async (req, res) => {
           console.error(err);
           return res.status(500).json({ message: 'Server error'});
     }
-})
+});
+
+router.put('/update/:id', async (req, res) => {
+    try {
+        const id = req.params;
+       const { class_name, code, year, teacher, createdBy } = req.body;
     
-    export default router;
+       if (!class_name || !teacher || !createdBy) {
+            return res.status(404).json({ message: 'Fill some missing fields' }); 
+      }
+
+      let updateFields = {};
+      if (class_name) updateFields.class_name = class_name;
+      if (code) updateFields.code = code;
+      if (year) updateFields.year = year;
+      if (teacher) updateFields.teacher = teacher;
+      if (createdBy) updateFields.createdBy = createdBy;
+
+
+      const updated = await ClassSchema.findByIdAndUpdate(_id, updateFields, { new: true });
+
+      return res.status(201).json({ 
+        message: 'Class updated successfully',
+        success: true,
+        new_data: updated
+      });
+    } catch (err) {
+        console.error(err);
+        return res.status(500).json({ message: 'Server error' });
+    }
+})
+export default router;
