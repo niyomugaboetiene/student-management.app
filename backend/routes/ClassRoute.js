@@ -58,7 +58,7 @@ router.get("/:id", async (req, res) => {
 
 router.put('/update/:id', async (req, res) => {
     try {
-        const id = req.params;
+        const _id = req.params;
        const { class_name, code, year, teacher, createdBy } = req.body;
     
        if (!class_name || !teacher || !createdBy) {
