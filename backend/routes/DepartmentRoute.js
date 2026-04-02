@@ -19,6 +19,7 @@ router.post('/add', async (req, res) => {
         if (building) newFields.building = building;
         if (hod) newFields.hod = hod;
         if (teachers) newFields.teachers = teachers;
+        
         const newData = await DepartmentSchema.create(newFields);
 
         return res.status(201).json({ 
@@ -26,8 +27,11 @@ router.post('/add', async (req, res) => {
             message: 'New department added successfully',
             department: newData
         });
+
     } catch (err) {
         console.error(err)
         return res.status(500).json({ message: 'Server error' });
     }
-})
+});
+
+export default router;
