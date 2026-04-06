@@ -6,8 +6,7 @@ import AdminRoute from "../routes/AdminRoute.js";
 import StudentRoute from "../routes/StudentRoute.js";
 import ClassRoute from "../routes/ClassRoute.js";
 import TeacherRoute from "../routes/TeacherRoute.js";
-import DepartmentSchema from "../schema/DepartmentSchema.js";
-
+import DepartmentRoute from "../routes/DepartmentRoute.js";
 dotenv.config();
 
 connection();
@@ -20,7 +19,7 @@ app.use(cors());
 app.use("/admin", AdminRoute);
 app.use("/student", StudentRoute);
 app.use("/class", ClassRoute);
-app.use("/department", DepartmentSchema);
+app.use("/department", DepartmentRoute);
 app.use("/teacher", TeacherRoute);
 
 const PORT = process.env.PORT;

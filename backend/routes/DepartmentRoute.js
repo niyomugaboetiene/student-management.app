@@ -1,6 +1,6 @@
-import DepartmentSchema from "../schema/DepartmentSchema";
+import DepartmentSchema from "../schema/DepartmentSchema.js";
 import express from "express";
-import TeacherSchema from "../schema/TeacherSchema";
+import TeacherSchema from "../schema/TeacherSchema.js";
 
 const router = express.Router()
 
@@ -10,11 +10,11 @@ router.post('/add', async (req, res) => {
         
         const { name, description, building, HOD, teachers } = req.body;
 
-        if (!name || !hod || !teachers) {
+        if (!name || !HOD || !teachers) {
             return res.status(403).json({ message: 'Fill some missing fields' });
         }
 
-        const is_HODExist = await TeacherSchema.findByOne(HOD);
+        const is_HODExist = await TeacherSchema.findOne({_id: HOD });
 
         if (!is_HODExist) {
             return res.status(404).json({ message: 'HOD Not exist' });
