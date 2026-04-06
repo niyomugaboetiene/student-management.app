@@ -118,7 +118,7 @@ router.put('/update/:_id', async (req, res) => {
     }
 });
 
-router.delete("_id", async (req, res) => {
+router.delete("/:_id", async (req, res) => {
     try {
         const _id = req.params;
 
