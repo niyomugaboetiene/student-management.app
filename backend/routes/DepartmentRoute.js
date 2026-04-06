@@ -83,4 +83,39 @@ router.get('/:_id', async (req, res) => {
     }
 });
 
+router.put('/update/:_id', async (req, res) => {
+    try {
+        const { name, description, building, HOD, teachers } = req.body;
+        const _id = req.params;
+
+        if (!name || !HOD || !teachers) {
+            return res.status(403).json({ message: 'Fill some missing fields' });
+        }
+
+        const is_HODExist = await TeacherSchema.findOne({ HOD: HOD });
+
+        if (!is_HODExist) {
+            return res.status(404).json({ message: 'Please enter the real HOD id' });
+        }
+
+        let updateFields = {};
+
+        if (name) updateFields.name = name;
+        if (description) updateFields.description = description;
+        if (building) updateFields.building = building;
+        if (HOD) updateFields.HOD = HOD;
+        if (teachers) updateFields.teachers = teachers;
+
+        const newData = await DepartmentSchema.findByIdAndUpdate(_id, updateFields, { new: true });
+
+        return res.status(200).json({
+             message: 'Department updated successfully',
+             newDep: newData
+            }); 
+    } catch (err) {
+        console.error(err.message);
+        return res.status(200).json({ message: 'Server error' });
+    }
+})
+
 export default router;
