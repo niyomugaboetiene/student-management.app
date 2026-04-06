@@ -116,6 +116,29 @@ router.put('/update/:_id', async (req, res) => {
         console.error(err.message);
         return res.status(200).json({ message: 'Server error' });
     }
-})
+});
+
+router.delete("_id", async (req, res) => {
+    try {
+        const _id = req.params;
+
+        if (!_id) {
+            return res.status(403).json({ message: 'Ids is required for this action' });
+        }
+
+        const isExist = await DepartmentSchema.findOne(_id);
+
+        if (!isExist) {
+            return res.status(404).json({ message: 'Enter a valid IDs' });
+        }
+
+        await DepartmentSchema.findByIdAndDelete(_id);
+
+        return res.status(200).json({ message: 'Department deleted successfully' });
+    } catch (err) {
+        console.error(err);
+        return res.status(500).json({ message: 'Server error' });
+    }
+});
 
 export default router;
