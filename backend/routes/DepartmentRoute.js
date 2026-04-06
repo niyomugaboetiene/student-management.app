@@ -43,7 +43,7 @@ router.post('/add', async (req, res) => {
 
 router.get('/department_list', async (req, res) => {
     try {
-        const [result] = await DepartmentSchema.find();
+        const result = await DepartmentSchema.find();
 
         if (!result) {
             return res.status(404).json({ message: 'No department im the system' });
