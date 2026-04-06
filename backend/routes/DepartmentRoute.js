@@ -59,4 +59,28 @@ router.get('/department_list', async (req, res) => {
     }
 });
 
+router.get('/:_id', async (req, res) => {
+    try {
+        const  _id = req.params;
+
+        if (!_id) {
+            res.status(403).json({ message: 'ID is required' });
+        }
+        
+        const result = await DepartmentSchema.findOne(_id);
+
+        if (!result) {
+            return res.status(404).json({ message: 'No department im the system' });
+        }
+
+        return res.status(200).json({
+            message: 'Department list',
+            department: result
+        });
+    } catch (err) {
+        console.error(err.message);
+        return res.status(500).json({ message: 'Server error' });
+    }
+});
+
 export default router;
