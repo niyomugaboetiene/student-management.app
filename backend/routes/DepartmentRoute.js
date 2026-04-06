@@ -57,5 +57,6 @@ router.get('/department_list', async (req, res) => {
         console.error(err);
         return res.status(500).json({ message: 'Server error' });
     }
-})
+});
+
 export default router;
