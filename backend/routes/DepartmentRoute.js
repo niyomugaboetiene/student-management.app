@@ -24,7 +24,7 @@ router.post('/add', async (req, res) => {
         if (name) newFields.name = name;
         if (description) newFields.description = description;
         if (building) newFields.building = building;
-        if (HOD) newFields.hod = HOD;
+        if (HOD) newFields.HOD = HOD;
         if (teachers) newFields.teachers = teachers;
         
         const newData = await DepartmentSchema.create(newFields);
