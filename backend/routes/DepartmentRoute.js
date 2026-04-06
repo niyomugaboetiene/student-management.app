@@ -41,4 +41,21 @@ router.post('/add', async (req, res) => {
     }
 });
 
+router.get('/department_list', async (req, res) => {
+    try {
+        const [result] = await DepartmentSchema.find();
+
+        if (!result) {
+            return res.status(404).json({ message: 'No department im the system' });
+        }
+
+        return res.status(200).json({
+            message: 'Department list',
+            department: result
+        });
+    } catch (err) {
+        console.error(err);
+        return res.status(500).json({ message: 'Server error' });
+    }
+})
 export default router;
