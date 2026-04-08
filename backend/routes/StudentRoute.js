@@ -11,7 +11,7 @@ router.post('/register', async (req, res) => {
             const { full_name, gender, email, trade, phone, location, classe, password } = req.body;
 
             if (!full_name || !gender || !email || !trade || !phone || !location || !classe || !password) {
-                 return res.status(404).json({ message: 'Fill some missing fields' }); 
+                 return res.status(400).json({ message: 'Fill some missing fields' }); 
             }
 
             const salt = await bcrypt.genSalt(10);
