@@ -39,20 +39,16 @@ router.post('/register', async (req, res) => {
         }
 });
 
-router.get("/:id", async (req, res) => {
+
+router.get("/studentList", async (req, res) => {
     try {
-        const _id  = req.params;
+        const StudentList = await StudentSchema.find();
 
-        if (!_id) {
-            return res.status(403).json({ message: 'Id required' });
-        }
-
-        const StudentList = await StudentSchema.findOne(_id);
-
-        if (!StudentList) {
+        if (StudentList.length === 0) {
             return res.status(404).json({ message: 'Id does not exist' });
         }
 
+        console.log("Student length", StudentList.length);
         return res.status(200).json({ message: 'Students', student: StudentList });
 
     } catch (err) {
@@ -61,7 +57,30 @@ router.get("/:id", async (req, res) => {
     }
 });
 
-router.put('/update/:id', async (req, res) => {
+router.get("/:_id", async (req, res) => {
+    try {
+        const { _id }   = req.params;
+
+        if (!_id) {
+            return res.status(403).json({ message: 'Id required' });
+        }
+
+        const student = await StudentSchema.findById(_id);
+
+        if (!student) {
+            return res.status(404).json({ message: 'Id does not exist' });
+        }
+
+        return res.status(200).json({ message: 'Students', student: student });
+
+    } catch (err) {
+          console.error(err);
+          return res.status(500).json({ message: 'Server error'});
+    }
+});
+
+
+router.put('/update/:_id', async (req, res) => {
     try {
         const _id = req.params;
         const { full_name, gender, email, trade, phone, location, classe, password } = req.body;
