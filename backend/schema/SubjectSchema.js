@@ -8,7 +8,7 @@ const SubjectSchema = mongoose.Schema({
     subject_name: { required: true, type: String },
     code: { required: true, type: String },
     instructor: { required: true, type: String },
-    students: [{ required: true, type: mongoose.Schema.Types.ObjectId, ref: "student" }],
+    students: [{ required: true, type: mongoose.Schema.Types.ObjectId, ref: "students" }],
     credits: {type: Number },
 }, { timestamps: true});
 

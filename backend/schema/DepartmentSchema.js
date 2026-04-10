@@ -8,8 +8,8 @@ const DepartmentSchema = mongoose.Schema({
     name: { required: true, type: String },
     description: {  type: String },
     building: { type: String },
-    HOD: { type: mongoose.Schema.Types.ObjectId, ref: "teacher"},
-    teachers: [{ type: mongoose.Schema.Types.ObjectId, ref: "teacher" }],
+    HOD: { type: mongoose.Schema.Types.ObjectId, ref: "teachers"},
+    teachers: [{ type: mongoose.Schema.Types.ObjectId, ref: "teachers" }],
 }, { timestamps: true});
 
 DepartmentSchema.plugin(AutoIncrement, { inc_field: 'department_id' });

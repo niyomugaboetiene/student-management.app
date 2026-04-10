@@ -9,8 +9,8 @@ const ClassSchema = mongoose.Schema({
     class_name: { required: true, type: String },
     code: { type: String },
     year: {  type: String },
-    teacher: {type: mongoose.Schema.Types.ObjectId, required: true, ref: "teacher" },
-    createdBy: { type: mongoose.Schema.Types.ObjectId, ref: "admin" }
+    teacher: {type: mongoose.Schema.Types.ObjectId, required: true, ref: "teachers" },
+    createdBy: { type: mongoose.Schema.Types.ObjectId, ref: "admins" }
     
 }, { timestamps: true });
 

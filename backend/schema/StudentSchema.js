@@ -9,10 +9,10 @@ const StudentSchema = mongoose.Schema({
     full_name: { required: true, type: String },
     gender: { required: true, type: String, enum: ["male", "female"] },
     email: { required: true, unique: true, type: String },
-    trade: { required: true, type: mongoose.Schema.Types.ObjectId, ref: "trade" },
+    trade: { required: true, type: mongoose.Schema.Types.ObjectId, ref: "trades" },
     phone: { required: true, unique: true, type: String },
     location: { required: true, type: String },
-    class: { required: true, type: mongoose.Schema.Types.ObjectId, ref: "class" },
+    class: { required: true, type: mongoose.Schema.Types.ObjectId, ref: "classes" },
     password: { type: String },
     last_login: { type: Date },
     is_approved: { type: Boolean, default: false }
