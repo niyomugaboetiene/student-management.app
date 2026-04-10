@@ -92,7 +92,10 @@ router.put('/update/:_id', async (req, res) => {
 
        const newValue = await SubjectSchema.findByIdAndUpdate(_id, updateFields, { new: true });
 
-       return res.status()
+       return res.status(201).json({ messsage: 'New Subject value', new: newValue });
+    } catch (err) {
+        console.error(err);
+        return res.status(500).json({ messsage: 'Internal server error' });
     }
 })
 export default router;
