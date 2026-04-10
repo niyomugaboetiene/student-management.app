@@ -9,6 +9,7 @@ router.post('/add', async (req, res) => {
     try {
         const { subject_name, code, instructor, class: classes, credits } = req.body;
 
+        console.log("class", classes);
         if (!subject_name || !code || !instructor || !classes || !credits) {
             return res.status(403).json({ messsage: 'Some fields are required' });
         }
@@ -17,7 +18,7 @@ router.post('/add', async (req, res) => {
             subject_name,
             code,
             instructor,
-            classes,
+            class: classes,
             credits
         });
 
@@ -119,7 +120,7 @@ router.delete('/delete/:_id', async (req, res) => {
         return res.status(200).json({ messsage: 'Subject deleted successfully' });
     } catch (err) {
         console.error(err);
-        return res.status(500).json({ messsage: })
+        return res.status(500).json({ messsage: 'Internal server error' });
     }
-})
+});
 export default router;
