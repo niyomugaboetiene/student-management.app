@@ -40,9 +40,13 @@ router.get('/subjectList', async (req, res) => {
         }
 
         return res.status(200).json({
-            messsage: ''
-        })
-    } 
+            messsage: 'Subject list',
+            subject: result
+        });
+    }  catch (err) {
+        console.error(err);
+        return res.status(500).json({ messsage: 'Internal server error' });
+    }
 });
 
 router.get('/:_id', async ( req, res) => {

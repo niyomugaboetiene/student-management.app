@@ -8,6 +8,8 @@ import ClassRoute from "../routes/ClassRoute.js";
 import TeacherRoute from "../routes/TeacherRoute.js";
 import MarksRoute from "../routes/MarksRoute.js";
 import DepartmentRoute from "../routes/DepartmentRoute.js";
+import SubjectRoute from "../routes/SubjectRoute.js";
+
 dotenv.config();
 
 connection();
@@ -25,6 +27,7 @@ app.use("/class", ClassRoute);
 app.use("/department", DepartmentRoute);
 app.use("/teacher", TeacherRoute);
 app.use("/marks", MarksRoute);
+app.use("/subject", SubjectRoute);
 
 const PORT = process.env.PORT;
 app.listen(PORT, () => {
