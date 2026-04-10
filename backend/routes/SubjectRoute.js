@@ -109,7 +109,10 @@ router.delete('/delete/:_id', async (req, res) => {
         }
 
         const isExist = await SubjectSchema.findById(_id);
-        
+
+        if (isExist.length === 0) {
+            return res.status()
+        }
     }
 })
 export default router;
