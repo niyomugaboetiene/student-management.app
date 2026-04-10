@@ -4,11 +4,11 @@ import AutoIncrementFactory from "mongoose-sequence"
 const AutoIncrement = AutoIncrementFactory(mongoose);
 
 const SubjectSchema = mongoose.Schema({
-    subject_id: { required: true, unique: true, type: Number },
+    subject_id: {  unique: true, type: Number },
     subject_name: { required: true, type: String },
     code: { required: true, type: String },
     instructor: { required: true, type: String },
-    class: [{ required: true, type: mongoose.Schema.Types.ObjectId, ref: "claases" }],
+    class: { required: true, type: mongoose.Schema.Types.ObjectId, ref: "claases" },
     credits: {type: Number },
 }, { timestamps: true});
 

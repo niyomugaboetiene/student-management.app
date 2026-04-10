@@ -27,7 +27,7 @@ app.use("/class", ClassRoute);
 app.use("/department", DepartmentRoute);
 app.use("/teacher", TeacherRoute);
 app.use("/marks", MarksRoute);
-app.use("/subject", SubjectRoute);
+app.use("/subjects", SubjectRoute);
 
 const PORT = process.env.PORT;
 app.listen(PORT, () => {
