@@ -1,5 +1,5 @@
 import express from "express";
-import SubjectRoute from "../schema/SubjectSchema.js";
+import SubjectSchema from "../schema/SubjectSchema.js";
 
 const router = express.Router();
 
@@ -13,7 +13,7 @@ router.post('/add', async (req, res) => {
             return res.status(403).json({ messsage: 'Some fields are required' });
         }
 
-        const newValue = await SubjectRoute.create({
+        const newValue = await SubjectSchema.create({
             subject_name,
             code,
             instructor,
@@ -33,7 +33,7 @@ router.post('/add', async (req, res) => {
 
 router.get('/subjectList', async (req, res) => {
     try {
-        const result = await SubjectRoute.find();
+        const result = await SubjectSchema.find();
 
         if (result.length === 0) {
             return res.status(404).json({ messsage: 'No subject in the system' });
@@ -57,7 +57,7 @@ router.get('/:_id', async ( req, res) => {
             return res.status(403).json({ messsage: 'IDs required' });
         }
 
-        const result = await SubjectRoute.findById(_id);
+        const result = await SubjectSchema.findById(_id);
 
         if (result.length === 0) {
             return res.status(404).json({
@@ -75,4 +75,24 @@ router.get('/:_id', async ( req, res) => {
     }
 });
 
+router.put('/update/:_id', async (req, res) => {
+    try {
+        const _id = req.params;
+               
+        const { subject_name, code, instructor, class: classes, credits } = req.body;
+
+       let updateFields = {};
+
+       if (subject_name) updateFields.subject_name = subject_name;
+       if (code) updateFields.code = code;
+       if (instructor) updateFields.instructor = instructor;
+       if (classes) updateFields.class = classes;
+       if (credits) updateFields.credits = credits;
+
+
+       const newValue = await SubjectSchema.findByIdAndUpdate(_id, updateFields, { new: true });
+
+       return res.status()
+    }
+})
 export default router;
