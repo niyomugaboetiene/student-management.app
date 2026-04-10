@@ -97,5 +97,19 @@ router.put('/update/:_id', async (req, res) => {
         console.error(err);
         return res.status(500).json({ messsage: 'Internal server error' });
     }
+});
+
+
+router.delete('/delete/:_id', async (req, res) => {
+    try {
+        const _id = req.params;
+
+        if (!_id) {
+            return res.status(403).json({ messsage: 'IDs required' });
+        }
+
+        const isExist = await SubjectSchema.findById(_id);
+        
+    }
 })
 export default router;
