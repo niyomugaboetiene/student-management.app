@@ -111,8 +111,15 @@ router.delete('/delete/:_id', async (req, res) => {
         const isExist = await SubjectSchema.findById(_id);
 
         if (isExist.length === 0) {
-            return res.status()
+            return res.status(404).json({ messsage: 'No user found'});
         }
+
+        await SubjectSchema.findByIdAndDelete(_id);
+
+        return res.status(200).json({ messsage: 'Subject deleted successfully' });
+    } catch (err) {
+        console.error(err);
+        return res.status(500).json({ me})
     }
 })
 export default router;
