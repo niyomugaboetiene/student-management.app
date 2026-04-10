@@ -119,7 +119,7 @@ router.delete('/delete/:_id', async (req, res) => {
         return res.status(200).json({ messsage: 'Subject deleted successfully' });
     } catch (err) {
         console.error(err);
-        return res.status(500).json({ me})
+        return res.status(500).json({ messsage: })
     }
 })
 export default router;
