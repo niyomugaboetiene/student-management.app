@@ -34,7 +34,14 @@ router.post('/add', async (req, res) => {
 router.get('/subjectList', async (req, res) => {
     try {
         const result = await SubjectRoute.find();
-        
+
+        if (result.length === 0) {
+            return res.status(404).json({ messsage: 'No subject in the system' });
+        }
+
+        return res.status(200).json({
+            messsage: ''
+        })
     } 
 });
 
