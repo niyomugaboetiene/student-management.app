@@ -13,6 +13,6 @@ const SubjectSchema = mongoose.Schema({
 }, { timestamps: true});
 
 SubjectSchema.plugin(AutoIncrement, { inc_field: 'subject_id' });
-export default mongoose.model("subject", SubjectSchema);
+export default mongoose.model("subjects", SubjectSchema);
 
 // https://www.figma.com/design/xdsivDGz4yOY8mjdnAfH8j/student-management-system--Community-?node-id=2-150&t=C1q1pmd5EEJWZHOR-0
