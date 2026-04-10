@@ -60,11 +60,15 @@ router.get('/:_id', async ( req, res) => {
         const result = await SubjectRoute.findById(_id);
 
         if (result.length === 0) {
-            return res.status(200).json({
-                messsage: 'Subject list',
-                subject: result
+            return res.status(404).json({
+                messsage: 'No subject found',
             });
         }
+
+         return res.status(404).json({
+            messsage: 'Subject list',
+            subject: result
+         });
     } catch (err) {
         console.error(err);
         return res.status(500).json({ messsage: 'Internal server error' });
