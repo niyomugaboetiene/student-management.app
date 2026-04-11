@@ -68,3 +68,63 @@ router.get('/:_id', async (req, res) => {
         return res.status(500).json({ message: 'Internal server error'})
     }
 });
+
+router.put('/update/:_id', async (req, res) => {
+    try {
+        const _id = req.params;
+
+        if (!_id) {
+            return res.status(403).json({ message: 'IDs is required' });
+        }
+
+        const isTradeExist = await TradeSchema.findById(_id);
+
+        if (isTradeExist.length === 0) {
+            return res.status(404).json({ message: 'Enter valid IDs' });
+        }
+
+
+        const { trade_name, code, department } = req.body;
+
+        let updateFields = {}
+        if (trade_name) createFields.trade_name = trade_name;
+        if (code) createFields.code = code;
+        if (department) createFields.department = department;
+
+        const newValue = await TradeSchema.findByIdAndUpdate(_id, updateFields, { new: true });
+
+        return res.status(201).json({
+            message: 'New trade added successfully',
+            new: newValue
+        });
+    } catch (err) {
+        console.error(err);
+        return res.status(500).json({ message: 'Internal server error' });
+    }
+});
+
+
+router.delete('/delete/:_id', async (req, res) => {
+    try {
+        const _id = req.params;
+
+        if (_id) {
+            return res.status(403).json({ message: 'IDs is required' });
+        }
+
+       const isTradeExist = await TradeSchema.findById(_id);
+
+        if (isTradeExist.length === 0) {
+            return res.status(404).json({ message: 'Enter valid IDs' });
+        }
+
+        await TradeSchema.findByIdAndDelete(_id);
+
+        return res.status(200).json({ message: 'Trade deleted successfully' });
+    } catch (err) {
+        console.error(err);
+        return res.status(500).json({ message: 'Internal Server error'});
+    }
+});
+
+export default router;
