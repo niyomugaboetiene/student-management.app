@@ -25,7 +25,7 @@ router.post('/add', async (req, res) => {
         });
     } catch (err) {
         console.error(err);
-        return res.status(500).json({ message: "Servier error" });
+        return res.status(500).json({ message: "Internal server error" });
     }
 });
 
@@ -46,4 +46,25 @@ router.get('/tradeList', async (req, res) => {
         console.error(err);
         return res.status(500).json({ message: 'Internal server error' });
     }
-})
+});
+
+router.get('/:_id', async (req, res) => {
+    try {
+        const _id = req.params;
+
+        if (!_id) {
+            return res.status(403).json({ message: 'IDS required to perform this action'});
+        }
+
+        const Trade = await TradeSchema.findById(_id);
+
+        if (Trade.length === 0) {
+            return res.status(404).json({ message: 'No trade found' });
+        }
+
+        return res.status(200).json({ message: 'Trade details', trade: Trade });
+    } catch (err) {
+        console.error(err);
+        return res.status(500).json({ message: 'Internal server error'})
+    }
+});
