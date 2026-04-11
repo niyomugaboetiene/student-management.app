@@ -1,4 +1,4 @@
-import express from "express";  
+import express, { json } from "express";  
 import TradeSchema from "../schema/TradeSchema.js";
 
 const router = express.Router();
@@ -37,5 +37,13 @@ router.get('/tradeList', async (req, res) => {
         if (list.length === 0) {
             return res.status(404).json({ message: 'No trade in the system' });
         }
+
+        return res.status(200)/json({
+            message: 'Trade list',
+            Trade: list
+        });
+    } catch (err) {
+        console.error(err);
+        return res.status(500).json({ message: 'Internal server error' });
     }
 })
