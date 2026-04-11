@@ -16,5 +16,26 @@ router.post('/add', async (req, res) => {
         if (trade_name) createFields.trade_name = trade_name;
         if (code) createFields.code = code;
         if (department) createFields.department = department;
+
+        const newTrade = await TradeSchema.create(createFields);
+
+        return res.status(201).json({
+            message: 'New trade added successfully',
+            new: newTrade
+        });
+    } catch (err) {
+        console.error(err);
+        return res.status(500).json({ message: "Servier error" });
+    }
+});
+
+
+router.get('/tradeList', async (req, res) => {
+    try {
+        const list = await TradeSchema.find();
+
+        if (list.length === 0) {
+            return res.status(404).json({ message: 'No trade in the system' });
+        }
     }
 })
