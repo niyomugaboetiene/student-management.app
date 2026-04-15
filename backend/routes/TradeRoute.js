@@ -109,7 +109,7 @@ router.delete('/delete/:_id', async (req, res) => {
     try {
         const _id = req.params;
 
-        if (_id) {
+        if (!_id) {
             return res.status(403).json({ message: 'IDs is required' });
         }
 
