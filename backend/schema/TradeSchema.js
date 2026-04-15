@@ -10,5 +10,5 @@ const TradeSchema = mongoose.Schema({
     department: [{ required: true, type: mongoose.Schema.Types.ObjectId, ref: "departments" }],
 }, { timestamps: true });
 
-TradeSchema.plugin(AutoIncrement, { inc_field: 'subject_id' });
-export default mongoose.model("subject", TradeSchema);
+TradeSchema.plugin(AutoIncrement, { inc_field: 'trade_id' });
+export default mongoose.model("trades", TradeSchema);

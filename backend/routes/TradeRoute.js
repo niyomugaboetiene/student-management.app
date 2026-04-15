@@ -33,12 +33,13 @@ router.post('/add', async (req, res) => {
 router.get('/tradeList', async (req, res) => {
     try {
         const list = await TradeSchema.find();
-
+  
+        // console.log("Trade list", list);
         if (list.length === 0) {
             return res.status(404).json({ message: 'No trade in the system' });
         }
 
-        return res.status(200)/json({
+        return res.status(200).json({
             message: 'Trade list',
             Trade: list
         });
