@@ -94,8 +94,9 @@ router.get('/', async (req, res) => {
         }
 
         const class_of_student = student_details.class;
+
         const attendance = await AttendanceSchema.find({
-            class_id,
+            student_id, class_of_student, 
             date: { $gte: start, $lte: end }
         });
 
