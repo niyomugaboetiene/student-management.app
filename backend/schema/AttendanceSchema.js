@@ -4,7 +4,7 @@ import AutoIncrementFactory from "mongoose-sequence"
 const AutoIncrement = AutoIncrementFactory(mongoose);
 
 const AttendanceSchema = mongoose.Schema({
-    attendance_id: { required: true, unique: true, type: Number },
+    attendance_id: { unique: true, type: Number },
     student: { required: true, type: mongoose.Schema.Types.ObjectId, ref: "students" },
     class: { type: mongoose.Schema.Types.ObjectId, required: true, ref: "classes" },
     marked_by: { required: true, type: mongoose.Schema.Types.ObjectId, ref: "teachers" },
