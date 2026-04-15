@@ -88,14 +88,14 @@ router.put('/update/:_id', async (req, res) => {
         const { trade_name, code, department } = req.body;
 
         let updateFields = {}
-        if (trade_name) createFields.trade_name = trade_name;
-        if (code) createFields.code = code;
-        if (department) createFields.department = department;
+        if (trade_name) updateFields.trade_name = trade_name;
+        if (code) updateFields.code = code;
+        if (department) updateFields.department = department;
 
         const newValue = await TradeSchema.findByIdAndUpdate(_id, updateFields, { new: true });
 
         return res.status(201).json({
-            message: 'New trade added successfully',
+            message: 'trade updated added successfully',
             new: newValue
         });
     } catch (err) {
