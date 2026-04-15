@@ -7,14 +7,14 @@ router.post('/attendance', async (req, res) => {
     //     student, class, marked_by, date status
 
     try {
-        const { student_name, class: classe, marked_by, date, status } = req.body;
+        const { student, class: classe, marked_by, date, status } = req.body;
 
-        if (!student_name || !classe || !marked_by | !date || !status) {
+        if (!student || !classe || !marked_by | !date || !status) {
             return res.status(403).json({ message: 'Fill out each field' });
         }
 
         const newAttendance = await AttendanceSchema.create({
-            student_name,
+            student,
             classe,
             marked_by,
             date,
@@ -64,7 +64,7 @@ router.get('/', async (req, res) => {
         if (attendance.length === 0) {
             return res.status(404).json({ message: 'No attendance done on this day' });
         }
-        
+
         return res.status(200).json({
             message: 'Attendance details',
             attendances: attendance
@@ -76,3 +76,5 @@ router.get('/', async (req, res) => {
         return res.status(500).json({ message: 'Internal server error' });
     }
 });
+
+export default router
