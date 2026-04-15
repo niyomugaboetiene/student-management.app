@@ -7,15 +7,15 @@ router.post('/attendance', async (req, res) => {
     //     student, class, marked_by, date status
 
     try {
-        const { student, class: classe, marked_by, date, status } = req.body;
+        const { student, classe, marked_by, date, status } = req.body;
 
-        if (!student || !classe || !marked_by | !date || !status) {
+        if (!student || !classe || !marked_by || !date || !status) {
             return res.status(403).json({ message: 'Fill out each field' });
         }
 
         const newAttendance = await AttendanceSchema.create({
             student,
-            classe,
+            class: classe,
             marked_by,
             date,
             status
