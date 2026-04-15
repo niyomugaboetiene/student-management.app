@@ -10,6 +10,7 @@ import MarksRoute from "../routes/MarksRoute.js";
 import DepartmentRoute from "../routes/DepartmentRoute.js";
 import SubjectRoute from "../routes/SubjectRoute.js";
 import TradeRoute from "../routes/TradeRoute.js";
+import AttendanceRoute from "../routes/AttendanceRoute.js";
 
 dotenv.config();
 
@@ -30,6 +31,7 @@ app.use("/teacher", TeacherRoute);
 app.use("/marks", MarksRoute);
 app.use("/subjects", SubjectRoute);
 app.use("/trade", TradeRoute);
+app.use("/attendance", AttendanceRoute);
 
 const PORT = process.env.PORT;
 app.listen(PORT, () => {
