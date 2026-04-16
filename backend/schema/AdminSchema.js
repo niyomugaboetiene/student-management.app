@@ -9,7 +9,7 @@ const AdminSchema = mongoose.Schema({
     full_name: { required: true, type: String },
     email: { required: true, unique: true, type: String },
     phone: { required: true, unique: true, type: String },
-    location: { required: true, unique: true, type: String },
+    location: { required: true, type: String },
     password: { type: String },
     last_login: { type: Date },
 }, { timestamps: true });
