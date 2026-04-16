@@ -161,7 +161,18 @@ router.get('/stud/:_student_id', async (req, res) => {
             return res.status(404).json({ message: 'Enter a valid student id' });
         }
 
-        
+        const studentAttendance = await AttendanceSchema.find({
+            student: student_id
+        });
+
+        if (!studentAttendance) {
+            return res.status(404).json({ message: 'NO attendance for this student' });
+        }
+
+        return res.status(200).json({ message: `Student attendance`, attendance: studentAttendance });
+    } catch (err) {
+        console.error(err);
+        return res.status(500).json({ message: 'Intenral server error' });
     }
-})
+});
 export default router
