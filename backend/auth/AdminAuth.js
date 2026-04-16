@@ -28,10 +28,11 @@ router.post('/login', async (req, res) => {
             req.session.user = {
                 full_name: full_name,
                 phone: phone,
-                email: isExist.email
+                email: isExist.email,
+                location: isExist.location
             }
 
-            return res.status(200).json({ message: 'Login successfully', user: req.session.user.full_name });
+            return res.status(200).json({ message: 'Login successfully', user: req.session.user });
         } else {
             return  res.status(401).json({ message: 'Incorrect password' });
         }
