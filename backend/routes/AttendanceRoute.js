@@ -155,7 +155,7 @@ router.get('/stud/:_id', async (req, res) => {
             return res.status(403).json({ message: 'Fill out student id' });
         }
 
-        const isExist = await StudentSchema.findById({_id: _id });
+        const isExist = await StudentSchema.findById(_id);
 
         if (!isExist) {
             return res.status(404).json({ message: 'Enter a valid student id' });
