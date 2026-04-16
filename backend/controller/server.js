@@ -18,7 +18,10 @@ import AttendanceRoute from "../routes/AttendanceRoute.js";
 // * we use connect mongo to store user session in mongoDB Instead of RAM
 import MongoStore from "connect-mongo";
 
+// * auth
+import AdminAuth from "../auth/AdminAuth.js";
 dotenv.config();
+
 
 connection();
 
@@ -53,6 +56,9 @@ app.use("/marks", MarksRoute);
 app.use("/subjects", SubjectRoute);
 app.use("/trade", TradeRoute);
 app.use("/attendance", AttendanceRoute);
+
+// ? aut middleware
+app.use('/admin/auth', AdminAuth);
 
 const PORT = process.env.PORT;
 app.listen(PORT, () => {
