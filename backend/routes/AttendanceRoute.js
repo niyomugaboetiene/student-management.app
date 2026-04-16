@@ -118,7 +118,7 @@ router.get('/get', async (req, res) => {
 });
 
 // full reprort of attendance per class
-router.get('ful/:_class_id', async (req, res) => {
+router.get('full/:_class_id', async (req, res) => {
     try {
         const class_id = req.params;
 
@@ -146,4 +146,22 @@ router.get('ful/:_class_id', async (req, res) => {
         return res.status(500).json({ message: 'Intenral server error' });
     }
 });
+
+// get fully atteandance per student
+router.get('/stud/:_student_id', async (req, res) => {
+    try {
+        const student_id =  req.query;
+        if (!student_id) {
+            return res.status(403).json({ message: 'Fill out student id' });
+        }
+
+        const isExist = await StudentSchema.findById({_id: student_id });
+
+        if (!isExist) {
+            return res.status(404).json({ message: 'Enter a valid student id' });
+        }
+
+        
+    }
+})
 export default router
