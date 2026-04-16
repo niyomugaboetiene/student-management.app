@@ -26,7 +26,7 @@ const AdminLogin = () => {
         } catch (err) {
             setLoading(false);
             console.error(err);
-            const errorMessage = err?.response.error;
+            const errorMessage = err.response?.data?.error;
             setError(errorMessage);
         }
     }
