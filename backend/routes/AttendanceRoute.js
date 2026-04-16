@@ -1,6 +1,7 @@
 import express from "express";
 import AttendanceSchema from "../schema/AttendanceSchema.js";
 import StudentSchema from "../schema/StudentSchema.js";
+import ClassSchema from "../schema/ClassSchema.js";
 
 const router = express.Router();
 
@@ -79,7 +80,7 @@ router.get('/', async (req, res) => {
 });
 
 // get attendance by date/class/student
-router.get('/', async (req, res) => {
+router.get('/get', async (req, res) => {
     try {
         const { day, month, student_id } = req.query;
         
@@ -89,8 +90,8 @@ router.get('/', async (req, res) => {
 
         const student_details = await StudentSchema.findById({_id: student_id});
 
-        if (class_of_student.length === 0) {
-            return res.status(404).json({ message: 'NO student found for this ID' });
+        if (!student_details) {
+            return res.status(404).json({ message: 'No student found for this ID' });
         }
 
         const class_of_student = student_details.class;
@@ -116,4 +117,33 @@ router.get('/', async (req, res) => {
     }
 });
 
+// full reprort of attendance per class
+router.get('ful/:_class_id', async (req, res) => {
+    try {
+        const class_id = req.params;
+
+        if (!class_id) {
+            return res.status(403).json({ message: 'Fill out class id'});
+        } 
+
+        const isExist = await ClassSchema.findById({_id: class_id});
+
+        if (!isExist) {
+            return res.status(404).json({ message: `Class didn't found` });
+        }
+
+        const classAttendance = await AttendanceSchema.find({
+            class: class_id
+        });
+
+        if (classAttendance.length === 0) {
+            return res.status(404).json({ message: 'This class has no attendance' });
+        }
+
+        return res.status(200).json({ message: 'Class attendance', attendance: classAttendance });
+    } catch (err) {
+        console.error(err);
+        return res.status(500).json({ message: 'Intenral server error' });
+    }
+});
 export default router
