@@ -30,4 +30,17 @@ const AdminLogin = () => {
             setError(errorMessage);
         }
     }
+
+
+    return (
+        <div>
+            <div>
+                <h1>Login Admin Portal</h1>
+
+                <div>
+                    
+                </div>
+            </div>
+        </div>
+    )
 }
