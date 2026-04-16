@@ -118,22 +118,22 @@ router.get('/get', async (req, res) => {
 });
 
 // full reprort of attendance per class
-router.get('/full/:class_id', async (req, res) => {
+router.get('/full/:_id', async (req, res) => {
     try {
-        const class_id = req.params;
+        const _id = req.params;
 
-        if (!class_id) {
+        if (!_id) {
             return res.status(403).json({ message: 'Fill out class id'});
         } 
 
-        const isExist = await ClassSchema.findById({_id: class_id});
+        const isExist = await ClassSchema.findById(_id);
 
         if (!isExist) {
             return res.status(404).json({ message: `Class didn't found` });
         }
 
         const classAttendance = await AttendanceSchema.find({
-            class: class_id
+            class: _id
         });
 
         if (classAttendance.length === 0) {
