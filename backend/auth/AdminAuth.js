@@ -12,12 +12,12 @@ router.post('/login', async (req, res) => {
            return res.status(403).json({ message: 'Fill out each field' });
         }
 
-        const isExist = await AdminSchema.find({
+        const isExist = await AdminSchema.findOne({
             full_name, phone
         });
 
         if (!isExist) {
-            return res.status(404).json({ message: 'Try to fill out valid credentials' });
+            return res.status(401).json({ message: 'Try to fill out valid credentials' });
         }
 
         const passwordToCompare  = isExist.password;
