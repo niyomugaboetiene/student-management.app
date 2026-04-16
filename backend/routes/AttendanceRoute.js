@@ -118,7 +118,7 @@ router.get('/get', async (req, res) => {
 });
 
 // full reprort of attendance per class
-router.get('full/:_class_id', async (req, res) => {
+router.get('/full/:class_id', async (req, res) => {
     try {
         const class_id = req.params;
 
