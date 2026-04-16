@@ -148,21 +148,21 @@ router.get('/full/:_id', async (req, res) => {
 });
 
 // get fully atteandance per student
-router.get('/stud/:_student_id', async (req, res) => {
+router.get('/stud/:_id', async (req, res) => {
     try {
-        const student_id =  req.query;
-        if (!student_id) {
+        const _id =  req.params;
+        if (!_id) {
             return res.status(403).json({ message: 'Fill out student id' });
         }
 
-        const isExist = await StudentSchema.findById({_id: student_id });
+        const isExist = await StudentSchema.findById({_id: _id });
 
         if (!isExist) {
             return res.status(404).json({ message: 'Enter a valid student id' });
         }
 
         const studentAttendance = await AttendanceSchema.find({
-            student: student_id
+            student: _id
         });
 
         if (!studentAttendance) {
