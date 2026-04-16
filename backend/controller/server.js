@@ -1,6 +1,9 @@
 import express from "express";
 import cors from "cors";
 import dotenv from "dotenv";
+import session from "express-session";
+
+// * routes
 import connection from "../db/connection.js";
 import AdminRoute from "../routes/AdminRoute.js";
 import StudentRoute from "../routes/StudentRoute.js";
@@ -12,6 +15,9 @@ import SubjectRoute from "../routes/SubjectRoute.js";
 import TradeRoute from "../routes/TradeRoute.js";
 import AttendanceRoute from "../routes/AttendanceRoute.js";
 
+// * we use connect mongo to store user session in mongoDB Instead of RAM
+import MongoStore from "connect-mongo";
+
 dotenv.config();
 
 connection();
@@ -20,6 +26,21 @@ const app = express();
 app.use(express.json());
 app.use(cors({
     origin: '*'
+}));
+
+app.use(session({
+    secret: process.env.SESSION_KEY,
+    saveUninitialized: false,
+    resave: false,
+    store: MongoStore.create({
+        mongoUrl: `mongodb://${process.env.MONG_URL}`
+    }),
+    cookie: {
+        httpOnly: true,
+        secure: false,
+        // 1000 -> 1 sec, 60 -> 1 min, 60 -> 1 hr, 24 -> day 
+        maxAge: 1000 * 60 * 60 * 24 // 1 day
+    },
 }));
 
 // * Middle ware
