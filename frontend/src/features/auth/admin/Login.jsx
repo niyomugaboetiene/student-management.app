@@ -70,7 +70,7 @@ const AdminLogin = () => {
                     />
                 </div>
 
-                <button onClick={handleLoginUser} >Login</button>
+                <button onClick={handleLoginUser} className="w-full bg-cyan-500 p-3 rounded-full text-white font-bold hover:bg-cyan-400 transition-colors">Login</button>
             </div>
         </div>
     )
