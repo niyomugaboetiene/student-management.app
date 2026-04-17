@@ -9,9 +9,9 @@
         // class_name, code, year, teacher, createdBy
     
             try {
-                const { class_name, code, year, teacher, createdBy } = req.body;
+                const { class_name, code, year, teacher, trade, createdBy } = req.body;
     
-                if (!class_name || !teacher || !createdBy) {
+                if (!class_name || !teacher || !createdBy || !trade) {
                      return res.status(404).json({ message: 'Fill some missing fields' }); 
                 }
     
@@ -21,6 +21,7 @@
                     year,
                     teacher,
                     createdBy,
+                    trade
                 });
 
                return res.status(201).json({ 
@@ -59,7 +60,7 @@ router.get("/:id", async (req, res) => {
 router.put('/update/:id', async (req, res) => {
     try {
         const _id = req.params;
-       const { class_name, code, year, teacher, createdBy } = req.body;
+       const { class_name, code, year, teacher, createdBy, trade } = req.body;
     
 
         if (!_id) {
@@ -78,6 +79,7 @@ router.put('/update/:id', async (req, res) => {
       if (year) updateFields.year = year;
       if (teacher) updateFields.teacher = teacher;
       if (createdBy) updateFields.createdBy = createdBy;
+      if (trade) updateFields.trade = trade;
 
 
       const updated = await ClassSchema.findByIdAndUpdate(_id, updateFields, { new: true });
