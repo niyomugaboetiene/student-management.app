@@ -29,22 +29,24 @@ const AdminLogin = () => {
             }, { withCredentials: true });
  
           setLoading(false);
-          if (res.data.message === "Try to fill out valid credentials") {
-               setMessage("");
-               setError(res.data.message);
-               console.message(res.data.message);
-          }
-          if (res.data.message === "Incorrect password") {
-            
-          }
           setMessage(res.data.message);
           setError("");
         } catch (err) {
             setMessage("");
             setLoading(false);
-            console.error(err);
-            const errorMessage = err.response?.data?.error;
-            setError(errorMessage);
+            const errorMessage = err.response?.data?.message || "Error occured";
+
+            if (errorMessage === "Try to fill out valid credentials") {
+               setMessage("");
+               setError(errorMessage);
+               console.message(errorMessage);
+          }
+          if (errorMessage === "Incorrect password") {
+               setMessage("");
+               setError(errorMessage); 
+          }
+
+           setError(errorMessage);
         }
     }
 
