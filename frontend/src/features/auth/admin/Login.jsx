@@ -52,21 +52,21 @@ const AdminLogin = () => {
                 <div className="mt-3">
                     <input type="text"  
                        onChange={(e) => setFull_name(e.target.value)} required
-                       className="bg-gray-100  w-full p-3 rounded-full" placeholder="Full name"
+                       className="bg-gray-100  w-full p-3 rounded-full focus:outline-1 focus:outline-gray-500" placeholder="Full name"
                     />
                 </div>
                 
                 <div className="mt-3">
                     <input type="text"  
                     onChange={(e) => setPhone(e.target.value)} required
-                    className="bg-gray-100 w-full p-3 rounded-full" placeholder="Phone"
+                    className="bg-gray-100 w-full p-3 rounded-full focus:outline-1 focus:outline-gray-500" placeholder="Phone"
                 />
                 </div>
                 
                 <div className="mt-3 mb-4">
                     <input type="password"  
                        onChange={(e) => setPassword(e.target.value)} required
-                       className="bg-gray-100 w-full rounded-full p-3" placeholder="Password"
+                       className="bg-gray-100 w-full rounded-full p-3 focus:outline-1 focus:outline-gray-500" placeholder="Password"
                     />
                 </div>
 
