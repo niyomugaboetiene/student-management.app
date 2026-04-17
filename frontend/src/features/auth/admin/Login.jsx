@@ -13,7 +13,11 @@ const AdminLogin = () => {
 
     const handleLoginUser = async () => {
         try {
-            console.log("Received data", full_name, phone, password);
+            // console.log("Received data", full_name, phone, password);
+            if (!full_name || !phone || !password) {
+                setMessage("Fill out some missing fields");
+                return;
+            }
             setLoading(true);
             const BACKEND_URL = import.meta.env.VITE_BACKEND_URL;
             const res = await axios.post(`${BACKEND_URL}/admin/auth/login`, {
