@@ -38,21 +38,21 @@ const AdminRegister = () => {
           setMessage(res.data.message);
           setError("");
         } catch (err) {
-            setMessage("");
             setLoading(false);
             const errorMessage = err.response?.data?.message || "Error occured";
 
-            if (errorMessage === "Try to fill out valid credentials") {
+            if (errorMessage === "Email must be unique") {
                setMessage("");
                setError(errorMessage);
                console.message(errorMessage);
           }
-          if (errorMessage === "Incorrect password") {
+          if (errorMessage === "Phone must be unique") {
                setMessage("");
                setError(errorMessage); 
           }
 
            setError(errorMessage);
+           setMessage("");
         }
     }
 
