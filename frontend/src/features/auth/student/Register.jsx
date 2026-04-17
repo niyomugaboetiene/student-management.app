@@ -74,7 +74,6 @@ const StudentRegister = () => {
             const tradeRes = await axios.get(`${BACKEND_URL}/student/auth/trade`);
 
             setTradeToSelect(tradeRes.data.trade);
-            console.log(tradeRes.data.trade);
             setLoading(false);
         } catch (err) {
             console.error(err);
@@ -88,7 +87,7 @@ const StudentRegister = () => {
             const classRes = await axios.get(`${BACKEND_URL}/student/auth/class/${trade}`);
 
             setClassToSelect(classRes.data.classes);
-            setLoading(false);
+            setLoading("result", classRes.data.classes);
         } catch (err) {
             console.error(err);
             setLoading(false);
@@ -99,9 +98,9 @@ const StudentRegister = () => {
         handleGetTrade();
     }, []);
 
-    // useEffect(() => {
-    //     handleGetClass();
-    // }, [trade]);
+    useEffect(() => {
+        handleGetClass();
+    }, [trade]);
 
     return (
         <div className="bg-gray-100 min-h-screen flex justify-center items-center p-3">
@@ -148,9 +147,10 @@ const StudentRegister = () => {
                 
                 <div className="mt-3">
                     <select
-                        onChange={(e) => setTrade(e.target.value)} required
+                        onChange={(e) => setTrade(e.target.value)}
                        className="bg-gray-100 w-full p-3 rounded-full focus:outline-1 focus:outline-gray-500" placeholder="Class"
                    > 
+                   <option disabled={true}>-----Select trade-----</option>
                    {tradeToSelect?.map((item) => (
                           <option value={item._id} key={item._id}>
                                {item.trade_name}
@@ -160,10 +160,17 @@ const StudentRegister = () => {
                 </select>
                 </div>
                 <div className="mt-3">
-                    <input type="text"  
-                    onChange={(e) => setClasse(e.target.value)} required
-                    className="bg-gray-100 w-full p-3 rounded-full focus:outline-1 focus:outline-gray-500" placeholder="Phone"
-                />
+                    <select
+                        onChange={(e) => setTrade(e.target.value)}
+                       className="bg-gray-100 w-full p-3 rounded-full focus:outline-1 focus:outline-gray-500"
+                   > 
+                   {classToSelect?.map((item) => (
+                          <option value={item._id} key={item._id}>
+                               {item.class_name} 
+                         </option>
+                       
+                   ))}
+                </select>
                 </div>
                 
                 <div className="mt-3">
