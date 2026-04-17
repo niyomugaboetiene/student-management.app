@@ -38,8 +38,8 @@ const AdminLogin = () => {
 
 
     return (
-        <div className="bg-cyan-100 min-h-screen flex justify-center items-center">
-            <div className="bg-cyan-300 w-1/2">
+        <div className="bg-cyan-100 min-h-screen flex justify-center items-center p-3">
+            <div className="bg-cyan-300 w-1/4 rounded-xl p-4">
                 {message && (
                     <p>{message}</p>
                 )}
