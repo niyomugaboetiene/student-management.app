@@ -94,7 +94,6 @@ router.post('/register', async (req, res) => {
             const salt = await bcrypt.genSalt(10);
             const hashedPassword = await bcrypt.hash(password, salt);
 
-            console.log("Received data", full_name, gender, email, trade, phone, location, classe, password);
             await StudentSchema.create({
                 full_name,
                 gender,
