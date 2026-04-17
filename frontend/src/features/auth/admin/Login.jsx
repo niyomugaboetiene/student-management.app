@@ -16,6 +16,7 @@ const AdminLogin = () => {
         try {
             // console.log("Received data", full_name, phone, password);
             if (!full_name || !phone || !password) {
+                setMessage("");
                 setError("Fill out some missing fields");
                 return;
             }
@@ -28,8 +29,14 @@ const AdminLogin = () => {
             }, { withCredentials: true });
  
           setLoading(false);
+          if (res.data.message === "Try to fill out valid credentials") {
+               setMessage("");
+               setError(res.data.message);
+          }
           setMessage(res.data.message);
+          setError("");
         } catch (err) {
+            setMessage("");
             setLoading(false);
             console.error(err);
             const errorMessage = err.response?.data?.error;
@@ -42,7 +49,7 @@ const AdminLogin = () => {
         <div className="bg-gray-100 min-h-screen flex justify-center items-center p-3">
             <div className="bg-white w-110 rounded-xl p-4 shadow-lg">
                 {message  && (
-                    <div className="bg-red-500 mb-2 p-2 rounded-lg text-white font-bold relative flex justify-between">
+                    <div className="bg-green-500 mb-2 p-2 rounded-lg text-white font-bold relative flex justify-between">
                         <p>{message}</p> <p className="text-lg mt-1" onClick={() => setMessage("")}><FaTimes /></p>
                     </div>
                 )}
