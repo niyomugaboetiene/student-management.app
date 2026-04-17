@@ -8,7 +8,7 @@ router.post('/login', async (req, res) => {
     try {
         const { full_name, phone, password } = req.body;
 
-        if (!full_name, !phone, !password) {
+        if (!full_name || !phone || !password) {
            return res.status(403).json({ message: 'Fill out each field' });
         }
 
