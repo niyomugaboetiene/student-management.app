@@ -64,16 +64,16 @@ router.get('/trade', async (req, res) => {
 // get trade and class
 router.get('/class/:trade', async (req, res) => {
     try {
-          const { trade } = req.body;
+          const  { trade }  = req.params;
           if (!trade) return;
             // available class based on trade choosen
             const availableClass = await ClassSchema.find({ trade: trade });
 
             if (availableClass.length === 0) {
                 return res.status(404).json({ message: 'No class found' });
-            } else {
-                res.status(200).json({ classes: availableClass });
-            }
+            } 
+              
+            return res.status(200).json({ classes: availableClass });
 
     } catch (err) {
         console.error(err);
@@ -94,6 +94,7 @@ router.post('/register', async (req, res) => {
             const salt = await bcrypt.genSalt(10);
             const hashedPassword = await bcrypt.hash(password, salt);
 
+            console.log("Received data", full_name, gender, email, trade, phone, location, classe, password);
             await StudentSchema.create({
                 full_name,
                 gender,
