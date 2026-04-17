@@ -2,7 +2,7 @@ import StudentSchema from "../schema/StudentSchema.js";
 import express from "express";
 import bcrypt from "bcrypt";
 
-const router = express();
+const router = express.Router();
 
 router.post('/register', async (req, res) => {
     //     student_id, full_name,  gender, roll, email, trade, phone, location, class, password, last_login, is_approved
