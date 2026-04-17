@@ -32,6 +32,7 @@ const AdminLogin = () => {
           if (res.data.message === "Try to fill out valid credentials") {
                setMessage("");
                setError(res.data.message);
+               console.message(res.data.message);
           }
           setMessage(res.data.message);
           setError("");
@@ -55,8 +56,9 @@ const AdminLogin = () => {
                 )}
 
                 {error && (
-                    <div className="bg-red-500 mb-2 p-2 rounded-lg text-white font-bold relative flex justify-between"><p>{error}</p></div>
-                )}
+                    <div className="bg-red-500 mb-2 p-2 rounded-lg text-white font-bold relative flex justify-between">
+                        <p>{error}</p> <p className="text-lg mt-1" onClick={() => setError("")}><FaTimes /></p>
+                    </div>                )}
                 <h1 className="text-xl text-gray-600 font-bold">Login Admin Portal</h1>
 
                 <div className="mt-3">
