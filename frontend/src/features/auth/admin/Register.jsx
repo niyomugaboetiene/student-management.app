@@ -14,7 +14,7 @@ const AdminRegister = () => {
     const [message, setMessage] = useState("");
     const [error, setError] = useState("");
     const [loading, setLoading] = useState(false);
-    // email, phone, location, password
+    // full_name, email, phone, location, password 
 
     const handleRegisterUser = async () => {
         try {
@@ -28,7 +28,9 @@ const AdminRegister = () => {
             const BACKEND_URL = import.meta.env.VITE_BACKEND_URL;
             const res = await axios.post(`${BACKEND_URL}/admin/auth/register`, {
                 full_name,
+                email,
                 phone,
+                location,
                 password
             }, { withCredentials: true });
  
