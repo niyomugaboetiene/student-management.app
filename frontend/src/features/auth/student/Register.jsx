@@ -5,7 +5,7 @@ import { FaTimes } from "react-icons/fa";
 import { Link } from "react-router-dom"; 
 
 
-const AdminRegister = () => {
+const StudentRegister = () => {
     const [full_name, setFull_name] = useState("");
     const [phone, setPhone] = useState("");
     const [password, setPassword] = useState("");
@@ -21,6 +21,8 @@ const AdminRegister = () => {
     const [tradeToSelect, setTradeToSelect] = useState(null);
     const [classToSelect, setClassToSelect] = useState(null);
     // full_name, email, phone, location, password 
+
+    const BACKEND_URL = import.meta.env.VITE_BACKEND_URL;
 
     const handleRegisterStudent = async () => {
         try {
@@ -72,6 +74,7 @@ const AdminRegister = () => {
             const tradeRes = await axios.get(`${BACKEND_URL}/student/auth/trade`);
 
             setTradeToSelect(tradeRes.data.trade);
+            console.log(tradeRes.data.trade);
             setLoading(false);
         } catch (err) {
             console.error(err);
@@ -84,7 +87,7 @@ const AdminRegister = () => {
             setLoading(true);
             const classRes = await axios.get(`${BACKEND_URL}/student/auth/class/${trade}`);
 
-            setClassToSelect(tradeRes.data.classes);
+            setClassToSelect(classRes.data.classes);
             setLoading(false);
         } catch (err) {
             console.error(err);
@@ -96,9 +99,9 @@ const AdminRegister = () => {
         handleGetTrade();
     }, []);
 
-    useEffect(() => {
-        handleGetClass();
-    }, [trade]);
+    // useEffect(() => {
+    //     handleGetClass();
+    // }, [trade]);
 
     return (
         <div className="bg-gray-100 min-h-screen flex justify-center items-center p-3">
@@ -148,14 +151,14 @@ const AdminRegister = () => {
                         onChange={(e) => setTrade(e.target.value)} required
                        className="bg-gray-100 w-full p-3 rounded-full focus:outline-1 focus:outline-gray-500" placeholder="Class"
                    > 
-                   {tradeToSelect.map((item, idx) => (
-                       <>
-                          <option value="">{item.trade}</option>
-                       </>
+                   {tradeToSelect?.map((item) => (
+                          <option value={item._id} key={item._id}>
+                               {item.trade_name}
+                         </option>
+                       
                    ))}
                 </select>
                 </div>
-                
                 <div className="mt-3">
                     <input type="text"  
                     onChange={(e) => setClasse(e.target.value)} required
@@ -186,4 +189,4 @@ const AdminRegister = () => {
     )
 }
 
-export default AdminRegister
+export default StudentRegister;
