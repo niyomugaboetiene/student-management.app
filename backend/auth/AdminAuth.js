@@ -52,6 +52,18 @@ router.post('/register', async (req, res) => {
         return res.status(400).json({ message: "Fill some missing fields" });
     }
 
+    const isEmailExist = await AdminSchema.findOne({ email: email });
+
+    if (!isEmailExist) {
+        return res.status(403).json({ message: 'Email must be unique' });
+    }
+    
+    const isPhoneExist = await AdminSchema.findOne({ phone: phone });
+
+    if (!isPhoneExist) {
+        return res.status(403).json({ message: 'Phone must be unique' });
+    }
+    
     const salt = await bcrypt.genSalt(10);
     const hashedPassword = await bcrypt.hash(password, salt);
 
