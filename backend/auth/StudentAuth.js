@@ -23,6 +23,12 @@ router.post('/login', async () => {
 
       const passwordToCompare = isExist.password;
       const isPasswordTrue = await bcrypt.hash(password, passwordToCompare);
+
+      if (isPasswordTrue) {
+        req.session.user = {
+
+        }
+      }
     } 
 });
 
@@ -60,3 +66,5 @@ router.post('/register', async (req, res) => {
             return res.status(500).json({ message: 'Server error'});
         }
 });
+
+export default router;
