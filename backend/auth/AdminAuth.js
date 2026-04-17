@@ -52,15 +52,15 @@ router.post('/register', async (req, res) => {
         return res.status(400).json({ message: "Fill some missing fields" });
     }
 
-    const isEmailExist = await AdminSchema.findOne({ email: email });
+    const isEmailExist = await AdminSchema.find({ email: email });
 
-    if (!isEmailExist) {
+    if (isEmailExist) {
         return res.status(403).json({ message: 'Email must be unique' });
     }
     
-    const isPhoneExist = await AdminSchema.findOne({ phone: phone });
+    const isPhoneExist = await AdminSchema.find({ phone: phone });
 
-    if (!isPhoneExist) {
+    if (isPhoneExist) {
         return res.status(403).json({ message: 'Phone must be unique' });
     }
     
@@ -83,7 +83,7 @@ router.post('/register', async (req, res) => {
     });
    } catch (err) {
         console.error("ERROR", err);
-        return res.status(500).json({ error: "Server error" });
+        return res.status(500).json({ message: "Server error" });
    }
 });
 
