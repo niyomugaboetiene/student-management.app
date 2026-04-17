@@ -41,7 +41,9 @@ const AdminLogin = () => {
         <div className="bg-gray-100 min-h-screen flex justify-center items-center p-3">
             <div className="bg-white w-110 rounded-xl p-4 ">
                 {message && (
-                    <div><p>{message}</p></div>
+                    <div className="bg-red-500 mb-2 p-2 rounded-lg text-white font-bold">
+                        <p>{message}</p>
+                    </div>
                 )}
 
                 {error && (
