@@ -15,4 +15,4 @@ const AdminSchema = mongoose.Schema({
 }, { timestamps: true });
 
 AdminSchema.plugin(AutoIncrement, { inc_field: 'admin_id' });
-export default mongoose.model("admin", AdminSchema);
+export default mongoose.model("admins", AdminSchema);
