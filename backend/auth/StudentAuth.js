@@ -7,14 +7,14 @@ const router = express.Router();
 router.post('/login', async () => {
 
     try {
-        const { full_name, email, phone, password } = req.body;
+        const { full_name, phone, password } = req.body;
 
-        if (!full_name || !email || !phone || !password) {
+        if (!full_name || !phone || !password) {
             return res.status(403).json({ message: 'Fill out some missing fields' });
         }
 
       const isExist = await StudentSchema.findOne({
-        full_name, email, phone
+        full_name, phone
       });
 
       if (!isExist) {
@@ -28,6 +28,7 @@ router.post('/login', async () => {
            req.session.user = {
             full_name: full_name,
             email: email,
+            location: location,
             phone: phone
            }
 
