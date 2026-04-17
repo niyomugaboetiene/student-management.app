@@ -91,7 +91,7 @@ const AdminLogin = () => {
                 <button onClick={handleLoginUser} className="w-full bg-cyan-500 p-3 rounded-full text-white font-bold hover:bg-cyan-400 transition-colors mb-4">Login</button>
                 <hr />
 
-                <Link></Link>
+                <Link className="flex items-center justify-center mt-2 text-cyan-500 hover:underline">Create account</Link>
             </div>
         </div>
     )
