@@ -38,33 +38,39 @@ const AdminLogin = () => {
 
 
     return (
-        <div className="bg-cyan-100 min-h-screen flex justify-center items-center p-3">
-            <div className="bg-cyan-300 w-1/4 rounded-xl p-4">
+        <div className="bg-gray-100 min-h-screen flex justify-center items-center p-3">
+            <div className="bg-white w-110 rounded-xl p-4">
                 {message && (
-                    <p>{message}</p>
+                    <div><p>{message}</p></div>
                 )}
 
                 {error && (
-                    <p>{error}</p>
+                    <div><p>{error}</p></div>
                 )}
-                <h1>Login Admin Portal</h1>
+                <h1 className="text-xl text-gray-600 font-light">Login Admin Portal</h1>
 
-                <div>
-                    <label htmlFor="">Full name</label>
-                    <input type="text"  onChange={(e) => setFull_name(e.target.value)} required/>
+                <div className="mt-3">
+                    <input type="text"  
+                       onChange={(e) => setFull_name(e.target.value)} required
+                       className="bg-gray-100  w-full p-3 rounded-full" placeholder="Full name"
+                    />
                 </div>
                 
-                <div>
-                    <label htmlFor="">Phone</label>
-                    <input type="text"  onChange={(e) => setPhone(e.target.value)} required/>
+                <div className="mt-3">
+                    <input type="text"  
+                    onChange={(e) => setPhone(e.target.value)} required
+                    className="bg-gray-100 w-full p-3 rounded-full" placeholder="Phone"
+                />
                 </div>
                 
-                <div>
-                    <label htmlFor="">Password</label>
-                    <input type="password"  onChange={(e) => setPassword(e.target.value)} required/>
+                <div className="mt-3 mb-4">
+                    <input type="password"  
+                       onChange={(e) => setPassword(e.target.value)} required
+                       className="bg-gray-100 w-full rounded-full p-3" placeholder="Password"
+                    />
                 </div>
 
-                <button onClick={handleLoginUser}>Login</button>
+                <button onClick={handleLoginUser} >Login</button>
             </div>
         </div>
     )
