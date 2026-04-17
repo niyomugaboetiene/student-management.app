@@ -70,12 +70,26 @@ const AdminRegister = () => {
                     <div className="bg-red-500 mb-2 p-2 rounded-lg text-white font-bold relative flex justify-between">
                         <p>{error}</p> <p className="text-lg mt-1" onClick={() => setError("")}><FaTimes /></p>
                     </div>                )}
-                <h1 className="text-xl text-gray-600 font-bold">Login Admin Portal</h1>
+                <h1 className="text-xl text-gray-600 font-bold">Register Admin Portal</h1>
 
                 <div className="mt-3">
                     <input type="text"  
                        onChange={(e) => setFull_name(e.target.value)} required
                        className="bg-gray-100  w-full p-3 rounded-full focus:outline-1 focus:outline-gray-500" placeholder="Full name"
+                    />
+                </div>
+                
+                <div className="mt-3">
+                    <input type="text"  
+                       onChange={(e) => setLocation(e.target.value)} required
+                       className="bg-gray-100  w-full p-3 rounded-full focus:outline-1 focus:outline-gray-500" placeholder="District"
+                    />
+                </div>
+                
+                <div className="mt-3">
+                    <input type="text"  
+                       onChange={(e) => setEmail(e.target.value)} required
+                       className="bg-gray-100  w-full p-3 rounded-full focus:outline-1 focus:outline-gray-500" placeholder="Email"
                     />
                 </div>
                 
@@ -93,10 +107,10 @@ const AdminRegister = () => {
                     />
                 </div>
 
-                <button onClick={handleRegisterUser} className="w-full bg-cyan-500 p-3 rounded-full text-white font-bold hover:bg-cyan-400 transition-colors mb-4">Login</button>
+                <button onClick={handleRegisterUser} className="w-full bg-cyan-500 p-3 rounded-full text-white font-bold hover:bg-cyan-400 transition-colors mb-4">Create account</button>
                 <hr />
 
-                <Link className="flex items-center justify-center mt-2 text-cyan-500 hover:underline">Create account</Link>
+                <Link className="flex items-center justify-center mt-2 text-cyan-500 hover:underline">login</Link>
             </div>
         </div>
     )
