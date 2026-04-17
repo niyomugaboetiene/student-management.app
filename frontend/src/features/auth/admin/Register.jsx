@@ -19,7 +19,7 @@ const AdminRegister = () => {
     const handleRegisterUser = async () => {
         try {
             // console.log("Received data", full_name, phone, password);
-            if (!full_name || !phone || !password) {
+            if (!full_name || !phone || !password || !phone || !location) {
                 setMessage("");
                 setError("Fill out some missing fields");
                 return;
