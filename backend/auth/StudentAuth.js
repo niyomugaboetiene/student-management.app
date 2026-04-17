@@ -25,11 +25,18 @@ router.post('/login', async () => {
       const isPasswordTrue = await bcrypt.hash(password, passwordToCompare);
 
       if (isPasswordTrue) {
-        req.session.user = {
+           req.session.user = {
+            full_name: full_name,
+            email: email,
+            phone: phone
+           }
 
-        }
-      }
-    } 
+           return res.status(200).json({ message: 'Login successfully' });
+      } 
+    } catch (err) {
+        console.error(err);
+        return res.status(500).json({ message: 'Internal server error' });
+    }
 });
 
 router.post('/register', async (req, res) => {
