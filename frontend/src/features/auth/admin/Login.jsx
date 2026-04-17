@@ -2,7 +2,7 @@ import React from "react";
 import { useState } from "react";
 import axios from "axios";
 import { FaTimes } from "react-icons/fa";
-import { Link, Navigate } from "react-router-dom"; 
+import { Link, useNavigate } from "react-router-dom"; 
 
 
 const AdminLogin = () => {
@@ -12,7 +12,7 @@ const AdminLogin = () => {
     const [message, setMessage] = useState("");
     const [error, setError] = useState("");
     const [loading, setLoading] = useState(false);
-    const navigate = Navigate();
+    const navigate = useNavigate();
 
     const handleLoginUser = async () => {
         try {
