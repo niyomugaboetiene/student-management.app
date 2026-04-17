@@ -39,7 +39,7 @@ const AdminLogin = () => {
 
     return (
         <div className="bg-gray-100 min-h-screen flex justify-center items-center p-3">
-            <div className="bg-white w-110 rounded-xl p-4">
+            <div className="bg-white w-110 rounded-xl p-4 ">
                 {message && (
                     <div><p>{message}</p></div>
                 )}
@@ -47,7 +47,7 @@ const AdminLogin = () => {
                 {error && (
                     <div><p>{error}</p></div>
                 )}
-                <h1 className="text-xl text-gray-600 font-light">Login Admin Portal</h1>
+                <h1 className="text-xl text-gray-600 font-bold">Login Admin Portal</h1>
 
                 <div className="mt-3">
                     <input type="text"  
