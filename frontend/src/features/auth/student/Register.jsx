@@ -1,4 +1,4 @@
-import React from "react";
+import React, { use, useEffect } from "react";
 import { useState } from "react";
 import axios from "axios";
 import { FaTimes } from "react-icons/fa";
@@ -17,6 +17,9 @@ const AdminRegister = () => {
     const [message, setMessage] = useState("");
     const [error, setError] = useState("");
     const [loading, setLoading] = useState(false);
+
+    const [tradeToSelect, setTradeToSelect] = useState(null);
+    const [classToSelect, setClassToSelect] = useState(null);
     // full_name, email, phone, location, password 
 
     const handleRegisterStudent = async () => {
@@ -63,6 +66,39 @@ const AdminRegister = () => {
         }
     }
 
+    const handleGetTrade = async () => {
+        try {
+            setLoading(true);
+            const tradeRes = await axios.get(`${BACKEND_URL}/student/auth/trade`);
+
+            setTradeToSelect(tradeRes.data.trade);
+            setLoading(false);
+        } catch (err) {
+            console.error(err);
+            setLoading(false);
+        }
+    }
+    
+    const handleGetClass = async () => {
+        try {
+            setLoading(true);
+            const classRes = await axios.get(`${BACKEND_URL}/student/auth/class/${trade}`);
+
+            setClassToSelect(tradeRes.data.classes);
+            setLoading(false);
+        } catch (err) {
+            console.error(err);
+            setLoading(false);
+        }
+    }
+
+    useEffect(() => {
+        handleGetTrade();
+    }, []);
+
+    useEffect(() => {
+        handleGetClass();
+    }, [trade]);
 
     return (
         <div className="bg-gray-100 min-h-screen flex justify-center items-center p-3">
@@ -108,10 +144,16 @@ const AdminRegister = () => {
                 </div>
                 
                 <div className="mt-3">
-                    <input type="text"  
-                    onChange={(e) => setTrade(e.target.value)} required
-                    className="bg-gray-100 w-full p-3 rounded-full focus:outline-1 focus:outline-gray-500" placeholder="Class"
-                />
+                    <select
+                        onChange={(e) => setTrade(e.target.value)} required
+                       className="bg-gray-100 w-full p-3 rounded-full focus:outline-1 focus:outline-gray-500" placeholder="Class"
+                   > 
+                   {tradeToSelect.map((item, idx) => (
+                       <>
+                          <option value="">{item.trade}</option>
+                       </>
+                   ))}
+                </select>
                 </div>
                 
                 <div className="mt-3">
