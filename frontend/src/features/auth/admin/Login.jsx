@@ -34,6 +34,9 @@ const AdminLogin = () => {
                setError(res.data.message);
                console.message(res.data.message);
           }
+          if (res.data.message === "Incorrect password") {
+            
+          }
           setMessage(res.data.message);
           setError("");
         } catch (err) {
