@@ -11,13 +11,12 @@ const AdminLogin = () => {
     const [message, setMessage] = useState("");
     const [error, setError] = useState("");
     const [loading, setLoading] = useState(false);
-    const [isMessageShow, setIsMessageShow] = useState(false);
 
     const handleLoginUser = async () => {
         try {
             // console.log("Received data", full_name, phone, password);
             if (!full_name || !phone || !password) {
-                setMessage("Fill out some missing fields");
+                setError("Fill out some missing fields");
                 return;
             }
             setLoading(true);
@@ -30,13 +29,11 @@ const AdminLogin = () => {
  
           setLoading(false);
           setMessage(res.data.message);
-          setIsMessageShow(true);
         } catch (err) {
             setLoading(false);
             console.error(err);
             const errorMessage = err.response?.data?.error;
             setError(errorMessage);
-            setIsMessageShow(true);
         }
     }
 
