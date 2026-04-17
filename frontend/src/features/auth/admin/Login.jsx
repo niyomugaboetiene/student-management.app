@@ -51,7 +51,7 @@ const AdminLogin = () => {
                 )}
 
                 {error && (
-                    <div><p>{error}</p></div>
+                    <div className="bg-red-500 mb-2 p-2 rounded-lg text-white font-bold relative flex justify-between"><p>{error}</p></div>
                 )}
                 <h1 className="text-xl text-gray-600 font-bold">Login Admin Portal</h1>
 
