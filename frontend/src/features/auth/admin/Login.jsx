@@ -2,6 +2,7 @@ import React from "react";
 import { useState } from "react";
 import axios from "axios";
 import { FaTimes } from "react-icons/fa";
+import { Link } from "react-router-dom"; 
 
 
 const AdminLogin = () => {
@@ -87,7 +88,10 @@ const AdminLogin = () => {
                     />
                 </div>
 
-                <button onClick={handleLoginUser} className="w-full bg-cyan-500 p-3 rounded-full text-white font-bold hover:bg-cyan-400 transition-colors">Login</button>
+                <button onClick={handleLoginUser} className="w-full bg-cyan-500 p-3 rounded-full text-white font-bold hover:bg-cyan-400 transition-colors mb-4">Login</button>
+                <hr />
+
+                <Link></Link>
             </div>
         </div>
     )
