@@ -5,7 +5,7 @@ import { FaTimes } from "react-icons/fa";
 import { Link, useNavigate } from "react-router-dom"; 
 
 
-const AdminLogin = () => {
+const StudentLogin = () => {
     const [full_name, setFull_name] = useState("");
     const [phone, setPhone] = useState("");
     const [password, setPassword] = useState("");
@@ -14,9 +14,10 @@ const AdminLogin = () => {
     const [loading, setLoading] = useState(false);
     const navigate = useNavigate();
 
-    const handleLoginUser = async () => {
+    const handleLoginStudent = async () => {
         try {
             // console.log("Received data", full_name, phone, password);
+            //  full_name, email, phone, password 
             if (!full_name || !phone || !password) {
                 setMessage("");
                 setError("Fill out some missing fields");
@@ -24,7 +25,7 @@ const AdminLogin = () => {
             }
             setLoading(true);
             const BACKEND_URL = import.meta.env.VITE_BACKEND_URL;
-            const res = await axios.post(`${BACKEND_URL}/admin/auth/login`, {
+            const res = await axios.post(`${BACKEND_URL}/student/auth/login`, {
                 full_name,
                 phone,
                 password
@@ -38,12 +39,17 @@ const AdminLogin = () => {
             setLoading(false);
             const errorMessage = err.response?.data?.message || "Error occured";
 
-            if (errorMessage === "Try to fill out valid credentials") {
+            if (errorMessage === "Invalid credentials") {
                setMessage("");
                setError(errorMessage);
-               console.message(errorMessage);
+               console.error(errorMessage);
           }
-          if (errorMessage === "Incorrect password") {
+          if (errorMessage === "Invalid password") {
+               setMessage("");
+               setError(errorMessage); 
+          }
+          
+          if (errorMessage === "Invalid password") {
                setMessage("");
                setError(errorMessage); 
           }
@@ -66,7 +72,7 @@ const AdminLogin = () => {
                     <div className="bg-red-500 mb-2 p-2 rounded-lg text-white font-bold relative flex justify-between">
                         <p>{error}</p> <p className="text-lg mt-1" onClick={() => setError("")}><FaTimes /></p>
                     </div>                )}
-                <h1 className="text-xl text-gray-600 font-bold">Login Admin Portal</h1>
+                <h1 className="text-xl text-gray-600 font-bold">Login Student Portal</h1>
 
                 <div className="mt-3">
                     <input type="text"  
@@ -89,13 +95,13 @@ const AdminLogin = () => {
                     />
                 </div>
 
-                <button onClick={handleLoginUser} className="w-full bg-cyan-500 p-3 rounded-full text-white font-bold hover:bg-cyan-400 transition-colors mb-4">Login</button>
+                <button onClick={handleLoginStudent} className="w-full bg-cyan-500 p-3 rounded-full text-white font-bold hover:bg-cyan-400 transition-colors mb-4">Login</button>
                 <hr />
 
-                <Link className="flex items-center justify-center mt-2 text-cyan-500 hover:underline" to='/admin/register'>Create account</Link>
+                <Link className="flex items-center justify-center mt-2 text-cyan-500 hover:underline" to='/student/register'>Create account</Link>
             </div>
         </div>
     )
 }
 
-export default AdminLogin;
+export default StudentLogin;
