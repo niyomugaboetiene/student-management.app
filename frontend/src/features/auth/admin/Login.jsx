@@ -1,6 +1,7 @@
 import React from "react";
 import { useState } from "react";
 import axios from "axios";
+import { FaTimes } from "react-icons/fa";
 
 
 const AdminLogin = () => {
@@ -10,6 +11,7 @@ const AdminLogin = () => {
     const [message, setMessage] = useState("");
     const [error, setError] = useState("");
     const [loading, setLoading] = useState(false);
+    const [isMessageShow, setIsMessageShow] = useState(false);
 
     const handleLoginUser = async () => {
         try {
@@ -28,21 +30,23 @@ const AdminLogin = () => {
  
           setLoading(false);
           setMessage(res.data.message);
+          setIsMessageShow(true);
         } catch (err) {
             setLoading(false);
             console.error(err);
             const errorMessage = err.response?.data?.error;
             setError(errorMessage);
+            setIsMessageShow(true);
         }
     }
 
 
     return (
         <div className="bg-gray-100 min-h-screen flex justify-center items-center p-3">
-            <div className="bg-white w-110 rounded-xl p-4 ">
-                {message && (
-                    <div className="bg-red-500 mb-2 p-2 rounded-lg text-white font-bold relative">
-                        <p>{message}</p>
+            <div className="bg-white w-110 rounded-xl p-4 shadow-lg">
+                {message  && (
+                    <div className="bg-red-500 mb-2 p-2 rounded-lg text-white font-bold relative flex justify-between">
+                        <p>{message}</p> <p className="text-lg mt-1" onClick={() => setMessage("")}><FaTimes /></p>
                     </div>
                 )}
 
