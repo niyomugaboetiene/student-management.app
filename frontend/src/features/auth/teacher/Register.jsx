@@ -11,7 +11,6 @@ const TeacherRegister = () => {
     const [email, setEmail] = useState("");
     const [classe, setClasse] = useState("");
     const [gender, setGender] = useState("");
-    const [trade, setTrade] = useState("");
     const [qualification, setQualification] = useState("");
     const [experience, setExprerience] = useState("");
     const [salary, setSalary] = useState("");
@@ -21,7 +20,7 @@ const TeacherRegister = () => {
     const [loading, setLoading] = useState(false);
 
     const [departmentToBeSelected, setDepartmentToBeSelected] = useState(null);
-    const [classToSelect, setClassToSelect] = useState(null);
+    const [classToSelect, setClassToSelect] = useState([]);
     //  full_name,  email, qualification, phone, gender, experience, department, salary, class,
 
     const BACKEND_URL = import.meta.env.VITE_BACKEND_URL;
@@ -78,8 +77,8 @@ const TeacherRegister = () => {
             setLoading(true);
             const classRes = await axios.get(`${BACKEND_URL}/class/class_list`);
 
-            setClassToSelect(classRes.data.classes);
-            // setLoading("result", classRes.data.classes);
+            setClassToSelect(Array.isArray(classRes.data.classes) ? classRes.data.classes : [classRes.data.classes]);      
+            console.log(classRes.data.classes);      
             setLoading(false);
         } catch (err) {
             console.error(err);
@@ -91,9 +90,9 @@ const TeacherRegister = () => {
     const handleGetDepartment = async () => {
         try {
             setLoading(true);
-            const classRes = await axios.get(`${BACKEND_URL}/department/department_list`);
+            const departmentRes = await axios.get(`${BACKEND_URL}/department/department_list`);
 
-            setClassToSelect(classRes.data.department);
+            setDepartmentToBeSelected(departmentRes.data.department);
             // setLoading("result", classRes.data.classes);
             setLoading(false);
         } catch (err) {
@@ -169,17 +168,17 @@ const TeacherRegister = () => {
                
                 <div className="mt-3">
                     <select
-                        value={classe}
+                        value={department}
                         onChange={(e) => {
-                            setClasse(e.target.value)
+                            setDepartment(e.target.value)
                             console.log(e.target.value)
                         }}
                        className="bg-gray-100 w-full p-3 rounded-full focus:outline-1 focus:outline-gray-500"
                    > 
                   <option disabled={true} value="">-----Select Department-----</option>
-                   {classToSelect?.map((classs) => (
-                          <option value={classs._id} key={classs._id}>
-                               {classs.class_name}
+                   {departmentToBeSelected?.map((dep) => (
+                          <option value={dep._id} key={dep._id}>
+                               {dep.name}
                          </option>
                    ))}
                 </select>
@@ -188,16 +187,13 @@ const TeacherRegister = () => {
                 <div className="mt-3">
                     <select
                         value={classe}
-                        onChange={(e) => {
-                            setClasse(e.target.value)
-                            console.log(e.target.value)
-                        }}
+                        onChange={(e) => { setClasse(e.target.value)}}
                        className="bg-gray-100 w-full p-3 rounded-full focus:outline-1 focus:outline-gray-500"
                    > 
                   <option disabled={true} value="">-----Select class-----</option>
-                   {classToSelect?.map((classs) => (
-                          <option value={classs._id} key={classs._id}>
-                               {classs.class_name}
+                   {classToSelect?.map((cla) => (
+                          <option value={cla._id} key={cla._id}>
+                               {cla.class_name}
                          </option>
                    ))}
                 </select>
