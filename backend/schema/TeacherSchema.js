@@ -11,11 +11,12 @@ const TeacherSchema = mongoose.Schema({
     phone: { required: true, type: String },
     gender: { required: true, type: String },
     experience: { type: String, required: true },
-    department: { type: String, required: true },
+    department: { type: mongoose.Schema.Types.ObjectId, ref: "departments", required: true, },
     salary: { type: Number, required: true },
     password: { type: String, required: true },
     last_login: { type: Date },
     is_approved: { tyoe: Boolean, default: false}, 
+    role: { type: String, default: "teacher"},
     class: [{ required: true, type: mongoose.Schema.Types.ObjectId, ref: "classes" }],
 
 }, { timestamps: true });

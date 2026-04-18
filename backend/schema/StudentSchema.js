@@ -14,9 +14,10 @@ const StudentSchema = mongoose.Schema({
     location: { required: true, type: String },
     class: { required: true, type: mongoose.Schema.Types.ObjectId, ref: "classes" },
     password: { type: String },
+    role: { type: String, default: "student"},
     last_login: { type: Date },
     is_approved: { type: Boolean, default: false }
 }, { timestamps: true });
 
 StudentSchema.plugin(AutoIncrement, { inc_field: 'student_id'});
-export default mongoose.model("student", StudentSchema);
+export default mongoose.model("students", StudentSchema);
