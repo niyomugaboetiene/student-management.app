@@ -200,6 +200,10 @@ const StudentRegister = () => {
 
                 <Link className="flex items-center justify-center mt-2 text-cyan-500 hover:underline" to='/student/login'>login</Link>
             </div>
+
+            <div className="absolute w-110 bottom-13 bg-red-400 p-2 rounded-lg">
+                <p className="text-white font-bold">By default your account is not approved by administration . after account creation you can call administration to approve it</p>
+            </div>
         </div>
     )
 }
