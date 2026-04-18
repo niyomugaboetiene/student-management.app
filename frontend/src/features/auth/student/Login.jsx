@@ -39,7 +39,7 @@ const StudentLogin = () => {
             setLoading(false);
             const errorMessage = err.response?.data?.message || "Error occured";
 
-            if (errorMessage === "Invalid credentials") {
+            if (errorMessage === "Invalid credentials. or your account is not approved you can wait 24 hrs to be approved") {
                setMessage("");
                setError(errorMessage);
                console.error(errorMessage);
