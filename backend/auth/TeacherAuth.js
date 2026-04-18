@@ -29,7 +29,7 @@
                 //     8. salary ${salary}, 9. password: ${password}, 10. class ${classe}`
                 // );
 
-                if (!full_name || !gender || !email || !qualification || !phone || !experience || !department || !salary || !password || !classe ) {
+                if (!full_name || !gender || !email || !qualification || !phone || !experience || !department || !salary || !password) {
                      return res.status(404).json({ message: 'Fill some missing fields' }); 
                 }
     
