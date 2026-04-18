@@ -31,9 +31,10 @@ router.post('/login', async (req, res) => {
             full_name: full_name,
             email: isExist.email,
             location: isExist.location,
-            phone: phone
+            phone: phone,
+            role: isExist.role
            }
-           return res.status(200).json({ message: 'Login successfully' });
+           return res.status(200).json({ message: 'Login successfully', student: req.session.user });
       } else {
         return res.status(401).json({ message: 'Invalid password'})
       }
