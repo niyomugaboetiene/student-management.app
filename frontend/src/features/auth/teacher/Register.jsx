@@ -28,7 +28,6 @@ const TeacherRegister = () => {
     const handleRegisterTeacher = async () => {
         try {
              setLoading(true);
-              console.log("Received data", classe);
             //  full_name, gender, email, trade, phone, location, classe, password 
             if (!full_name || !phone || !password || !qualification || !experience || !gender || !classe || !salary || !department) {
                 setMessage("");
