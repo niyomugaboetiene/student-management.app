@@ -4,17 +4,23 @@ import { Link } from "react-router-dom";
 const DashboardPage = () => {
 
     return (
-        <div>
-            <div>
-                <nav>
-                    <Link>Home</Link>
-                    <Link>Admin panel</Link>
+        <div className="bg-gray-100 min-h-screen flex">
+            <div className="flex items-center justify-center  bg-cyan-400 h-14 w-full p-4">
+                <nav className="flex space-x-5">
+                    <Link>Dashboard</Link>
+                    <Link>Students</Link>
+                    <Link>Class</Link>
+                    <Link>Teacher</Link>
+                    <Link>Department</Link>
+                    <Link>Admins</Link>
+                    <Link>Attendance</Link>
+                    <Link>Subject</Link>
+                    <Link>Trade</Link>
                     <Link>Marks</Link>
-                    <Link>View Marks</Link>
-                    <Link>Attenndance</Link>
-                    <Link>Attenndance</Link>
                 </nav>
             </div>
         </div>
     )
 }
+
+export default DashboardPage;
