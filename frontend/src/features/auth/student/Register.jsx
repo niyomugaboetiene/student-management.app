@@ -26,16 +26,16 @@ const StudentRegister = () => {
 
     const handleRegisterStudent = async () => {
         try {
-            // console.log("Received data", full_name, phone, password);
+             setLoading(true);
+              console.log("Received data", classe);
             //  full_name, gender, email, trade, phone, location, classe, password 
-            if (!full_name || !phone || !password || !phone || !location || !gender || !classe) {
+            if (!full_name || !phone || !password || !phone || !location || !gender || !classe || !password) {
                 setMessage("");
                 setError("Fill out some missing fields");
                 return;
             }
-            setLoading(true);
             const BACKEND_URL = import.meta.env.VITE_BACKEND_URL;
-            const res = await axios.post(`${BACKEND_URL}/admin/auth/register`, {
+            const res = await axios.post(`${BACKEND_URL}/student/auth/register`, {
                 full_name,
                 gender,
                 email,
@@ -159,16 +159,16 @@ const StudentRegister = () => {
                    ))}
                 </select>
                 </div>
+               
                 <div className="mt-3">
                     <select
-                        onChange={(e) => setTrade(e.target.value)}
+                        onChange={(e) => setClasse(e.target.value)}
                        className="bg-gray-100 w-full p-3 rounded-full focus:outline-1 focus:outline-gray-500"
                    > 
                    {classToSelect?.map((item) => (
                           <option value={item._id} key={item._id}>
-                               {item.class_name} 
+                               {item.class_name}
                          </option>
-                       
                    ))}
                 </select>
                 </div>
@@ -176,7 +176,7 @@ const StudentRegister = () => {
                 <div className="mt-3">
                     <input type="text"  
                     onChange={(e) => setGender(e.target.value)} required
-                    className="bg-gray-100 w-full p-3 rounded-full focus:outline-1 focus:outline-gray-500" placeholder="Phone"
+                    className="bg-gray-100 w-full p-3 rounded-full focus:outline-1 focus:outline-gray-500" placeholder="Gender"
                 />
                 </div>
                 
