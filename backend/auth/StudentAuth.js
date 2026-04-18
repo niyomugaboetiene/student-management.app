@@ -16,11 +16,11 @@ router.post('/login', async (req, res) => {
         }
 
       const isExist = await StudentSchema.findOne({
-        full_name, phone
+        full_name, phone, is_approved: true
       });
 
       if (!isExist) {
-        return res.status(401).json({ message: 'Invalid credentials' });
+        return res.status(401).json({ message: 'Invalid credentials. or your account is not approved you can wait 24 hrs to be approved' });
       }
 
       const passwordToCompare = isExist.password;
