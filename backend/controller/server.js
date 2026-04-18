@@ -20,6 +20,8 @@ import MongoStore from "connect-mongo";
 
 // * auth
 import AdminAuth from "../auth/AdminAuth.js";
+import StudentAuth from "../auth/StudentAuth.js";
+import TeacherAuth from "../auth/TeacherAuth.js";
 dotenv.config();
 
 
@@ -60,6 +62,8 @@ app.use("/attendance", AttendanceRoute);
 
 // ? aut middleware
 app.use('/admin/auth', AdminAuth);
+app.use('/student/auth', StudentAuth);
+app.use('/teacher/auth', TeacherAuth);
 
 const PORT = process.env.PORT;
 app.listen(PORT, () => {
