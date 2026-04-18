@@ -35,6 +35,23 @@
             }
     });
 
+router.get("/class_list", async (req, res) => {
+    try {
+
+        const ClassList = await ClassSchema.find();
+
+        if (ClassList.length === 0) {
+            return res.status(404).json({ message: 'No class in the system' });
+        }
+
+        return res.status(200).json({ message: 'Classes', classes: ClassList });
+
+    } catch (err) {
+          console.error(err);
+          return res.status(500).json({ message: 'Server error'});
+    }
+});
+
 router.get("/:id", async (req, res) => {
     try {
         const _id  = req.params;
