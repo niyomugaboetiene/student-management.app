@@ -165,13 +165,17 @@ const StudentRegister = () => {
                
                 <div className="mt-3">
                     <select
-                        onChange={(e) => setClasse(e.target.value)}
+                        value={classe}
+                        onChange={(e) => {
+                            setClasse(e.target.value)
+                            console.log(e.target.value)
+                        }}
                        className="bg-gray-100 w-full p-3 rounded-full focus:outline-1 focus:outline-gray-500"
                    > 
                   <option disabled={true} value="">-----Select class-----</option>
-                   {classToSelect?.map((item) => (
-                          <option value={item._id} key={item._id}>
-                               {item.class_name}
+                   {classToSelect?.map((classs) => (
+                          <option value={classs._id} key={classs._id}>
+                               {classs.class_name}
                          </option>
                    ))}
                 </select>
