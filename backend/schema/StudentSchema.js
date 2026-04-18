@@ -12,7 +12,7 @@ const StudentSchema = mongoose.Schema({
     trade: { required: true, type: mongoose.Schema.Types.ObjectId, ref: "trades" },
     phone: { required: true, unique: true, type: String },
     location: { required: true, type: String },
-    class: { required: true, type: mongoose.Schema.Types.ObjectId, ref: "classes" },
+    class: { type: mongoose.Schema.Types.ObjectId, ref: "classes" },
     password: { type: String },
     role: { type: String, default: "student"},
     last_login: { type: Date },
