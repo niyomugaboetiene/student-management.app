@@ -87,7 +87,8 @@ const StudentRegister = () => {
             const classRes = await axios.get(`${BACKEND_URL}/student/auth/class/${trade}`);
 
             setClassToSelect(classRes.data.classes);
-            setLoading("result", classRes.data.classes);
+            // setLoading("result", classRes.data.classes);
+            setLoading(false);
         } catch (err) {
             console.error(err);
             setLoading(false);
@@ -99,7 +100,9 @@ const StudentRegister = () => {
     }, []);
 
     useEffect(() => {
-        handleGetClass();
+        if (trade) {
+            handleGetClass();
+        }
     }, [trade]);
 
     return (
@@ -150,7 +153,7 @@ const StudentRegister = () => {
                         onChange={(e) => setTrade(e.target.value)}
                        className="bg-gray-100 w-full p-3 rounded-full focus:outline-1 focus:outline-gray-500" placeholder="Class"
                    > 
-                   <option disabled={true}>-----Select trade-----</option>
+                   <option disabled={true} value="">-----Select trade-----</option>
                    {tradeToSelect?.map((item) => (
                           <option value={item._id} key={item._id}>
                                {item.trade_name}
@@ -165,6 +168,7 @@ const StudentRegister = () => {
                         onChange={(e) => setClasse(e.target.value)}
                        className="bg-gray-100 w-full p-3 rounded-full focus:outline-1 focus:outline-gray-500"
                    > 
+                  <option disabled={true} value="">-----Select class-----</option>
                    {classToSelect?.map((item) => (
                           <option value={item._id} key={item._id}>
                                {item.class_name}
