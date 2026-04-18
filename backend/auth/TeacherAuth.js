@@ -63,4 +63,42 @@
             }
     });
 
+
+    router.post('/login', async (req, res) => {
+        try {
+            const { full_name, phone, password } = req.body;
+
+            if (!full_name || !phone || !password) {
+                return res.status(403).json({ message: 'Fil out missing fields' });
+            }
+
+            const isExist = await TeacherSchema.findOne({
+                full_name,
+                phone
+            });
+
+            if (!isExist) {
+                return res.status(404).json({ message: 'Invalid credentials'});
+            }
+
+            const passwordToCompare = isExist.password;
+
+            const isPasswordTrue = await bcrypt.compare(password, passwordToCompare);
+
+            if (isPasswordTrue) {
+                req.session.user = {
+                    full_name: full_name,
+                    phone: phone,
+                    role: isExist.role,
+                }
+
+                return res.status(200).json({ message: 'Login successfully', teacher: req.session.user });
+            } else {
+                return res.status(401).json({ message: 'Invalid password' });
+            }
+        } catch (err) {
+            console.error(err);
+            return res.status(500).json({ message: 'Internal server error'});
+        }
+    });
     export default  router;
