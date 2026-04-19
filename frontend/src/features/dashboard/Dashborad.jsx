@@ -6,13 +6,15 @@ const DashboardPage = () => {
   const [user, setUser] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
 
+  const BACKEND_URL = import.meta.env.VITE_BACKEND_URL;
+
     const FetchUserSession = async () => {
        try {
 
          setIsLoading(true);  
-          const BACKEND_URL = import.meta.env.VITE_BACKEND_URL;
-          const userRes = await axios.get(`${BACKEND_URL}/teacher/auth/userSession`);
-          setUser(userRes.data.user);
+          const userRes = await axios.get(`${BACKEND_URL}/teacher/auth/userSession`, { withCredentials: true });
+          console.log("Session", userRes.data.user);
+          setUser(Array.isArray(user) ? [userRes.data.user] : []);
           setIsLoading(true);
        } catch (err) {
          console.error(err);
@@ -43,18 +45,16 @@ const DashboardPage = () => {
                     <Link>Marks</Link>
                 </nav>
 
-                {user && (
                     <div>
-                     {user?.map((u) => {
+                     {user?.map((u) => (
                         <div key={u.id}>
-                            <h2>{u?.full_name}</h2>
+                            <h2>{u.full_name}</h2>
 
-                            <p>{u?.phone}</p>
-                            <p>{u?.role}</p>
+                            <p>{u.phone}</p>
+                            <p>{u.role}</p>
                         </div>
-                     })}
-                </div>
-                )}
+                     ))}
+                </div>   
             </div>
         </div>
     )
