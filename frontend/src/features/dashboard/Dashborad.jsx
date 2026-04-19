@@ -1,10 +1,16 @@
 import { useState, useEffect } from "react";
+import axios from "axios";
 import { Link } from "react-router-dom";
 
 const DashboardPage = () => {
   const [user, setUser] = useState(null);
-    const FetchUserSession = () => {
-     
+
+
+    const FetchUserSession = async () => {
+       try {
+          const BACKEND_URL = import.meta.env.VITE_BACKEND_URL;
+          const userRes = await axios.get(`${BACKEND_URL}/teacher/auth/userSession`)
+       }
     }
     return (
         <div className="bg-gray-100 flex">
