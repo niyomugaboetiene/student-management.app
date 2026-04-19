@@ -12,11 +12,13 @@ const DashboardPage = () => {
          setIsLoading(true);  
           const BACKEND_URL = import.meta.env.VITE_BACKEND_URL;
           const userRes = await axios.get(`${BACKEND_URL}/teacher/auth/userSession`);
+          setUser(userRes.data.user);
           setIsLoading(true);
        } catch (err) {
-         console.err(err);
+         console.error(err);
          setIsLoading(false);
     }
+}
 
     useEffect(() => {
         FetchUserSession();
@@ -41,16 +43,20 @@ const DashboardPage = () => {
                     <Link>Marks</Link>
                 </nav>
 
-                <div>
+                {user && (
+                    <div>
                      {user?.map((u) => {
                         <div key={u.id}>
-                            <h2>{u.full_name}</h2>
+                            <h2>{u?.full_name}</h2>
+
+                            <p>{u?.phone}</p>
+                            <p>{u?.role}</p>
                         </div>
                      })}
                 </div>
+                )}
             </div>
         </div>
     )
-}
 }
 export default DashboardPage;
