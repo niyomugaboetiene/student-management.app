@@ -2,9 +2,9 @@ import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 
 const DashboardPage = () => {
-
+  const [user, setUser] = useState(null);
     const FetchUserSession = () => {
-
+     
     }
     return (
         <div className="bg-gray-100 flex">
