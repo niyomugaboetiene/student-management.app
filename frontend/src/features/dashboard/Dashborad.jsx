@@ -28,8 +28,9 @@ const DashboardPage = () => {
     const handleLogout = async () => {
        try {
          setIsLoading(true);  
-          await axios.post(`${BACKEND_URL}/teacher/auth/logout`, { withCredentials: true });
-          navigate('//admin/login');
+          await axios.post(`${BACKEND_URL}/teacher/auth/logout`, {}, { withCredentials: true });
+          setUser(null);
+          navigate('/admin/login');
           setIsLoading(false);
        } catch (err) {
          console.error(err);
@@ -68,10 +69,10 @@ const DashboardPage = () => {
       
              {isNameClicked && (
                 <div className="absolute right-2 top-14 bg-cyan-200 p-2 rounded-lg shadow-lg">
-                     <p>Name: <span className="text-gray-900 font-bold">{user.email}</span></p>
-                     <p>Role: <span className="text-gray-900 font-bold">{user.role}</span></p>
-                     <p>Phone: <span className="text-gray-900 font-bold">{user.phone}</span></p>
-                     <p>Location: <span className="text-gray-900 font-bold">{user.location}</span></p>
+                     <p>Name: <span className="text-gray-900 font-bold">{user.email ? user.email : `no name`}</span></p>
+                     <p>Role: <span className="text-gray-900 font-bold">{user.role ? user.role : `no role`}</span></p>
+                     <p>Phone: <span className="text-gray-900 font-bold">{user.phone ? user.phone : `no phone`}</span></p>
+                     <p>Location: <span className="text-gray-900 font-bold">{user.location ? user.location : `no location`}</span></p>
 
                   <div className="justify-between flex">
                         <button className="mt-2 bg-cyan-400 px-5 py-1 rounded-lg text-gray-900 hover:bg-cyan-500">More</button>
