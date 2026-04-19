@@ -42,7 +42,11 @@ const DashboardPage = () => {
                 </nav>
 
                 <div>
-
+                     {user?.map((u) => {
+                        <div key={u.id}>
+                            <h2>{u.full_name}</h2>
+                        </div>
+                     })}
                 </div>
             </div>
         </div>
