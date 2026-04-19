@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
+import { FaAlignLeft } from "react-icons/fa";
 
 const DashboardPage = () => {
   const [user, setUser] = useState(null);
@@ -53,11 +54,13 @@ const DashboardPage = () => {
                 )}
       
              {isNameClicked && (
-                <div className="absolute right-2 top-14 bg-cyan-200 p-2 rounded-lg">
-                     <p>Name: <span>{user.email}</span></p>
-                     <p>Role: {user.role}</p>
-                     <p>Phone: {user.phone}</p>
-                     <p>Location: {user.location}</p>
+                <div className="absolute right-2 top-14 bg-cyan-200 p-2 rounded-lg shadow-lg">
+                     <p>Name: <span className="text-gray-900 font-bold">{user.email}</span></p>
+                     <p>Role: <span className="text-gray-900 font-bold">{user.role}</span></p>
+                     <p>Phone: <span className="text-gray-900 font-bold">{user.phone}</span></p>
+                     <p>Location: <span className="text-gray-900 font-bold">{user.location}</span></p>
+
+                     <button className="mt-2 bg-cyan-400 px-5 rounded-lg text-gray-900 hover:bg-cyan-500">More</button>
                 </div> 
              )}
             </div>
