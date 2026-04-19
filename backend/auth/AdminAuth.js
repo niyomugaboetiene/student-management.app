@@ -28,6 +28,7 @@ router.post('/login', async (req, res) => {
             req.session.user = {
                 full_name: full_name,
                 phone: phone,
+                id: isExist._id,
                 email: isExist.email,
                 location: isExist.location,
                 role: isExist.role

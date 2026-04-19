@@ -18,6 +18,31 @@
         }
     }
 
+    router.get('/userSession', (req, res) => {
+        try {
+            if (req.session.user) {
+                return res.status(200).json({ message: 'User session', user: req.session.user });
+            } 
+           
+            return res.status(401).json({ message: 'Unauthorized' });            
+        } catch (err) {
+            console.error(err);
+            return res.status(500).json({ message: 'Internal server error' });
+        }
+    });
+
+    // logout
+    router.post('/logout', (req, res) => {
+        req.session.destroy((err) => {
+            if (err) {
+                return res.status(500).json({ message: 'logout failed' });
+            }
+            
+            res.clearCookie("connect.sid");
+            return res.status(200).json({ message: 'Logged out successfully' });
+        });
+    });
+
     router.post('/register', isAdmin, async (req, res) => {
         //     student_id, full_name,  email, qualification, phone, gender, experience, department, salary, class
             try {
@@ -86,6 +111,7 @@
             if (isPasswordTrue) {
                 req.session.user = {
                     full_name: full_name,
+                    id: isExist._id,
                     phone: phone,
                     role: isExist.role,
                 }

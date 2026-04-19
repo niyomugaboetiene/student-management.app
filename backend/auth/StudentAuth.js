@@ -29,6 +29,7 @@ router.post('/login', async (req, res) => {
       if (isPasswordTrue) {
            req.session.user = {
             full_name: full_name,
+            id: isExist._id,
             email: isExist.email,
             location: isExist.location,
             phone: phone,
