@@ -4,10 +4,10 @@ import { Link } from "react-router-dom";
 const DashboardPage = () => {
 
     return (
-        <div className="bg-gray-100 min-h-screen flex">
-            <div>
-            <div className="flex items-center justify-center  bg-cyan-400 h-14 w-full p-4">
-                <nav className="flex space-x-5 text-gray-900 text-md">
+        <div className="bg-gray-100 flex">
+            <div className="flex justify-between bg-cyan-400 w-full">
+            <div className="">
+                <nav className="flex items-center justify-center h-14 w-full p-4 space-x-5 text-gray-900 text-md">
                     <Link>Dashboard</Link>
                     <Link>Students</Link>
                     <Link>Class</Link>
