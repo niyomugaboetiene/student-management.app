@@ -48,7 +48,7 @@ const DashboardPage = () => {
                 </nav>
 
                 {user && (
-                     <div onClick={() => setIsNameClicked(!isNameClicked)}>
+                     <div onClick={() => setIsNameClicked(!isNameClicked)} className="font-bold">
                          {user.full_name}
                      </div> 
                 )}
