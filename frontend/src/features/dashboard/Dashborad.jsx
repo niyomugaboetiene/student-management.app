@@ -1,13 +1,18 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 
 const DashboardPage = () => {
 
+    const FetchUserSession = () => {
+
+    }
     return (
         <div className="bg-gray-100 flex">
             <div className="flex justify-between bg-cyan-400 w-full">
-            <div className="">
-                <nav className="flex items-center justify-center h-14 w-full p-4 space-x-5 text-gray-900 text-md">
+               <div>
+                   <p>Logo</p>
+               </div>
+                <nav className="flex items-center justify-center h-14 w-full font-normal space-x-5 text-gray-900 text-md">
                     <Link>Dashboard</Link>
                     <Link>Students</Link>
                     <Link>Class</Link>
@@ -19,7 +24,10 @@ const DashboardPage = () => {
                     <Link>Trade</Link>
                     <Link>Marks</Link>
                 </nav>
-            </div>
+
+                <div>
+
+                </div>
             </div>
         </div>
     )
