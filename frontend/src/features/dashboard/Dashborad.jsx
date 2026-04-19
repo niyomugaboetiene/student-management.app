@@ -1,12 +1,13 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
-import { FaAlignLeft } from "react-icons/fa";
+import { useNavigate } from "react-router-dom";
 
 const DashboardPage = () => {
   const [user, setUser] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
   const [isNameClicked, setIsNameClicked] = useState(false);
+  const navigate = useNavigate();
 
   const BACKEND_URL = import.meta.env.VITE_BACKEND_URL;
 
@@ -17,6 +18,18 @@ const DashboardPage = () => {
           const userRes = await axios.get(`${BACKEND_URL}/teacher/auth/userSession`, { withCredentials: true });
           console.log("Session", userRes.data.user);
           setUser(userRes.data.user);
+          setIsLoading(false);
+       } catch (err) {
+         console.error(err);
+         setIsLoading(false);
+    }
+}
+
+    const handleLogout = async () => {
+       try {
+         setIsLoading(true);  
+          await axios.post(`${BACKEND_URL}/teacher/auth/logout`, { withCredentials: true });
+          navigate('//admin/login');
           setIsLoading(false);
        } catch (err) {
          console.error(err);
@@ -62,7 +75,7 @@ const DashboardPage = () => {
 
                   <div className="justify-between flex">
                         <button className="mt-2 bg-cyan-400 px-5 py-1 rounded-lg text-gray-900 hover:bg-cyan-500">More</button>
-                        <button className="mt-2 bg-red-400 px-5 py-1 rounded-lg text-gray-900 hover:bg-red-500">logout</button>
+                        <button className="mt-2 bg-red-400 px-5 py-1 rounded-lg text-gray-900 hover:bg-red-500" onClick={handleLogout}>logout</button>
                   </div>
                 </div> 
              )}
