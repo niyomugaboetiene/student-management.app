@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 const DashboardPage = () => {
   const [user, setUser] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
+  const [isNameClicked, setIsNameClicked] = useState(false);
 
   const BACKEND_URL = import.meta.env.VITE_BACKEND_URL;
 
@@ -14,8 +15,8 @@ const DashboardPage = () => {
          setIsLoading(true);  
           const userRes = await axios.get(`${BACKEND_URL}/teacher/auth/userSession`, { withCredentials: true });
           console.log("Session", userRes.data.user);
-          setUser(Array.isArray(user) ? [userRes.data.user] : []);
-          setIsLoading(true);
+          setUser(userRes.data.user);
+          setIsLoading(false);
        } catch (err) {
          console.error(err);
          setIsLoading(false);
@@ -45,16 +46,15 @@ const DashboardPage = () => {
                     <Link>Marks</Link>
                 </nav>
 
-                    <div>
-                     {user?.map((u) => (
-                        <div key={u.id}>
-                            <h2>{u.full_name}</h2>
-
-                            <p>{u.phone}</p>
-                            <p>{u.role}</p>
-                        </div>
-                     ))}
-                </div>   
+                {user && (
+                     <div onClick={() => setIsNameClicked(true)}>
+                         {user.full_name}
+                     </div> 
+                )}
+      
+             {isNameClicked && (
+                
+             )}
             </div>
         </div>
     )
