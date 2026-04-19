@@ -80,6 +80,9 @@ const DashboardPage = () => {
                   </div>
                 </div> 
              )}
+
+
+             <h2>Welcome to student management system</h2>
             </div>
         </div>
     )
