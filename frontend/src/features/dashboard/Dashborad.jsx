@@ -4,14 +4,24 @@ import { Link } from "react-router-dom";
 
 const DashboardPage = () => {
   const [user, setUser] = useState(null);
-
+  const [isLoading, setIsLoading] = useState(false);
 
     const FetchUserSession = async () => {
        try {
+
+         setIsLoading(true);  
           const BACKEND_URL = import.meta.env.VITE_BACKEND_URL;
-          const userRes = await axios.get(`${BACKEND_URL}/teacher/auth/userSession`)
-       }
+          const userRes = await axios.get(`${BACKEND_URL}/teacher/auth/userSession`);
+          setIsLoading(true);
+       } catch (err) {
+         console.err(err);
+         setIsLoading(false);
     }
+
+    useEffect(() => {
+        FetchUserSession();
+    }, []);
+
     return (
         <div className="bg-gray-100 flex">
             <div className="flex justify-between bg-cyan-400 w-full">
@@ -38,5 +48,5 @@ const DashboardPage = () => {
         </div>
     )
 }
-
+}
 export default DashboardPage;
