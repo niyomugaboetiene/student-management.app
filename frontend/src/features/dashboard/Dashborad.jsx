@@ -53,7 +53,9 @@ const DashboardPage = () => {
                 )}
       
              {isNameClicked && (
-                
+                <div className="absolute">
+                     <p>{user.email}</p>
+                </div> 
              )}
             </div>
         </div>
