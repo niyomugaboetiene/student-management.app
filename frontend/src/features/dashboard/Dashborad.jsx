@@ -60,7 +60,10 @@ const DashboardPage = () => {
                      <p>Phone: <span className="text-gray-900 font-bold">{user.phone}</span></p>
                      <p>Location: <span className="text-gray-900 font-bold">{user.location}</span></p>
 
-                     <button className="mt-2 bg-cyan-400 px-5 rounded-lg text-gray-900 hover:bg-cyan-500">More</button>
+                  <div className="justify-between flex">
+                        <button className="mt-2 bg-cyan-400 px-5 py-1 rounded-lg text-gray-900 hover:bg-cyan-500">More</button>
+                        <button className="mt-2 bg-red-400 px-5 py-1 rounded-lg text-gray-900 hover:bg-red-500">logout</button>
+                  </div>
                 </div> 
              )}
             </div>
