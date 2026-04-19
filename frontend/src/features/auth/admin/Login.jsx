@@ -32,6 +32,7 @@ const AdminLogin = () => {
  
           setLoading(false);
           setMessage(res.data.message);
+        //   console.log(res.data.user);
           setError("");
         } catch (err) {
             setMessage("");
