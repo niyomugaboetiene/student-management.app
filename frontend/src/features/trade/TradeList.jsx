@@ -43,8 +43,8 @@ const GetTradeList = () => {
             <div className="max-w-6xl mx-auto">
 
                 <h1 className="text-2xl font-bold text-cyan-700 mb-4 text-center">Trade List</h1>
-                <div className="overflow-x-auto rounded-xl overflow-hidden border-cyan-300">
-                  <table className="min-w-full border border-cyan-300 rounded-xl overflow-hidden">
+                <div className="rounded-xl border-cyan-300">
+                  <table className="w-full border border-cyan-300 rounded-xl overflow-hidden">
 
                        <thead className="bg-cyan-500 text-white">
                          <tr>
@@ -56,17 +56,17 @@ const GetTradeList = () => {
                           </tr>
                        </thead>
 
-                       <tbody>
-                    {trade?.map((tra) => (
-                        <tr key={tra._id} className="">
-                            <td className="">{tra.trade_id}</td>
-                            <td className="">{tra.trade_name}</td>
-                            <td className="">{tra.code}</td>
-                            <td className="">{tra.department[0]?.name}</td>
+                       <tbody className="bg-white text-gray-700">
+                    {trade?.map((tra, index) => (
+                        <tr key={tra._id} className={`${index % 2 === 0 ? 'bg-gray-100' : 'bg-cyan-100'} hover:${index % 2 === 0 ? 'bg-gray-300' : 'bg-cyan-200'} transition-colors`}>
+                            <td className="px-3 py-5">{tra.trade_id}</td>
+                            <td className="px-3 py-5">{tra.trade_name}</td>
+                            <td className="px-3 py-5">{tra.code}</td>
+                            <td className="px-3 py-5">{tra.department[0]?.name}</td>
 
-                            <td>
-                                <Link className="" to={`/trade/update/${tra._id}`}><FaEdit className=""/> Update</Link> 
-                                <Link className="" to={`/trade/delete/${tra._id}`}><FaTrash /> Delete</Link>
+                            <td className="px-3 py-5 text-center justify-between flex">
+                                <Link className="inline-flex  items-center gap-2 py-1 px-3 bg-green-600 rounded-lg text-white font-bold hover:bg-green-500 transition-colors" to={`/trade/update/${tra._id}`}><FaEdit className="text-white  font-bold"/> Update</Link> 
+                                <Link className="inline-flex items-center gap-2 py-1 bg-red-600 px-3 text-white font-bold rounded-lg hover:bg-red-500 transition-colors" to={`/trade/delete/${tra._id}`}><FaTrash /> Delete</Link>
                             </td>
 
                         </tr>
