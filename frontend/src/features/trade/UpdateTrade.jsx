@@ -90,7 +90,6 @@ const UpdateTrade = () => {
         }
     }
 
-
     return (
          <div className="bg-gray-100 min-h-screen flex justify-center items-center p-3">
             <div className="bg-white w-110 rounded-xl p-4 shadow-lg">

@@ -31,8 +31,35 @@ const GetTradeList = () => {
             setIsLoading(false);
           }
     }
-    
 
+    const handleDeleteStudent = async(_id) => {
+       
+        if (!_id) {
+          setMessage("fill out IDs");
+          return;
+        }
+        const confirmation = window.confirm("Are sure you want to delete");
+            if (!confirmation) return;
+        try {
+            setIsLoading(true);
+
+            const confirmation = window.confirm("Are sure you want to delete");
+            if (confirmation) {
+               await axios.delete(`${BACKEND_URL}/trade/delete/${_id}`, { withCredentials: true });
+            } 
+
+            setIsLoading(false);
+        } catch (err) {
+            const errorMessage = err.response?.data?.message;
+            if (errorMessage === "Enter valid IDs") {
+                setMessage("Enter valid IDs");
+            }
+
+            if (errorMessage === "Internal Server error") {
+                setMessage("Internal Server error");
+            }
+        }
+    }
 
     useEffect(() => {
         handleGetTrade();
@@ -66,7 +93,7 @@ const GetTradeList = () => {
 
                             <td className="px-3 py-5 text-center justify-between flex">
                                 <Link className="inline-flex  items-center gap-2 py-1 px-3 bg-green-600 rounded-lg text-white font-bold hover:bg-green-500 transition-colors" to={`/trade/update/${tra._id}`}><FaEdit className="text-white  font-bold"/> Update</Link> 
-                                <Link className="inline-flex items-center gap-2 py-1 bg-red-600 px-3 text-white font-bold rounded-lg hover:bg-red-500 transition-colors" to={`/trade/delete/${tra._id}`}><FaTrash /> Delete</Link>
+                                <button className="inline-flex items-center gap-2 py-1 bg-red-600 px-3 text-white font-bold rounded-lg hover:bg-red-500 transition-colors" onClick={handleDeleteStudent(tra._id)}><FaTrash /> Delete</button>
                             </td>
 
                         </tr>
