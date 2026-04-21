@@ -16,9 +16,9 @@ const GetTradeList = () => {
             setIsLoading(true);
             const tradeRes = await axios.get(`${BACKEND_URL}/trade/tradeList`, { withCredentials: true });
             setTrade(tradeRes.data.Trade);
-            const TradeData = tradeRes.data.Trade;
+            const TradeData = tradeRes.data.Trade[0];
             setDepartmentId(TradeData.department);
-            console.log("Trade Id", TradeData);
+            console.log("Trade Id", TradeData.department);
             setIsLoading(false);
           } catch (err) {
             console.error(err);
@@ -39,7 +39,7 @@ const GetTradeList = () => {
           try {
             setIsLoading(true);
             const depRes = await axios.get(`${BACKEND_URL}/department/${DepartmentId}`, { withCredentials: true });
-
+             console.log("dep ", depRes.data.department);
             setIsLoading(false);
           } catch (err) {
             console.error(err);
@@ -87,9 +87,9 @@ const GetTradeList = () => {
                             <td className="border-r">{tra.department}</td>
 
                             <div className="p-3 flex space-x-4">
-                            <Link className="py-1 px-3 bg-green-400 hover:bg-green-500 transition-colors text-white font-bold rounded-lg" to={`/trade/update/${tra._id}`}><FaEdit className=""/> Update</Link> 
-                            <Link className="py-1 px-3 bg-red-500 hover:bg-red-400 transition-colors text-white font-bold rounded-lg" to={`/trade/delete/${tra._id}`}><FaTrash /> Delete</Link>
-                        </div>
+                                <Link className="py-1 px-3 bg-green-400 hover:bg-green-500 transition-colors text-white font-bold rounded-lg" to={`/trade/update/${tra._id}`}><FaEdit className=""/> Update</Link> 
+                                <Link className="py-1 px-3 bg-red-500 hover:bg-red-400 transition-colors text-white font-bold rounded-lg" to={`/trade/delete/${tra._id}`}><FaTrash /> Delete</Link>
+                            </div>
 
                         </tr>
                     ))}
