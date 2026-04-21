@@ -13,7 +13,7 @@
             if (result.length > 0) {
                 return res.status(200).json({
                     message: 'Teacher list',
-                    student: result
+                    teacher: result
                 });
             } else {
                 return res.status(404).json({ message: 'No teachers in the system' });

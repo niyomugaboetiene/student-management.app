@@ -8,9 +8,9 @@ router.post('/add', async (req, res) => {
     try {
         //     department_id, name ,description, building, ,HOD ,teachers
         
-        const { name, description, building, HOD, teachers } = req.body;
+        const { name, description, building, HOD } = req.body;
 
-        if (!name || !HOD || !teachers) {
+        if (!name || !HOD) {
             return res.status(403).json({ message: 'Fill some missing fields' });
         }
 
@@ -25,7 +25,6 @@ router.post('/add', async (req, res) => {
         if (description) newFields.description = description;
         if (building) newFields.building = building;
         if (HOD) newFields.HOD = HOD;
-        if (teachers) newFields.teachers = teachers;
         
         const newData = await DepartmentSchema.create(newFields);
 
@@ -85,10 +84,10 @@ router.get('/:_id', async (req, res) => {
 
 router.put('/update/:_id', async (req, res) => {
     try {
-        const { name, description, building, HOD, teachers } = req.body;
+        const { name, description, building, HOD } = req.body;
         const _id = req.params;
 
-        if (!name || !HOD || !teachers) {
+        if (!name || !HOD) {
             return res.status(403).json({ message: 'Fill some missing fields' });
         }
 
@@ -104,7 +103,6 @@ router.put('/update/:_id', async (req, res) => {
         if (description) updateFields.description = description;
         if (building) updateFields.building = building;
         if (HOD) updateFields.HOD = HOD;
-        if (teachers) updateFields.teachers = teachers;
 
         const newData = await DepartmentSchema.findByIdAndUpdate(_id, updateFields, { new: true });
 
