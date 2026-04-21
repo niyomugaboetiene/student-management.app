@@ -41,6 +41,7 @@ const AddDepartment = () => {
             setIsLoading(true);
             if (!name || !HOD) {
                 setError("Fill out the missing fields");
+                setMessage("");
             }
             const res = await axios.post(`${BACKEND_URL}/department/add`, { name, description, building, HOD }, { withCredentials: true });
             setMessage(res.data.message);
@@ -49,10 +50,12 @@ const AddDepartment = () => {
             const errMessage = err.response?.data?.message || "Error occured"; 
             if (errMessage === "Please enter the real HOD id") {
                 setError(errMessage);
+                setMessage("");
             }
 
             if (errMessage === "Server error") {
                 setError(errMessage);
+                setMessage("");
             }
 
             setIsLoading(false);
@@ -101,7 +104,6 @@ const AddDepartment = () => {
                        onChange={(e) => setHOD(e.target.value)} 
                        className="bg-gray-100 w-full rounded-full p-3 focus:outline-1 focus:outline-gray-500" placeholder=""
                     > 
-
                        {selectedTeacehr?.map((tr) => (
                         <option value={tr._id} key={tr._id}>{tr.full_name}</option>
                        ))}
