@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { FaTimes } from 'react-icons/fa';
 import { useParams } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 const UpdateDepartment = () => {
     const [name, setName] = useState("");
@@ -11,6 +12,7 @@ const UpdateDepartment = () => {
     const [isLoading, setIsLoading] = useState(false);
     const [message, setMessage] = useState("");
     const [error, setError] = useState("");
+    const navigate = useNavigate();
 
     const { _id } = useParams();
 
@@ -67,6 +69,7 @@ const UpdateDepartment = () => {
             const res = await axios.put(`${BACKEND_URL}/department/update/${_id}`, { name, description, building, HOD }, { withCredentials: true });
             setMessage(res.data.message);
             setIsLoading(false);
+            navigate('/department/list')
         } catch (err) {
             const errMessage = err.response?.data?.message || "Error occured"; 
             if (errMessage === "Please enter the real HOD id") {
