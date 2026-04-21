@@ -32,7 +32,13 @@ const DepartmentList = () => {
     }, []);
 
     const HandleDeleteStudent = async (_id) => {
-        if (!_id) return;
+        if (!_id) {
+            setMessage("Ids is required for this action");
+            return;
+        }
+
+        const confrimation = window.confirm("Are you sure you want to delete department ?");
+        if (!confrimation) return;
 
         try {
             setLoading(true);
@@ -40,7 +46,15 @@ const DepartmentList = () => {
             setLoading(false);
         } catch (err) {
             console.error(err);
-            const errorMessage = err.response?.data?.message || "Error occured"
+            const errorMessage = err.response?.data?.message || "Error occured";
+
+            if (errorMessage === "Enter a valid IDs") {
+                setMessage("Enter a valid IDs");
+            }
+
+            if (errorMessage === "Server error") {
+                setMessage(errorMessage);
+            }
         }
     }
 
