@@ -123,7 +123,7 @@ const AddMarks = () => {
                     > 
 
                        {selectedClass?.map((classe) => (
-                        <option value={classe._id} key={classe._id}>{classe.name}</option>
+                        <option value={classe._id} key={classe._id}>{classe.class_name}</option>
                        ))}
                     </select>
                 </div>
@@ -135,7 +135,7 @@ const AddMarks = () => {
                     > 
 
                        {selectedSubject?.map((sub) => (
-                        <option value={sub._id} key={sub._id}>{sub.name}</option>
+                        <option value={sub._id} key={sub._id}>{sub.subject_name}</option>
                        ))}
                     </select>
                 </div>
@@ -143,11 +143,11 @@ const AddMarks = () => {
                 <div className="mt-3">
                     <input type="number"  
                     onChange={(e) => setMarks(e.target.value)} required
-                    className="bg-gray-100 w-full p-3 rounded-full focus:outline-1 focus:outline-gray-500" placeholder="Marks"
+                    className="bg-gray-100 w-full p-3 rounded-full mb-5 focus:outline-1 focus:outline-gray-500" placeholder="Marks"
                 />
                 </div>
 
-                <button onClick={handleAddTrade} className="w-full bg-cyan-500 p-3 rounded-full text-white font-bold hover:bg-cyan-400 transition-colors mb-4">Add Trade</button>
+                <button onClick={handleAddMarks} className="w-full bg-cyan-500 p-3 rounded-full text-white font-bold hover:bg-cyan-400 transition-colors mb-4">Add Trade</button>
 
             </div>
         </div>
