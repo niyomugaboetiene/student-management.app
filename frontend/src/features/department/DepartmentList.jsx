@@ -1,6 +1,8 @@
 import axios from "axios";
 import { useEffect } from "react";
+import { Link } from "react-router-dom";
 import { useState } from "react";
+import { FaTrash, FaEdit} from "react-icons/fa";
 
 const DepartmentList = () => {
     const [department, setDepartment] = useState(null);
@@ -56,6 +58,11 @@ const DepartmentList = () => {
                                     <td>{dep.building}</td>
                                     <td>{dep.HOD}</td>
                                     <td>{new Date(dep.createdAt).toLocaleDateString()}</td>
+
+                                    <td>
+                                        <Link className="inline-flex"><FaEdit/> Edit</Link>
+                                        <Link className="inline-flex"><FaTrash /> Delete</Link>
+                                    </td>
                                 </tr>
                             ))}
                         </tbody>
