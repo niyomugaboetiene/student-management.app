@@ -60,7 +60,7 @@ const DepartmentList = () => {
                                     <td className="py-3 px-4">{new Date(dep.createdAt).toLocaleDateString()}</td>
 
                                     <td className="py-3 px-3 flex justify-between">
-                                        <Link className="inline-flex gap-2 bg-green-500 px-5 py-1 rounded-lg text-white font-bold hover:bg-green-600 transition-colors"><FaEdit className="mt-1"/> Edit</Link>
+                                        <Link className="inline-flex gap-2 bg-green-500 px-5 py-1 rounded-lg text-white font-bold hover:bg-green-600 transition-colors" to={`/department/update/${dep._id}`}><FaEdit className="mt-1"/> Edit</Link>
                                         <Link className="inline-flex gap-2 bg-red-500 px-5 py-1 rounded-lg text-white font-bold hover:bg-red-600 transition-colors"><FaTrash className="mt-1"/> Delete</Link>
                                     </td>
                                 </tr>
