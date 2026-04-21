@@ -41,12 +41,10 @@ const GetTradeList = () => {
         const confirmation = window.confirm("Are sure you want to delete");
             if (!confirmation) return;
         try {
-            setIsLoading(true);
-
-            const confirmation = window.confirm("Are sure you want to delete");
-            if (confirmation) {
-               await axios.delete(`${BACKEND_URL}/trade/delete/${_id}`, { withCredentials: true });
-            } 
+            setIsLoading(true);            
+            await axios.delete(`${BACKEND_URL}/trade/delete/${_id}`, { withCredentials: true });
+           
+            await handleGetTrade(); 
 
             setIsLoading(false);
         } catch (err) {
@@ -93,7 +91,7 @@ const GetTradeList = () => {
 
                             <td className="px-3 py-5 text-center justify-between flex">
                                 <Link className="inline-flex  items-center gap-2 py-1 px-3 bg-green-600 rounded-lg text-white font-bold hover:bg-green-500 transition-colors" to={`/trade/update/${tra._id}`}><FaEdit className="text-white  font-bold"/> Update</Link> 
-                                <button className="inline-flex items-center gap-2 py-1 bg-red-600 px-3 text-white font-bold rounded-lg hover:bg-red-500 transition-colors" onClick={handleDeleteStudent(tra._id)}><FaTrash /> Delete</button>
+                                <button className="inline-flex items-center gap-2 py-1 bg-red-600 px-3 text-white font-bold rounded-lg hover:bg-red-500 transition-colors" onClick={() => handleDeleteStudent(tra._id)}><FaTrash /> Delete</button>
                             </td>
 
                         </tr>
