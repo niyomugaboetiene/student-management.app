@@ -16,6 +16,10 @@ const AddDepartment = () => {
     const BACKEND_URL = import.meta.env.VITE_BACKEND_URL;
 
     const handleGetTeacher = async () => {
+        if (!name || !HOD) {
+            return;
+        }
+
           try {
             setIsLoading(true);
             const trRes = await axios.get(`${BACKEND_URL}/teacher/teacher_list`, { withCredentials: true });
@@ -43,15 +47,11 @@ const AddDepartment = () => {
             setIsLoading(false);
         } catch (err) {
             const errMessage = err.response?.data?.message || "Error occured"; 
-            if (errMessage === "Unauthorized") {
-                setError("Login to access this page");
-            }
-
-            if (errMessage === "YOu dont have access to this data") {
+            if (errMessage === "Please enter the real HOD id") {
                 setError(errMessage);
             }
 
-            if (errMessage === "Internal server error") {
+            if (errMessage === "Server error") {
                 setError(errMessage);
             }
 
@@ -79,6 +79,13 @@ const AddDepartment = () => {
                     <input type="text"  
                        onChange={(e) => setName(e.target.value)} required
                        className="bg-gray-100  w-full p-3 rounded-full focus:outline-1 focus:outline-gray-500" placeholder="Dep name"
+                    />
+                </div>
+                
+                <div className="mt-3">
+                    <input type="text"  
+                       onChange={(e) => setDescription(e.target.value)}
+                       className="bg-gray-100  w-full p-3 rounded-full focus:outline-1 focus:outline-gray-500" placeholder="Description (Optional)"
                     />
                 </div>
                 
