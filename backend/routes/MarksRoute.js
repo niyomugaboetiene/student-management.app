@@ -34,7 +34,7 @@ router.post('/add', async( req, res ) => {
 
 router.get('/marks_list', async (req, res) => {
     try {
-        const result = await MarksSchema.find();
+        const result = await MarksSchema.find().populate("students").populate("classes");
 
         if (result.length === 0) {
             return res.status(404).json({ message: 'No marks in the system' });
