@@ -51,7 +51,7 @@ const DepartmentList = () => {
 
                         <tbody className="bg-gray-100">
                             {department?.map((dep, index) => (
-                                <tr key={dep._id} className={`${index % 2 === 0 ? 'bg-cyan-200' : 'bg-gray-100'} hover:${index % 2 === 0 ? 'bg-cyan-300' : 'bg-gray-200'}`}>
+                                <tr key={dep._id} className={`${index % 2 === 0 ? 'bg-cyan-200' : 'bg-gray-100'} hover:${index % 2 === 0 ? 'bg-cyan-400' : 'bg-gray-400'} transition-colors text-gray-700`}>
                                     <td className="py-3 px-4">{dep.department_id}</td>
                                     <td className="py-3 px-4">{dep.name}</td>
                                     <td className="py-3 px-4">{dep.description ? dep.description : "No description"}</td>
@@ -59,9 +59,9 @@ const DepartmentList = () => {
                                     <td className="py-3 px-4">{dep.HOD}</td>
                                     <td className="py-3 px-4">{new Date(dep.createdAt).toLocaleDateString()}</td>
 
-                                    <td className="py-3 px-3">
-                                        <Link className="inline-flex"><FaEdit/> Edit</Link>
-                                        <Link className="inline-flex"><FaTrash /> Delete</Link>
+                                    <td className="py-3 px-3 flex justify-between">
+                                        <Link className="inline-flex gap-2 bg-green-500 px-5 py-1 rounded-lg text-white font-bold hover:bg-green-600 transition-colors"><FaEdit className="mt-1"/> Edit</Link>
+                                        <Link className="inline-flex gap-2 bg-red-500 px-5 py-1 rounded-lg text-white font-bold hover:bg-red-600 transition-colors"><FaTrash className="mt-1"/> Delete</Link>
                                     </td>
                                 </tr>
                             ))}
