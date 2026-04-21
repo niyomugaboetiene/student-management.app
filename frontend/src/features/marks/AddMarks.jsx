@@ -53,7 +53,7 @@ const AddMarks = () => {
             setIsLoading(true);
             const subRes = await axios.get(`${BACKEND_URL}/subjects/class/${classes}`, { withCredentials: true });
             console.log(subRes.data.subject);
-            setSelectedStudent(subRes.data.subject);
+            setSelectedSubject(subRes.data.subject);
             setIsLoading(false);
           } catch (err) {
             console.error(err);
@@ -74,24 +74,16 @@ const AddMarks = () => {
             setIsLoading(true);
             if (!student || !classes || !subject || !marks) {
                 setError("Fill out the missing fields");
+                setMessage("");
             }
             const res = await axios.post(`${BACKEND_URL}/marks/add`, { student, classes, subject, marks }, { withCredentials: true });
             setMessage(res.data.message);
             setIsLoading(false);
         } catch (err) {
             const errMessage = err.response?.data?.message || "Error occured"; 
-            if (errMessage === "Unauthorized") {
-                setError("Login to access this page");
-            }
-
-            if (errMessage === "YOu dont have access to this data") {
-                setError(errMessage);
-            }
-
             if (errMessage === "Internal server error") {
                 setError(errMessage);
             }
-
             setIsLoading(false);
         }
     }
@@ -110,26 +102,12 @@ const AddMarks = () => {
                     <div className="bg-red-500 mb-2 p-2 rounded-lg text-white font-bold relative flex justify-between">
                         <p>{error}</p> <p className="text-lg mt-1" onClick={() => setError("")}><FaTimes /></p>
                     </div>                )}
-                <h1 className="text-xl text-gray-600 font-bold">Add Trade Portal</h1>
-
-                <div className="mt-3">
-                    <input type="text"  
-                       onChange={(e) => setTrade_name(e.target.value)} required
-                       className="bg-gray-100  w-full p-3 rounded-full focus:outline-1 focus:outline-gray-500" placeholder="Trade name"
-                    />
-                </div>
-                
-                <div className="mt-3">
-                    <input type="text"  
-                    onChange={(e) => setCode(e.target.value)} required
-                    className="bg-gray-100 w-full p-3 rounded-full focus:outline-1 focus:outline-gray-500" placeholder="code"
-                />
-                </div>
+                <h1 className="text-xl text-gray-600 font-bold">Add Marks Portal</h1>
                 
                 <div className="mt-3 mb-4">
                     <select  
                        onChange={(e) => setStudent(e.target.value)} 
-                       className="bg-gray-100 w-full rounded-full p-3 focus:outline-1 focus:outline-gray-500" placeholder=""
+                       className="bg-gray-100 w-full rounded-full p-3 focus:outline-1 focus:outline-gray-500"
                     > 
 
                        {selectedStudent?.map((st) => (
@@ -141,7 +119,7 @@ const AddMarks = () => {
                 <div className="mt-3 mb-4">
                     <select  
                        onChange={(e) => setClasses(e.target.value)} 
-                       className="bg-gray-100 w-full rounded-full p-3 focus:outline-1 focus:outline-gray-500" placeholder=""
+                       className="bg-gray-100 w-full rounded-full p-3 focus:outline-1 focus:outline-gray-500"
                     > 
 
                        {selectedClass?.map((classe) => (
@@ -153,13 +131,20 @@ const AddMarks = () => {
                 <div className="mt-3 mb-4">
                     <select  
                        onChange={(e) => setSubject(e.target.value)} 
-                       className="bg-gray-100 w-full rounded-full p-3 focus:outline-1 focus:outline-gray-500" placeholder=""
+                       className="bg-gray-100 w-full rounded-full p-3 focus:outline-1 focus:outline-gray-500"
                     > 
 
                        {selectedSubject?.map((sub) => (
                         <option value={sub._id} key={sub._id}>{sub.name}</option>
                        ))}
                     </select>
+                </div>
+                                
+                <div className="mt-3">
+                    <input type="number"  
+                    onChange={(e) => setMarks(e.target.value)} required
+                    className="bg-gray-100 w-full p-3 rounded-full focus:outline-1 focus:outline-gray-500" placeholder="Marks"
+                />
                 </div>
 
                 <button onClick={handleAddTrade} className="w-full bg-cyan-500 p-3 rounded-full text-white font-bold hover:bg-cyan-400 transition-colors mb-4">Add Trade</button>
