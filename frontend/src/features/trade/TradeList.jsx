@@ -16,8 +16,9 @@ const GetTradeList = () => {
             setIsLoading(true);
             const tradeRes = await axios.get(`${BACKEND_URL}/trade/tradeList`, { withCredentials: true });
             setTrade(tradeRes.data.Trade);
-            const depIds = tradeRes.data.Trade;
-            setDepartmentId(tradeRes);
+            const TradeData = tradeRes.data.Trade;
+            setDepartmentId(TradeData.department);
+            console.log("Trade Id", TradeData);
             setIsLoading(false);
           } catch (err) {
             console.error(err);
@@ -34,13 +35,11 @@ const GetTradeList = () => {
           }
     }
     
-    let depData;
     const handleGetDepartmentById = async () => {
           try {
             setIsLoading(true);
             const depRes = await axios.get(`${BACKEND_URL}/department/${DepartmentId}`, { withCredentials: true });
-            depData = depRes.data.department;
-            console.log("Department", depData);
+
             setIsLoading(false);
           } catch (err) {
             console.error(err);
@@ -85,7 +84,7 @@ const GetTradeList = () => {
                             <td className="border-r">{tra.trade_id}</td>
                             <td className="border-r">{tra.trade_name}</td>
                             <td className="border-r">{tra.code}</td>
-                            <td className="border-r">{depData?.department}</td>
+                            <td className="border-r">{tra.department}</td>
 
                             <div className="p-3 flex space-x-4">
                             <Link className="py-1 px-3 bg-green-400 hover:bg-green-500 transition-colors text-white font-bold rounded-lg" to={`/trade/update/${tra._id}`}><FaEdit className=""/> Update</Link> 
