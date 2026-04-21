@@ -43,7 +43,7 @@ const DashboardPage = () => {
     }, []);
 
     return (
-        <div className="bg-gray-100 flex">
+        <div className="bg-gray-100 min-h-screen">
             <div className="flex justify-between bg-cyan-400 w-full">
                <div>
                    <p>Logo</p>
@@ -81,8 +81,17 @@ const DashboardPage = () => {
                 </div> 
              )}
 
+            </div>
+            
+            <div className="p-2">
+                  <h2 className="text-2xl font-normal text-gray-800">Welcome to student management system {user?.full_name}</h2>
 
-             <h2>Welcome to student management system</h2>
+                  <div>
+                    <h1>Recent students</h1>
+
+                    <p>Total</p>
+                  </div>
+                  
             </div>
         </div>
     )
