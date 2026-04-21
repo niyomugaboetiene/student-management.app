@@ -31,7 +31,7 @@ const DepartmentList = () => {
         handleGetDepartment();
     }, []);
 
-    const HandleDeleteStudent = async (_id) => {
+    const HandleDeleteDepartment = async (_id) => {
         if (!_id) {
             setMessage("Ids is required for this action");
             return;
@@ -43,6 +43,9 @@ const DepartmentList = () => {
         try {
             setLoading(true);
             await axios.delete(`${BACKEND_URL}/department/delete/${_id}`, { withCredentials: true });
+
+            await handleGetDepartment();
+            
             setLoading(false);
         } catch (err) {
             console.error(err);
@@ -89,7 +92,7 @@ const DepartmentList = () => {
 
                                     <td className="py-3 px-3 flex justify-between">
                                         <Link className="inline-flex gap-2 bg-green-500 px-5 py-1 rounded-lg text-white font-bold hover:bg-green-600 transition-colors" to={`/department/update/${dep._id}`}><FaEdit className="mt-1"/> Edit</Link>
-                                        <Link className="inline-flex gap-2 bg-red-500 px-5 py-1 rounded-lg text-white font-bold hover:bg-red-600 transition-colors"><FaTrash className="mt-1"/> Delete</Link>
+                                        <button className="inline-flex gap-2 bg-red-500 px-5 py-1 rounded-lg text-white font-bold hover:bg-red-600 transition-colors" onClick={() => HandleDeleteDepartment(dep._id)}><FaTrash className="mt-1"/> Delete</button>
                                     </td>
                                 </tr>
                             ))}
