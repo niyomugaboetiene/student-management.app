@@ -19,10 +19,6 @@ const UpdateDepartment = () => {
     const BACKEND_URL = import.meta.env.VITE_BACKEND_URL;
 
     const handleGetTeacher = async () => {
-        if (!name || !HOD) {
-            return;
-        }
-
           try {
             setIsLoading(true);
             const trRes = await axios.get(`${BACKEND_URL}/teacher/teacher_list`, { withCredentials: true });
@@ -30,7 +26,7 @@ const UpdateDepartment = () => {
             setSelectedTeacher(trRes.data.teacher);
             setIsLoading(false);
           } catch (err) {
-            console.error(err);x
+            console.error(err);
             setIsLoading(false);
           }
     }
