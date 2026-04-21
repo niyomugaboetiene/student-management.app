@@ -17,6 +17,7 @@ const DepartmentList = () => {
             setLoading(true);
             const depRes = await axios.get(`${BACKEND_URL}/department/department_list`, { withCredentials: true });
             setDepartment(depRes.data.department);
+            console.log("Data", depRes.data.department);
             setLoading(false);
         } catch (err) {
             console.error(err);
@@ -56,7 +57,7 @@ const DepartmentList = () => {
                                     <td className="py-3 px-4">{dep.name}</td>
                                     <td className="py-3 px-4">{dep.description ? dep.description : "No description"}</td>
                                     <td className="py-3 px-4">{dep.building}</td>
-                                    <td className="py-3 px-4">{dep.HOD}</td>
+                                    <td className="py-3 px-4">{dep.HOD?.full_name ? dep.HOD?.full_name : "No HOD"}</td>
                                     <td className="py-3 px-4">{new Date(dep.createdAt).toLocaleDateString()}</td>
 
                                     <td className="py-3 px-3 flex justify-between">
