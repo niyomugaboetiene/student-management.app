@@ -13,4 +13,4 @@ const DepartmentSchema = mongoose.Schema({
 }, { timestamps: true});
 
 DepartmentSchema.plugin(AutoIncrement, { inc_field: 'department_id' });
-export default mongoose.model("department", DepartmentSchema);
+export default mongoose.model("departments", DepartmentSchema);
