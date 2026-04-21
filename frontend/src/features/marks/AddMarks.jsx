@@ -21,15 +21,45 @@ const AddMarks = () => {
     const handleGetStudent = async () => {
           try {
             setIsLoading(true);
-            const depRes = await axios.get(`${BACKEND_URL}/marks/add`, { withCredentials: true });
-            console.log(depRes.data.department);
-            setSelectedDepartment(depRes.data.department);
+            const stRes = await axios.get(`${BACKEND_URL}/student/studentList`, { withCredentials: true });
+            console.log(stRes.data.student);
+            setSelectedDepartment(stRes.data.student);
             setIsLoading(false);
           } catch (err) {
             console.error(err);
             setIsLoading(false);
           }
     }
+
+    const handleGetClass = async () => {
+          try {
+            setIsLoading(true);
+            const stRes = await axios.get(`${BACKEND_URL}/class/class_list`, { withCredentials: true });
+            console.log(stRes.data.classes);
+            setSelectedDepartment(stRes.data.classes);
+            setIsLoading(false);
+          } catch (err) {
+            console.error(err);
+            setIsLoading(false);
+          }
+    }
+
+    const handleGetSubject = async () => {
+          try {
+            setIsLoading(true);
+            const stRes = await axios.get(`${BACKEND_URL}/subjects/class/${classes}`, { withCredentials: true });
+            console.log(stRes.data.student);
+            setSelectedDepartment(stRes.data.student);
+            setIsLoading(false);
+          } catch (err) {
+            console.error(err);
+            setIsLoading(false);
+          }
+    }
+    
+    useEffect(() => {
+        handleGetStudent();
+    }, [classes])
 
     useEffect(() => {
         handleGetStudent();
