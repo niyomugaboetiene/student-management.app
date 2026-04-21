@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { FaTimes } from 'react-icons/fa';
 
-const AddTrade = () => {
+const AddDepartment = () => {
     const [name, setName] = useState("");
     const [description, setDescription] = useState("");
     const [building, setBuilding] = useState("");
@@ -11,16 +11,16 @@ const AddTrade = () => {
     const [message, setMessage] = useState("");
     const [error, setError] = useState("");
 
-    const [selectedDepartment, setSelectedDepartment] = useState(null);
+    const [selectedTeacehr, setSelectedTeacher] = useState(null);
 
     const BACKEND_URL = import.meta.env.VITE_BACKEND_URL;
 
     const handleGetTeacher = async () => {
           try {
             setIsLoading(true);
-            const depRes = await axios.get(`${BACKEND_URL}/teacher/`, { withCredentials: true });
-            console.log(depRes.data.department);
-            setSelectedDepartment(depRes.data.department);
+            const trRes = await axios.get(`${BACKEND_URL}/teacher/teacher_list`, { withCredentials: true });
+            console.log(trRes.data.teacher);
+            setSelectedTeacher(trRes.data.teacher);
             setIsLoading(false);
           } catch (err) {
             console.error(err);
@@ -95,8 +95,8 @@ const AddTrade = () => {
                        className="bg-gray-100 w-full rounded-full p-3 focus:outline-1 focus:outline-gray-500" placeholder=""
                     > 
 
-                       {selectedDepartment?.map((dep) => (
-                        <option value={dep._id} key={dep._id}>{dep.name}</option>
+                       {selectedTeacehr?.map((tr) => (
+                        <option value={tr._id} key={tr._id}>{tr.full_name}</option>
                        ))}
                     </select>
                 </div>
@@ -108,4 +108,4 @@ const AddTrade = () => {
     )
 }
 
-export default AddTrade;
+export default AddDepartment;
