@@ -5,7 +5,7 @@ import { FaTimes } from 'react-icons/fa';
 const AddMarks = () => {
     //  student, classes, subject, marks
     const [student, setStudent] = useState("");
-    const [classes, setClasses] = useState("");
+    const [classe, setClasse] = useState("");
     const [subject, setSubject] = useState("");
     const [marks, setMarks] = useState("");
     const [isLoading, setIsLoading] = useState(false);
@@ -34,9 +34,10 @@ const AddMarks = () => {
     const handleGetClass = async () => {
           try {
             setIsLoading(true);
-            const stRes = await axios.get(`${BACKEND_URL}/class/class_list`, { withCredentials: true });
-            console.log(stRes.data.classes);
-            setSelectedClass(stRes.data.classes);
+            const classRes = await axios.get(`${BACKEND_URL}/class/class_list`, { withCredentials: true });
+            console.log(classRes.data.classes);
+            console.log("selected class", classRes.data.classes);
+            setSelectedClass(classRes.data.classes);
             setIsLoading(false);
           } catch (err) {
             console.error(err);
@@ -51,7 +52,7 @@ const AddMarks = () => {
     const handleGetSubject = async () => {
           try {
             setIsLoading(true);
-            const subRes = await axios.get(`${BACKEND_URL}/subjects/class/${classes}`, { withCredentials: true });
+            const subRes = await axios.get(`${BACKEND_URL}/subjects/class/${classe}`, { withCredentials: true });
             console.log(subRes.data.subject);
             setSelectedSubject(subRes.data.subject);
             setIsLoading(false);
@@ -63,7 +64,7 @@ const AddMarks = () => {
     
     useEffect(() => {
         handleGetSubject();
-    }, [classes])
+    }, [classe])
 
     useEffect(() => {
         handleGetStudent();
@@ -118,7 +119,7 @@ const AddMarks = () => {
                 
                 <div className="mt-3 mb-4">
                     <select  
-                       onChange={(e) => setClasses(e.target.value)} 
+                       onChange={(e) => setClasse(e.target.value)} 
                        className="bg-gray-100 w-full rounded-full p-3 focus:outline-1 focus:outline-gray-500"
                     > 
 
