@@ -7,9 +7,6 @@ const GetTradeList = () => {
     const [trade, setTrade] = useState(null);
     const [isLoading, setIsLoading] = useState("");
     const [error, setError] = useState("");
-    const [DepartmentId, setDepartmentId] = useState("");
-
-    const [selectedDepartment, setSelectedDepartment] = useState("");
 
     const BACKEND_URL = import.meta.env.VITE_BACKEND_URL;
 
@@ -18,9 +15,7 @@ const GetTradeList = () => {
             setIsLoading(true);
             const tradeRes = await axios.get(`${BACKEND_URL}/trade/tradeList`, { withCredentials: true });
             setTrade(tradeRes.data.Trade);
-            const TradeData = tradeRes.data.Trade[0];
-            setDepartmentId(TradeData.department);
-            console.log("Trade Id", TradeData.department);
+            console.log("Trade", tradeRes.data.Trade);
             setIsLoading(false);
           } catch (err) {
             console.error(err);
@@ -37,35 +32,11 @@ const GetTradeList = () => {
           }
     }
     
-    const handleGetDepartmentById = async () => {
-          try {
-            setIsLoading(true);
-            const depRes = await axios.get(`${BACKEND_URL}/department/${DepartmentId}`, { withCredentials: true });
-            //  console.log("dep ", depRes.data.department);
-            setSelectedDepartment(depRes.data.department);
-            setIsLoading(false);
-          } catch (err) {
-            console.error(err);
-            const errorMessage = err.response?.data?.message;
-            if (errorMessage === "No department im the system") {
-                setError(errorMessage);
-            }
 
-            if (errorMessage === "Server error") {
-                setError(errorMessage);
-            }
-
-            setIsLoading(false);
-          }
-    }
 
     useEffect(() => {
         handleGetTrade();
     }, []);
-
-    useEffect(() => {
-           handleGetDepartmentById();
-    }, [DepartmentId]);
 
     return (
         <div className="bg-cyan-100 min-h-screen p-3">
@@ -87,7 +58,7 @@ const GetTradeList = () => {
                             <td className="border-r">{tra.trade_id}</td>
                             <td className="border-r">{tra.trade_name}</td>
                             <td className="border-r">{tra.code}</td>
-                            <td className="border-r">{selectedDepartment.name}</td>
+                            <td className="border-r">{tra.department.name}</td>
 
                             <div className="p-3 flex space-x-4">
                                 <Link className="py-1 px-3 bg-green-400 hover:bg-green-500 transition-colors text-white font-bold rounded-lg" to={`/trade/update/${tra._id}`}><FaEdit className=""/> Update</Link> 
