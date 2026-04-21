@@ -32,34 +32,34 @@ const DepartmentList = () => {
 
     return (
         <div className="bg-cyan-50 p-3 min-h-screen">
-            <div className="max-w-6xl mx-auto mt-5">
+            <div className="max-w-7xl mx-auto mt-5">
                 <h2 className="text-center text-2xl mb-4 font-bold text-cyan-700">Department list</h2>
 
                 <div className="rounded-lg ">
                     <table className="w-full border-cyan-300 rounded-xl">
                         <thead className="bg-cyan-500 text-white">
                             <tr>
-                                <th className="py-3">Id</th>
-                                <th>Name</th>
-                                <th>Description</th>
-                                <th>Building</th>
-                                <th>HOD</th>
-                                <th>Created At</th>
-                                <th colSpan={2}>Operation</th>
+                                <th className="py-3 px-2">Id</th>
+                                <th className="py-3 px-2">Name</th>
+                                <th className="py-3 px-2">Description</th>
+                                <th className="py-3 px-2">Building</th>
+                                <th className="py-3 px-2">HOD</th>
+                                <th className="py-3 px-2">Created At</th>
+                                <th colSpan={2} className="py-3 px-2">Operation</th>
                             </tr>
                         </thead>
 
-                        <tbody>
-                            {department?.map((dep) => (
-                                <tr key={dep._id}>
-                                    <td>{dep.department_id}</td>
-                                    <td>{dep.name}</td>
-                                    <td>{dep.description}</td>
-                                    <td>{dep.building}</td>
-                                    <td>{dep.HOD}</td>
-                                    <td>{new Date(dep.createdAt).toLocaleDateString()}</td>
+                        <tbody className="bg-gray-100">
+                            {department?.map((dep, index) => (
+                                <tr key={dep._id} className={`${index % 2 === 0 ? 'bg-cyan-200' : 'bg-gray-100'} hover:${index % 2 === 0 ? 'bg-cyan-300' : 'bg-gray-200'}`}>
+                                    <td className="py-3 px-4">{dep.department_id}</td>
+                                    <td className="py-3 px-4">{dep.name}</td>
+                                    <td className="py-3 px-4">{dep.description ? dep.description : "No description"}</td>
+                                    <td className="py-3 px-4">{dep.building}</td>
+                                    <td className="py-3 px-4">{dep.HOD}</td>
+                                    <td className="py-3 px-4">{new Date(dep.createdAt).toLocaleDateString()}</td>
 
-                                    <td>
+                                    <td className="py-3 px-3">
                                         <Link className="inline-flex"><FaEdit/> Edit</Link>
                                         <Link className="inline-flex"><FaTrash /> Delete</Link>
                                     </td>
