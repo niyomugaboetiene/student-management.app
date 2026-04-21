@@ -7,6 +7,7 @@ import { FaTrash, FaEdit} from "react-icons/fa";
 const DepartmentList = () => {
     const [department, setDepartment] = useState(null);
     const [error, setError] = useState("");
+    const [message, setMessage] = useState("");
     const [loading, setLoading] = useState("");
 
 
@@ -30,6 +31,18 @@ const DepartmentList = () => {
         handleGetDepartment();
     }, []);
 
+    const HandleDeleteStudent = async (_id) => {
+        if (!_id) return;
+
+        try {
+            setLoading(true);
+            await axios.delete(`${BACKEND_URL}/department/delete/${_id}`, { withCredentials: true });
+            setLoading(false);
+        } catch (err) {
+            console.error(err);
+            const errorMessage = err.response?.data?.message || "Error occured"
+        }
+    }
 
     return (
         <div className="bg-cyan-50 p-3 min-h-screen">
