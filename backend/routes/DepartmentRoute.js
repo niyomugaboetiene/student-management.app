@@ -42,7 +42,7 @@ router.post('/add', async (req, res) => {
 
 router.get('/department_list', async (req, res) => {
     try {
-        const result = await DepartmentSchema.find();
+        const result = await DepartmentSchema.find().populate("HOD");
 
         if (!result) {
             return res.status(404).json({ message: 'No department im the system' });
@@ -116,7 +116,7 @@ router.put('/update/:_id', async (req, res) => {
     }
 });
 
-router.delete("/:_id", async (req, res) => {
+router.delete("/delete/:_id", async (req, res) => {
     try {
         const _id = req.params;
 

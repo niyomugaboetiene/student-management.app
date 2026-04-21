@@ -2,7 +2,6 @@
 
     import TeacherSchema from "../schema/TeacherSchema.js";
     import express from "express";
-    import bcrypt from "bcrypt";
 
     const router = express();
     
@@ -34,7 +33,7 @@
 
             const teacher = await TeacherSchema.findById(_id);
 
-            if (teacher.lenth === 0) {
+            if (!teacher) {
                 return res.status(404).json({ message: 'No student details' });
             }
             return res.status(200).json({
