@@ -55,7 +55,7 @@ router.get('/:_id', async (req, res) => {
             return res.status(403).json({ message: 'IDs required'});
         }
 
-        const result = await MarksSchema.findById(_id);
+        const result = await MarksSchema.findById(_id).populate("students").populate("classes");
 
         if (result.length === 0) {
             return res.status(404).json({ message: 'No marks in the system' });
@@ -76,7 +76,7 @@ router.get('/student/:student_id', async (req, res) => {
             return res.status(403).json({ message: 'IDs required' });
         }
 
-        const result = await MarksSchema.findOne({student: student_id});
+        const result = await MarksSchema.findOne({student: student_id}).populate("students").populate("classes");
 
         if (result.length === 0) {
             return res.status(404).json({ message: 'No student marks' });
