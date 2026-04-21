@@ -83,7 +83,7 @@ const GetTradeList = () => {
 
                        <tbody className="bg-white text-gray-700">
                     {trade?.map((tra, index) => (
-                        <tr key={tra._id} className={`${index % 2 === 0 ? 'bg-gray-100' : 'bg-cyan-100'} hover:${index % 2 === 0 ? 'bg-gray-300' : 'bg-cyan-200'} transition-colors`}>
+                        <tr key={tra._id} className={`${index % 2 === 0 ? 'bg-gray-100' : 'bg-cyan-100'} hover:${index % 2 === 0 ? 'bg-gray-300' : 'bg-cyan-200'} transition-colors capitalize`}>
                             <td className="px-3 py-5">{tra.trade_id}</td>
                             <td className="px-3 py-5">{tra.trade_name}</td>
                             <td className="px-3 py-5">{tra.code}</td>
