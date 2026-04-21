@@ -3,7 +3,21 @@ import TradeSchema from "../schema/TradeSchema.js";
 
 const router = express.Router();
 
-router.post('/add', async (req, res) => {
+
+// check admin
+function isAdmin(req, res, next) {
+    if (!req.session.user) {
+        return res.status(401).json({ message: 'Unauthorized' });
+    }
+
+    if (req.session.user.role !== "admin") {
+        return res.status(403).json({ message: 'YOu dont have access to this data'});
+    }
+
+    next();
+}
+
+router.post('/add', isAdmin, async (req, res) => {
     try {
         // trade_name, code, department, duration
         const { trade_name, code, department } = req.body;
@@ -30,7 +44,7 @@ router.post('/add', async (req, res) => {
 });
 
 
-router.get('/tradeList', async (req, res) => {
+router.get('/tradeList', isAdmin, async (req, res) => {
     try {
         const list = await TradeSchema.find();
   
@@ -49,7 +63,7 @@ router.get('/tradeList', async (req, res) => {
     }
 });
 
-router.get('/:_id', async (req, res) => {
+router.get('/:_id', isAdmin, async (req, res) => {
     try {
         const _id = req.params;
 
@@ -70,7 +84,7 @@ router.get('/:_id', async (req, res) => {
     }
 });
 
-router.put('/update/:_id', async (req, res) => {
+router.put('/update/:_id', isAdmin, async (req, res) => {
     try {
         const _id = req.params;
 
@@ -105,7 +119,7 @@ router.put('/update/:_id', async (req, res) => {
 });
 
 
-router.delete('/delete/:_id', async (req, res) => {
+router.delete('/delete/:_id', isAdmin, async (req, res) => {
     try {
         const _id = req.params;
 
