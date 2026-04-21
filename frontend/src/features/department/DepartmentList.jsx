@@ -31,15 +31,15 @@ const DepartmentList = () => {
 
 
     return (
-        <div className="bg-gray-100 p-3 min-h-screen">
-            <div className="max-w-xl">
-                <h2>Department list</h2>
+        <div className="bg-cyan-50 p-3 min-h-screen">
+            <div className="max-w-6xl mx-auto mt-5">
+                <h2 className="text-center text-2xl mb-4 font-bold text-cyan-700">Department list</h2>
 
-                <div>
-                    <table>
-                        <thead>
+                <div className="rounded-lg ">
+                    <table className="w-full border-cyan-300 rounded-xl">
+                        <thead className="bg-cyan-500 text-white">
                             <tr>
-                                <th>Id</th>
+                                <th className="py-3">Id</th>
                                 <th>Name</th>
                                 <th>Description</th>
                                 <th>Building</th>
