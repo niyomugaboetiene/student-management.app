@@ -30,19 +30,37 @@ const UpdateDepartment = () => {
             setIsLoading(false);
           }
     }
+    
+    const GetExistingDepartment = async () => {
+          try {
+            setIsLoading(true);
+            const trRes = await axios.get(`${BACKEND_URL}/teacher/${_id}`, { withCredentials: true });
+            console.log(trRes.data.department);
+            const values = trRes.data.department;
+            setName(values.name)
+            setIsLoading(false);
+          } catch (err) {
+            console.error(err);
+            setIsLoading(false);
+          }
+    }
+
+    useEffect(() => {
+      GetExistingDepartment();
+    }, [_id]);
 
     useEffect(() => {
         handleGetTeacher();
     }, []);
 
-    const handleAddDepartment = async () => {
+    const handleUpdateDepartment = async () => {
         try {
             setIsLoading(true);
             if (!name || !HOD) {
                 setError("Fill out the missing fields");
                 setMessage("");
             }
-            const res = await axios.post(`${BACKEND_URL}/department/add`, { name, description, building, HOD }, { withCredentials: true });
+            const res = await axios.post(`${BACKEND_URL}/department/update/${_id}`, { name, description, building, HOD }, { withCredentials: true });
             setMessage(res.data.message);
             setIsLoading(false);
         } catch (err) {
@@ -101,7 +119,7 @@ const UpdateDepartment = () => {
                 <div className="mt-3 mb-4">
                     <select  
                        onChange={(e) => setHOD(e.target.value)} 
-                       className="bg-gray-100 w-full rounded-full p-3 focus:outline-1 focus:outline-gray-500" placeholder=""
+                       className="bg-gray-100 w-full rounded-full p-3 focus:outline-1 focus:outline-gray-500"
                     > 
                        {selectedTeacehr?.map((tr) => (
                         <option value={tr._id} key={tr._id}>{tr.full_name}</option>
@@ -109,7 +127,7 @@ const UpdateDepartment = () => {
                     </select>
                 </div>
 
-                <button onClick={handleAddDepartment} className="w-full bg-cyan-500 p-3 rounded-full text-white font-bold hover:bg-cyan-400 transition-colors mb-4">Add Department</button>
+                <button onClick={handleUpdateDepartment} className="w-full bg-cyan-500 p-3 rounded-full text-white font-bold hover:bg-cyan-400 transition-colors mb-4">Update Department</button>
 
             </div>
         </div>
