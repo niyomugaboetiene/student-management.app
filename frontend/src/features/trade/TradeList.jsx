@@ -9,6 +9,8 @@ const GetTradeList = () => {
     const [error, setError] = useState("");
     const [DepartmentId, setDepartmentId] = useState("");
 
+    const [selectedDepartment, setSelectedDepartment] = useState("");
+
     const BACKEND_URL = import.meta.env.VITE_BACKEND_URL;
 
     const handleGetTrade = async () => {
@@ -39,7 +41,8 @@ const GetTradeList = () => {
           try {
             setIsLoading(true);
             const depRes = await axios.get(`${BACKEND_URL}/department/${DepartmentId}`, { withCredentials: true });
-             console.log("dep ", depRes.data.department);
+            //  console.log("dep ", depRes.data.department);
+            setSelectedDepartment(depRes.data.department);
             setIsLoading(false);
           } catch (err) {
             console.error(err);
