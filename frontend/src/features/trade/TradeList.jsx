@@ -39,36 +39,41 @@ const GetTradeList = () => {
     }, []);
 
     return (
-        <div className="bg-cyan-100 min-h-screen p-3">
-            <div className="flex items-center justify-center mt-3 p-5">
-                <table className="border border-cyan-500 shadow-lg">
-                       <tbody className="bg-cyan-200 text-gray-800 ">
-                         <tr className="border">
-                           <th className="border-r">Id</th>
-                           <th className="border-r">Name</th>
-                           <th className="border-r">Code</th>
-                           <th className="border-r">Department</th>
-                           <th className="border-r" colSpan={2}>Operation</th>
+        <div className="bg-cyan-50 min-h-screen p-3">
+            <div className="max-w-6xl mx-auto">
+
+                <h1 className="text-2xl font-bold text-cyan-700 mb-4 text-center">Trade List</h1>
+                <div className="overflow-x-auto rounded-xl overflow-hidden border-cyan-300">
+                  <table className="min-w-full border border-cyan-300 rounded-xl overflow-hidden">
+
+                       <thead className="">
+                         <tr className="">
+                           <th className="">Id</th>
+                           <th className="">Name</th>
+                           <th className="">Code</th>
+                           <th className="">Department</th>
+                           <th className="" colSpan={2}>Operation</th>
                           </tr>
-                       </tbody>
+                       </thead>
 
                        <tbody>
                     {trade?.map((tra) => (
-                        <tr key={tra._id} className="hover:bg-cyan-200">
-                            <td className="border-r">{tra.trade_id}</td>
-                            <td className="border-r">{tra.trade_name}</td>
-                            <td className="border-r">{tra.code}</td>
-                            <td className="border-r">{tra.department[0]?.name}</td>
+                        <tr key={tra._id} className="">
+                            <td className="">{tra.trade_id}</td>
+                            <td className="">{tra.trade_name}</td>
+                            <td className="">{tra.code}</td>
+                            <td className="">{tra.department[0]?.name}</td>
 
-                            <div className="p-3 flex space-x-4">
-                                <Link className="py-1 px-3 bg-green-400 hover:bg-green-500 transition-colors text-white font-bold rounded-lg" to={`/trade/update/${tra._id}`}><FaEdit className=""/> Update</Link> 
-                                <Link className="py-1 px-3 bg-red-500 hover:bg-red-400 transition-colors text-white font-bold rounded-lg" to={`/trade/delete/${tra._id}`}><FaTrash /> Delete</Link>
-                            </div>
+                            <td>
+                                <Link className="" to={`/trade/update/${tra._id}`}><FaEdit className=""/> Update</Link> 
+                                <Link className="" to={`/trade/delete/${tra._id}`}><FaTrash /> Delete</Link>
+                            </td>
 
                         </tr>
                     ))}
                        </tbody>
-                </table>
+                   </table>
+                </div>
             </div>
         </div>
     );
