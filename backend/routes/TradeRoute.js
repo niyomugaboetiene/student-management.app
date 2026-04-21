@@ -46,7 +46,7 @@ router.post('/add', isAdmin, async (req, res) => {
 
 router.get('/tradeList', isAdmin, async (req, res) => {
     try {
-        const list = await TradeSchema.find();
+        const list = await TradeSchema.find().populate("department");
   
         // console.log("Trade list", list);
         if (list.length === 0) {
@@ -71,7 +71,7 @@ router.get('/:_id', isAdmin, async (req, res) => {
             return res.status(403).json({ message: 'IDS required to perform this action'});
         }
 
-        const Trade = await TradeSchema.findById(_id);
+        const Trade = await TradeSchema.findById(_id).populate("department");
 
         if (Trade.length === 0) {
             return res.status(404).json({ message: 'No trade found' });
@@ -92,7 +92,7 @@ router.put('/update/:_id', isAdmin, async (req, res) => {
             return res.status(403).json({ message: 'IDs is required' });
         }
 
-        const isTradeExist = await TradeSchema.findById(_id);
+        const isTradeExist = await TradeSchema.findById(_id).populate("department");
 
         if (isTradeExist.length === 0) {
             return res.status(404).json({ message: 'Enter valid IDs' });
