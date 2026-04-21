@@ -13,7 +13,7 @@ const AddMarks = () => {
     const [error, setError] = useState("");
 
     const [selectedStudent, setSelectedStudent] = useState(null);
-    const [selectedClass, setSelectedClass] = useState(null);
+    const [selectedClass, setSelectedClass] = useState([]);
     const [selectedSubject, setSelectedSubject] = useState(null);
 
     const BACKEND_URL = import.meta.env.VITE_BACKEND_URL;
@@ -63,7 +63,9 @@ const AddMarks = () => {
     }
     
     useEffect(() => {
-        handleGetSubject();
+        if (classe) {
+            handleGetSubject();
+        }
     }, [classe])
 
     useEffect(() => {
@@ -73,11 +75,11 @@ const AddMarks = () => {
     const handleAddMarks = async () => {
         try {
             setIsLoading(true);
-            if (!student || !classes || !subject || !marks) {
+            if (!student || !classe || !subject || !marks) {
                 setError("Fill out the missing fields");
                 setMessage("");
             }
-            const res = await axios.post(`${BACKEND_URL}/marks/add`, { student, classes, subject, marks }, { withCredentials: true });
+            const res = await axios.post(`${BACKEND_URL}/marks/add`, { student, classe, subject, marks }, { withCredentials: true });
             setMessage(res.data.message);
             setIsLoading(false);
         } catch (err) {
