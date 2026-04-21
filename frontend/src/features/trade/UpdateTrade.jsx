@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { FaTimes } from 'react-icons/fa';
 import { useParams } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 const UpdateTrade = () => {
     const [trade_name, setTrade_name] = useState("");
@@ -10,6 +11,7 @@ const UpdateTrade = () => {
     const [isLoading, setIsLoading] = useState(false);
     const [message, setMessage] = useState("");
     const [error, setError] = useState("");
+    const navigate = useNavigate();
 
     const { _id } = useParams();
 
@@ -65,6 +67,7 @@ const UpdateTrade = () => {
             const res = await axios.put(`${BACKEND_URL}/trade/update/${_id}`, { trade_name, code, department }, { withCredentials: true });
             setMessage(res.data.message);
             setIsLoading(false);
+            navigate('/trade/list')
         } catch (err) {
             const errMessage = err.response?.data?.message || "Error occured"; 
             if (errMessage === "Unauthorized") {
