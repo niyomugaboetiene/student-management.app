@@ -46,13 +46,13 @@ const GetTradeList = () => {
                 <div className="overflow-x-auto rounded-xl overflow-hidden border-cyan-300">
                   <table className="min-w-full border border-cyan-300 rounded-xl overflow-hidden">
 
-                       <thead className="">
-                         <tr className="">
-                           <th className="">Id</th>
-                           <th className="">Name</th>
-                           <th className="">Code</th>
-                           <th className="">Department</th>
-                           <th className="" colSpan={2}>Operation</th>
+                       <thead className="bg-cyan-500 text-white">
+                         <tr>
+                           <th className="px-3 py-2 text-left">Id</th>
+                           <th className="px-3 py-2 text-left">Name</th>
+                           <th className="px-3 py-2 text-left">Code</th>
+                           <th className="px-3 py-2 text-left">Department</th>
+                           <th className="px-3 py-2 text-left" colSpan={2}>Operation</th>
                           </tr>
                        </thead>
 
