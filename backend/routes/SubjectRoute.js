@@ -76,6 +76,33 @@ router.get('/:_id', async ( req, res) => {
     }
 });
 
+// subjects in class
+router.get('/class/:class', async ( req, res) => {
+    try {
+        const { class: classe } = req.params;
+
+        if (!classe) {
+            return res.status(403).json({ messsage: 'Class Ids required' });
+        }
+
+        const result = await SubjectSchema.find({ class: classe });
+
+        if (!result) {
+            return res.status(404).json({
+                messsage: 'No subject found',
+            });
+        }
+
+         return res.status(200).json({
+            messsage: 'Subject in this class',
+            subject: result
+         });
+    } catch (err) {
+        console.error(err);
+        return res.status(500).json({ messsage: 'Internal server error' });
+    }
+});
+
 router.put('/update/:_id', async (req, res) => {
     try {
         const _id = req.params;
