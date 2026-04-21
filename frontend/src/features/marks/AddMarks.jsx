@@ -23,7 +23,7 @@ const AddMarks = () => {
             setIsLoading(true);
             const stRes = await axios.get(`${BACKEND_URL}/student/studentList`, { withCredentials: true });
             console.log(stRes.data.student);
-            setSelectedDepartment(stRes.data.student);
+            setSelectedStudent(stRes.data.student);
             setIsLoading(false);
           } catch (err) {
             console.error(err);
@@ -36,7 +36,7 @@ const AddMarks = () => {
             setIsLoading(true);
             const stRes = await axios.get(`${BACKEND_URL}/class/class_list`, { withCredentials: true });
             console.log(stRes.data.classes);
-            setSelectedDepartment(stRes.data.classes);
+            setSelectedClass(stRes.data.classes);
             setIsLoading(false);
           } catch (err) {
             console.error(err);
@@ -44,12 +44,16 @@ const AddMarks = () => {
           }
     }
 
+    useEffect(() => {
+        handleGetClass();
+    }, []);
+
     const handleGetSubject = async () => {
           try {
             setIsLoading(true);
-            const stRes = await axios.get(`${BACKEND_URL}/subjects/class/${classes}`, { withCredentials: true });
-            console.log(stRes.data.student);
-            setSelectedDepartment(stRes.data.student);
+            const subRes = await axios.get(`${BACKEND_URL}/subjects/class/${classes}`, { withCredentials: true });
+            console.log(subRes.data.subject);
+            setSelectedStudent(subRes.data.subject);
             setIsLoading(false);
           } catch (err) {
             console.error(err);
@@ -58,7 +62,7 @@ const AddMarks = () => {
     }
     
     useEffect(() => {
-        handleGetStudent();
+        handleGetSubject();
     }, [classes])
 
     useEffect(() => {
@@ -124,12 +128,36 @@ const AddMarks = () => {
                 
                 <div className="mt-3 mb-4">
                     <select  
-                       onChange={(e) => setDepartment(e.target.value)} 
+                       onChange={(e) => setStudent(e.target.value)} 
                        className="bg-gray-100 w-full rounded-full p-3 focus:outline-1 focus:outline-gray-500" placeholder=""
                     > 
 
-                       {selectedDepartment?.map((dep) => (
-                        <option value={dep._id} key={dep._id}>{dep.name}</option>
+                       {selectedStudent?.map((st) => (
+                        <option value={st._id} key={st._id}>{st.full_name}</option>
+                       ))}
+                    </select>
+                </div>
+                
+                <div className="mt-3 mb-4">
+                    <select  
+                       onChange={(e) => setClasses(e.target.value)} 
+                       className="bg-gray-100 w-full rounded-full p-3 focus:outline-1 focus:outline-gray-500" placeholder=""
+                    > 
+
+                       {selectedClass?.map((classe) => (
+                        <option value={classe._id} key={classe._id}>{classe.name}</option>
+                       ))}
+                    </select>
+                </div>
+                
+                <div className="mt-3 mb-4">
+                    <select  
+                       onChange={(e) => setSubject(e.target.value)} 
+                       className="bg-gray-100 w-full rounded-full p-3 focus:outline-1 focus:outline-gray-500" placeholder=""
+                    > 
+
+                       {selectedSubject?.map((sub) => (
+                        <option value={sub._id} key={sub._id}>{sub.name}</option>
                        ))}
                     </select>
                 </div>
