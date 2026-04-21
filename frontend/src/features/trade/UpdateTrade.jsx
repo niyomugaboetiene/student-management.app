@@ -13,8 +13,6 @@ const UpdateTrade = () => {
 
     const { _id } = useParams();
 
-    const [trade, setTrade] = useState(null);
-
     const [selectedDepartment, setSelectedDepartment] = useState(null);
 
     const BACKEND_URL = import.meta.env.VITE_BACKEND_URL;
@@ -47,6 +45,7 @@ const UpdateTrade = () => {
             setTrade_name(tradeData.trade_name || "");
             setCode(tradeData.code || "");
             setDepartment(tradeData.department || "");
+            setIsLoading(false);
           } catch (err) {
             console.error(err);
             setIsLoading(false);
@@ -57,32 +56,36 @@ const UpdateTrade = () => {
         handleGetTrade();
     }, []);
 
-    // const handleAddTrade = async () => {
-    //     try {
-    //         setIsLoading(true);
-    //         if (!trade_name || !department) {
-    //             setError("Fill out the missing fields");
-    //         }
-    //         const res = await axios.post(`${BACKEND_URL}/trade/add`, { trade_name, code, department }, { withCredentials: true });
-    //         setMessage(res.data.message);
-    //         setIsLoading(false);
-    //     } catch (err) {
-    //         const errMessage = err.response?.data?.message || "Error occured"; 
-    //         if (errMessage === "Unauthorized") {
-    //             setError("Login to access this page");
-    //         }
+    const handleUpdateTrade = async () => {
+        try {
+            setIsLoading(true);
+            if (!trade_name || !department || !_id) {
+                setError("Fill out the missing fields");
+            }
+            const res = await axios.put(`${BACKEND_URL}/trade/update/${_id}`, { trade_name, code, department }, { withCredentials: true });
+            setMessage(res.data.message);
+            setIsLoading(false);
+        } catch (err) {
+            const errMessage = err.response?.data?.message || "Error occured"; 
+            if (errMessage === "Unauthorized") {
+                setError("Login to access this page");
+            }
 
-    //         if (errMessage === "YOu dont have access to this data") {
-    //             setError(errMessage);
-    //         }
+            if (errMessage === "YOu dont have access to this data") {
+                setError(errMessage);
+            }
 
-    //         if (errMessage === "Internal server error") {
-    //             setError(errMessage);
-    //         }
+            if (errMessage === "Internal server error") {
+                setError(errMessage);
+            }
 
-    //         setIsLoading(false);
-    //     }
-    // }
+            if (errMessage === "Enter valid IDs") {
+                setError(errMessage);
+            }
+
+            setIsLoading(false);
+        }
+    }
 
 
     return (
@@ -129,7 +132,7 @@ const UpdateTrade = () => {
                     </select>
                 </div>
 
-                <button className="w-full bg-cyan-500 p-3 rounded-full text-white font-bold hover:bg-cyan-400 transition-colors mb-4">Add Trade</button>
+                <button onClick={handleUpdateTrade} className="w-full bg-cyan-500 p-3 rounded-full text-white font-bold hover:bg-cyan-400 transition-colors mb-4">Update Trade</button>
             </div>
         </div>
     )
