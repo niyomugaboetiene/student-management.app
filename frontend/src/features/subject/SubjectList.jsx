@@ -36,9 +36,10 @@ const GetSubjectList = () => {
   }, []);
 
     return (
-        <div>
-            <div>
-                <table>
+        <div className="bg-gray-100 min-h-screen">
+            <div className="max-w-6xl mx-auto">
+                <h1 className="ms-76 text-2xl mb-3 text-cyan-700 font-bold">Subject List</h1>
+                <table className="w-full ">
                     <thead>
                         <tr>
                             <th>Id</th>
@@ -58,8 +59,8 @@ const GetSubjectList = () => {
                                 <td>{sub.subject_id}</td>
                                 <td>{sub.subject_name}</td>
                                 <td>{sub.code}</td>
-                                <td>{sub.instructor?.full_name}</td>
-                                <td>{sub.class?.class_name}</td>
+                                <td>{sub.instructor?.full_name ? sub.instructor?.full_name : "No instructor"}</td>
+                                <td>{sub.class?.class_name ? sub.class?.class_name : "No class"}</td>
                                 <td>{sub.credits}</td>
 
                                 <td>
