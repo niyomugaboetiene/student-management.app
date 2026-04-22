@@ -76,3 +76,5 @@ const GetSubjectList = () => {
 }
 
 export default GetSubjectList;
+
+// predesingned widget, flutter management system, setup environment
