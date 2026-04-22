@@ -1,8 +1,9 @@
 import axios from "axios";
 import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 
 const GetSubjectList = () => {
-    const [subject, setSubject] = useState(null);
+    const [subject, setSubject] = useState([]);
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState("");
 
@@ -30,6 +31,9 @@ const GetSubjectList = () => {
         }
     }
 
+  useEffect(() => {
+    handleGetSubjectList();
+  }, []);
 
     return (
         <div>
@@ -38,10 +42,37 @@ const GetSubjectList = () => {
                     <thead>
                         <tr>
                             <th>Id</th>
+                            <th>Code</th>
+                            <th>Subject name</th>
+                            <th>Instructor</th>
+                            <th>Class</th>
+                            <th>Credits</th>
+                            <th colSpan={2}>Opearation</th>
                         </tr>
                     </thead>
+
+                    <tbody>
+                        {subject.map((sub, index) => (
+                            <tr key={sub._id}>
+                                {/* subject_name, code, instructor, class: classes, credits  */}
+                                <td>{sub.subject_id}</td>
+                                <td>{sub.subject_name}</td>
+                                <td>{sub.code}</td>
+                                <td>{sub.instructor?.full_name}</td>
+                                <td>{sub.class?.class_name}</td>
+                                <td>{sub.credits}</td>
+
+                                <td>
+                                    <Link>Update</Link>
+                                    <button>Delete</button>
+                                </td>
+                            </tr>
+                        ))}
+                    </tbody>
                 </table>
             </div>
         </div>
     )
 }
+
+export default GetSubjectList;
