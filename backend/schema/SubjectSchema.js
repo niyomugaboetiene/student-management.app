@@ -7,7 +7,7 @@ const SubjectSchema = mongoose.Schema({
     subject_id: {  unique: true, type: Number },
     subject_name: { required: true, type: String },
     code: { required: true, type: String },
-    instructor: { required: true, type: String },
+    instructor: { required: true, type: mongoose.Schema.Types.ObjectId, ref: "teachers" },
     class: { required: true, type: mongoose.Schema.Types.ObjectId, ref: "classes" },
     credits: {type: Number },
 }, { timestamps: true});
