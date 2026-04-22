@@ -5,6 +5,7 @@ import { FaTimes } from 'react-icons/fa';
 const AddSubject = () => {
     const [subject_name, setSubject_name] = useState("");
     const [code, setCode] = useState("");
+    const [credits, setCredits] = useState(0);
     const [instructor, setInstructor] = useState("");
     const [classes, setClasses] = useState("");
     const [isLoading, setIsLoading] = useState(false);
@@ -37,9 +38,9 @@ const AddSubject = () => {
     const handleGetInstructor = async () => {
           try {
             setIsLoading(true);
-            const depRes = await axios.get(`${BACKEND_URL}/teacher/class/${classes}`, { withCredentials: true });
-            console.log(depRes.data.teacher);
-            setSelectedInstructor(depRes.data.teacher);
+            const trRes = await axios.get(`${BACKEND_URL}/teacher/class/${classes}`, { withCredentials: true });
+            console.log(trRes.data.teacher);
+            setSelectedInstructor(trRes.data.teacher);
             setIsLoading(false);
           } catch (err) {
             console.error(err);
@@ -56,16 +57,13 @@ const AddSubject = () => {
     const handleAddSubject = async () => {
         try {
             setIsLoading(true);
-            console.log("Class", classes);
-            if (!subject_name || !code || !instructor || !classes) {
-                setError("Fill out the missing fields");
-            }
-            const res = await axios.post(`${BACKEND_URL}/subjects/add`, { subject_name, code, instructor, class: classes }, { withCredentials: true });
-            setMessage(res.data.message);
+            // console.log("Class", classes, "subject_name", subject_name, "code", code, "instructor", instructor, "credits", credits);
+            await axios.post(`${BACKEND_URL}/subjects/add`, { subject_name, code, instructor, class: classes, credits }, { withCredentials: true });
+            setMessage("Subject added successfully");
             setIsLoading(false);
         } catch (err) {
             const errMessage = err.response?.data?.message || "Error occured"; 
-            if (errMessage === "Internal server erro") {
+            if (errMessage === "Internal server error") {
                 setError(errMessage);
             }
 
@@ -102,6 +100,13 @@ const AddSubject = () => {
                 />
                 </div>
                 
+                <div className="mt-3">
+                    <input type="number"  
+                    onChange={(e) => setCredits(e.target.value)} required
+                    className="bg-gray-100 w-full p-3 rounded-full focus:outline-1 focus:outline-gray-500" placeholder="Credits"
+                />
+                </div>
+                
                <div className="mt-3 mb-4">
                     <select  
                        onChange={(e) => setClasses(e.target.value)} 
@@ -120,6 +125,7 @@ const AddSubject = () => {
                        className="bg-gray-100 w-full rounded-full p-3 focus:outline-1 focus:outline-gray-500"
                     > 
 
+                        <option value="">------Select instructor------</option>
                        {selectedInstructor?.map((ins) => (
                         <option value={ins._id} key={ins._id}>{ins.full_name}</option>
                        ))}
