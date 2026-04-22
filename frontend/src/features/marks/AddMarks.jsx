@@ -53,7 +53,7 @@ const AddMarks = () => {
           try {
             setIsLoading(true);
             const subRes = await axios.get(`${BACKEND_URL}/subjects/class/${classe}`, { withCredentials: true });
-            console.log(subRes.data.subject);
+            console.log("List of subject", subRes.data.subject);
             setSelectedSubject(subRes.data.subject);
             setIsLoading(false);
           } catch (err) {
