@@ -34,7 +34,7 @@ router.post('/add', async (req, res) => {
 
 router.get('/subjectList', async (req, res) => {
     try {
-        const result = await SubjectSchema.find();
+        const result = await SubjectSchema.find().populate("instructor").populate("class");
 
         if (result.length === 0) {
             return res.status(404).json({ messsage: 'No subject in the system' });

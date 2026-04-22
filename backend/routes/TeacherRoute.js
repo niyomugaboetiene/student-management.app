@@ -46,6 +46,30 @@
         }
     });
 
+    // get teaceher by class
+    router.get('/class/:class', async (req, res) => {
+        try {
+            const classe = req.params.class;
+ 
+            if (!classe) {
+                return res.status(403).json({ message: 'Ids required' });
+            }
+
+            const teacher = await TeacherSchema.find({ class: classe });
+
+            if (!teacher) {
+                return res.status(404).json({ message: 'No student details' });
+            }
+            return res.status(200).json({
+                message: 'Teacher details',
+                teacher: teacher
+            }); 
+        } catch (err) {
+            console.error(err)
+            return res.status(500).json({ message: 'Internal Server Error' });
+        }
+    });
+
 router.put('/update/:_id', async (req, res) => {
     try {
         const _id = req.params;
