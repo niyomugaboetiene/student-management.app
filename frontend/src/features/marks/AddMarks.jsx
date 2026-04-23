@@ -22,7 +22,7 @@ const AddMarks = () => {
           try {
             setIsLoading(true);
             const stRes = await axios.get(`${BACKEND_URL}/student/studentList`, { withCredentials: true });
-            console.log(stRes.data.student);
+            // console.log(stRes.data.student);
             setSelectedStudent(stRes.data.student);
             setIsLoading(false);
           } catch (err) {
@@ -36,7 +36,7 @@ const AddMarks = () => {
             setIsLoading(true);
             const classRes = await axios.get(`${BACKEND_URL}/class/class_list`, { withCredentials: true });
             console.log(classRes.data.classes);
-            console.log("selected class", classRes.data.classes);
+            // console.log("selected class", classRes.data.classes);
             setSelectedClass(classRes.data.classes);
             setIsLoading(false);
           } catch (err) {
@@ -53,7 +53,7 @@ const AddMarks = () => {
           try {
             setIsLoading(true);
             const subRes = await axios.get(`${BACKEND_URL}/subjects/class/${classe}`, { withCredentials: true });
-            console.log("List of subject", subRes.data.subject);
+            // console.log("List of subject", subRes.data.subject);
             setSelectedSubject(subRes.data.subject);
             setIsLoading(false);
           } catch (err) {
@@ -81,6 +81,7 @@ const AddMarks = () => {
             }
             const res = await axios.post(`${BACKEND_URL}/marks/add`, { student, classe, subject, marks }, { withCredentials: true });
             setMessage(res.data.message);
+            console.log("Received data", student, classe, subject, marks);
             setIsLoading(false);
         } catch (err) {
             const errMessage = err.response?.data?.message || "Error occured"; 
