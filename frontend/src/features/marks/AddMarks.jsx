@@ -79,7 +79,7 @@ const AddMarks = () => {
                 setError("Fill out the missing fields");
                 setMessage("");
             }
-            const res = await axios.post(`${BACKEND_URL}/marks/add`, { student, classe, subject, marks }, { withCredentials: true });
+            const res = await axios.post(`${BACKEND_URL}/marks/add`, { student, class: classe, subject, marks }, { withCredentials: true });
             setMessage(res.data.message);
             console.log("Received data", student, classe, subject, marks);
             setIsLoading(false);
