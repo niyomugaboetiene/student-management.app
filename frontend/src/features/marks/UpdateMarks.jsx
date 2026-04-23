@@ -85,9 +85,9 @@ const UpdateMarks = () => {
 
             console.log("Data", marksData.subject?.subject_name);
             // student, classes, subject, marks
-            setStudent(marksData.student?.full_name || "");
-            setClasses(marksData.class?.class_name || "");
-            setSubject(marksData.subject?.subject_name || "");
+            setStudent(marksData.student?._id || "");
+            setClasses(marksData.class?._id || "");
+            setSubject(marksData.subject?._id || "");
             setMarks(marksData.marks || "");
             setIsLoading(false);
           } catch (err) {
