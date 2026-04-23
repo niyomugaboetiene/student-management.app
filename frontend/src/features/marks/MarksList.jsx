@@ -35,6 +35,19 @@ const MarksList = () => {
         handleGetMarks();
     }, []);
 
+    const DeleteMarks = async (_id) => {
+        try {
+           setLoading(true);
+           await axios.delete(`${BACKEND_URL}/marks/${_id}`, { withCredentials: true });
+           await handleGetMarks();
+           setLoading(false);
+        } catch (err) {
+            setError(err);
+            const errorMessage = err.response?.data?.message || "Error occured";
+            if (errorMessage === "")
+        }
+    }
+
     return (
         <div className="bg-cyan-100 min-h-screen">
             <div className="max-w-7xl mx-auto">
