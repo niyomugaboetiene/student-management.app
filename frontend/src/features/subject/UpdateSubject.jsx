@@ -27,7 +27,7 @@ const UpdateSubject = () => {
           try {
             setIsLoading(true);
             const classRes = await axios.get(`${BACKEND_URL}/class/class_list`, { withCredentials: true });
-            console.log(classRes.data.classes);
+            // console.log(classRes.data.classes);
             setSelectedClass(classRes.data.classes);
             setIsLoading(false);
           } catch (err) {
@@ -44,7 +44,7 @@ const UpdateSubject = () => {
           try {
             setIsLoading(true);
             const trRes = await axios.get(`${BACKEND_URL}/teacher/class/${classes}`, { withCredentials: true });
-            console.log(trRes.data.teacher);
+            // console.log(trRes.data.teacher);
             setSelectedInstructor(trRes.data.teacher);
             setIsLoading(false);
           } catch (err) {
@@ -64,9 +64,9 @@ const UpdateSubject = () => {
             if (!_id) return;
             setIsLoading(true);
             const subRes = await axios.get(`${BACKEND_URL}/subjects/${_id}`, { withCredentials: true });
-            const subjectData = subRes.data.subject;
+            const subjectData = subRes.data.subject[0];
 
-            console.log("Subject name", subjectData);
+            console.log("Subject ", subjectData);
             setSubject_name(subjectData.subject_name || "");
             setCode(subjectData.code || "");
             setInstructor(subjectData.instructor || "");
