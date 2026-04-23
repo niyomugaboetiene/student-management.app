@@ -60,7 +60,7 @@ app.use("/subjects", SubjectRoute);
 app.use("/trade", TradeRoute);
 app.use("/attendance", AttendanceRoute);
 
-// ? aut middleware
+// ? auth middleware
 app.use('/admin/auth', AdminAuth);
 app.use('/student/auth', StudentAuth);
 app.use('/teacher/auth', TeacherAuth);
