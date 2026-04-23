@@ -64,7 +64,7 @@ const UpdateSubject = () => {
             if (!_id) return;
             setIsLoading(true);
             const subRes = await axios.get(`${BACKEND_URL}/subjects/${_id}`, { withCredentials: true });
-            const subjectData = subRes.data.subject;
+            const subjectData = subRes.data.subject || "";
 
             console.log("Subject name", subjectData);
             setSubject_name(subjectData.subject_name || "");
