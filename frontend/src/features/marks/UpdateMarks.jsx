@@ -14,6 +14,7 @@ const UpdateMarks = () => {
     const [isLoading, setIsLoading] = useState(false);
     const [message, setMessage] = useState("");
     const [error, setError] = useState("");
+    const navigate = useNavigate();
 
     const [selectedStudent, setSelectedStudent] = useState(null);
     const [selectedClass, setSelectedClass] = useState([]);
@@ -87,6 +88,7 @@ const UpdateMarks = () => {
             const res = await axios.put(`${BACKEND_URL}/marks/update/${_id}`, { student, classes, subject, marks }, { withCredentials: true });
             setMessage(res.data.message);
             setIsLoading(false);
+            navigate('/marks/list');
         } catch (err) {
             const errMessage = err.response?.data?.message || "Error occured"; 
             if (errMessage === "Internal server error") {
