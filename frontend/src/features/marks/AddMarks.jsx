@@ -5,7 +5,7 @@ import { FaTimes } from 'react-icons/fa';
 const AddMarks = () => {
     //  student, classes, subject, marks
     const [student, setStudent] = useState("");
-    const [classe, setClasse] = useState("");
+    const [classes, setClasses] = useState("");
     const [subject, setSubject] = useState("");
     const [marks, setMarks] = useState("");
     const [isLoading, setIsLoading] = useState(false);
@@ -52,7 +52,7 @@ const AddMarks = () => {
     const handleGetSubject = async () => {
           try {
             setIsLoading(true);
-            const subRes = await axios.get(`${BACKEND_URL}/subjects/class/${classe}`, { withCredentials: true });
+            const subRes = await axios.get(`${BACKEND_URL}/subjects/class/${classes}`, { withCredentials: true });
             // console.log("List of subject", subRes.data.subject);
             setSelectedSubject(subRes.data.subject);
             setIsLoading(false);
@@ -63,10 +63,10 @@ const AddMarks = () => {
     }
     
     useEffect(() => {
-        if (classe) {
+        if (classes) {
             handleGetSubject();
         }
-    }, [classe])
+    }, [classes])
 
     useEffect(() => {
         handleGetStudent();
@@ -75,12 +75,12 @@ const AddMarks = () => {
     const handleAddMarks = async () => {
         try {
             setIsLoading(true);
-            console.log("Received data", student, classe, subject, marks);
-            if (!student || !classe || !subject || !marks) {
+            console.log("Received data", student, classes, subject, marks);
+            if (!student || !classes || !subject || !marks) {
                 setError("Fill out the missing fields");
                 setMessage("");
             }
-            const res = await axios.post(`${BACKEND_URL}/marks/add`, { student, class: classe, subject, marks }, { withCredentials: true });
+            const res = await axios.post(`${BACKEND_URL}/marks/add`, { student, classes, subject, marks }, { withCredentials: true });
             setMessage(res.data.message);
             setIsLoading(false);
         } catch (err) {
@@ -121,7 +121,7 @@ const AddMarks = () => {
                 
                 <div className="mt-3 mb-4">
                     <select  
-                       onChange={(e) => setClasse(e.target.value)} 
+                       onChange={(e) => setClasses(e.target.value)} 
                        className="bg-gray-100 w-full rounded-full p-3 focus:outline-1 focus:outline-gray-500"
                     > 
 
