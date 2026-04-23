@@ -34,7 +34,7 @@ router.post('/add', async( req, res ) => {
 
 router.get('/marks_list', async (req, res) => {
     try {
-        const result = await MarksSchema.find().populate("students").populate("classes").populate("subjects");
+        const result = await MarksSchema.find().populate("student").populate("class").populate("subject");
 
         if (result.length === 0) {
             return res.status(404).json({ message: 'No marks in the system' });
@@ -55,7 +55,7 @@ router.get('/:_id', async (req, res) => {
             return res.status(403).json({ message: 'IDs required'});
         }
 
-        const result = await MarksSchema.findById(_id).populate("students").populate("classes");
+        const result = await MarksSchema.findById(_id).populate("student").populate("class");
 
         if (result.length === 0) {
             return res.status(404).json({ message: 'No marks in the system' });
