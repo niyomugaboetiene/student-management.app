@@ -61,6 +61,7 @@ const UpdateSubject = () => {
 
     const handleGetSubject = async () => {
           try {
+            if (!_id) return;
             setIsLoading(true);
             const subRes = await axios.get(`${BACKEND_URL}/subjects/${_id}`, { withCredentials: true });
             const subjectData = subRes.data.subject;
@@ -69,7 +70,7 @@ const UpdateSubject = () => {
             setSubject_name(subjectData.subject_name || "");
             setCode(subjectData.code || "");
             setInstructor(subjectData.instructor || "");
-            setClasses(classes.class || "");
+            setClasses(subjectData.class || "");
             setCredits(subjectData.credits || 0);
 
             setIsLoading(false);
@@ -80,34 +81,24 @@ const UpdateSubject = () => {
     }
 
     useEffect(() => {
-        handleGetSubject();
+        if (_id) {
+            handleGetSubject();
+        }
     }, [_id]);
 
     const handleUpdateTrade = async () => {
         try {
             setIsLoading(true);
-            if (!trade_name || !department || !_id) {
+            if (!subject_name || !code || !credits) {
                 setError("Fill out the missing fields");
             }
-            const res = await axios.put(`${BACKEND_URL}/trade/update/${_id}`, { subject_name, code, instructor, classes, credits }, { withCredentials: true });
+            const res = await axios.put(`${BACKEND_URL}/subjects/update/${_id}`, { subject_name, code, instructor, classes, credits }, { withCredentials: true });
             setMessage(res.data.message);
             setIsLoading(false);
             navigate('/subject/list')
         } catch (err) {
             const errMessage = err.response?.data?.message || "Error occured"; 
-            if (errMessage === "Unauthorized") {
-                setError("Login to access this page");
-            }
-
-            if (errMessage === "YOu dont have access to this data") {
-                setError(errMessage);
-            }
-
             if (errMessage === "Internal server error") {
-                setError(errMessage);
-            }
-
-            if (errMessage === "Enter valid IDs") {
                 setError(errMessage);
             }
 
