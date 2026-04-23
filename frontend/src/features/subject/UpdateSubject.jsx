@@ -91,11 +91,12 @@ const UpdateSubject = () => {
             setIsLoading(true);
             if (!subject_name || !code || !credits) {
                 setError("Fill out the missing fields");
+                return;
             }
             const res = await axios.put(`${BACKEND_URL}/subjects/update/${_id}`, { subject_name, code, instructor, classes, credits }, { withCredentials: true });
             setMessage(res.data.message);
             setIsLoading(false);
-            navigate('/subject/list')
+            navigate('/subject/list');
         } catch (err) {
             const errMessage = err.response?.data?.message || "Error occured"; 
             if (errMessage === "Internal server error") {
