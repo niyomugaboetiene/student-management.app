@@ -36,15 +36,26 @@ const MarksList = () => {
     }, []);
 
     const DeleteMarks = async (_id) => {
+        const confrim = window.confirm("Are you sure ?");
         try {
-           setLoading(true);
-           await axios.delete(`${BACKEND_URL}/marks/${_id}`, { withCredentials: true });
-           await handleGetMarks();
-           setLoading(false);
+            setLoading(true);
+            if (confrim) {
+                  await axios.delete(`${BACKEND_URL}/marks/${_id}`, { withCredentials: true });
+                  await handleGetMarks();
+                 setLoading(false);
+            }
         } catch (err) {
-            setError(err);
+            console.error(err);
             const errorMessage = err.response?.data?.message || "Error occured";
-            if (errorMessage === "")
+            if (errorMessage === "No IDs in the system") {
+                setError(errorMessage);
+            }
+
+            if (errorMessage === "Internal server error") {
+                setError(errorMessage);
+            }
+
+            setLoading(false);
         }
     }
 
