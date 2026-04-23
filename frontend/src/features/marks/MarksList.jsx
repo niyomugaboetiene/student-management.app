@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import { FaEdit, FaTrash } from "react-icons/fa";
 
 const MarksList = () => {
     const [marks, setMarks] = useState([]);
@@ -47,6 +48,7 @@ const MarksList = () => {
                             <th className="py-3 px-4 text-left">Subject</th>
                             <th className="py-3 px-4 text-left">Marks</th>
                             <th className="py-3 px-4 text-left">Done at</th>
+                            <th className="py-3 px-4 text-left" colSpan={2}>Operations</th>
                         </tr>
                     </thead>
 
@@ -60,8 +62,9 @@ const MarksList = () => {
                                 <td className="py-3 px-4 text-left">{mark.marks}</td>
                                 <td className="py-3 px-4 text-left">{new Date(mark.createdAt).toLocaleDateString()}</td>
 
-                                <td>
-                                    <Link ></Link>
+                                <td className="flex justify-between p-3">
+                                    <Link className="inline-flex gap-2 bg-green-500 py-1 px-3 rounded-lg font-bold text-white"><FaEdit /> Update</Link>
+                                    <button className="inline-flex gap-2 bg-red-500 py-1 px-3 font-bold text-white rounded-lg"><FaTrash /> Delete</button>
                                 </td>
                             </tr>
                         ))}
