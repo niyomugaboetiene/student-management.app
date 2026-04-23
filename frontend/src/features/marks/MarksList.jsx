@@ -63,7 +63,7 @@ const MarksList = () => {
                                 <td className="py-3 px-4 text-left">{new Date(mark.createdAt).toLocaleDateString()}</td>
 
                                 <td className="flex justify-between p-3">
-                                    <Link className="inline-flex gap-2 bg-green-500 py-1 px-3 rounded-lg font-bold text-white"><FaEdit /> Update</Link>
+                                    <Link className="inline-flex gap-2 bg-green-500 py-1 px-3 rounded-lg font-bold text-white" to={`/marks/update/${mark._id}`}><FaEdit /> Update</Link>
                                     <button className="inline-flex gap-2 bg-red-500 py-1 px-3 font-bold text-white rounded-lg"><FaTrash /> Delete</button>
                                 </td>
                             </tr>
