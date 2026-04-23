@@ -52,7 +52,7 @@ router.get('/subjectList', async (req, res) => {
 
 router.get('/:_id', async ( req, res) => {
     try {
-        const _id = req.params;
+        const _id = req.params._id;
 
         if (!_id) {
             return res.status(403).json({ messsage: 'IDs required' });
@@ -60,13 +60,13 @@ router.get('/:_id', async ( req, res) => {
 
         const result = await SubjectSchema.findById(_id);
 
-        if (result.length === 0) {
+        if (!result) {
             return res.status(404).json({
                 messsage: 'No subject found',
             });
         }
 
-         return res.status(404).json({
+         return res.status(200).json({
             messsage: 'Subject list',
             subject: result
          });

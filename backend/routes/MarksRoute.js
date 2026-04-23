@@ -6,7 +6,7 @@ const router = express.Router();
 router.post('/add', async( req, res ) => {
     try {
         // student, class, subject, marks
-        const { student, classes, subject, marks } = req.body;
+        const { student, class: classes, subject, marks } = req.body;
 
         // console.log("Received fields", student, classes, subject, marks);
         
@@ -16,7 +16,7 @@ router.post('/add', async( req, res ) => {
 
        const newMarks = await MarksSchema.create({
         student,
-        class: classes,
+        classes,
         subject,
         marks
        });
