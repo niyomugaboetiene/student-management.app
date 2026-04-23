@@ -29,11 +29,15 @@ const MarksList = () => {
         }
     }
 
+    useEffect(() => {
+        handleGetMarks();
+    }, []);
 
     return (
-        <div>
-            <div>
-                <table>
+        <div className="bg-cyan-100 min-h-screen flex">
+            <div className="max-w-7xl mx-auto">
+                <h1 className="text-center mt-12 text-2xl font-bold text-cyan-700 mb-4">Marks List</h1>
+                <table className="w-full">
                     <thead>
                         <tr>
                             <th>Id</th>
@@ -41,13 +45,19 @@ const MarksList = () => {
                             <th>Class</th>
                             <th>Subject</th>
                             <th>Marks</th>
+                            <th>Done at</th>
                         </tr>
                     </thead>
 
                     <tbody>
                         {marks.map((mark, index) => (
-                            <tr>
+                            <tr key={index}>
                                 <td>{mark.marks_id}</td>
+                                <td>{mark.student?.full_name}</td>
+                                <td>{mark.class?.class_name}</td>
+                                <td>{mark.subject?.subject_name}</td>
+                                <td>{mark.marks}</td>
+                                <td>{new Date(mark.createdAt).toLocaleDateString()}</td>
                             </tr>
                         ))}
                     </tbody>
@@ -56,3 +66,5 @@ const MarksList = () => {
         </div>
     )
 }
+
+export default MarksList;
