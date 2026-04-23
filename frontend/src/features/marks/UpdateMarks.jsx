@@ -83,6 +83,7 @@ const UpdateMarks = () => {
             const marksRes = await axios.get(`${BACKEND_URL}/marks/${_id}`, { withCredentials: true });
             const marksData = marksRes.data.marks;
 
+            console.log("Data", marksData.subject?.subject_name);
             // student, classes, subject, marks
             setStudent(marksData.student?.full_name || "");
             setClasses(marksData.class?.class_name || "");
@@ -102,7 +103,7 @@ const UpdateMarks = () => {
     const handleUpdateMarks = async () => {
         try {
             setIsLoading(true);
-            console.log("Received data", student, classes, subject, marks);
+            // console.log("Received data", student, classes, subject, marks);
             const res = await axios.put(`${BACKEND_URL}/marks/update/${_id}`, { student, classes, subject, marks }, { withCredentials: true });
             setMessage(res.data.message);
             setIsLoading(false);
