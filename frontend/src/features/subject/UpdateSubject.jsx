@@ -4,7 +4,7 @@ import { FaTimes } from 'react-icons/fa';
 import { useParams } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 
-const UpdateTrade = () => {
+const UpdateSubject = () => {
     const [subject_name, setSubject_name] = useState("");
     const [code, setCode] = useState("");
     const [credits, setCredits] = useState(0);
@@ -82,7 +82,7 @@ const UpdateTrade = () => {
     }
 
     useEffect(() => {
-        handleGetTrade();
+        handleGetSubject();
     }, []);
 
     const handleUpdateTrade = async () => {
@@ -130,10 +130,11 @@ const UpdateTrade = () => {
                     <div className="bg-red-500 mb-2 p-2 rounded-lg text-white font-bold relative flex justify-between">
                         <p>{error}</p> <p className="text-lg mt-1" onClick={() => setError("")}><FaTimes /></p>
                     </div>                )}
-                <h1 className="text-xl text-gray-600 font-bold">Add Subject Portal</h1>
+                <h1 className="text-xl text-gray-600 font-bold">Update Subject Portal</h1>
 
                 <div className="mt-3">
                     <input type="text"  
+                       value={subject_name}
                        onChange={(e) => setSubject_name(e.target.value)} required
                        className="bg-gray-100  w-full p-3 rounded-full focus:outline-1 focus:outline-gray-500" placeholder="Subject name"
                     />
@@ -141,6 +142,7 @@ const UpdateTrade = () => {
                 
                 <div className="mt-3">
                     <input type="text"  
+                    value={code}
                     onChange={(e) => setCode(e.target.value)} required
                     className="bg-gray-100 w-full p-3 rounded-full focus:outline-1 focus:outline-gray-500" placeholder="code"
                 />
@@ -148,6 +150,7 @@ const UpdateTrade = () => {
                 
                 <div className="mt-3">
                     <input type="number"  
+                    value={credits}
                     onChange={(e) => setCredits(e.target.value)} required
                     className="bg-gray-100 w-full p-3 rounded-full focus:outline-1 focus:outline-gray-500" placeholder="Credits"
                 />
@@ -155,6 +158,7 @@ const UpdateTrade = () => {
                 
                <div className="mt-3 mb-4">
                     <select  
+                       value={classes}
                        onChange={(e) => setClasses(e.target.value)} 
                        className="bg-gray-100 w-full rounded-full p-3 focus:outline-1 focus:outline-gray-500"
                     > 
@@ -167,6 +171,7 @@ const UpdateTrade = () => {
 
                 <div className="mt-3 mb-4">
                     <select  
+                       value={instructor}
                        onChange={(e) => setInstructor(e.target.value)} 
                        className="bg-gray-100 w-full rounded-full p-3 focus:outline-1 focus:outline-gray-500"
                     > 
@@ -185,4 +190,4 @@ const UpdateTrade = () => {
     )
 }
 
-export default UpdateTrade;
+export default UpdateSubject;
