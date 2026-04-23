@@ -75,13 +75,13 @@ const AddMarks = () => {
     const handleAddMarks = async () => {
         try {
             setIsLoading(true);
+            console.log("Received data", student, classe, subject, marks);
             if (!student || !classe || !subject || !marks) {
                 setError("Fill out the missing fields");
                 setMessage("");
             }
             const res = await axios.post(`${BACKEND_URL}/marks/add`, { student, class: classe, subject, marks }, { withCredentials: true });
             setMessage(res.data.message);
-            console.log("Received data", student, classe, subject, marks);
             setIsLoading(false);
         } catch (err) {
             const errMessage = err.response?.data?.message || "Error occured"; 
@@ -91,7 +91,6 @@ const AddMarks = () => {
             setIsLoading(false);
         }
     }
-
 
     return (
          <div className="bg-gray-100 min-h-screen flex justify-center items-center p-3">
@@ -151,7 +150,7 @@ const AddMarks = () => {
                 />
                 </div>
 
-                <button onClick={handleAddMarks} className="w-full bg-cyan-500 p-3 rounded-full text-white font-bold hover:bg-cyan-400 transition-colors mb-4">Add Trade</button>
+                <button onClick={handleAddMarks} className="w-full bg-cyan-500 p-3 rounded-full text-white font-bold hover:bg-cyan-400 transition-colors mb-4">Add Marks</button>
 
             </div>
         </div>
