@@ -40,7 +40,7 @@ const MarksList = () => {
         try {
             setLoading(true);
             if (confrim) {
-                  await axios.delete(`${BACKEND_URL}/marks/${_id}`, { withCredentials: true });
+                  await axios.delete(`${BACKEND_URL}/marks/delete/${_id}`, { withCredentials: true });
                   await handleGetMarks();
                  setLoading(false);
             }
@@ -88,7 +88,7 @@ const MarksList = () => {
 
                                 <td className="flex justify-between p-3">
                                     <Link className="inline-flex gap-2 bg-green-500 py-1 px-3 rounded-lg font-bold text-white" to={`/marks/update/${mark._id}`}><FaEdit /> Update</Link>
-                                    <button className="inline-flex gap-2 bg-red-500 py-1 px-3 font-bold text-white rounded-lg"><FaTrash /> Delete</button>
+                                    <button className="inline-flex gap-2 bg-red-500 py-1 px-3 font-bold text-white rounded-lg" onClick={() => DeleteMarks(mark._id)}><FaTrash /> Delete</button>
                                 </td>
                             </tr>
                         ))}
