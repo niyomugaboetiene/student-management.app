@@ -7,9 +7,9 @@ const GetSubjectList = () => {
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState("");
 
-    const handleGetSubjectList = async () => {
-       const BACKEND_URL = import.meta.env.VITE_BACKEND_URL;
+    const BACKEND_URL = import.meta.env.VITE_BACKEND_URL;
 
+    const handleGetSubjectList = async () => {
         try {
             setLoading(true);
             const subRes = await axios.get(`${BACKEND_URL}/subjects/subjectList`, { withCredentials: true });
@@ -34,6 +34,23 @@ const GetSubjectList = () => {
   useEffect(() => {
     handleGetSubjectList();
   }, []);
+
+  const handleDeleteSubject = async (_id) => {
+    const confrim = window.confirm("Are you sure ?");
+    try {
+        setLoading(true);
+      if (confrim) {
+         await axios.delete(`${BACKEND_URL}/subjects/delete/${_id}`, { withCredentials: true });
+      } 
+
+      await handleGetSubjectList();
+      setLoading(false);
+    } catch (err) {
+        console.error("Error", err);
+        setError("Failed to delete subject");
+        setLoading(false);
+    }
+  }
 
     return (
         <div className="bg-gray-100 min-h-screen">
@@ -64,7 +81,7 @@ const GetSubjectList = () => {
 
                                 <td className="py-3 px-3 font-bold flex justify-between space-x-5">
                                     <Link className="bg-green-500 py-1 px-5 rounded-xl text-white hover:bg-green-600 transition-colors" to={`/subject/update/${sub._id}`}>Update</Link>
-                                    <button className="bg-red-500 py-1 px-5 rounded-xl text-white hover:bg-red-600 transition-colors">Delete</button>
+                                    <button className="bg-red-500 py-1 px-5 rounded-xl text-white hover:bg-red-600 transition-colors" onClick={() => handleDeleteSubject(sub._id)}>Delete</button>
                                 </td>
                             </tr>
                         ))}
