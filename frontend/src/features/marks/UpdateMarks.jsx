@@ -77,6 +77,28 @@ const UpdateMarks = () => {
         handleGetStudent();
     }, []);
 
+        const handleGetMarks = async () => {
+          try {
+            setIsLoading(true);
+            const marksRes = await axios.get(`${BACKEND_URL}/marks/${_id}`, { withCredentials: true });
+            const marksData = marksRes.data.marks;
+
+            // student, classes, subject, marks
+            setStudent(marksData.student?.full_name || "");
+            setClasses(marksData.class?.class_name || "");
+            setSubject(marksData.subject?.subject_name || "");
+            setMarks(marksData.marks || "");
+            setIsLoading(false);
+          } catch (err) {
+            console.error(err);
+            setIsLoading(false);
+          }
+    }
+
+    useEffect(() => {
+        handleGetMarks();
+    }, []);
+
     const handleUpdateMarks = async () => {
         try {
             setIsLoading(true);
