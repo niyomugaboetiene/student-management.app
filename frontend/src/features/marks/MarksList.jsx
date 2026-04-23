@@ -1,5 +1,6 @@
 import axios from "axios";
 import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 
 const MarksList = () => {
     const [marks, setMarks] = useState([]);
@@ -51,13 +52,17 @@ const MarksList = () => {
 
                     <tbody>
                         {marks.map((mark, index) => (
-                            <tr key={index}>
+                            <tr key={index} className={`${index % 2 === 0 ? 'bg-cyan-200' : 'bg-gray-100'} ${index % 2 == 0 ? 'hover:bg-cyan-300' : 'hover:bg-gray-200'} transition-colors`}>
                                 <td className="py-3 px-4 text-left">{mark.marks_id}</td>
                                 <td className="py-3 px-4 text-left">{mark.student?.full_name}</td>
                                 <td className="py-3 px-4 text-left">{mark.class?.class_name}</td>
                                 <td className="py-3 px-4 text-left">{mark.subject?.subject_name}</td>
                                 <td className="py-3 px-4 text-left">{mark.marks}</td>
                                 <td className="py-3 px-4 text-left">{new Date(mark.createdAt).toLocaleDateString()}</td>
+
+                                <td>
+                                    <Link ></Link>
+                                </td>
                             </tr>
                         ))}
                     </tbody>
