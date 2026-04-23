@@ -36,28 +36,28 @@ const MarksList = () => {
     return (
         <div className="bg-cyan-100 min-h-screen">
             <div className="max-w-7xl mx-auto">
-                <h1 className="text-center mt-12 text-2xl font-bold text-cyan-700 mb-4">Marks List</h1>
+                <h1 className="text-center text-2xl font-bold text-cyan-700 mb-4">Marks List</h1>
                 <table className="w-full overflow-hidden overflow-x-auto">
-                    <thead>
+                    <thead className="bg-cyan-300 text-gray-600">
                         <tr>
-                            <th>Id</th>
-                            <th>Student Name</th>
-                            <th>Class</th>
-                            <th>Subject</th>
-                            <th>Marks</th>
-                            <th>Done at</th>
+                            <th className="py-3 px-4 text-left">Id</th>
+                            <th className="py-3 px-4 text-left">Student Name</th>
+                            <th className="py-3 px-4 text-left">Class</th>
+                            <th className="py-3 px-4 text-left">Subject</th>
+                            <th className="py-3 px-4 text-left">Marks</th>
+                            <th className="py-3 px-4 text-left">Done at</th>
                         </tr>
                     </thead>
 
                     <tbody>
                         {marks.map((mark, index) => (
                             <tr key={index}>
-                                <td>{mark.marks_id}</td>
-                                <td>{mark.student?.full_name}</td>
-                                <td>{mark.class?.class_name}</td>
-                                <td>{mark.subject?.subject_name}</td>
-                                <td>{mark.marks}</td>
-                                <td>{new Date(mark.createdAt).toLocaleDateString()}</td>
+                                <td className="py-3 px-4 text-left">{mark.marks_id}</td>
+                                <td className="py-3 px-4 text-left">{mark.student?.full_name}</td>
+                                <td className="py-3 px-4 text-left">{mark.class?.class_name}</td>
+                                <td className="py-3 px-4 text-left">{mark.subject?.subject_name}</td>
+                                <td className="py-3 px-4 text-left">{mark.marks}</td>
+                                <td className="py-3 px-4 text-left">{new Date(mark.createdAt).toLocaleDateString()}</td>
                             </tr>
                         ))}
                     </tbody>
