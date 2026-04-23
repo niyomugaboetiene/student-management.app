@@ -72,6 +72,7 @@ const UpdateMarks = () => {
         }
     }, [classes])
 
+
     useEffect(() => {
         handleGetStudent();
     }, []);
@@ -80,11 +81,6 @@ const UpdateMarks = () => {
         try {
             setIsLoading(true);
             console.log("Received data", student, classes, subject, marks);
-            if (!student || !classes || !subject || !marks) {
-                setError("Fill out the missing fields");
-                setMessage("");
-                return;
-            }
             const res = await axios.put(`${BACKEND_URL}/marks/update/${_id}`, { student, classes, subject, marks }, { withCredentials: true });
             setMessage(res.data.message);
             setIsLoading(false);
