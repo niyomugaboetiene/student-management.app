@@ -67,8 +67,7 @@ const UpdateSubject = () => {
             const subRes = await axios.get(`${BACKEND_URL}/subjects/${_id}`, { withCredentials: true });
             const subjectData = subRes.data.subject;
 
-            // console.log("Trade name", tradeRes.data.trade[0].trade_name);
-
+            console.log("Subject name", subjectData.data.subject[0].subject_name);
             setSubject_name(subjectData.subject_name || "");
             setCode(subjectData.code || "");
             setInstructor(subjectData.instructor || "");
