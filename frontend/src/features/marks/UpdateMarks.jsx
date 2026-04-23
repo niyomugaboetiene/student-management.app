@@ -97,7 +97,7 @@ const UpdateMarks = () => {
 
     useEffect(() => {
         handleGetMarks();
-    }, []);
+    }, [_id]);
 
     const handleUpdateMarks = async () => {
         try {
@@ -134,6 +134,7 @@ const UpdateMarks = () => {
                 
                 <div className="mt-3 mb-4">
                     <select  
+                        value={student}
                        onChange={(e) => setStudent(e.target.value)} 
                        className="bg-gray-100 w-full rounded-full p-3 focus:outline-1 focus:outline-gray-500"
                     > 
@@ -146,6 +147,7 @@ const UpdateMarks = () => {
                 
                 <div className="mt-3 mb-4">
                     <select  
+                       value={classes}
                        onChange={(e) => setClasses(e.target.value)} 
                        className="bg-gray-100 w-full rounded-full p-3 focus:outline-1 focus:outline-gray-500"
                     > 
@@ -158,6 +160,7 @@ const UpdateMarks = () => {
                 
                 <div className="mt-3 mb-4">
                     <select  
+                       value={subject}
                        onChange={(e) => setSubject(e.target.value)} 
                        className="bg-gray-100 w-full rounded-full p-3 focus:outline-1 focus:outline-gray-500"
                     > 
@@ -170,6 +173,7 @@ const UpdateMarks = () => {
                                 
                 <div className="mt-3">
                     <input type="number"  
+                    value={marks}
                     onChange={(e) => setMarks(e.target.value)} required
                     className="bg-gray-100 w-full p-3 rounded-full mb-5 focus:outline-1 focus:outline-gray-500" placeholder="Marks"
                 />
