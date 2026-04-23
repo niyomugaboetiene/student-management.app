@@ -43,6 +43,14 @@ const MarksList = () => {
                             <th>Marks</th>
                         </tr>
                     </thead>
+
+                    <tbody>
+                        {marks.map((mark, index) => (
+                            <tr>
+                                <td>{mark.marks_id}</td>
+                            </tr>
+                        ))}
+                    </tbody>
                 </table>
             </div>
         </div>
