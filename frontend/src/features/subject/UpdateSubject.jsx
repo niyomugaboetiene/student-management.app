@@ -21,9 +21,7 @@ const UpdateSubject = () => {
 
     const { _id } = useParams();
 
-
     const BACKEND_URL = import.meta.env.VITE_BACKEND_URL;
-
 
     const handleGetClass = async () => {
           try {
@@ -67,12 +65,13 @@ const UpdateSubject = () => {
             const subRes = await axios.get(`${BACKEND_URL}/subjects/${_id}`, { withCredentials: true });
             const subjectData = subRes.data.subject;
 
-            console.log("Subject name", subjectData.data.subject[0].subject_name);
+            console.log("Subject name", subjectData);
             setSubject_name(subjectData.subject_name || "");
             setCode(subjectData.code || "");
             setInstructor(subjectData.instructor || "");
             setClasses(classes.class || "");
             setCredits(subjectData.credits || 0);
+
             setIsLoading(false);
           } catch (err) {
             console.error(err);
@@ -82,7 +81,7 @@ const UpdateSubject = () => {
 
     useEffect(() => {
         handleGetSubject();
-    }, []);
+    }, [_id]);
 
     const handleUpdateTrade = async () => {
         try {
