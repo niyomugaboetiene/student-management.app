@@ -17,9 +17,8 @@ const UpdateClass = () => {
     const [error, setError] = useState("");
     const navigate = useNavigate();
 
-    const [selectedStudent, setSelectedStudent] = useState(null);
-    const [selectedClass, setSelectedClass] = useState([]);
-    const [selectedSubject, setSelectedSubject] = useState(null);
+    const [selectedTeacher, setSelectedTeaceher] = useState(null);
+    const [selectedTrade, setSelectedTrade] = useState(null);
 
     const BACKEND_URL = import.meta.env.VITE_BACKEND_URL;
 
@@ -58,42 +57,20 @@ const UpdateClass = () => {
         handleGetTrade();
     }, []);
 
-    const handleGetSubject = async () => {
+
+        const handleGetClass = async () => {
           try {
             setIsLoading(true);
-            const subRes = await axios.get(`${BACKEND_URL}/subjects/class/${classes}`, { withCredentials: true });
-            // console.log("List of subject", subRes.data.subject);
-            setSelectedSubject(subRes.data.subject);
-            setIsLoading(false);
-          } catch (err) {
-            console.error(err);
-            setIsLoading(false);
-          }
-    }
-    
-    useEffect(() => {
-        if (classes) {
-            handleGetSubject();
-        }
-    }, [classes])
+            const classRes = await axios.get(`${BACKEND_URL}/class/${_id}`, { withCredentials: true });
+            const classData = classRes.data.classes;
 
-
-    useEffect(() => {
-        handleGetStudent();
-    }, []);
-
-        const handleGetMarks = async () => {
-          try {
-            setIsLoading(true);
-            const marksRes = await axios.get(`${BACKEND_URL}/marks/${_id}`, { withCredentials: true });
-            const marksData = marksRes.data.marks;
-
-            console.log("Data", marksData.subject?.subject_name);
+            // console.log("Data", classRes.subject?.subject_name);
             // student, classes, subject, marks
-            setStudent(marksData.student?._id || "");
-            setClasses(marksData.class?._id || "");
-            setSubject(marksData.subject?._id || "");
-            setMarks(marksData.marks || "");
+            setClass_name(classData.class_name || "");
+            setCode(classData.class_name || "");
+            setYear(classData.class_name || "");
+            setTeacher(classData.teacher?._id || "");
+            setTrade(classData.trade?._id || "");
             setIsLoading(false);
           } catch (err) {
             console.error(err);
@@ -102,17 +79,17 @@ const UpdateClass = () => {
     }
 
     useEffect(() => {
-        handleGetMarks();
+        handleGetClass();
     }, [_id]);
 
-    const handleUpdateMarks = async () => {
+    const handleUpdateCLass = async () => {
         try {
             setIsLoading(true);
             // console.log("Received data", student, classes, subject, marks);
-            const res = await axios.put(`${BACKEND_URL}/marks/update/${_id}`, { student, classes, subject, marks }, { withCredentials: true });
+            const res = await axios.put(`${BACKEND_URL}/class/update/${_id}`, { class_name, code, year, teacher, trade }, { withCredentials: true });
             setMessage(res.data.message);
-            setIsLoading(false);
-            navigate('/marks/list');
+            navigate('/class/list');
+           setIsLoading(false);
         } catch (err) {
             const errMessage = err.response?.data?.message || "Error occured"; 
             if (errMessage === "Internal server error") {
@@ -136,56 +113,35 @@ const UpdateClass = () => {
                     <div className="bg-red-500 mb-2 p-2 rounded-lg text-white font-bold relative flex justify-between">
                         <p>{error}</p> <p className="text-lg mt-1" onClick={() => setError("")}><FaTimes /></p>
                     </div>                )}
-                <h1 className="text-xl text-gray-600 font-bold">Update Marks Portal</h1>
-                
+                <h1 className="text-xl text-gray-600 font-bold">Update Class Portal</h1>
+              
                 <div className="mt-3 mb-4">
                     <select  
-                        value={student}
-                       onChange={(e) => setStudent(e.target.value)} 
+                       value={teacher}
+                       onChange={(e) => setTeacher(e.target.value)} 
                        className="bg-gray-100 w-full rounded-full p-3 focus:outline-1 focus:outline-gray-500"
                     > 
 
-                       {selectedStudent?.map((st) => (
-                        <option value={st._id} key={st._id}>{st.full_name}</option>
+                       {selectedTeacher?.map((teacher) => (
+                        <option value={teacher._id} key={teacher._id}>{teacher.full_name}</option>
+                       ))}
+                    </select>
+                </div>
+
+                <div className="mt-3 mb-4">
+                    <select  
+                        value={trade}
+                       onChange={(e) => setTrade(e.target.value)} 
+                       className="bg-gray-100 w-full rounded-full p-3 focus:outline-1 focus:outline-gray-500"
+                    > 
+
+                       {selectedTrade?.map((tr) => (
+                        <option value={tr._id} key={tr._id}>{tr.trade_name}</option>
                        ))}
                     </select>
                 </div>
                 
-                <div className="mt-3 mb-4">
-                    <select  
-                       value={classes}
-                       onChange={(e) => setClasses(e.target.value)} 
-                       className="bg-gray-100 w-full rounded-full p-3 focus:outline-1 focus:outline-gray-500"
-                    > 
-
-                       {selectedClass?.map((classe) => (
-                        <option value={classe._id} key={classe._id}>{classe.class_name}</option>
-                       ))}
-                    </select>
-                </div>
-                
-                <div className="mt-3 mb-4">
-                    <select  
-                       value={subject}
-                       onChange={(e) => setSubject(e.target.value)} 
-                       className="bg-gray-100 w-full rounded-full p-3 focus:outline-1 focus:outline-gray-500"
-                    > 
-
-                       {selectedSubject?.map((sub) => (
-                        <option value={sub._id} key={sub._id}>{sub.subject_name}</option>
-                       ))}
-                    </select>
-                </div>
-                                
-                <div className="mt-3">
-                    <input type="number"  
-                    value={marks}
-                    onChange={(e) => setMarks(e.target.value)} required
-                    className="bg-gray-100 w-full p-3 rounded-full mb-5 focus:outline-1 focus:outline-gray-500" placeholder="Marks"
-                />
-                </div>
-
-                <button onClick={handleUpdateMarks} className="w-full bg-cyan-500 p-3 rounded-full text-white font-bold hover:bg-cyan-400 transition-colors mb-4">Update Marks</button>
+                <button onClick={handleUpdateCLass} className="w-full bg-cyan-500 p-3 rounded-full text-white font-bold hover:bg-cyan-400 transition-colors mb-4">Update Marks</button>
 
             </div>
         </div>
