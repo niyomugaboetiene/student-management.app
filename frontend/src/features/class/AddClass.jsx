@@ -68,14 +68,17 @@ const AddClass = () => {
             const errMessage = err.response?.data?.message || "Error occured"; 
             if (errMessage === "Login first") {
                 setError("Login to access this page");
+                setMessage("");
             }
 
             if (errMessage === "YOu dont have access to this data") {
                 setError(errMessage);
+                setMessage("");
             }
 
             if (errMessage === "Server error") {
                 setError(errMessage);
+                setMessage("");
             }
 
             setIsLoading(false);
