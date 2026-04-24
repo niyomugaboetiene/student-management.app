@@ -91,7 +91,7 @@ const ClassList = () => {
                                 <td className="py-3 px-4 text-left">{new Date(cla.createdAt).toLocaleDateString()}</td>
 
                                 <td className="flex justify-between p-3 space-x-6">
-                                    <Link className="inline-flex gap-2 bg-green-500 py-1 px-3 rounded-lg font-bold text-white" to={`/marks/update/${cla._id}`}><FaEdit /> Update</Link>
+                                    <Link className="inline-flex gap-2 bg-green-500 py-1 px-3 rounded-lg font-bold text-white" to={`/class/update/${cla._id}`}><FaEdit /> Update</Link>
                                     <button className="inline-flex gap-2 bg-red-500 py-1 px-3 font-bold text-white rounded-lg" onClick={() => DeleteClass(cla._id)}><FaTrash /> Delete</button>
                                 </td>
                             </tr>
