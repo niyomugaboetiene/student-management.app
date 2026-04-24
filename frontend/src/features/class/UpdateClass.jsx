@@ -67,8 +67,8 @@ const UpdateClass = () => {
             // console.log("Data", classRes.subject?.subject_name);
             // student, classes, subject, marks
             setClass_name(classData.class_name || "");
-            setCode(classData.class_name || "");
-            setYear(classData.class_name || "");
+            setCode(classData.code || "");
+            setYear(classData.year || "");
             setTeacher(classData.teacher?._id || "");
             setTrade(classData.trade?._id || "");
             setIsLoading(false);
