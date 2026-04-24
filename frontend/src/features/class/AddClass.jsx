@@ -56,15 +56,17 @@ const AddClass = () => {
     const handleAddClass = async () => {
         try {
             setIsLoading(true);
-            if (!trade_name || !department) {
+            if (!class_name || !year || !teacher || !trade) {
                 setError("Fill out the missing fields");
+                setMessage("");
+                return;
             }
             const res = await axios.post(`${BACKEND_URL}/class/add`, { class_name, code, year, teacher, trade, createdBy }, { withCredentials: true });
             setMessage(res.data.message);
             setIsLoading(false);
         } catch (err) {
             const errMessage = err.response?.data?.message || "Error occured"; 
-            if (errMessage === "Unauthorized") {
+            if (errMessage === "Login first") {
                 setError("Login to access this page");
             }
 
@@ -72,7 +74,7 @@ const AddClass = () => {
                 setError(errMessage);
             }
 
-            if (errMessage === "Internal server error") {
+            if (errMessage === "Server error") {
                 setError(errMessage);
             }
 
@@ -94,12 +96,12 @@ const AddClass = () => {
                     <div className="bg-red-500 mb-2 p-2 rounded-lg text-white font-bold relative flex justify-between">
                         <p>{error}</p> <p className="text-lg mt-1" onClick={() => setError("")}><FaTimes /></p>
                     </div>                )}
-                <h1 className="text-xl text-gray-600 font-bold">Add Trade Portal</h1>
+                <h1 className="text-xl text-gray-600 font-bold">Add Subject Portal</h1>
 
                 <div className="mt-3">
                     <input type="text"  
-                       onChange={(e) => setTrade_name(e.target.value)} required
-                       className="bg-gray-100  w-full p-3 rounded-full focus:outline-1 focus:outline-gray-500" placeholder="Trade name"
+                       onChange={(e) => setClass_name(e.target.value)} required
+                       className="bg-gray-100  w-full p-3 rounded-full focus:outline-1 focus:outline-gray-500" placeholder="Class name"
                     />
                 </div>
                 
@@ -110,19 +112,40 @@ const AddClass = () => {
                 />
                 </div>
                 
+                <div className="mt-3">
+                    <input type="text"  
+                    onChange={(e) => setYear(e.target.value)} required
+                    className="bg-gray-100 w-full p-3 rounded-full focus:outline-1 focus:outline-gray-500" placeholder="Year"
+                />
+                </div>
+                
                 <div className="mt-3 mb-4">
                     <select  
-                       onChange={(e) => setDepartment(e.target.value)} 
+                       onChange={(e) => setTeacher(e.target.value)} 
                        className="bg-gray-100 w-full rounded-full p-3 focus:outline-1 focus:outline-gray-500" placeholder=""
                     > 
 
-                       {selectedDepartment?.map((dep) => (
-                        <option value={dep._id} key={dep._id}>{dep.name}</option>
+                       <option value="" disabled>---Select class teacher---</option>
+                       {selectedTeacher?.map((tr) => (
+                        <option value={tr._id} key={tr._id}>{tr.full_name}</option>
+                       ))}
+                    </select>
+                </div>
+                
+                <div className="mt-3 mb-4">
+                    <select  
+                       onChange={(e) => setTrade(e.target.value)} 
+                       className="bg-gray-100 w-full rounded-full p-3 focus:outline-1 focus:outline-gray-500" placeholder=""
+                    > 
+                    <option value="" disabled>---Select trade---</option>
+
+                       {selectedTrade?.map((tr) => (
+                        <option value={tr._id} key={tr._id}>{tr.trade_name}</option>
                        ))}
                     </select>
                 </div>
 
-                <button onClick={handleAddTrade} className="w-full bg-cyan-500 p-3 rounded-full text-white font-bold hover:bg-cyan-400 transition-colors mb-4">Add Trade</button>
+                <button onClick={handleAddClass} className="w-full bg-cyan-500 p-3 rounded-full text-white font-bold hover:bg-cyan-400 transition-colors mb-4">Add Class</button>
 
             </div>
         </div>
