@@ -40,8 +40,8 @@ const ClassList = () => {
         try {
             setLoading(true);
             if (confrim) {
-                  await axios.delete(`${BACKEND_URL}/marks/delete/${_id}`, { withCredentials: true });
-                  await handleGetMarks();
+                  await axios.delete(`${BACKEND_URL}/class/delete/${_id}`, { withCredentials: true });
+                  await handleGetClass();
                  setLoading(false);
             }
         } catch (err) {
@@ -92,7 +92,7 @@ const ClassList = () => {
 
                                 <td className="flex justify-between p-3 space-x-6">
                                     <Link className="inline-flex gap-2 bg-green-500 py-1 px-3 rounded-lg font-bold text-white" to={`/marks/update/${cla._id}`}><FaEdit /> Update</Link>
-                                    <button className="inline-flex gap-2 bg-red-500 py-1 px-3 font-bold text-white rounded-lg" onClick={() => DeleteClass(mark._id)}><FaTrash /> Delete</button>
+                                    <button className="inline-flex gap-2 bg-red-500 py-1 px-3 font-bold text-white rounded-lg" onClick={() => DeleteClass(cla._id)}><FaTrash /> Delete</button>
                                 </td>
                             </tr>
                         ))}
