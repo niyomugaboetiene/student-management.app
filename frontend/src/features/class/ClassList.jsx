@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { FaEdit, FaTrash } from "react-icons/fa";
 
-const MarksList = () => {
+const ClassList = () => {
     const [classes, setClasses] = useState([]);
     const [error, setError] = useState("");
     const [loading, setLoading] = useState(false);
@@ -14,7 +14,7 @@ const MarksList = () => {
         try {
             setLoading(true);
             const res = await axios.get(`${BACKEND_URL}/class/class_list`, { withCredentials: true });
-            setMarks(res.data.marks);
+            setClasses(res.data.classes);
             setLoading(false);
         } catch (err) {
             console.error("Error", err);
@@ -35,7 +35,7 @@ const MarksList = () => {
         handleGetClass();
     }, []);
 
-    const DeleteMarks = async (_id) => {
+    const DeleteClass = async (_id) => {
         const confrim = window.confirm("Are you sure ?");
         try {
             setLoading(true);
@@ -67,28 +67,32 @@ const MarksList = () => {
                     <thead className="bg-cyan-300 text-gray-600">
                         <tr>
                             <th className="py-3 px-4 text-left">Id</th>
-                            <th className="py-3 px-4 text-left">Student Name</th>
-                            <th className="py-3 px-4 text-left">Class</th>
-                            <th className="py-3 px-4 text-left">Subject</th>
-                            <th className="py-3 px-4 text-left">Marks</th>
+                            <th className="py-3 px-4 text-left">Class Name</th>
+                            <th className="py-3 px-4 text-left">Code</th>
+                            <th className="py-3 px-4 text-left">Class Teacher</th>
+                            <th className="py-3 px-4 text-left">Trade</th>
+                            <th className="py-3 px-4 text-left">Created by</th>
+                            <th className="py-3 px-4 text-left">Year</th>
                             <th className="py-3 px-4 text-left">Done at</th>
                             <th className="py-3 px-4 text-left" colSpan={2}>Operations</th>
                         </tr>
                     </thead>
 
                     <tbody>
-                        {marks.map((mark, index) => (
+                        {classes.map((cla, index) => (
                             <tr key={index} className={`${index % 2 === 0 ? 'bg-cyan-200' : 'bg-gray-100'} ${index % 2 == 0 ? 'hover:bg-cyan-300' : 'hover:bg-gray-200'} transition-colors`}>
-                                <td className="py-3 px-4 text-left">{mark.marks_id}</td>
-                                <td className="py-3 px-4 text-left">{mark.student?.full_name}</td>
-                                <td className="py-3 px-4 text-left">{mark.class?.class_name}</td>
-                                <td className="py-3 px-4 text-left">{mark.subject?.subject_name}</td>
-                                <td className="py-3 px-4 text-left">{mark.marks}</td>
-                                <td className="py-3 px-4 text-left">{new Date(mark.createdAt).toLocaleDateString()}</td>
+                                <td className="py-3 px-4 text-left">{cla.class_id}</td>
+                                <td className="py-3 px-4 text-left">{cla.class_name}</td>
+                                <td className="py-3 px-4 text-left">{cla.code}</td>
+                                <td className="py-3 px-4 text-left">{cla.teacher?.full_name ? cla.teacher?.full_name : "No class teacher"}</td>
+                                <td className="py-3 px-4 text-left">{cla.trade?.trade_name ? cla.trade?.trade_name : "No trade"}</td>
+                                <td className="py-3 px-4 text-left">Admin</td>
+                                <td className="py-3 px-4 text-left">{cla.year}</td>
+                                <td className="py-3 px-4 text-left">{new Date(cla.createdAt).toLocaleDateString()}</td>
 
-                                <td className="flex justify-between p-3">
-                                    <Link className="inline-flex gap-2 bg-green-500 py-1 px-3 rounded-lg font-bold text-white" to={`/marks/update/${mark._id}`}><FaEdit /> Update</Link>
-                                    <button className="inline-flex gap-2 bg-red-500 py-1 px-3 font-bold text-white rounded-lg" onClick={() => DeleteMarks(mark._id)}><FaTrash /> Delete</button>
+                                <td className="flex justify-between p-3 space-x-6">
+                                    <Link className="inline-flex gap-2 bg-green-500 py-1 px-3 rounded-lg font-bold text-white" to={`/marks/update/${cla._id}`}><FaEdit /> Update</Link>
+                                    <button className="inline-flex gap-2 bg-red-500 py-1 px-3 font-bold text-white rounded-lg" onClick={() => DeleteClass(mark._id)}><FaTrash /> Delete</button>
                                 </td>
                             </tr>
                         ))}
@@ -99,4 +103,4 @@ const MarksList = () => {
     )
 }
 
-export default MarksList;
+export default ClassList;
