@@ -8,7 +8,6 @@ const AddClass = () => {
     const [year, setYear] = useState("");
     const [teacher, setTeacher] = useState("");
     const [trade, setTrade] = useState("");
-    const [createdBy, setCreatedBy] = useState("");
     const [isLoading, setIsLoading] = useState(false);
     const [message, setMessage] = useState("");
     const [error, setError] = useState("");
@@ -61,7 +60,7 @@ const AddClass = () => {
                 setMessage("");
                 return;
             }
-            const res = await axios.post(`${BACKEND_URL}/class/add`, { class_name, code, year, teacher, trade, createdBy }, { withCredentials: true });
+            const res = await axios.post(`${BACKEND_URL}/class/add`, { class_name, code, year, teacher, trade }, { withCredentials: true });
             setMessage(res.data.message);
             setIsLoading(false);
         } catch (err) {
