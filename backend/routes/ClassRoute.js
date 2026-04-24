@@ -4,17 +4,32 @@
     import express from "express";
 
     const router = express();
+
+    function isAdmin (req, res, next) {
+        if (!req.session.user) {
+            return res.status(401).json({ message: 'Login first'});
+        }
+
+        if (req.session.user.role === "admin") {
+            next();
+        } else {
+            res.status(403).json({ message: 'You dont have access to this data'});
+            return;
+        }
+    }
     
-    router.post('/add', async (req, res) => {
+    router.post('/add', isAdmin, async (req, res) => {
         // class_name, code, year, teacher, createdBy
     
+        
             try {
-                const { class_name, code, year, teacher, trade, createdBy } = req.body;
+                const { class_name, code, year, teacher, trade } = req.body;
     
-                if (!class_name || !teacher || !createdBy || !trade) {
-                     return res.status(404).json({ message: 'Fill some missing fields' }); 
+                if (!class_name || !teacher || !trade) {
+                     return res.status(404).json({ message: 'Fill some missing fields' });
                 }
-    
+            
+                const createdBy = req.session.user.id;
                 await ClassSchema.create({
                     class_name,
                     code,
@@ -38,9 +53,9 @@
 router.get("/class_list", async (req, res) => {
     try {
 
-        const ClassList = await ClassSchema.find();
+        const ClassList = await ClassSchema.find().populate("teacher").populate("trade");
 
-        if (ClassList.length === 0) {
+        if (!ClassList) {
             return res.status(404).json({ message: 'No class in the system' });
         }
 
@@ -52,15 +67,15 @@ router.get("/class_list", async (req, res) => {
     }
 });
 
-router.get("/:id", async (req, res) => {
+router.get("/:_id", async (req, res) => {
     try {
-        const _id  = req.params;
+        const _id  = req.params._id;
 
         if (!_id) {
             return res.status(403).json({ message: 'Id required' });
         }
 
-        const ClassList = await ClassSchema.findOne(_id);
+        const ClassList = await ClassSchema.findById(_id).populate("teacher").populate("trade");
 
         if (!ClassList) {
             return res.status(404).json({ message: 'Id does not exist' });
@@ -74,7 +89,7 @@ router.get("/:id", async (req, res) => {
     }
 });
 
-router.put('/update/:id', async (req, res) => {
+router.put('/update/:_id', async (req, res) => {
     try {
         const _id = req.params;
        const { class_name, code, year, teacher, createdBy, trade } = req.body;
