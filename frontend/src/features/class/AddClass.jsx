@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { FaTimes } from 'react-icons/fa';
 
-const AddTrade = () => {
+const AddClass = () => {
     const [class_name, setClass_name] = useState("");
     const [code, setCode] = useState("");
     const [year, setYear] = useState("");
@@ -129,4 +129,4 @@ const AddTrade = () => {
     )
 }
 
-export default AddTrade;
+export default AddClass;
