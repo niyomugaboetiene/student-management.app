@@ -13,6 +13,8 @@ const AddTrade = () => {
     const [message, setMessage] = useState("");
     const [error, setError] = useState("");
 
+    const [selectedTeacher, setSelectedTeaceher] = useState(null);
+    const [selectedTrade, setSelectedTrade] = useState(null);
     // class_name, code, year, teacher, trade, createdBy
 
     const BACKEND_URL = import.meta.env.VITE_BACKEND_URL;
@@ -22,7 +24,7 @@ const AddTrade = () => {
             setIsLoading(true);
             const trRes = await axios.get(`${BACKEND_URL}/teacher/teacher_list`, { withCredentials: true });
             console.log(trRes.data.teacher);
-            setSelectedInstructor(trRes.data.teacher);
+            setSelectedTeaceher(trRes.data.teacher);
             setIsLoading(false);
           } catch (err) {
             console.error(err);
@@ -30,13 +32,34 @@ const AddTrade = () => {
           }
     }
 
-    const handleAddTrade = async () => {
+    useEffect(() => {
+        handleGetTeacher();
+    }, []);
+
+        const handleGetTrade = async () => {
+        try {
+            setIsLoading(true);
+            const tradeRes = await axios.get(`${BACKEND_URL}/student/auth/trade`);
+
+            setSelectedTrade(tradeRes.data.trade);
+            setIsLoading(false);
+        } catch (err) {
+            console.error(err);
+            setIsLoading(false);
+        }
+    }
+
+    useEffect(() => {
+        handleGetTrade();
+    }, []);
+
+    const handleAddClass = async () => {
         try {
             setIsLoading(true);
             if (!trade_name || !department) {
                 setError("Fill out the missing fields");
             }
-            const res = await axios.post(`${BACKEND_URL}/trade/add`, { trade_name, code, department }, { withCredentials: true });
+            const res = await axios.post(`${BACKEND_URL}/class/add`, { class_name, code, year, teacher, trade, createdBy }, { withCredentials: true });
             setMessage(res.data.message);
             setIsLoading(false);
         } catch (err) {
