@@ -23,12 +23,17 @@ import AddMarks from './features/marks/AddMarks'
 import MarksList from './features/marks/MarksList'
 import UpdateMarks from './features/marks/UpdateMarks'
 
-// subject protal
+// subject portal
 import AddSubject from './features/subject/AddSubject'
 import GetSubjectList from "./features/subject/SubjectList"
 import UpdateSubject from './features/subject/UpdateSubject'
 
+// Class portal
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import ClassList from './features/class/ClassList'
+
+import AddClass from './features/class/AddClass'
+import UpdateClass from './features/class/UpdateClass'
 function App() {
 
   return (
@@ -65,6 +70,11 @@ function App() {
                <Route path='/subject/add' element={<AddSubject />} />
                <Route path='/subject/list' element={<GetSubjectList />} />
                <Route path='/subject/update/:_id' element={<UpdateSubject />} />
+
+               {/* Class route */}
+               <Route path='/class/add' element={<AddClass />}/>
+               <Route path='/class/list' element={<ClassList />}/>
+               <Route path='/class/update/:_id' element={<UpdateClass />}/>
            </Routes>
        </BrowserRouter>
   )
