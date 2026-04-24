@@ -3,33 +3,32 @@ import axios from 'axios';
 import { FaTimes } from 'react-icons/fa';
 
 const AddTrade = () => {
-    const [trade_name, setTrade_name] = useState("");
+    const [class_name, setClass_name] = useState("");
     const [code, setCode] = useState("");
-    const [department, setDepartment] = useState("");
+    const [year, setYear] = useState("");
+    const [teacher, setTeacher] = useState("");
+    const [trade, setTrade] = useState("");
+    const [createdBy, setCreatedBy] = useState("");
     const [isLoading, setIsLoading] = useState(false);
     const [message, setMessage] = useState("");
     const [error, setError] = useState("");
 
-    const [selectedDepartment, setSelectedDepartment] = useState(null);
+    // class_name, code, year, teacher, trade, createdBy
 
     const BACKEND_URL = import.meta.env.VITE_BACKEND_URL;
 
-    const handleGetDepartment = async () => {
+    const handleGetTeacher = async () => {
           try {
             setIsLoading(true);
-            const depRes = await axios.get(`${BACKEND_URL}/department/department_list`, { withCredentials: true });
-            console.log(depRes.data.department);
-            setSelectedDepartment(depRes.data.department);
+            const trRes = await axios.get(`${BACKEND_URL}/teacher/teacher_list`, { withCredentials: true });
+            console.log(trRes.data.teacher);
+            setSelectedInstructor(trRes.data.teacher);
             setIsLoading(false);
           } catch (err) {
             console.error(err);
             setIsLoading(false);
           }
     }
-
-    useEffect(() => {
-        handleGetDepartment();
-    }, []);
 
     const handleAddTrade = async () => {
         try {
