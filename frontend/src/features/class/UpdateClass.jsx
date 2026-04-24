@@ -112,9 +112,35 @@ const UpdateClass = () => {
                 {error && (
                     <div className="bg-red-500 mb-2 p-2 rounded-lg text-white font-bold relative flex justify-between">
                         <p>{error}</p> <p className="text-lg mt-1" onClick={() => setError("")}><FaTimes /></p>
-                    </div>                )}
+                    </div>
+                )}
+               
                 <h1 className="text-xl text-gray-600 font-bold">Update Class Portal</h1>
               
+                <div className="mt-3">
+                    <input type="text"  
+                       value={class_name}
+                       onChange={(e) => setClass_name(e.target.value)} required
+                       className="bg-gray-100  w-full p-3 rounded-full focus:outline-1 focus:outline-gray-500" placeholder="Class name"
+                    />
+                </div>
+                
+                <div className="mt-3">
+                    <input type="text"  
+                    value={code}
+                    onChange={(e) => setCode(e.target.value)} required
+                    className="bg-gray-100 w-full p-3 rounded-full focus:outline-1 focus:outline-gray-500" placeholder="code"
+                />
+                </div>
+                
+                <div className="mt-3">
+                    <input type="text"
+                    value={year}  
+                    onChange={(e) => setYear(e.target.value)} required
+                    className="bg-gray-100 w-full p-3 rounded-full focus:outline-1 focus:outline-gray-500" placeholder="Year"
+                />
+                </div>
+
                 <div className="mt-3 mb-4">
                     <select  
                        value={teacher}
@@ -148,4 +174,4 @@ const UpdateClass = () => {
     )
 }
 
-export default UpdateMarks;
+export default UpdateClass;
