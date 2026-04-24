@@ -32,7 +32,7 @@ const MarksList = () => {
     }
 
     useEffect(() => {
-        handleGetMarks();
+        handleGetClass();
     }, []);
 
     const DeleteMarks = async (_id) => {
