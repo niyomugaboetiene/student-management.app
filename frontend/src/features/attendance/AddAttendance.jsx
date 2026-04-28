@@ -157,17 +157,21 @@ const AddAttendance = () => {
                 </div>
 
                 <div className="mt-3">
-                    <input type="text"  
-                       onChange={(e) => setTrade_name(e.target.value)} required
-                       className="bg-gray-100  w-full p-3 rounded-full focus:outline-1 focus:outline-gray-500" placeholder="Trade name"
+                    <input type="date"  
+                       onChange={(e) => setDate(e.target.value)} required
+                       className="bg-gray-100  w-full p-3 rounded-full focus:outline-1 focus:outline-gray-500"
                     />
                 </div>
                 
                 <div className="mt-3">
-                    <input type="text"  
-                    onChange={(e) => setCode(e.target.value)} required
-                    className="bg-gray-100 w-full p-3 rounded-full focus:outline-1 focus:outline-gray-500" placeholder="code"
-                />
+                    <select 
+                        className="bg-gray-100  w-full p-3 rounded-full focus:outline-1 focus:outline-gray-500"
+                        onChange={(e) => setStatus(e.target.value)}
+                        >
+                            <option value="">Select status</option>
+                            <option value="present">Present</option>
+                            <option value="absent">Absent</option>
+                        </select>
                 </div>
 
                 <button onClick={handleAddTrade} className="w-full bg-cyan-500 p-3 rounded-full text-white font-bold hover:bg-cyan-400 transition-colors mb-4">Add Trade</button>
