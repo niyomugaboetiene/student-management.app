@@ -35,6 +35,40 @@ const AddAttendance = () => {
     useEffect(() => {
         handleGetClasse();
     }, []);
+    
+    const handleGetStudent = async () => {
+          try {
+            setIsLoading(true);
+            const classRes = await axios.get(`${BACKEND_URL}/class/class_list`, { withCredentials: true });
+            console.log(classRes.data.classes);
+            setSelectedClasse(classRes.data.classes);
+            setIsLoading(false);
+          } catch (err) {
+            console.error(err);
+            setIsLoading(false);
+          }
+    }
+
+    useEffect(() => {
+        handleGetStudent();
+    }, []);
+    
+    const handleGetMarkedBy = async () => {
+          try {
+            setIsLoading(true);
+            const classRes = await axios.get(`${BACKEND_URL}/class/class_list`, { withCredentials: true });
+            console.log(classRes.data.classes);
+            setSelectedClasse(classRes.data.classes);
+            setIsLoading(false);
+          } catch (err) {
+            console.error(err);
+            setIsLoading(false);
+          }
+    }
+
+    useEffect(() => {
+        handleGetMarkedBy();
+    }, []);
 
     const handleAddTrade = async () => {
         try {
