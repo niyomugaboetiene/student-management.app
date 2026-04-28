@@ -24,11 +24,7 @@ const AddAttendance = () => {
     const handleGetClasse = async () => {
           try {
             setIsLoading(true);
-            const classRes = await axios.get(`${BACKEND_URL}/class/class_list`, { withCredentials: true });
-            // console.log(classRes.data.classes);
-            const data = classRes.data.classes;
-            class_id = data._id;
-            console.log("Class id", class_id);
+            const classRes = await axios.get(`${BACKEND_URL}/class/class_list`, { withCredentials: true });            
             setSelectedClasse(classRes.data.classes);
             setIsLoading(false);
           } catch (err) {
@@ -65,7 +61,7 @@ const AddAttendance = () => {
             setIsLoading(true);
             const classRes = await axios.get(`${BACKEND_URL}/class/class_list`, { withCredentials: true });
             console.log(classRes.data.classes);
-            setSelectedClasse(classRes.data.classes);
+            setSelectedMarked_by(classRes.data.classes);
             setIsLoading(false);
           } catch (err) {
             console.error(err);
