@@ -86,7 +86,7 @@ const AttendanceList = () => {
                                 <td className="py-3 px-4 text-left">{attend.marked_by?.full_name ? attend.marked_by?.full_name : "No marker"}</td>
                                 <td className="py-3 px-4 text-left">{new Date(attend.date).toLocaleDateString()}</td>
                                 <td className="py-3 px-4 text-left">{new Date(attend.createdAt).toLocaleDateString()}</td>
-                                <td className={`rounded-full flex h-8 w-20 font-bold ${attend.status === "present" ? 'bg-green-500' : 'bg-red-500'} text-white`}>{attend.status}</td>
+                                <td className={`rounded-full flex h-8 w-20 font-bold ${attend.status === "present" ? 'bg-green-500' : 'bg-red-500'} text-white text-center`}>{attend.status}</td>
 {/* 
                                 <td className="flex justify-between p-3">
                                     <Link className="inline-flex gap-2 bg-green-500 py-1 px-3 rounded-lg font-bold text-white" to={`/marks/update/${mark._id}`}><FaEdit /> Update</Link>
