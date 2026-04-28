@@ -26,7 +26,9 @@ const AddAttendance = () => {
             setIsLoading(true);
             const classRes = await axios.get(`${BACKEND_URL}/class/class_list`, { withCredentials: true });
             // console.log(classRes.data.classes);
-            
+            const data = classRes.data.classes;
+            class_id = data._id;
+            console.log("Class id", class_id);
             setSelectedClasse(classRes.data.classes);
             setIsLoading(false);
           } catch (err) {
