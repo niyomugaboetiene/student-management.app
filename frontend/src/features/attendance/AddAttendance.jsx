@@ -163,7 +163,7 @@ const AddAttendance = () => {
                 
                 <div className="mt-3">
                     <select 
-                        className="bg-gray-100  w-full p-3 rounded-full focus:outline-1 focus:outline-gray-500"
+                        className="bg-gray-100  w-full p-3 rounded-full focus:outline-1 focus:outline-gray-500 mb-4"
                         onChange={(e) => setStatus(e.target.value)}
                         >
                             <option value="">Select status</option>
@@ -172,7 +172,7 @@ const AddAttendance = () => {
                         </select>
                 </div>
 
-                <button onClick={handleAddAttendance} className="w-full bg-cyan-500 p-3 rounded-full text-white font-bold hover:bg-cyan-400 transition-colors mb-4">Add Attendance</button>
+                <button onClick={handleAddAttendance} className="w-full bg-cyan-500 p-3 rounded-full text-white font-bold hover:bg-cyan-400 transition-colors">Add Attendance</button>
 
             </div>
         </div>
