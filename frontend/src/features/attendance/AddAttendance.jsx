@@ -88,13 +88,13 @@ const AddAttendance = () => {
             setIsLoading(false);
         } catch (err) {
             const errMessage = err.response?.data?.message || "Error occured"; 
-            if (errMessage === "Unauthorized") {
-                setError("Login to access this page");
-            }
+            // if (errMessage === "Unauthorized") {
+            //     setError("Login to access this page");
+            // }
 
-            if (errMessage === "YOu dont have access to this data") {
-                setError(errMessage);
-            }
+            // if (errMessage === "YOu dont have access to this data") {
+            //     setError(errMessage);
+            // }
 
             if (errMessage === "Internal server error") {
                 setError(errMessage);
@@ -174,7 +174,7 @@ const AddAttendance = () => {
                         </select>
                 </div>
 
-                <button onClick={handleAddTrade} className="w-full bg-cyan-500 p-3 rounded-full text-white font-bold hover:bg-cyan-400 transition-colors mb-4">Add Trade</button>
+                <button onClick={handleAddAttendance} className="w-full bg-cyan-500 p-3 rounded-full text-white font-bold hover:bg-cyan-400 transition-colors mb-4">Add Attendance</button>
 
             </div>
         </div>
