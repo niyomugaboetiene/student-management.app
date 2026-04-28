@@ -13,14 +13,16 @@ const AddAttendance = () => {
     const [message, setMessage] = useState("");
     const [error, setError] = useState("");
 
-    const [selectedDepartment, setSelectedDepartment] = useState(null);
+    const [selectedClasse, setSelectedClasse] = useState(null);
+    const [selectedStudent, setSelectedStudent] = useState(null);
+    const [selectedMarked_By, setSelectedMarked_by] = useState(null);
 
     const BACKEND_URL = import.meta.env.VITE_BACKEND_URL;
 
-    const handleGetDepartment = async () => {
+    const handleGetClasse = async () => {
           try {
             setIsLoading(true);
-            const depRes = await axios.get(`${BACKEND_URL}/department/department_list`, { withCredentials: true });
+            const depRes = await axios.get(`${BACKEND_URL}/class/class_list`, { withCredentials: true });
             console.log(depRes.data.department);
             setSelectedDepartment(depRes.data.department);
             setIsLoading(false);
@@ -31,7 +33,7 @@ const AddAttendance = () => {
     }
 
     useEffect(() => {
-        handleGetDepartment();
+        handleGetClasse();
     }, []);
 
     const handleAddTrade = async () => {
