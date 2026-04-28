@@ -29,11 +29,16 @@ import GetSubjectList from "./features/subject/SubjectList"
 import UpdateSubject from './features/subject/UpdateSubject'
 
 // Class portal
-import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import ClassList from './features/class/ClassList'
-
 import AddClass from './features/class/AddClass'
 import UpdateClass from './features/class/UpdateClass'
+
+//Attendance portal
+import AddAttendance from './features/attendance/AddAttendance' 
+import AttendanceList from './features/attendance/AttendanceList'
+
+import { BrowserRouter, Routes, Route } from 'react-router-dom'
+
 function App() {
 
   return (
@@ -75,6 +80,10 @@ function App() {
                <Route path='/class/add' element={<AddClass />}/>
                <Route path='/class/list' element={<ClassList />}/>
                <Route path='/class/update/:_id' element={<UpdateClass />}/>
+
+               {/* Attendance route */}
+               <Route path='/attendance/add' element={<AddAttendance />} />
+               <Route path='/attendance/list' element={<AttendanceList />} />
            </Routes>
        </BrowserRouter>
   )
