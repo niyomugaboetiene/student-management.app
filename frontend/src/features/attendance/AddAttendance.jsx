@@ -3,9 +3,12 @@ import axios from 'axios';
 import { FaTimes } from 'react-icons/fa';
 
 const AddAttendance = () => {
-    const [trade_name, setTrade_name] = useState("");
-    const [code, setCode] = useState("");
-    const [department, setDepartment] = useState("");
+    // student, classe, marked_by, date, status
+    const [student, setStudent] = useState("");
+    const [classe, setClasse] = useState("");
+    const [marked_by, setMarked_by] = useState("");
+    const [date, setDate] = useState("");
+    const [status, setStatus] = useState("");
     const [isLoading, setIsLoading] = useState(false);
     const [message, setMessage] = useState("");
     const [error, setError] = useState("");
