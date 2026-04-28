@@ -26,12 +26,12 @@ router.post('/attendance', async (req, res) => {
 
 
         return res.status(201).json({
-            message: `Student's attendance`,
+            message: `Student's attendance added successfully`,
             attendance: newAttendance
         });
     } catch (err) {
         console.error(err);
-        return res.status(500).json({ message: 'Internal server error '});
+        return res.status(500).json({ message: 'Internal server error'});
     }
 });
 
