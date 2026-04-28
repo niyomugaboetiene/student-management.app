@@ -19,11 +19,14 @@ const AddAttendance = () => {
 
     const BACKEND_URL = import.meta.env.VITE_BACKEND_URL;
 
+    let class_id;
+
     const handleGetClasse = async () => {
           try {
             setIsLoading(true);
             const classRes = await axios.get(`${BACKEND_URL}/class/class_list`, { withCredentials: true });
-            console.log(classRes.data.classes);
+            // console.log(classRes.data.classes);
+            
             setSelectedClasse(classRes.data.classes);
             setIsLoading(false);
           } catch (err) {
@@ -39,7 +42,7 @@ const AddAttendance = () => {
     const handleGetStudent = async () => {
           try {
             setIsLoading(true);
-            const studentRes = await axios.get(`${BACKEND_URL}/student/studentList`, { withCredentials: true });
+            const studentRes = await axios.get(`${BACKEND_URL}/student/class/${}`, { withCredentials: true });
             console.log(studentRes.data.student);
             setSelectedStudent(studentRes.data.student);
             setIsLoading(false);
