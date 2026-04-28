@@ -77,13 +77,13 @@ const AddAttendance = () => {
         handleGetMarkedBy();
     }, []);
 
-    const handleAddTrade = async () => {
+    const handleAddAttendance = async () => {
         try {
             setIsLoading(true);
-            if (!trade_name || !department) {
+            if (!student || !classe || !marked_by || !status || !date) {
                 setError("Fill out the missing fields");
             }
-            const res = await axios.post(`${BACKEND_URL}/trade/add`, { trade_name, code, department }, { withCredentials: true });
+            const res = await axios.post(`${BACKEND_URL}/attendance/attendance`, { student, classe, marked_by, date, status }, { withCredentials: true });
             setMessage(res.data.message);
             setIsLoading(false);
         } catch (err) {
