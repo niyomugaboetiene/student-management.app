@@ -5,6 +5,7 @@ import ClassSchema from "../schema/ClassSchema.js";
 
 const router = express.Router();
 
+
 router.post('/attendance', async (req, res) => {
     //     student, class, marked_by, date status
 

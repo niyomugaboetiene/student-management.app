@@ -21,6 +21,25 @@ router.get("/studentList", async (req, res) => {
     }
 });
 
+// get student based on class
+
+router.get('/class/:class_id', async (req, res) => {
+    try {
+        const class_id = req.params.class_id;
+
+        const result = await StudentSchema.find({ class: class_id });
+
+        if (!result) {
+           return res.status(404).json({ message: 'No student in this class' });
+        }
+
+        return res.status(200).json({ message: 'Class list', student: result });
+    } catch (err) {
+        console.error("ERROR", err);
+        return res.status(500).json({ message: 'Internal server error'});
+    }
+});
+
 router.get("/:_id", async (req, res) => {
     try {
         const { _id }   = req.params;
