@@ -118,7 +118,43 @@ const AddAttendance = () => {
                     <div className="bg-red-500 mb-2 p-2 rounded-lg text-white font-bold relative flex justify-between">
                         <p>{error}</p> <p className="text-lg mt-1" onClick={() => setError("")}><FaTimes /></p>
                     </div>                )}
-                <h1 className="text-xl text-gray-600 font-bold">Add Trade Portal</h1>
+                <h1 className="text-xl text-gray-600 font-bold">Add Attendance Portal</h1>
+             
+                <div className="mt-3 mb-4">
+                    <select  
+                       onChange={(e) => setClasse(e.target.value)} 
+                       className="bg-gray-100 w-full rounded-full p-3 focus:outline-1 focus:outline-gray-500" placeholder=""
+                    > 
+
+                       {selectedClasse?.map((cla) => (
+                        <option value={cla._id} key={cla._id}>{cla.class_name}</option>
+                       ))}
+                    </select>
+                </div>
+                
+                <div className="mt-3 mb-4">
+                    <select  
+                       onChange={(e) => setStudent(e.target.value)} 
+                       className="bg-gray-100 w-full rounded-full p-3 focus:outline-1 focus:outline-gray-500" placeholder=""
+                    > 
+
+                       {selectedStudent?.map((st) => (
+                        <option value={st._id} key={st._id}>{st.full_name}</option>
+                       ))}
+                    </select>
+                </div>
+                
+                <div className="mt-3 mb-4">
+                    <select  
+                       onChange={(e) => setMarked_by(e.target.value)} 
+                       className="bg-gray-100 w-full rounded-full p-3 focus:outline-1 focus:outline-gray-500" placeholder=""
+                    > 
+
+                       {selectedMarked_By?.map((tr) => (
+                        <option value={tr._id} key={tr._id}>{tr.full_name}</option>
+                       ))}
+                    </select>
+                </div>
 
                 <div className="mt-3">
                     <input type="text"  
@@ -132,18 +168,6 @@ const AddAttendance = () => {
                     onChange={(e) => setCode(e.target.value)} required
                     className="bg-gray-100 w-full p-3 rounded-full focus:outline-1 focus:outline-gray-500" placeholder="code"
                 />
-                </div>
-                
-                <div className="mt-3 mb-4">
-                    <select  
-                       onChange={(e) => setDepartment(e.target.value)} 
-                       className="bg-gray-100 w-full rounded-full p-3 focus:outline-1 focus:outline-gray-500" placeholder=""
-                    > 
-
-                       {selectedDepartment?.map((dep) => (
-                        <option value={dep._id} key={dep._id}>{dep.name}</option>
-                       ))}
-                    </select>
                 </div>
 
                 <button onClick={handleAddTrade} className="w-full bg-cyan-500 p-3 rounded-full text-white font-bold hover:bg-cyan-400 transition-colors mb-4">Add Trade</button>
