@@ -59,9 +59,9 @@ const AddAttendance = () => {
     const handleGetMarkedBy = async () => {
           try {
             setIsLoading(true);
-            const classRes = await axios.get(`${BACKEND_URL}/class/class_list`, { withCredentials: true });
-            console.log(classRes.data.classes);
-            setSelectedMarked_by(classRes.data.classes);
+            const classRes = await axios.get(`${BACKEND_URL}/teacher/teacher_list`, { withCredentials: true });
+            console.log(classRes.data.teacher);
+            setSelectedMarked_by(classRes.data.teacher);
             setIsLoading(false);
           } catch (err) {
             console.error(err);
