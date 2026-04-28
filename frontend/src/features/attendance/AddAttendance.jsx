@@ -41,7 +41,8 @@ const AddAttendance = () => {
           try {
             setIsLoading(true);
             const studentRes = await axios.get(`${BACKEND_URL}/student/class/${classe}`, { withCredentials: true });
-            console.log(studentRes.data.student);
+            console.log("Class id", classe)
+            console.log("Result", studentRes.data.student);
             setSelectedStudent(studentRes.data.student);
             setIsLoading(false);
           } catch (err) {
@@ -51,10 +52,10 @@ const AddAttendance = () => {
     }
 
     useEffect(() => {
-        if (class_id) {
+        if (classe) {
             handleGetStudent();
         }
-    }, [class_id]);
+    }, [classe]);
     
     const handleGetMarkedBy = async () => {
           try {
