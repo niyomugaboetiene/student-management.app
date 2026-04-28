@@ -122,7 +122,8 @@ const AddAttendance = () => {
                        onChange={(e) => setClasse(e.target.value)} 
                        className="bg-gray-100 w-full rounded-full p-3 focus:outline-1 focus:outline-gray-500" placeholder=""
                     > 
-
+                     
+                        <option value="" disabled>----Select class----</option>
                        {selectedClasse?.map((cla) => (
                         <option value={cla._id} key={cla._id}>{cla.class_name}</option>
                        ))}
@@ -134,7 +135,7 @@ const AddAttendance = () => {
                        onChange={(e) => setStudent(e.target.value)} 
                        className="bg-gray-100 w-full rounded-full p-3 focus:outline-1 focus:outline-gray-500" placeholder=""
                     > 
-
+                        <option value="" disabled>----Select student----</option>
                        {selectedStudent?.map((st) => (
                         <option value={st._id} key={st._id}>{st.full_name}</option>
                        ))}
@@ -146,7 +147,7 @@ const AddAttendance = () => {
                        onChange={(e) => setMarked_by(e.target.value)} 
                        className="bg-gray-100 w-full rounded-full p-3 focus:outline-1 focus:outline-gray-500" placeholder=""
                     > 
-
+                        <option value="" disabled>----Select marker----</option>
                        {selectedMarked_By?.map((tr) => (
                         <option value={tr._id} key={tr._id}>{tr.full_name}</option>
                        ))}
