@@ -39,9 +39,9 @@ const AddAttendance = () => {
     const handleGetStudent = async () => {
           try {
             setIsLoading(true);
-            const classRes = await axios.get(`${BACKEND_URL}/class/class_list`, { withCredentials: true });
-            console.log(classRes.data.classes);
-            setSelectedClasse(classRes.data.classes);
+            const studentRes = await axios.get(`${BACKEND_URL}/student/studentList`, { withCredentials: true });
+            console.log(studentRes.data.student);
+            setSelectedClasse(studentRes.data.student);
             setIsLoading(false);
           } catch (err) {
             console.error(err);
