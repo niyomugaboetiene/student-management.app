@@ -37,7 +37,7 @@ router.post('/attendance', async (req, res) => {
 
 router.get('/attendanceList', async (req, res) => {
     try {
-        const attendanceList = await AttendanceSchema.find();
+        const attendanceList = await AttendanceSchema.find().populate("student").populate("class").populate("marked_by");
 
         if (attendanceList.length === 0) {
             return res.status(404).json({ message: 'No attendance in the system. try to add some' });
