@@ -42,7 +42,9 @@ const HandleGetStudentAttendance = () => {
     return (
         <div>
             <div>
-                {}
+                {attendance?.map((attend, index) => (
+                    
+                ))}
             </div>
         </div>
     )
