@@ -43,7 +43,9 @@ const HandleGetStudentAttendance = () => {
         <div>
             <div>
                 {attendance?.map((attend, index) => (
-                    
+                    <div>
+                        <h1>{attend.}</h1>
+                    </div>
                 ))}
             </div>
         </div>
