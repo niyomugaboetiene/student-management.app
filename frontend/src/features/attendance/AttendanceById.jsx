@@ -38,4 +38,12 @@ const HandleGetStudentAttendance = () => {
         handleGetAttendance();
     }, []);
 
+
+    return (
+        <div>
+            <div>
+                {}
+            </div>
+        </div>
+    )
 }
