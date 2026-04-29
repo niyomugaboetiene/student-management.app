@@ -89,14 +89,14 @@ const AttendanceList = () => {
                                 <td className={`rounded-full flex h-8 w-20 font-bold ${attend.status === "present" ? 'bg-green-500' : 'bg-red-500'} text-white text-center items-center justify-center mt-2`}>{attend.status}</td>
 
                                 <td className="p-3">
-                                    <Link className="inline-flex gap-2 bg-green-500 py-1 px-3 rounded-lg font-bold text-white" to={`/marks/update/${attend._id}`}><FaEdit /> Update</Link>
+                                    <Link className="inline-flex gap-2 bg-green-500 hover:bg-green-600 transition-colors py-1 px-3 rounded-lg font-bold text-white" to={`/marks/update/${attend._id}`}><FaEdit /> Update</Link>
                                 </td>
                                  <td>
-                                    <Link className="inline-flex gap-2 bg-green-500 py-1 px-3 rounded-lg font-bold text-white" to={`/attendance/view/${attend._id}`}><FaEye />View</Link>
+                                    <Link className="inline-flex gap-2 bg-yellow-500 hover:bg-yellow-600 transition-colors  py-1 px-3 rounded-lg font-bold text-white" to={`/attendance/view/${attend._id}`}><FaEye />View</Link>
                                   </td>
                                   
                                   <td>
-                                    <button className="inline-flex gap-2 bg-red-500 py-1 px-3 font-bold text-white rounded-lg"><FaTrash /> Delete</button>
+                                    <button className="inline-flex gap-2 bg-red-500 hover:bg-red-600 transition-colors py-1 px-3 font-bold text-white rounded-lg"><FaTrash /> Delete</button>
                                   </td>
                             </tr>
                         ))}
