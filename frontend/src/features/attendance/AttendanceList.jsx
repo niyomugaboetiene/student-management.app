@@ -1,7 +1,7 @@
 import axios from "axios";
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { FaEdit, FaTrash } from "react-icons/fa";
+import { FaEdit, FaTrash, FaEye } from "react-icons/fa";
 
 const AttendanceList = () => {
     const [attendance, setAttendance] = useState([]);
@@ -73,7 +73,7 @@ const AttendanceList = () => {
                             <th className="py-3 px-4 text-left">Date</th>
                             <th className="py-3 px-4 text-left">Done At</th>
                             <th className="py-3 px-4 text-left">Status</th>
-                            {/* <th className="py-3 px-4 text-left" colSpan={2}>Operations</th> */}
+                            <th className="py-3 px-4 text-left" colSpan={3}>Operations</th>
                         </tr>
                     </thead>
 
@@ -86,12 +86,18 @@ const AttendanceList = () => {
                                 <td className="py-3 px-4 text-left">{attend.marked_by?.full_name ? attend.marked_by?.full_name : "No marker"}</td>
                                 <td className="py-3 px-4 text-left">{new Date(attend.date).toLocaleDateString()}</td>
                                 <td className="py-3 px-4 text-left">{new Date(attend.createdAt).toLocaleDateString()}</td>
-                                <td className={`rounded-full flex h-8 w-20 font-bold ${attend.status === "present" ? 'bg-green-500' : 'bg-red-500'} text-white text-center`}>{attend.status}</td>
-{/* 
-                                <td className="flex justify-between p-3">
-                                    <Link className="inline-flex gap-2 bg-green-500 py-1 px-3 rounded-lg font-bold text-white" to={`/marks/update/${mark._id}`}><FaEdit /> Update</Link>
-                                    <button className="inline-flex gap-2 bg-red-500 py-1 px-3 font-bold text-white rounded-lg" onClick={() => DeleteMarks(mark._id)}><FaTrash /> Delete</button>
-                                </td> */}
+                                <td className={`rounded-full flex h-8 w-20 font-bold ${attend.status === "present" ? 'bg-green-500' : 'bg-red-500'} text-white text-center items-center justify-center mt-2`}>{attend.status}</td>
+
+                                <td className="p-3">
+                                    <Link className="inline-flex gap-2 bg-green-500 py-1 px-3 rounded-lg font-bold text-white" to={`/marks/update/${attend._id}`}><FaEdit /> Update</Link>
+                                </td>
+                                 <td>
+                                    <Link className="inline-flex gap-2 bg-green-500 py-1 px-3 rounded-lg font-bold text-white" to={`/attendance/view/${attend._id}`}><FaEye />View</Link>
+                                  </td>
+                                  
+                                  <td>
+                                    <button className="inline-flex gap-2 bg-red-500 py-1 px-3 font-bold text-white rounded-lg"><FaTrash /> Delete</button>
+                                  </td>
                             </tr>
                         ))}
                     </tbody>
