@@ -36,6 +36,7 @@ import UpdateClass from './features/class/UpdateClass'
 //Attendance portal
 import AddAttendance from './features/attendance/AddAttendance' 
 import AttendanceList from './features/attendance/AttendanceList'
+import HandleGetStudentAttendance from './features/attendance/AttendanceById'
 
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 
@@ -84,6 +85,7 @@ function App() {
                {/* Attendance route */}
                <Route path='/attendance/add' element={<AddAttendance />} />
                <Route path='/attendance/list' element={<AttendanceList />} />
+               <Route path='/attendance/view/:_id' element={<HandleGetStudentAttendance />} />
            </Routes>
        </BrowserRouter>
   )
