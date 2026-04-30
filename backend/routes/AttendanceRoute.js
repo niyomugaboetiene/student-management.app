@@ -121,7 +121,7 @@ router.get('/get', async (req, res) => {
 // full reprort of attendance per class
 router.get('/full/:_id', async (req, res) => {
     try {
-        const _id = req.params;
+        const _id = req.params._id;
 
         if (!_id) {
             return res.status(403).json({ message: 'Fill out class id'});
@@ -141,7 +141,7 @@ router.get('/full/:_id', async (req, res) => {
             return res.status(404).json({ message: 'This class has no attendance' });
         }
 
-        
+
         return res.status(200).json({ message: 'Class attendance', attendance: classAttendance });
     } catch (err) {
         console.error(err);
@@ -152,7 +152,7 @@ router.get('/full/:_id', async (req, res) => {
 // get fully atteandance per student
 router.get('/stud/:_id', async (req, res) => {
     try {
-        const _id =  req.params;
+        const _id =  req.params._id;
         if (!_id) {
             return res.status(403).json({ message: 'Fill out student id' });
         }
