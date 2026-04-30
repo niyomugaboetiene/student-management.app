@@ -7,15 +7,15 @@ const HandleGetStudentAttendance = () => {
     const [error, setError] = useState("");
     const [loading, setLoading] = useState(false);
 
-    const  student_id  = useParams();
+    const  _id  = useParams();
 
     const BACKEND_URL = import.meta.env.VITE_BACKEND_URL;
 
     const handleGetAttendance = async() => {
         try {
             setLoading(true);
-            console.log("Student id", student_id)
-            const res = await axios.get(`${BACKEND_URL}/attendance/stud/${student_id}`, { withCredentials: true });
+            console.log("Student id", _id)
+            const res = await axios.get(`${BACKEND_URL}/attendance/stud/${_id}`, { withCredentials: true });
             setAttendance(res.data.attendance);
             setLoading(false);
         } catch (err) {
@@ -38,10 +38,10 @@ const HandleGetStudentAttendance = () => {
     }
 
     useEffect(() => {
-        // if (student_id) {
+        if (_id) {
            handleGetAttendance();
-        // }
-    }, [student_id]);
+        }
+    }, [_id]);
 
 
     return (
