@@ -141,6 +141,7 @@ router.get('/full/:_id', async (req, res) => {
             return res.status(404).json({ message: 'This class has no attendance' });
         }
 
+        
         return res.status(200).json({ message: 'Class attendance', attendance: classAttendance });
     } catch (err) {
         console.error(err);
