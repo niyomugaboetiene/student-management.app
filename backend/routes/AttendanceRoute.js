@@ -89,7 +89,7 @@ router.get('/get', async (req, res) => {
         const start = new Date(year, month - 1, day, 0, 0, 0);
         const end = new Date(year, month - 1, day, 23, 59, 59);
 
-        const student_details = await StudentSchema.findById({_id: student_id}).populate("student").populate("class").populate("marked_by");
+        const student_details = await StudentSchema.findById({_id: student_id});
 
         if (!student_details) {
             return res.status(404).json({ message: 'No student found for this ID' });
@@ -100,7 +100,7 @@ router.get('/get', async (req, res) => {
         const attendance = await AttendanceSchema.find({
             student_id, class_of_student, 
             date: { $gte: start, $lte: end }
-        });
+        }).populate("student").populate("class").populate("marked_by");
 
         if (attendance.length === 0) {
             return res.status(404).json({ message: 'No attendance done on this day' });
@@ -127,7 +127,7 @@ router.get('/full/:_id', async (req, res) => {
             return res.status(403).json({ message: 'Fill out class id'});
         } 
 
-        const isExist = await ClassSchema.findById(_id).populate("student").populate("class").populate("marked_by");
+        const isExist = await ClassSchema.findById(_id);
 
         if (!isExist) {
             return res.status(404).json({ message: `Class didn't found` });
@@ -135,7 +135,7 @@ router.get('/full/:_id', async (req, res) => {
 
         const classAttendance = await AttendanceSchema.find({
             class: _id
-        });
+        }).populate("student").populate("class").populate("marked_by");;
 
         if (classAttendance.length === 0) {
             return res.status(404).json({ message: 'This class has no attendance' });
@@ -157,7 +157,7 @@ router.get('/stud/:_id', async (req, res) => {
             return res.status(403).json({ message: 'Fill out student id' });
         }
 
-        const isExist = await StudentSchema.findById(_id).populate("student").populate("class").populate("marked_by");
+        const isExist = await StudentSchema.findById(_id);
 
         if (!isExist) {
             return res.status(404).json({ message: 'Enter a valid student id' });
@@ -165,7 +165,7 @@ router.get('/stud/:_id', async (req, res) => {
 
         const studentAttendance = await AttendanceSchema.find({
             student: _id
-        });
+        }).populate("student").populate("class").populate("marked_by");;
 
         if (!studentAttendance) {
             return res.status(404).json({ message: 'NO attendance for this student' });
