@@ -44,10 +44,15 @@ const HandleGetStudentAttendance = () => {
             <div>
                 {attendance?.map((attend, index) => (
                     <div>
-                        <h1>{attend?.attendance_id}</h1>
+                        <h1>{attend.attendance_id}</h1>
+                        <h1>{attend.student?.full_name}</h1>
+                        <h1>{attend.class?.class_name}</h1>
+                        <h1>{attend.marked_by?.full_name}</h1>
                     </div>
                 ))}
             </div>
         </div>
     )
 }
+
+export default HandleGetStudentAttendance
