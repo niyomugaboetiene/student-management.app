@@ -1,4 +1,4 @@
-import express from "express";
+import express, { response } from "express";
 import AttendanceSchema from "../schema/AttendanceSchema.js";
 import StudentSchema from "../schema/StudentSchema.js";
 import ClassSchema from "../schema/ClassSchema.js";
@@ -199,4 +199,18 @@ router.get('/stud/:_id', async (req, res) => {
         return res.status(500).json({ message: 'Intenral server error' });
     }
 });
+
+router.delete('/delete/:_id', async (req, res) => {
+    try {
+        const _id = req.params._id;
+
+       if (!_id) {
+        return res.status(403).json({ message: 'Id is required' });
+       }
+
+      await AttendanceSchema.findByIdAndDelete(_id);
+
+      return 
+    }
+})
 export default router
