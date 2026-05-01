@@ -95,17 +95,7 @@ router.get('/get', async (req, res) => {
            searchQuery.date = { $gte: start, $lte: end };
         }
 
-        const student_details = await StudentSchema.findById({full_name: full_name});
-
-        if (!student_details) {
-            return res.status(404).json({ message: 'No student found for this ID' });
-        }
-
-        const class_of_student = student_details.class;
-
-        const attendance = await AttendanceSchema.find({
-            
-        }).populate("student").populate("class").populate("marked_by");
+        const attendance = await AttendanceSchema.find(searchQuery).populate("student").populate("class").populate("marked_by");
 
         if (attendance.length === 0) {
             return res.status(404).json({ message: 'No attendance done on this day' });
