@@ -109,7 +109,16 @@ const AttendanceList = () => {
            }
     }
 
- 
+ const handleDeleteAttendance = async (_id) => {
+    const confrim = window.confirm("Are you sure you want to delete");
+    try {
+        setLoading(true);
+        if (confrim) {
+            await axios.delete(`${BACKEND_URL}/attendance/delete/${_id}`, { withCredentials: true });
+        }
+       setLoading(false);
+    }
+ }
     return (
         <div className="bg-cyan-100 min-h-screen">
             <div className="max-w-7xl mx-auto">
