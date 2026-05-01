@@ -210,7 +210,10 @@ router.delete('/delete/:_id', async (req, res) => {
 
       await AttendanceSchema.findByIdAndDelete(_id);
 
-      return 
+      return res.status(200).json({ message: 'Attendance deleted successfully' });
+    } catch (err) {
+       console.error(err);
+       return res.status(500).json({ message: 'Internal server error '});
     }
-})
+});
 export default router
