@@ -19,6 +19,7 @@ import AttendanceRoute from "../routes/AttendanceRoute.js";
 import MongoStore from "connect-mongo";
 
 // * auth
+
 import AdminAuth from "../auth/AdminAuth.js";
 import StudentAuth from "../auth/StudentAuth.js";
 import TeacherAuth from "../auth/TeacherAuth.js";
