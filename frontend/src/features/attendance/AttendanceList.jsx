@@ -64,7 +64,7 @@ const AttendanceList = () => {
             <div className="max-w-7xl mx-auto">
                 <h1 className="text-center text-2xl font-bold text-cyan-700 mb-4">Attendance List</h1>
                 <div className="flex gap-2">
-                     <input type="text" className="w-full border rounded-lg mb-2 p-1 border-cyan-600" placeholder="Search by date, class, "/>
+                     <input type="text" className="w-full border rounded-lg mb-2 p-1 border-cyan-600" placeholder="Search by day & month, class name, student full name. Ex: 12," />
                      <button className="bg-cyan-500 px-5 mb-2 text-white font-bold transition-colors hover:bg-cyan-400">Search</button>
                 </div>
                 <table className="w-full overflow-hidden overflow-x-auto">
