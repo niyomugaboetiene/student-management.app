@@ -83,13 +83,19 @@ router.get('/', async (req, res) => {
 // get attendance by date/class/student
 router.get('/get', async (req, res) => {
     try {
-        const { day, month, student_id } = req.query;
+        const { day, month, full_name, class_name } = req.query;
         
-        const year = new Date().getFullYear();
-        const start = new Date(year, month - 1, day, 0, 0, 0);
-        const end = new Date(year, month - 1, day, 23, 59, 59);
+        let searchQuery = {};
+        if (full_name) searchQuery.full_name = full_name;
+        if (class_name) searchQuery.class_name = class_name;
+        if (day && month) {
+           const year = new Date().getFullYear();
+           const start = new Date(year, month - 1, day, 0, 0, 0);
+           const end = new Date(year, month - 1, day, 23, 59, 59);
+           searchQuery.date = { $gte: start, $lte: end };
+        }
 
-        const student_details = await StudentSchema.findById({_id: student_id});
+        const student_details = await StudentSchema.findById({full_name: full_name});
 
         if (!student_details) {
             return res.status(404).json({ message: 'No student found for this ID' });
@@ -98,8 +104,7 @@ router.get('/get', async (req, res) => {
         const class_of_student = student_details.class;
 
         const attendance = await AttendanceSchema.find({
-            student_id, class_of_student, 
-            date: { $gte: start, $lte: end }
+            
         }).populate("student").populate("class").populate("marked_by");
 
         if (attendance.length === 0) {
