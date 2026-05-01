@@ -75,7 +75,7 @@ const AttendanceList = () => {
                 }
             });
 
-            setAttendance(res.data.attendance);
+            setAttendance(res.data.attendances);
             setLoading(false);
            } catch (err){
             console.error(err);
@@ -133,7 +133,7 @@ const AttendanceList = () => {
                     </thead>
 
                     <tbody>
-                        {attendance.map((attend, index) => (
+                        {attendance?.map((attend, index) => (
                             <tr key={index} className={`${index % 2 === 0 ? 'bg-cyan-200' : 'bg-gray-100'} ${index % 2 == 0 ? 'hover:bg-cyan-300' : 'hover:bg-gray-200'} transition-colors`}>
                                 <td className="py-3 px-4 text-left">{attend.attendance_id}</td>
                                 <td className="py-3 px-4 text-left">{attend.student?.full_name ? attend.student?.full_name : "No student"}</td>
