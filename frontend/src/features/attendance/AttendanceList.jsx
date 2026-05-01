@@ -110,7 +110,9 @@ const AttendanceList = () => {
                 )}
 
                 {loading && (
-                    <div className="animate-bounce"></div>
+                    <div className="flex justify-center mt-4">
+                        <div className="w-8 h-8 border-4 border-cyan-500 border-t-transparent rounded-full animate-spin"></div>
+                    </div>
                 )}
                 <div className="flex gap-2">
                      <input value={searchQuery} type="text" className="w-full border rounded-lg mb-2 p-1 border-cyan-600" placeholder="Search by day & month, class name, student full name. Ex: 12&10&L5 SOD&eric" onChange={(e) => setSearchQuery(e.target.value)} />
