@@ -63,8 +63,18 @@ const AttendanceList = () => {
 
     const handleSearch = async() => {
            try {
+            setError("");
+
+            if (!searchQuery.trim()) {
+                await handleGetAttendance();
+            }
+
             setLoading(true);
-            const [day, month, class_name, full_name] = searchQuery.split("&");
+            const parts = searchQuery.split("&");
+            const day = parts[0]?.trim();
+            const month = parts[0]?.trim();
+            const class_name = parts[0]?.trim();
+            const full_name = parts[0]?.trim();
 
             const res = await axios.get(`${BACKEND_URL}/attendance/get`, {
                 params: {
