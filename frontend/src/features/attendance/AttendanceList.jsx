@@ -7,6 +7,7 @@ const AttendanceList = () => {
     const [attendance, setAttendance] = useState([]);
     const [error, setError] = useState("");
     const [loading, setLoading] = useState(false);
+    const [searchQuery, setSearchQuery] = useState("");
 
     const BACKEND_URL = import.meta.env.VITE_BACKEND_URL;
 
@@ -59,12 +60,15 @@ const AttendanceList = () => {
     //     }
     // }
 
+    const handleSearch = async() => {
+
+    }
     return (
         <div className="bg-cyan-100 min-h-screen">
             <div className="max-w-7xl mx-auto">
                 <h1 className="text-center text-2xl font-bold text-cyan-700 mb-4">Attendance List</h1>
                 <div className="flex gap-2">
-                     <input type="text" className="w-full border rounded-lg mb-2 p-1 border-cyan-600" placeholder="Search by day & month, class name, student full name. Ex: 12," />
+                     <input type="text" className="w-full border rounded-lg mb-2 p-1 border-cyan-600" placeholder="Search by day & month, class name, student full name. Ex: 12&10&L5 SOD&eric" />
                      <button className="bg-cyan-500 px-5 mb-2 text-white font-bold transition-colors hover:bg-cyan-400">Search</button>
                 </div>
                 <table className="w-full overflow-hidden overflow-x-auto">
