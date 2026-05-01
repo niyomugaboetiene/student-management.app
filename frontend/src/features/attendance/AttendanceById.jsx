@@ -51,7 +51,9 @@ const HandleGetStudentAttendance = () => {
     return (
         <div className="min-h-screen p-3 bg-cyan-100">
             <h1 className="text-center mt-3 text-2xl text-cyan-500 font-bold">Student Attendance Report</h1>
-            <button className="flex gap-2 bg-cyan-300 p-2 rounded-lg text-white-700 hover:bg-cyan-400 transition-colors" onClick={() => navigate(-1)}><FaBackward /> Back</button>
+            <div>
+                <button className="flex gap-2 bg-cyan-300 p-2 rounded-lg text-white-700 hover:bg-cyan-400 transition-colors" onClick={() => navigate(-1)}><FaBackward /> Back</button>
+            </div>
             <div className="flex space-x-6 mt-3">
                 {attendance?.map((attend, index) => (
                     <div key={index} className="bg-white p-4 text-xl rounded-xl shadow-xl text-gray-700">
