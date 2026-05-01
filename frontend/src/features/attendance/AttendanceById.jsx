@@ -30,7 +30,7 @@ const HandleGetStudentAttendance = () => {
             }
 
             if (errorMessage === "Internal server error") {
-                setError("Internal server error");
+                setError(errorMessage);
             }
             
             if (errorMessage === "NO attendance for this student") {

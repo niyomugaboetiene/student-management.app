@@ -95,15 +95,15 @@ const AttendanceList = () => {
             }
 
             if (errorMessage === "No class found") {
-                setError(errorMessage);
+                setError("No class found");
             }
 
             if (errorMessage === "No attendance done on this day") {
-                setError(errorMessage);
+                setError("No attendance done on this day");
             }
 
             if (errorMessage === "Internal server error") {
-                setError(errorMessage);
+                setError("Internal server error");
             }
             setLoading(false);
            }
