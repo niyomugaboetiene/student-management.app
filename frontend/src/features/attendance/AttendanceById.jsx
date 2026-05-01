@@ -17,6 +17,7 @@ const HandleGetStudentAttendance = () => {
             console.log("Student id", _id)
             const res = await axios.get(`${BACKEND_URL}/attendance/stud/${_id}`, { withCredentials: true });
             setAttendance(res.data.attendance);
+            console.log(res.data.attendance);
             setLoading(false);
         } catch (err) {
             console.error("Error", err);
