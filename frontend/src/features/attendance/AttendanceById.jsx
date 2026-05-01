@@ -2,10 +2,12 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 import { FaBackward } from "react-icons/fa";
+import { useNavigate } from "react-router-dom";
 
 const HandleGetStudentAttendance = () => {
     const [attendance, setAttendance] = useState([]);
     const [error, setError] = useState("");
+    const navigate = useNavigate("");
     const [loading, setLoading] = useState(false);
 
     const  { _id }  = useParams();
@@ -49,7 +51,7 @@ const HandleGetStudentAttendance = () => {
     return (
         <div className="min-h-screen p-3 bg-cyan-100">
             <h1 className="text-center mt-3 text-2xl text-cyan-500 font-bold">Student Attendance Report</h1>
-            <button className="flex gap-2 bg-cyan-300 p-2 rounded-lg text-white-700 hover:bg-cyan-400 transition-colors"><FaBackward /> Back</button>
+            <button className="flex gap-2 bg-cyan-300 p-2 rounded-lg text-white-700 hover:bg-cyan-400 transition-colors" onClick={() => navigate(-1)}><FaBackward /> Back</button>
             <div className="flex space-x-6 mt-3">
                 {attendance?.map((attend, index) => (
                     <div key={index} className="bg-white p-4 text-xl rounded-xl shadow-xl text-gray-700">
