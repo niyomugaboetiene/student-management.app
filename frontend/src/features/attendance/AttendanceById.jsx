@@ -55,6 +55,8 @@ const HandleGetStudentAttendance = () => {
                         <h1>Full_name: {attend.student?.full_name}</h1>
                         <h1>Class_name: {attend.class?.class_name ? attend.class?.class_name : "No class"}</h1>
                         <h1>Marked_by: {attend.marked_by?.full_name}</h1>
+                        <h1>Attend Date: {attend.date}</h1>
+                        <h1>Done At: {attend.createdAt}</h1>
                     </div>
                 ))}
             </div>
