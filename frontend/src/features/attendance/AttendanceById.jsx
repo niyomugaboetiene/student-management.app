@@ -46,17 +46,18 @@ const HandleGetStudentAttendance = () => {
 
 
     return (
-        <div>
-            <div>
+        <div className="min-h-screen p-3 bg-cyan-100">
+            <h1 className="text-center mt-3 text-2xl text-cyan-500 font-bold">Student Attendance Report</h1>
+            <div className="flex space-x-6 mt-3">
                 {attendance?.map((attend, index) => (
-                    <div key={index}>
-                        <h1>Attend Id:{attend.attendance_id}</h1>
-                        <h1>Stud Id:{attend.student?.student_id}</h1>
-                        <h1>Full_name: {attend.student?.full_name}</h1>
-                        <h1>Class_name: {attend.class?.class_name ? attend.class?.class_name : "No class"}</h1>
-                        <h1>Marked_by: {attend.marked_by?.full_name}</h1>
-                        <h1>Attend Date: {new Date(attend.date).toLocaleDateString()}</h1>
-                        <h1>Done At: {new Date(attend.createdAt).toLocaleDateString()}</h1>
+                    <div key={index} className="bg-white p-4 rounded-xl shadow-xl text-gray-700">
+                        <h1 className="">Attend Id: <span>{attend.attendance_id}</span></h1>
+                        <h1>Stud Id: <span>{attend.student?.student_id}</span></h1>
+                        <h1>Full_name: <span>{attend.student?.full_name}</span></h1>
+                        <h1>Class_name: <span>{attend.class?.class_name ? attend.class?.class_name : "No class"}</span></h1>
+                        <h1>Marked_by: <span>{attend.marked_by?.full_name}</span></h1>
+                        <h1>Attend Date: <span>{new Date(attend.date).toLocaleDateString()}</span></h1>
+                        <h1>Done At: <span>{new Date(attend.createdAt).toLocaleDateString()}</span></h1>
                     </div>
                 ))}
             </div>
