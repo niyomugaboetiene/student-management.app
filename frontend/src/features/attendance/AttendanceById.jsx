@@ -48,11 +48,11 @@ const HandleGetStudentAttendance = () => {
         <div>
             <div>
                 {attendance?.map((attend, index) => (
-                    <div>
+                    <div key={index}>
                         <h1>Attend Id:{attend.attendance_id}</h1>
                         <h1>Stud Id:{attend.student?.student_id}</h1>
                         <h1>Full_name: {attend.student?.full_name}</h1>
-                        <h1>Class_name: {attend.class?.class_name}</h1>
+                        <h1>Class_name: {attend.class?.class_name ? attend.class?.class_name : "No class"}</h1>
                         <h1>Marked_by: {attend.marked_by?.full_name}</h1>
                     </div>
                 ))}
