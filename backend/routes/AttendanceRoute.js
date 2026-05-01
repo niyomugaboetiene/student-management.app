@@ -86,8 +86,25 @@ router.get('/get', async (req, res) => {
         const { day, month, full_name, class_name } = req.query;
         
         let searchQuery = {};
-        if (full_name) searchQuery.full_name = full_name;
-        if (class_name) searchQuery.class_name = class_name;
+        if (full_name) {
+            const student = await StudentSchema.findOne({ full_name });
+
+            if (!student) {
+                return res.status(404).json({ message: 'No student found'});
+            }
+
+            searchQuery.student = student._id;
+        };
+        
+        if (class_name) {
+            const classe = await ClassSchema.findOne({ class_name });
+
+            if (!classe) {
+                return res.status(404).json({ message: 'No class found' });
+            }
+
+            searchQuery.class = classe._id;
+        } 
         if (day && month) {
            const year = new Date().getFullYear();
            const start = new Date(year, month - 1, day, 0, 0, 0);
