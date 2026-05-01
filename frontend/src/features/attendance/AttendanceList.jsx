@@ -116,7 +116,13 @@ const AttendanceList = () => {
         if (confrim) {
             await axios.delete(`${BACKEND_URL}/attendance/delete/${_id}`, { withCredentials: true });
         }
+
+        await handleGetAttendance();
+
        setLoading(false);
+    } catch (err) {
+        console.error(err);
+        setLoading(false);
     }
  }
     return (
@@ -172,7 +178,7 @@ const AttendanceList = () => {
                                   </td>
                                   
                                   <td>
-                                    <button className="inline-flex gap-2 bg-red-500 hover:bg-red-600 transition-colors py-1 px-3 font-bold text-white rounded-lg"><FaTrash /> Delete</button>
+                                    <button className="inline-flex gap-2 bg-red-500 hover:bg-red-600 transition-colors py-1 px-3 font-bold text-white rounded-lg" onClick={() => handleDeleteAttendance(attend._id)}><FaTrash /> Delete</button>
                                   </td>
                             </tr>
                         ))}
