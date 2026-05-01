@@ -102,6 +102,11 @@ const AttendanceList = () => {
         <div className="bg-cyan-100 min-h-screen">
             <div className="max-w-7xl mx-auto">
                 <h1 className="text-center text-2xl font-bold text-cyan-700 mb-4">Attendance List</h1>
+                {error && (
+                    <div className="bg-red-500 mb-2 py-1 text-white font-bold rounded-lg">
+                        <p>{error}</p>
+                    </div>
+                )}
                 <div className="flex gap-2">
                      <input value={searchQuery} type="text" className="w-full border rounded-lg mb-2 p-1 border-cyan-600" placeholder="Search by day & month, class name, student full name. Ex: 12&10&L5 SOD&eric" onChange={(e) => setSearchQuery(e.target.value)} />
                      <button className="bg-cyan-500 px-5 mb-2 text-white font-bold transition-colors hover:bg-cyan-400" onClick={handleSearch}>Search</button>
