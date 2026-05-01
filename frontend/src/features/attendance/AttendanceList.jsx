@@ -9,6 +9,7 @@ const AttendanceList = () => {
     const [loading, setLoading] = useState(false);
     const [searchQuery, setSearchQuery] = useState("");
 
+
     const BACKEND_URL = import.meta.env.VITE_BACKEND_URL;
 
     const handleGetAttendance = async() => {
@@ -61,7 +62,25 @@ const AttendanceList = () => {
     // }
 
     const handleSearch = async() => {
+           try {
+            setLoading(true);
+            const [day, month, class_name, full_name] = searchQuery.split("&");
 
+            const res = await axios.get(`${BACKEND_URL}/attendance/get`, {
+                params: {
+                    day: day || undefined,
+                    month: month || undefined,
+                    class_name: class_name || undefined,
+                    full_name: full_name || undefined
+                }
+            });
+
+            setAttendance(res.data.attendance);
+            setLoading(false);
+           } catch (err){
+            console.error(err);
+            setLoading(false);
+           }
     }
     return (
         <div className="bg-cyan-100 min-h-screen">
@@ -69,7 +88,7 @@ const AttendanceList = () => {
                 <h1 className="text-center text-2xl font-bold text-cyan-700 mb-4">Attendance List</h1>
                 <div className="flex gap-2">
                      <input type="text" className="w-full border rounded-lg mb-2 p-1 border-cyan-600" placeholder="Search by day & month, class name, student full name. Ex: 12&10&L5 SOD&eric" />
-                     <button className="bg-cyan-500 px-5 mb-2 text-white font-bold transition-colors hover:bg-cyan-400">Search</button>
+                     <button value={searchQuery} className="bg-cyan-500 px-5 mb-2 text-white font-bold transition-colors hover:bg-cyan-400" onChange={(e) => setSearchQuery(e.target.value)}>Search</button>
                 </div>
                 <table className="w-full overflow-hidden overflow-x-auto">
                     <thead className="bg-cyan-300 text-gray-600">
