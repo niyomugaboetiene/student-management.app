@@ -84,45 +84,55 @@ router.get('/', async (req, res) => {
 router.get('/get', async (req, res) => {
     try {
         const { day, month, full_name, class_name } = req.query;
-        
+
         let searchQuery = {};
+
         if (full_name) {
-            const student = await StudentSchema.findOne({ full_name });
+            const student = await StudentSchema.findOne({
+                full_name: { $regex: full_name, $options: "i" }
+            });
 
             if (!student) {
-                return res.status(404).json({ message: 'No student found'});
+                return res.status(404).json({ message: 'No student found' });
             }
 
             searchQuery.student = student._id;
-        };
-        
+        }
+
         if (class_name) {
-            const classe = await ClassSchema.findOne({ class_name });
+            const classe = await ClassSchema.findOne({
+                class_name: { $regex: class_name, $options: "i" }
+            });
 
             if (!classe) {
                 return res.status(404).json({ message: 'No class found' });
             }
 
             searchQuery.class = classe._id;
-        } 
-        if (day && month) {
-           const year = new Date().getFullYear();
-           const start = new Date(year, month - 1, day, 0, 0, 0);
-           const end = new Date(year, month - 1, day, 23, 59, 59);
-           searchQuery.date = { $gte: start, $lte: end };
         }
 
-        const attendance = await AttendanceSchema.find(searchQuery).populate("student").populate("class").populate("marked_by");
+        if (day && month) {
+            const year = new Date().getFullYear();
+
+            const start = new Date(year, month - 1, day, 0, 0, 0);
+            const end = new Date(year, month - 1, day, 23, 59, 59);
+
+            searchQuery.date = { $gte: start, $lte: end };
+        }
+
+        const attendance = await AttendanceSchema.find(searchQuery)
+            .populate("student")
+            .populate("class")
+            .populate("marked_by");
 
         if (attendance.length === 0) {
-            return res.status(404).json({ message: 'No attendance done on this day' });
+            return res.status(404).json({ message: 'No attendance found' });
         }
 
         return res.status(200).json({
             message: 'Attendance details',
             attendances: attendance
         });
-
 
     } catch (err) {
         console.error(err);
