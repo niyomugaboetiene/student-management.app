@@ -56,7 +56,7 @@ const HandleGetStudentAttendance = () => {
                         <h1>Full_name: <span className="font-bold">{attend.student?.full_name}</span></h1>
                         <h1>Class_name: <span className="font-bold">{attend.class?.class_name ? attend.class?.class_name : "No class"}</span></h1>
                         <h1>Marked_by: <span className="font-bold">{attend.marked_by?.full_name}</span></h1>
-                        <h1>Status: <span className={`text-white rounded-full ${attend.status === 'present' ? 'bg-green-500' : 'bg-red-500'}`}>{attend.status}</span></h1>
+                        <h1>Status: <span className={`text-white rounded-full ${attend.status === 'present' ? 'bg-green-500' : 'bg-red-500'} px-2`}>{attend.status}</span></h1>
                         <h1>Attend Date: <span className="font-bold">{new Date(attend.date).toLocaleDateString()}</span></h1>
                         <h1>Done At: <span className="font-bold">{new Date(attend.createdAt).toLocaleDateString()}</span></h1>
                     </div>
