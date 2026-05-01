@@ -7,7 +7,7 @@ const HandleGetStudentAttendance = () => {
     const [error, setError] = useState("");
     const [loading, setLoading] = useState(false);
 
-    const  _id  = useParams();
+    const  { _id }  = useParams();
 
     const BACKEND_URL = import.meta.env.VITE_BACKEND_URL;
 

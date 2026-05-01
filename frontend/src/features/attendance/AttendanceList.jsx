@@ -92,7 +92,7 @@ const AttendanceList = () => {
                                     <Link className="inline-flex gap-2 bg-green-500 hover:bg-green-600 transition-colors py-1 px-3 rounded-lg font-bold text-white" to={`/marks/update/${attend._id}`}><FaEdit /> Update</Link>
                                 </td>
                                  <td>
-                                    <Link className="inline-flex gap-2 bg-yellow-500 hover:bg-yellow-600 transition-colors  py-1 px-3 rounded-lg font-bold text-white" to={`/attendance/view/${attend._id}`}><FaEye />View</Link>
+                                    <Link className="inline-flex gap-2 bg-yellow-500 hover:bg-yellow-600 transition-colors  py-1 px-3 rounded-lg font-bold text-white" to={`/attendance/view/${attend.student?._id}`}><FaEye />View</Link>
                                   </td>
                                   
                                   <td>
