@@ -79,6 +79,22 @@ const AttendanceList = () => {
             setLoading(false);
            } catch (err){
             console.error(err);
+            const errorMessage = err.response?.data?.message || "Error occured";
+            if (errorMessage === "No student found") {
+                setError("No student found");
+            }
+
+            if (errorMessage === "No class found") {
+                setError(errorMessage);
+            }
+
+            if (errorMessage === "No attendance done on this day") {
+                setError(errorMessage);
+            }
+
+            if (errorMessage === "Internal server error") {
+                setError(errorMessage);
+            }
             setLoading(false);
            }
     }
@@ -87,8 +103,8 @@ const AttendanceList = () => {
             <div className="max-w-7xl mx-auto">
                 <h1 className="text-center text-2xl font-bold text-cyan-700 mb-4">Attendance List</h1>
                 <div className="flex gap-2">
-                     <input type="text" className="w-full border rounded-lg mb-2 p-1 border-cyan-600" placeholder="Search by day & month, class name, student full name. Ex: 12&10&L5 SOD&eric" />
-                     <button value={searchQuery} className="bg-cyan-500 px-5 mb-2 text-white font-bold transition-colors hover:bg-cyan-400" onChange={(e) => setSearchQuery(e.target.value)}>Search</button>
+                     <input value={searchQuery} type="text" className="w-full border rounded-lg mb-2 p-1 border-cyan-600" placeholder="Search by day & month, class name, student full name. Ex: 12&10&L5 SOD&eric" onChange={(e) => setSearchQuery(e.target.value)} />
+                     <button className="bg-cyan-500 px-5 mb-2 text-white font-bold transition-colors hover:bg-cyan-400" onClick={handleSearch}>Search</button>
                 </div>
                 <table className="w-full overflow-hidden overflow-x-auto">
                     <thead className="bg-cyan-300 text-gray-600">
