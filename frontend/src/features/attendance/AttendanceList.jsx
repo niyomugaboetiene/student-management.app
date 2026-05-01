@@ -108,6 +108,8 @@ const AttendanceList = () => {
             setLoading(false);
            }
     }
+
+ 
     return (
         <div className="bg-cyan-100 min-h-screen">
             <div className="max-w-7xl mx-auto">
