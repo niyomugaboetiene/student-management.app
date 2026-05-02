@@ -6,6 +6,14 @@ import { useNavigate } from "react-router-dom";
 const DashboardPage = () => {
   const [user, setUser] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
+
+  const [totalClass, setTotalClass] = useState(0);
+  const [totalSubject, setTotalSubject] = useState(0);
+  const [totalStudent, setTotalStudent] = useState(0);
+  const [totalTeacher, setTotalTeacher] = useState(0);
+  const [totalTrade, setTotalTrade] = useState(0);
+  const [totalDepartment, setTotalDepartment] = useState(0);
+  
   const [isNameClicked, setIsNameClicked] = useState(false);
   const navigate = useNavigate();
 
@@ -41,6 +49,13 @@ const DashboardPage = () => {
     useEffect(() => {
         FetchUserSession();
     }, []);
+
+    const handleGetReport = async () => {
+      try {
+        const report = await axios.get(`${BACKEND_URL}/admin/report`, { withCredentials: true });
+
+      }
+    }
 
     return (
         <div className="bg-gray-100 min-h-screen">
