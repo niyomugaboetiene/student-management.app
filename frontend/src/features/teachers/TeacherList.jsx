@@ -75,32 +75,39 @@ const TeacherList = () => {
                     <thead className="bg-cyan-300 text-gray-600">
                         <tr>
                             <th className="py-3 px-4 text-left">Id</th>
-                            <th className="py-3 px-4 text-left">Class Name</th>
-                            <th className="py-3 px-4 text-left">Code</th>
-                            <th className="py-3 px-4 text-left">Class Teacher</th>
-                            <th className="py-3 px-4 text-left">Trade</th>
-                            <th className="py-3 px-4 text-left">Created by</th>
-                            <th className="py-3 px-4 text-left">Year</th>
+                            <th className="py-3 px-4 text-left">Full Name</th>
+                            <th className="py-3 px-4 text-left">Email</th>
+                            <th className="py-3 px-4 text-left">Qualification</th>
+                            <th className="py-3 px-4 text-left">Phone</th>
+                            <th className="py-3 px-4 text-left">Gender</th>
+                            <th className="py-3 px-4 text-left">Experience</th>
+                            <th className="py-3 px-4 text-left">Department</th>
+                            <th className="py-3 px-4 text-left">Salary</th>
+                            <th className="py-3 px-4 text-left">Class</th>
                             <th className="py-3 px-4 text-left">Done at</th>
                             <th className="py-3 px-4 text-left" colSpan={2}>Operations</th>
                         </tr>
                     </thead>
 
                     <tbody>
-                        {teacher.map((cla, index) => (
+
+                        {teacher?.map((tr, index) => (
                             <tr key={index} className={`${index % 2 === 0 ? 'bg-cyan-200' : 'bg-gray-100'} ${index % 2 == 0 ? 'hover:bg-cyan-300' : 'hover:bg-gray-200'} transition-colors`}>
-                                <td className="py-3 px-4 text-left">{cla.class_id}</td>
-                                <td className="py-3 px-4 text-left">{cla.class_name}</td>
-                                <td className="py-3 px-4 text-left">{cla.code}</td>
-                                <td className="py-3 px-4 text-left">{cla.teacher?.full_name ? cla.teacher?.full_name : "No class teacher"}</td>
-                                <td className="py-3 px-4 text-left">{cla.trade?.trade_name ? cla.trade?.trade_name : "No trade"}</td>
-                                <td className="py-3 px-4 text-left">Admin</td>
-                                <td className="py-3 px-4 text-left">{cla.year}</td>
-                                <td className="py-3 px-4 text-left">{new Date(cla.createdAt).toLocaleDateString()}</td>
+                                <td className="py-3 px-4 text-left">{tr.teacher_id}</td>
+                                <td className="py-3 px-4 text-left">{tr.full_name}</td>
+                                <td className="py-3 px-4 text-left">{tr.email}</td>
+                                <td className="py-3 px-4 text-left">{tr.qualification}</td>
+                                <td className="py-3 px-4 text-left">{tr.phone}</td>
+                                <td className="py-3 px-4 text-left">{tr.gender}</td>
+                                <td className="py-3 px-4 text-left">{tr.experience}</td>
+                                <td className="py-3 px-4 text-left">{tr.department?.name ? tr.department?.name : "No Department"}</td>
+                                <td className="py-3 px-4 text-left">{tr.salary}</td>
+                                <td className="py-3 px-4 text-left">{tr.class?.class_name ? tr.class?.class_name : "No Class"}</td>
+                                <td className="py-3 px-4 text-left">{new Date(tr.createdAt).toLocaleDateString()}</td>
 
                                 <td className="flex justify-between p-3 space-x-6">
-                                    <Link className="inline-flex gap-2 bg-green-500 py-1 px-3 rounded-lg font-bold text-white" to={`/class/update/${cla._id}`}><FaEdit /> Update</Link>
-                                    <button className="inline-flex gap-2 bg-red-500 py-1 px-3 font-bold text-white rounded-lg" onClick={() => DeleteTeacher(cla._id)}><FaTrash /> Delete</button>
+                                    <Link className="inline-flex gap-2 bg-green-500 py-1 px-3 rounded-lg font-bold text-white" to={`/teacher/update/${tr._id}`}><FaEdit /> Update</Link>
+                                    <button className="inline-flex gap-2 bg-red-500 py-1 px-3 font-bold text-white rounded-lg" onClick={() => DeleteTeacher(tr._id)}><FaTrash /> Delete</button>
                                 </td>
                             </tr>
                         ))}
