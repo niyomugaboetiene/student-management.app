@@ -214,7 +214,7 @@ const UpdateTeacher = () => {
                        />
                        </div>
        
-                       <button onClick={handleUpdateTeachers} className="w-full bg-cyan-500 p-3 rounded-full text-white font-bold hover:bg-cyan-400 transition-colors mb-4">Update Teacher</button>
+                       <button onClick={handleUpdateTeachers} className="w-full mt-4 bg-cyan-500 p-3 rounded-full text-white font-bold hover:bg-cyan-400 transition-colors mb-4">Update Teacher</button>
                    </div>
                </div>
     )
