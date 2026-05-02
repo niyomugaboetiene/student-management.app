@@ -122,7 +122,7 @@ const DashboardPage = () => {
                        <div 
                        title="CLick to view list"
                           className="bg-white p-3 flex justify-center ms-4 w-24 mt-2 font-bold rounded-lg shadow-xl hover:scale-110 transition duration-200"
-                          // onClick={() => navigate('/student/list')}
+                          onClick={() => navigate('/student/list')}
                         >
                            {totalStudent}
                        </div>
