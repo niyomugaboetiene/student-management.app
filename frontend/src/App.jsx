@@ -39,6 +39,7 @@ import AttendanceList from './features/attendance/AttendanceList'
 import HandleGetStudentAttendance from './features/attendance/AttendanceById'
 
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import TeacherList from './features/teachers/TeacherList'
 
 function App() {
 
@@ -52,8 +53,10 @@ function App() {
                <Route path='/student/login' element={<StudentLogin />}/>
                <Route path='/student/register' element={<StudentRegister />}/>
 
+               {/* Teacher routes */}
                <Route path='/teacher/register' element={<TeacherRegister />}/>
                <Route path='/teacher/login' element={<TeacherLogin />}/>
+               <Route path='/teacher/list' element={<TeacherList />}/>
 
                <Route path='/' element={<DashboardPage />}/>
 
