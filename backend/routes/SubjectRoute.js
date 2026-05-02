@@ -3,6 +3,19 @@ import SubjectSchema from "../schema/SubjectSchema.js";
 
 const router = express.Router();
 
+function isAuthenticated (req, res, next) {
+        if (!req.session.user) {
+            return res.status(401).json({ message: 'Login first'});
+        }
+
+        if (req.session.user.role === "admin" || req.session.user.role === "teacher") {
+            next();
+        } else {
+            res.status(403).json({ message: 'You dont have access to this data'});
+            return;
+        }
+}
+
 router.post('/add', async (req, res) => {
     //    subject_id, subject_name, code,   instructor, students, credits
 

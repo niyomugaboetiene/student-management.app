@@ -10,6 +10,19 @@ import ClassSchema from "../schema/ClassSchema.js";
 
 const router = express();
 
+function isAdmin (req, res, next) {
+        if (!req.session.user) {
+            return res.status(401).json({ message: 'Login first'});
+        }
+
+        if (req.session.user.role === "admin") {
+            next();
+        } else {
+            res.status(403).json({ message: 'You dont have access to this data'});
+            return;
+        }
+}
+
 // * report
 router.get('/report', async (req, res) => {
     try {
