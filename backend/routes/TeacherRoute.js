@@ -19,7 +19,7 @@
     }
     router.get('/teacher_list', isAdmin, async (req, res) => {
         try {
-            const result = await TeacherSchema.find();
+            const result = await TeacherSchema.find().populate("class").populate("department");
 
             if (result.length > 0) {
                 return res.status(200).json({
@@ -43,7 +43,7 @@
                 return res.status(403).json({ message: 'Ids required' });
             }
 
-            const teacher = await TeacherSchema.findById(_id);
+            const teacher = await TeacherSchema.findById(_id).populate("class").populate("department");
 
             if (!teacher) {
                 return res.status(404).json({ message: 'No student details' });
@@ -67,7 +67,7 @@
                 return res.status(403).json({ message: 'Ids required' });
             }
 
-            const teacher = await TeacherSchema.find({ class: classe });
+            const teacher = await TeacherSchema.find({ class: classe }).populate("class").populate("department");
 
             if (!teacher) {
                 return res.status(404).json({ message: 'No student details' });
