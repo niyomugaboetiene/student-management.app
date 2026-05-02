@@ -16,7 +16,7 @@ function isAuthenticated (req, res, next) {
         }
 }
 
-router.post('/add', async( req, res ) => {
+router.post('/add', isAuthenticated, async( req, res ) => {
     try {
         // student, class, subject, marks
         const { student, class: classes, subject, marks } = req.body;
@@ -45,7 +45,7 @@ router.post('/add', async( req, res ) => {
 });
 
 
-router.get('/marks_list', async (req, res) => {
+router.get('/marks_list', isAuthenticated, async (req, res) => {
     try {
         const result = await MarksSchema.find().populate("student").populate("class").populate("subject");
 
@@ -60,7 +60,7 @@ router.get('/marks_list', async (req, res) => {
     }
 });
 
-router.get('/:_id', async (req, res) => {
+router.get('/:_id', isAuthenticated, async (req, res) => {
     try {
         const _id = req.params;
 
@@ -81,7 +81,7 @@ router.get('/:_id', async (req, res) => {
     }
 });
 
-router.get('/student/:student_id', async (req, res) => {
+router.get('/student/:student_id', isAuthenticated, async (req, res) => {
     try {
         const student_id = req.params;
 
@@ -102,7 +102,7 @@ router.get('/student/:student_id', async (req, res) => {
     }
 });
 
-router.put('/update/:_id', async (req, res) => {
+router.put('/update/:_id', isAuthenticated, async (req, res) => {
     try {
         const _id = req.params;
         const { student, classes, subject, marks } = req.body;
@@ -123,7 +123,7 @@ router.put('/update/:_id', async (req, res) => {
     }
 });
 
-router.delete('/delete/:_id', async (req, res) => {
+router.delete('/delete/:_id', isAuthenticated, async (req, res) => {
     try {
         const _id = req.params;
 
