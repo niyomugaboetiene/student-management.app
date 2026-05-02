@@ -3,8 +3,12 @@ import AdminLogin from './features/auth/admin/Login'
 import AdminRegister from './features/auth/admin/Register'
 import StudentLogin from './features/auth/student/Login'
 import StudentRegister from './features/auth/student/Register'
+
+// teacher portal
 import TeacherRegister from './features/auth/teacher/Register'
 import TeacherLogin from './features/auth/teacher/Login'
+import TeacherList from './features/teachers/TeacherList'
+import UpdateTeacher from './features/teachers/UpdateTeacher'
 
 import DashboardPage from './features/dashboard/Dashborad';
 
@@ -39,7 +43,6 @@ import AttendanceList from './features/attendance/AttendanceList'
 import HandleGetStudentAttendance from './features/attendance/AttendanceById'
 
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
-import TeacherList from './features/teachers/TeacherList'
 
 function App() {
 
@@ -57,6 +60,7 @@ function App() {
                <Route path='/teacher/register' element={<TeacherRegister />}/>
                <Route path='/teacher/login' element={<TeacherLogin />}/>
                <Route path='/teacher/list' element={<TeacherList />}/>
+               <Route path='/teacher/update/:_id' element={<UpdateTeacher />}/>
 
                <Route path='/' element={<DashboardPage />}/>
 
