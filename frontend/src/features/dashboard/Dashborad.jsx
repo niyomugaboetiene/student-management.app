@@ -131,9 +131,16 @@ const DashboardPage = () => {
                     </div>
                     
                     <div>
-                       <h1>Total </h1>
+                       <h1>Total Subjects</h1>
                        <div>
-                          {totalTeacher}
+                          {totalSubject}
+                       </div>
+                    </div>
+                    
+                    <div>
+                       <h1>Total Classes</h1>
+                       <div>
+                          {totalClass}
                        </div>
                     </div>
                     
