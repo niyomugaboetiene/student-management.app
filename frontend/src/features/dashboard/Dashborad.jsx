@@ -119,7 +119,9 @@ const DashboardPage = () => {
                   <div className="flex gap-6">
                     <div>
                        <h1 className="text-xl font-bold text-gray-800">Total students</h1>
-                          {totalStudent}
+                       <div>
+                           {totalStudent}
+                       </div>
                        </div>
                        
                        <div>
