@@ -19,7 +19,7 @@ const UpdateTeacher = () => {
     const [message, setMessage] = useState("");
     const [error, setError] = useState("");
 
-    const [selectedInstructor, setSelectedInstructor] = useState(null);
+    const [selectedDepartment, setSelectedDepartment] = useState(null);
     const [selectedClass, setSelectedClass] = useState(null);
     const navigate = useNavigate();
 
@@ -44,12 +44,12 @@ const UpdateTeacher = () => {
         handleGetClass();
     }, []);
     
-    const handleGetInstructor = async () => {
+    const handleGetDepartment = async () => {
           try {
             setIsLoading(true);
-            const trRes = await axios.get(`${BACKEND_URL}/teacher/class/${classes}`, { withCredentials: true });
+            const trRes = await axios.get(`${BACKEND_URL}/department/department_list`, { withCredentials: true });
             // console.log(trRes.data.teacher);
-            setSelectedInstructor(trRes.data.teacher);
+            setSelectedDepartment(trRes.data.department);
             setIsLoading(false);
           } catch (err) {
             console.error(err);
@@ -58,49 +58,18 @@ const UpdateTeacher = () => {
     }
 
     useEffect(() => {
-        if (classes) {
-            handleGetInstructor();
-        }
-    }, [classes]);
+            handleGetDepartment();
+    }, []);
 
-    const handleGetSubject = async () => {
-          try {
-            if (!_id) return;
-            setIsLoading(true);
-            const subRes = await axios.get(`${BACKEND_URL}/subjects/${_id}`, { withCredentials: true });
-            const subjectData = subRes.data.subject || "";
 
-            console.log("Subject name", subjectData);
-            setSubject_name(subjectData.subject_name || "");
-            setCode(subjectData.code || "");
-            setInstructor(subjectData.instructor || "");
-            setClasses(subjectData.class || "");
-            setCredits(subjectData.credits || 0);
 
-            setIsLoading(false);
-          } catch (err) {
-            console.error(err);
-            setIsLoading(false);
-          }
-    }
-
-    useEffect(() => {
-        if (_id) {
-            handleGetSubject();
-        }
-    }, [_id]);
-
-    const handleUpdateTrade = async () => {
+    const handleUpdateTeachers = async () => {
         try {
             setIsLoading(true);
-            if (!subject_name || !code || !credits) {
-                setError("Fill out the missing fields");
-                return;
-            }
-            const res = await axios.put(`${BACKEND_URL}/subjects/update/${_id}`, { subject_name, code, instructor, classes, credits }, { withCredentials: true });
+            const res = await axios.put(`${BACKEND_URL}/teacher/update/${_id}`, { full_name, email, qualification, phone, gender, experience, department, salary, classe }, { withCredentials: true });
             setMessage(res.data.message);
             setIsLoading(false);
-            navigate('/subject/list');
+            navigate('/teacher/list');
         } catch (err) {
             const errMessage = err.response?.data?.message || "Error occured"; 
             if (errMessage === "Internal server error") {
@@ -124,7 +93,7 @@ const UpdateTeacher = () => {
                     <div className="bg-red-500 mb-2 p-2 rounded-lg text-white font-bold relative flex justify-between">
                         <p>{error}</p> <p className="text-lg mt-1" onClick={() => setError("")}><FaTimes /></p>
                     </div>                )}
-                <h1 className="text-xl text-gray-600 font-bold">Update Subject Portal</h1>
+                <h1 className="text-xl text-gray-600 font-bold">Update Teacher Portal</h1>
 
                 <div className="mt-3">
                     <input type="text"  
