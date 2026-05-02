@@ -17,7 +17,7 @@
             return;
         }
     }
-    router.get('/teacher_list', async (req, res) => {
+    router.get('/teacher_list', isAdmin, async (req, res) => {
         try {
             const result = await TeacherSchema.find();
 
@@ -35,7 +35,7 @@
         }
     });
     
-    router.get('/:_id', async (req, res) => {
+    router.get('/:_id', isAdmin, async (req, res) => {
         try {
             const _id  = req.params;
  
@@ -59,7 +59,7 @@
     });
 
     // get teaceher by class
-    router.get('/class/:class', async (req, res) => {
+    router.get('/class/:class', isAdmin, async (req, res) => {
         try {
             const classe = req.params.class;
  
@@ -82,7 +82,7 @@
         }
     });
 
-router.put('/update/:_id', async (req, res) => {
+router.put('/update/:_id', isAdmin, async (req, res) => {
     try {
         const _id = req.params;
         const { full_name, email, qualification, phone, gender, experience, department, salary, classe } = req.body;
@@ -108,7 +108,7 @@ router.put('/update/:_id', async (req, res) => {
     }
 });
 
-router.delete('/delete/:_id', async ( req, res ) => {
+router.delete('/delete/:_id', isAdmin, async ( req, res ) => {
     try {
         const _id = req.params;
 
