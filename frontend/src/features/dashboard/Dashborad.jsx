@@ -116,9 +116,9 @@ const DashboardPage = () => {
             <div className="p-2">
                   <h2 className="text-2xl font-normal text-gray-800">Welcome to student management system {user?.full_name}</h2>
 
-                  <div className="flex">
+                  <div className="flex gap-6">
                     <div>
-                       <h1>Total students</h1>
+                       <h1 className="text-xl font-bold text-gray-800">Total students</h1>
                           {totalStudent}
                        </div>
                        
