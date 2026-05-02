@@ -116,10 +116,9 @@ const DashboardPage = () => {
             <div className="p-2">
                   <h2 className="text-2xl font-normal text-gray-800">Welcome to student management system {user?.full_name}</h2>
 
-                  <div>
+                  <div className="flex">
                     <div>
                        <h1>Total students</h1>
-                       <div>
                           {totalStudent}
                        </div>
                        
@@ -144,8 +143,19 @@ const DashboardPage = () => {
                        </div>
                     </div>
                     
-                  </div>
-                  
+                    <div>
+                       <h1>Total Trades</h1>
+                       <div>
+                          {totalTrade}
+                       </div>
+                    </div>
+                    
+                    <div>
+                       <h1>Total Trades</h1>
+                       <div>
+                          {totalDepartment}
+                       </div>
+                    </div>
             </div>
         </div>
         </div>
