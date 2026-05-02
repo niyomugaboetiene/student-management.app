@@ -10,16 +10,45 @@ import ClassSchema from "../schema/ClassSchema.js";
 
 const router = express();
 
+// * report
+router.get('/report', async (req, res) => {
+    try {
+        const totalStudent = await StudentSchema.countDocuments();
+        const totalSubject = await SubjectSchema.countDocuments();
+        const totalTeacher = await TeacherSchema.countDocuments();
+        const totalTrade = await TradeSchema.countDocuments();
+        const totalDepartment = await DepartmentSchema.countDocuments();
+        const totalClass = await ClassSchema.countDocuments();
+
+        return res.status(200).json({
+            message: 'Total',
+            class: totalClass,
+            subject: totalSubject,
+            student: totalStudent,
+            teacher: totalTeacher,
+            trade: totalTrade,
+            department: totalDepartment
+        });
+    } catch (err) {
+        console.error(err);
+        return res.status(500).json({ message: 'Internal server error' });
+    }
+});
+
 router.get('/:_id', async (req, res) => {
     try {
         const { _id } = req.params;
 
-        const adminUsers = await AdminSchema.findOne({_id: _id});
-        if (adminUsers.length === 0) {
-            return res.status(404).json({ message: "Entered Ids is not found. try new Id" });
+        const adminUsers = await AdminSchema.findOne({ _id });
+
+        if (!adminUsers) {
+            return res.status(404).json({ message: "Entered Id is not found" });
         }
 
-        return res.status(200).json({ message: "Admin Users", Admin_Users: adminUsers });
+        return res.status(200).json({
+            message: "Admin Users",
+            Admin_Users: adminUsers
+        });
     } catch (err) {
         console.error("ERROR", err);
         return res.status(500).json({ message: "Server error" });
@@ -86,20 +115,4 @@ router.delete('/delete/:_id', async (req, res) => {
     }
 });
 
-// * report
-router.get('/report', async (req, res) => {
-    try {
-        const totalStudent = await StudentSchema.countDocuments();
-        const totalSubject = await SubjectSchema.countDocuments();
-        const totalTeacher = await TeacherSchema.countDocuments();
-        const totalTrade = await TradeSchema.countDocuments();
-        const totalDepartment = await DepartmentSchema.countDocuments();
-        const totalClass = await ClassSchema.countDocuments();
-
-        return res.status(200).json({ message: 'Total', class: totalClass, subject: totalSubject, student: totalStudent, teacher: totalTeacher, trade: totalTrade, department: totalDepartment });
-    } catch (err) {
-       console.error(err);
-       return res.status(500).json({ message: 'Internal server error' });
-    }
-});
 export default router
