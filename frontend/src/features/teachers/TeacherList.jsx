@@ -102,7 +102,7 @@ const TeacherList = () => {
                                 <td className="py-3 px-4 text-left">{tr.experience}</td>
                                 <td className="py-3 px-4 text-left">{tr.department?.name ? tr.department?.name : "No Department"}</td>
                                 <td className="py-3 px-4 text-left">{tr.salary}</td>
-                                <td className="py-3 px-4 text-left">{tr.class?.class_name ? tr.class?.class_name : "No Class"}</td>
+                                <td className="py-3 px-4 text-left">{tr.class[0]?.class_name ? tr.class[0]?.class_name : "No Class"}</td>
                                 <td className="py-3 px-4 text-left">{new Date(tr.createdAt).toLocaleDateString()}</td>
 
                                 <td className="flex justify-between p-3 space-x-6">
