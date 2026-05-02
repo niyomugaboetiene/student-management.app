@@ -61,7 +61,35 @@ const UpdateTeacher = () => {
             handleGetDepartment();
     }, []);
 
+    const handleGetTeacher = async () => {
+          try {
+            if (!_id) return;
+            setIsLoading(true);
+            const trRes = await axios.get(`${BACKEND_URL}/teacher/${_id}`, { withCredentials: true });
+            const TeacherData = trRes.data.teacher || "";
 
+            console.log("Teacher name", TeacherData);
+            
+            setFull_name(TeacherData.full_name || "");
+            setDpeartment(TeacherData.department?._id || "");
+            setClasse(TeacherData.class?._id || "");
+            setEmail(TeacherData.email || "");
+            setQualification(TeacherData.qualification || "");
+            setGender(TeacherData.gender || "");
+            setSalary(TeacherData.salary || "");
+
+            setIsLoading(false);
+          } catch (err) {
+            console.error(err);
+            setIsLoading(false);
+          }
+    }
+
+    useEffect(() => {
+        if (_id) {
+            handleGetTeacher();
+        }
+    }, [_id]);
 
     const handleUpdateTeachers = async () => {
         try {
@@ -81,76 +109,113 @@ const UpdateTeacher = () => {
     }
 
     return (
-        <div className="bg-gray-100 min-h-screen flex justify-center items-center p-3">
-            <div className="bg-white w-110 rounded-xl p-4 shadow-lg">
-                {message  && (
-                    <div className="bg-green-500 mb-2 p-2 rounded-lg text-white font-bold relative flex justify-between">
-                        <p>{message}</p> <p className="text-lg mt-1" onClick={() => setMessage("")}><FaTimes /></p>
-                    </div>
-                )}
-
-                {error && (
-                    <div className="bg-red-500 mb-2 p-2 rounded-lg text-white font-bold relative flex justify-between">
-                        <p>{error}</p> <p className="text-lg mt-1" onClick={() => setError("")}><FaTimes /></p>
-                    </div>                )}
-                <h1 className="text-xl text-gray-600 font-bold">Update Teacher Portal</h1>
-
-                <div className="mt-3">
-                    <input type="text"  
-                       value={subject_name}
-                       onChange={(e) => setSubject_name(e.target.value)} required
-                       className="bg-gray-100  w-full p-3 rounded-full focus:outline-1 focus:outline-gray-500" placeholder="Subject name"
-                    />
-                </div>
-                
-                <div className="mt-3">
-                    <input type="text"  
-                    value={code}
-                    onChange={(e) => setCode(e.target.value)} required
-                    className="bg-gray-100 w-full p-3 rounded-full focus:outline-1 focus:outline-gray-500" placeholder="code"
-                />
-                </div>
-                
-                <div className="mt-3">
-                    <input type="number"  
-                    value={credits}
-                    onChange={(e) => setCredits(e.target.value)} required
-                    className="bg-gray-100 w-full p-3 rounded-full focus:outline-1 focus:outline-gray-500" placeholder="Credits"
-                />
-                </div>
-                
-               <div className="mt-3 mb-4">
-                    <select  
-                       value={classes}
-                       onChange={(e) => setClasses(e.target.value)} 
-                       className="bg-gray-100 w-full rounded-full p-3 focus:outline-1 focus:outline-gray-500"
-                    > 
-
-                       {selectedClass?.map((cla) => (
-                        <option value={cla._id} key={cla._id}>{cla.class_name}</option>
-                       ))}
-                    </select>
-                </div>
-
-                <div className="mt-3 mb-4">
-                    <select  
-                       value={instructor}
-                       onChange={(e) => setInstructor(e.target.value)} 
-                       className="bg-gray-100 w-full rounded-full p-3 focus:outline-1 focus:outline-gray-500"
-                    > 
-
-                        <option value="">------Select instructor------</option>
-                       {selectedInstructor?.map((ins) => (
-                        <option value={ins._id} key={ins._id}>{ins.full_name}</option>
-                       ))}
-                    </select>
-                </div>
-
-                <button onClick={handleUpdateTrade} className="w-full bg-cyan-500 p-3 rounded-full text-white font-bold hover:bg-cyan-400 transition-colors mb-4">Update Subject</button>
-
-            </div>
-        </div>
+         <div className="bg-gray-100 min-h-screen flex justify-center items-center p-3">
+                   <div className="bg-white w-110 rounded-xl p-4 shadow-lg">
+                       {message  && (
+                           <div className="bg-green-500 mb-2 p-2 rounded-lg text-white font-bold relative flex justify-between">
+                               <p>{message}</p> <p className="text-lg mt-1" onClick={() => setMessage("")}><FaTimes /></p>
+                           </div>
+                       )}
+       
+                       {error && (
+                           <div className="bg-red-500 mb-2 p-2 rounded-lg text-white font-bold relative flex justify-between">
+                               <p>{error}</p> <p className="text-lg mt-1" onClick={() => setError("")}><FaTimes /></p>
+                           </div>                )}
+                       <h1 className="text-xl text-gray-600 font-bold">Update Teacher Portal</h1>
+       
+                       <div className="mt-3">
+                           <input type="text"  
+                              onChange={(e) => setFull_name(e.target.value)} required
+                              className="bg-gray-100  w-full p-3 rounded-full focus:outline-1 focus:outline-gray-500" placeholder="Full name"
+                           />
+                       </div>
+                       
+                       <div className="mt-3">
+                           <input type="text"  
+                              onChange={(e) => setQualification(e.target.value)} required
+                              className="bg-gray-100  w-full p-3 rounded-full focus:outline-1 focus:outline-gray-500" placeholder="Qualification"
+                           />
+                       </div>
+                       
+                       <div className="mt-3">
+                           <input type="text"  
+                              onChange={(e) => setEmail(e.target.value)} required
+                              className="bg-gray-100  w-full p-3 rounded-full focus:outline-1 focus:outline-gray-500" placeholder="Email"
+                           />
+                       </div>
+                       
+                       <div className="mt-3">
+                           <input type="text"  
+                           onChange={(e) => setPhone(e.target.value)} required
+                           className="bg-gray-100 w-full p-3 rounded-full focus:outline-1 focus:outline-gray-500" placeholder="Phone"
+                       />
+                       </div>       
+       
+                       <div className="mt-3">
+                           <input type="number"  
+                           onChange={(e) => setSalary(e.target.value)} required
+                           className="bg-gray-100 w-full p-3 rounded-full focus:outline-1 focus:outline-gray-500" placeholder="Salary"
+                       />
+                       </div>         
+                       
+                       <div className="mt-3">
+                           <input type="number"  
+                           onChange={(e) => setExperience(e.target.value)} required
+                           className="bg-gray-100 w-full p-3 rounded-full focus:outline-1 focus:outline-gray-500" placeholder="Experience"
+                       />
+                       </div>
+                      
+                       <div className="mt-3">
+                           <select
+                               value={department}
+                               onChange={(e) => {
+                                   setDpeartment(e.target.value)
+                                   console.log(e.target.value)
+                               }}
+                              className="bg-gray-100 w-full p-3 rounded-full focus:outline-1 focus:outline-gray-500"
+                          > 
+                         <option disabled={true} value="">-----Select Department-----</option>
+                          {departmentToBeSelected?.map((dep) => (
+                                 <option value={dep._id} key={dep._id}>
+                                      {dep.name}
+                                </option>
+                          ))}
+                       </select>
+                       </div>
+                       
+                       <div className="mt-3">
+                           <select
+                               value={classe}
+                               onChange={(e) => { setClasse(e.target.value)}}
+                              className="bg-gray-100 w-full p-3 rounded-full focus:outline-1 focus:outline-gray-500"
+                          > 
+                         <option disabled={true} value="">-----Select class-----</option>
+                          {classToSelect?.map((cla) => (
+                                 <option value={cla._id} key={cla._id}>
+                                      {cla.class_name}
+                                </option>
+                          ))}
+                       </select>
+                       </div>
+                       
+                       <div className="mt-3">
+                           <input type="text"  
+                           onChange={(e) => setGender(e.target.value)} required
+                           className="bg-gray-100 w-full p-3 rounded-full focus:outline-1 focus:outline-gray-500" placeholder="Gender"
+                       />
+                       </div>
+                       
+                       <div className="mt-3 mb-4">
+                           <input type="password"  
+                              onChange={(e) => setPassword(e.target.value)} required
+                              className="bg-gray-100 w-full rounded-full p-3 focus:outline-1 focus:outline-gray-500" placeholder="Password"
+                           />
+                       </div>
+       
+                       <button onClick={handleUpdateTeachers} className="w-full bg-cyan-500 p-3 rounded-full text-white font-bold hover:bg-cyan-400 transition-colors mb-4">Update Teacher</button>
+                   </div>
+               </div>
     )
 }
 
-export default UpdateSubject;
+export default UpdateTeacher;
