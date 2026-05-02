@@ -127,6 +127,7 @@ const UpdateTeacher = () => {
        
                        <div className="mt-3">
                            <input type="text"  
+                              value={full_name}
                               onChange={(e) => setFull_name(e.target.value)} required
                               className="bg-gray-100  w-full p-3 rounded-full focus:outline-1 focus:outline-gray-500" placeholder="Full name"
                            />
@@ -134,6 +135,7 @@ const UpdateTeacher = () => {
                        
                        <div className="mt-3">
                            <input type="text"  
+                              value={qualification}
                               onChange={(e) => setQualification(e.target.value)} required
                               className="bg-gray-100  w-full p-3 rounded-full focus:outline-1 focus:outline-gray-500" placeholder="Qualification"
                            />
@@ -141,6 +143,7 @@ const UpdateTeacher = () => {
                        
                        <div className="mt-3">
                            <input type="text"  
+                             value={email}
                               onChange={(e) => setEmail(e.target.value)} required
                               className="bg-gray-100  w-full p-3 rounded-full focus:outline-1 focus:outline-gray-500" placeholder="Email"
                            />
@@ -148,6 +151,7 @@ const UpdateTeacher = () => {
                        
                        <div className="mt-3">
                            <input type="text"  
+                           value={phone}
                            onChange={(e) => setPhone(e.target.value)} required
                            className="bg-gray-100 w-full p-3 rounded-full focus:outline-1 focus:outline-gray-500" placeholder="Phone"
                        />
@@ -155,6 +159,7 @@ const UpdateTeacher = () => {
        
                        <div className="mt-3">
                            <input type="number"  
+                            value={salary}
                            onChange={(e) => setSalary(e.target.value)} required
                            className="bg-gray-100 w-full p-3 rounded-full focus:outline-1 focus:outline-gray-500" placeholder="Salary"
                        />
@@ -162,6 +167,7 @@ const UpdateTeacher = () => {
                        
                        <div className="mt-3">
                            <input type="number"  
+                           value={experience}
                            onChange={(e) => setExperience(e.target.value)} required
                            className="bg-gray-100 w-full p-3 rounded-full focus:outline-1 focus:outline-gray-500" placeholder="Experience"
                        />
@@ -202,13 +208,14 @@ const UpdateTeacher = () => {
                        
                        <div className="mt-3">
                            <input type="text"  
+                           value={gender}
                            onChange={(e) => setGender(e.target.value)} required
                            className="bg-gray-100 w-full p-3 rounded-full focus:outline-1 focus:outline-gray-500" placeholder="Gender"
                        />
                        </div>
                        
                        <div className="mt-3 mb-4">
-                           <input type="password"  
+                           <input type="password" 
                               onChange={(e) => setPassword(e.target.value)} required
                               className="bg-gray-100 w-full rounded-full p-3 focus:outline-1 focus:outline-gray-500" placeholder="Password"
                            />
