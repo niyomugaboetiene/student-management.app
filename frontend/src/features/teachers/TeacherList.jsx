@@ -69,8 +69,8 @@ const TeacherList = () => {
 
     return (
         <div className="bg-cyan-100 min-h-screen">
-            <div className="max-w-7xl mx-auto">
-                <h1 className="text-center text-2xl font-bold text-cyan-700 mb-4">Marks List</h1>
+            <div className="max-w-400 mx-auto">
+                <h1 className="text-center text-2xl font-bold text-cyan-700 mb-4">Student List</h1>
                 <table className="w-full overflow-hidden overflow-x-auto">
                     <thead className="bg-cyan-300 text-gray-600">
                         <tr>
