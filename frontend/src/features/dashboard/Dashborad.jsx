@@ -53,19 +53,24 @@ const DashboardPage = () => {
 
     const handleGetReport = async () => {
       try {
+        setIsLoading(true);
         const report = await axios.get(`${BACKEND_URL}/admin/report`, { withCredentials: true });
         setTotalClass(report.data.class);
         setTotalStudent(report.data.student);
         setTotalDepartment(report.data.department);
         setTotalTeacher(report.data.teacher);
         setTotalSubject(report.data.subject);
-        //       subject: totalSubject,
-            student: totalStudent,
-            // teacher: totalTea/cher,
-            // trade: totalTrade,
-            // department:
+        setTotalTrade(report.data.trade);
+        setIsLoading(false);
+      } catch (err) {
+        setIsLoading(false);
+        console.error(err);
       }
     }
+
+    useEffect(() => {
+      handleGetReport();
+    }, []);
 
     return (
         <div className="bg-gray-100 min-h-screen">
@@ -112,12 +117,30 @@ const DashboardPage = () => {
                   <h2 className="text-2xl font-normal text-gray-800">Welcome to student management system {user?.full_name}</h2>
 
                   <div>
-                    <h1>Recent students</h1>
-
-                    <p>Total</p>
+                    <div>
+                       <h1>Total students</h1>
+                       <div>
+                          {totalStudent}
+                       </div>
+                       
+                       <div>
+                       <h1>Total Teachers</h1>
+                       <div>
+                          {totalTeacher}
+                       </div>
+                    </div>
+                    
+                    <div>
+                       <h1>Total </h1>
+                       <div>
+                          {totalTeacher}
+                       </div>
+                    </div>
+                    
                   </div>
                   
             </div>
+        </div>
         </div>
     )
 }
