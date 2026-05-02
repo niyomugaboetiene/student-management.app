@@ -5,16 +5,20 @@ import { useParams } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 
 const UpdateTeacher = () => {
-    const [subject_name, setSubject_name] = useState("");
-    const [code, setCode] = useState("");
-    const [credits, setCredits] = useState(0);
-    const [instructor, setInstructor] = useState("");
-    const [classes, setClasses] = useState("");
+    const [full_name, setFull_name] = useState("");
+    const [email, setEmail] = useState("");
+    const [qualification, setQualification] = useState(0);
+    const [phone, setPhone] = useState("");
+    const [gender, setGender] = useState("");
+    const [experience, setExperience] = useState("");
+    const [department, setDpeartment] = useState("");
+    const [salary, setSalary] = useState("");
+    const [classe, setClasse] = useState("");
+
     const [isLoading, setIsLoading] = useState(false);
     const [message, setMessage] = useState("");
     const [error, setError] = useState("");
 
-    // subject_name, code, instructor, class: classes, credits 
     const [selectedInstructor, setSelectedInstructor] = useState(null);
     const [selectedClass, setSelectedClass] = useState(null);
     const navigate = useNavigate();
