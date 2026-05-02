@@ -183,7 +183,7 @@ const UpdateTeacher = () => {
                               className="bg-gray-100 w-full p-3 rounded-full focus:outline-1 focus:outline-gray-500"
                           > 
                          <option disabled={true} value="">-----Select Department-----</option>
-                          {departmentToBeSelected?.map((dep) => (
+                          {selectedDepartment?.map((dep) => (
                                  <option value={dep._id} key={dep._id}>
                                       {dep.name}
                                 </option>
@@ -198,7 +198,7 @@ const UpdateTeacher = () => {
                               className="bg-gray-100 w-full p-3 rounded-full focus:outline-1 focus:outline-gray-500"
                           > 
                          <option disabled={true} value="">-----Select class-----</option>
-                          {classToSelect?.map((cla) => (
+                          {selectedClass?.map((cla) => (
                                  <option value={cla._id} key={cla._id}>
                                       {cla.class_name}
                                 </option>
