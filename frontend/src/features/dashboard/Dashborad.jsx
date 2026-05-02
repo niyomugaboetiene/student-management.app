@@ -15,7 +15,7 @@ const DashboardPage = () => {
   const [totalDepartment, setTotalDepartment] = useState(0);
 
   const [isNameClicked, setIsNameClicked] = useState(false);
-  
+
   const navigate = useNavigate();
 
   const BACKEND_URL = import.meta.env.VITE_BACKEND_URL;
@@ -54,7 +54,16 @@ const DashboardPage = () => {
     const handleGetReport = async () => {
       try {
         const report = await axios.get(`${BACKEND_URL}/admin/report`, { withCredentials: true });
-
+        setTotalClass(report.data.class);
+        setTotalStudent(report.data.student);
+        setTotalDepartment(report.data.department);
+        setTotalTeacher(report.data.teacher);
+        setTotalSubject(report.data.subject);
+        //       subject: totalSubject,
+            student: totalStudent,
+            // teacher: totalTea/cher,
+            // trade: totalTrade,
+            // department:
       }
     }
 
