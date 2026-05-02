@@ -20,11 +20,19 @@ const TeacherList = () => {
             console.error("Error", err);
             const errorMessage = err.response?.data?.message;
             if (errorMessage === "No teachers in the system") {
-                setError("No marks in the system");
+                setError(errorMessage);
             }
 
             if (errorMessage === "Internal server error") {
                 setError("Internal server error");
+            }
+            
+            if (errorMessage === "Login first") {
+                setError(errorMessage);
+            }
+            
+            if (errorMessage === "You dont have access to this data") {
+                setError(errorMessage);
             }
 
             setLoading(false);
