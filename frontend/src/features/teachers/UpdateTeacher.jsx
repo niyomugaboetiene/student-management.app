@@ -180,4 +180,4 @@ const UpdateTeacher = () => {
     )
 }
 
-export default UpdateTeacher;
+export default UpdateSubject;
