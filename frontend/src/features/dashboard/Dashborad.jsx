@@ -13,8 +13,9 @@ const DashboardPage = () => {
   const [totalTeacher, setTotalTeacher] = useState(0);
   const [totalTrade, setTotalTrade] = useState(0);
   const [totalDepartment, setTotalDepartment] = useState(0);
-  
+
   const [isNameClicked, setIsNameClicked] = useState(false);
+  
   const navigate = useNavigate();
 
   const BACKEND_URL = import.meta.env.VITE_BACKEND_URL;
