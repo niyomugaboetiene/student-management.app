@@ -4,7 +4,7 @@
     import express from "express";
 
     const router = express();
-    
+
 function isAuthenticated (req, res, next) {
         if (!req.session.user) {
             return res.status(401).json({ message: 'Login first'});
@@ -63,7 +63,7 @@ function isAuthenticated (req, res, next) {
             }
     });
 
-router.get("/class_list", async (req, res) => {
+router.get("/class_list", isAuthenticated, async (req, res) => {
     try {
 
         const ClassList = await ClassSchema.find().populate("teacher").populate("trade");
@@ -80,7 +80,7 @@ router.get("/class_list", async (req, res) => {
     }
 });
 
-router.get("/:_id", async (req, res) => {
+router.get("/:_id", isAuthenticated, async (req, res) => {
     try {
         const _id  = req.params._id;
 
@@ -102,7 +102,7 @@ router.get("/:_id", async (req, res) => {
     }
 });
 
-router.put('/update/:_id', async (req, res) => {
+router.put('/update/:_id', isAdmin, async (req, res) => {
     try {
         const _id = req.params;
        const { class_name, code, year, teacher, createdBy, trade } = req.body;
@@ -140,7 +140,7 @@ router.put('/update/:_id', async (req, res) => {
     }
 });
 
-router.delete('/delete/:_id', async (req, res) => {
+router.delete('/delete/:_id', isAdmin, async (req, res) => {
     try {
         const _id = req.params;
 

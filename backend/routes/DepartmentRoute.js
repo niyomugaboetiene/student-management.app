@@ -29,7 +29,7 @@ function isAdmin (req, res, next) {
             return;
         }
     }
-router.post('/add', async (req, res) => {
+router.post('/add', isAdmin, async (req, res) => {
     try {
         //     department_id, name ,description, building, ,HOD ,teachers
         
@@ -65,7 +65,7 @@ router.post('/add', async (req, res) => {
     }
 });
 
-router.get('/department_list', async (req, res) => {
+router.get('/department_list', isAuthenticated, async (req, res) => {
     try {
         const result = await DepartmentSchema.find().populate("HOD");
 
@@ -83,7 +83,7 @@ router.get('/department_list', async (req, res) => {
     }
 });
 
-router.get('/:_id', async (req, res) => {
+router.get('/:_id', isAuthenticated, async (req, res) => {
     try {
         const  _id = req.params;
 
@@ -107,7 +107,7 @@ router.get('/:_id', async (req, res) => {
     }
 });
 
-router.put('/update/:_id', async (req, res) => {
+router.put('/update/:_id', isAdmin, async (req, res) => {
     try {
         const { name, description, building, HOD } = req.body;
         const _id = req.params;
@@ -141,7 +141,7 @@ router.put('/update/:_id', async (req, res) => {
     }
 });
 
-router.delete("/delete/:_id", async (req, res) => {
+router.delete("/delete/:_id", isAdmin, async (req, res) => {
     try {
         const _id = req.params;
 
