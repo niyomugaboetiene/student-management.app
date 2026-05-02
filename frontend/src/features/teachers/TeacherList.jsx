@@ -55,11 +55,14 @@ const TeacherList = () => {
         } catch (err) {
             console.error(err);
             const errorMessage = err.response?.data?.message || "Error occured";
-            if (errorMessage === "No IDs in the system") {
+            if (errorMessage === "Ids required") {
                 setError(errorMessage);
             }
 
             if (errorMessage === "Internal server error") {
+                setError(errorMessage);
+            }
+            if (errorMessage === "Id does not exist") {
                 setError(errorMessage);
             }
 
