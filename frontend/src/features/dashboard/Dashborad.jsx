@@ -120,6 +120,7 @@ const DashboardPage = () => {
                     <div className="mt-3">
                        <h1 className="text-xl font-bold text-gray-800">Total students</h1>
                        <div 
+                       title="CLick to view list"
                           className="bg-white p-3 flex justify-center ms-6 me-9 mt-2 font-bold rounded-lg shadow-xl hover:scale-110 transition duration-200"
                           // onClick={() => navigate('/student/list')}
                         >
@@ -130,6 +131,7 @@ const DashboardPage = () => {
                        <div className="mt-3">
                        <h1 className="text-xl font-bold text-gray-800">Total Teachers</h1>
                        <div 
+                       title="CLick to view list"
                           className="bg-white p-3 flex justify-center ms-6 me-9 mt-2 font-bold rounded-lg shadow-xl hover:scale-110 transition duration-200"
                           // onClick={() => navigate('/teacher/list')}
                           >
@@ -140,6 +142,7 @@ const DashboardPage = () => {
                     <div className="mt-3">
                        <h1 className="text-xl font-bold text-gray-800">Total Subjects</h1>
                        <div 
+                       title="CLick to view list"
                          className="bg-white p-3 flex justify-center ms-6 me-9 mt-2 font-bold rounded-lg shadow-xl hover:scale-110 transition duration-200"
                          onClick={() => navigate('/subject/list')}
                         >
@@ -150,6 +153,7 @@ const DashboardPage = () => {
                     <div className="mt-3">
                        <h1 className="text-xl font-bold text-gray-800">Total Classes</h1>
                        <div 
+                       title="CLick to view list"
                           className="bg-white p-3 flex justify-center ms-6 me-9 mt-2 font-bold rounded-lg shadow-xl hover:scale-110 transition duration-200"
                           onClick={() => navigate('/class/list')}
                         >
@@ -160,6 +164,7 @@ const DashboardPage = () => {
                     <div className="mt-3">
                        <h1 className="text-xl font-bold text-gray-800">Total Trades</h1>
                        <div 
+                       title="CLick to view list"
                          className="bg-white p-3 flex justify-center ms-6 me-9 mt-2 font-bold rounded-lg shadow-xl hover:scale-110 transition duration-200"
                          onClick={() => navigate('/trade/list')}
                         >
@@ -170,6 +175,7 @@ const DashboardPage = () => {
                     <div className="mt-3">
                        <h1 className="text-xl font-bold text-gray-800">Total Departments</h1>
                        <div 
+                       title="CLick to view list"
                          className="bg-white p-3 flex justify-center ms-6 me-9 mt-2 font-bold rounded-lg shadow-xl hover:scale-110 transition duration-200"
                          onClick={() => navigate('/department/list')}
                         >
