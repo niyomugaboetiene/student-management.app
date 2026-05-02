@@ -6,6 +6,7 @@ import SubjectSchema from "../schema/SubjectSchema.js";
 import TeacherSchema from "../schema/TeacherSchema.js";
 import TradeSchema from "../schema/TradeSchema.js";
 import DepartmentSchema from "../schema/DepartmentSchema.js";
+import ClassSchema from "../schema/ClassSchema.js";
 
 const router = express();
 
@@ -93,6 +94,12 @@ router.get('/report', async (req, res) => {
         const totalTeacher = await TeacherSchema.countDocuments();
         const totalTrade = await TradeSchema.countDocuments();
         const totalDepartment = await DepartmentSchema.countDocuments();
+        const totalClass = await ClassSchema.countDocuments();
+
+        return res.status(200).json({ message: 'Total', class: totalClass, subject: totalSubject, student: totalStudent, teacher: totalTeacher, trade: totalTrade, department: totalDepartment });
+    } catch (err) {
+       console.error(err);
+       return res.status(500).json({ message: 'Internal server error' });
     }
-})
+});
 export default router
