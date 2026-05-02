@@ -119,42 +119,42 @@ const DashboardPage = () => {
                   <div className="flex gap-6">
                     <div className="mt-3">
                        <h1 className="text-xl font-bold text-gray-800">Total students</h1>
-                       <div className="bg-white p-3 flex justify-center ms-6 me-9 mt-2 font-bold rounded-lg shadow-xl">
+                       <div className="bg-white p-3 flex justify-center ms-6 me-9 mt-2 font-bold rounded-lg shadow-xl hover:scale-110 transition duration-200">
                            {totalStudent}
                        </div>
                        </div>
                        
                        <div className="mt-3">
                        <h1 className="text-xl font-bold text-gray-800">Total Teachers</h1>
-                       <div className="bg-white p-3 flex justify-center ms-6 me-9 mt-2 font-bold rounded-lg shadow-xl">
+                       <div className="bg-white p-3 flex justify-center ms-6 me-9 mt-2 font-bold rounded-lg shadow-xl hover:scale-110 transition duration-200">
                           {totalTeacher}
                        </div>
                     </div>
                     
-                    <div>
+                    <div className="mt-3">
                        <h1 className="text-xl font-bold text-gray-800">Total Subjects</h1>
-                       <div className="bg-white p-3 flex justify-center ms-6 me-9 mt-2 font-bold rounded-lg shadow-xl">
+                       <div className="bg-white p-3 flex justify-center ms-6 me-9 mt-2 font-bold rounded-lg shadow-xl hover:scale-110 transition duration-200">
                           {totalSubject}
                        </div>
                     </div>
                     
-                    <div>
-                       <h1>Total Classes</h1>
-                       <div>
+                    <div className="mt-3">
+                       <h1 className="text-xl font-bold text-gray-800">Total Classes</h1>
+                       <div className="bg-white p-3 flex justify-center ms-6 me-9 mt-2 font-bold rounded-lg shadow-xl hover:scale-110 transition duration-200">
                           {totalClass}
                        </div>
                     </div>
                     
-                    <div>
-                       <h1>Total Trades</h1>
-                       <div>
+                    <div className="mt-3">
+                       <h1 className="text-xl font-bold text-gray-800">Total Trades</h1>
+                       <div className="bg-white p-3 flex justify-center ms-6 me-9 mt-2 font-bold rounded-lg shadow-xl hover:scale-110 transition duration-200">
                           {totalTrade}
                        </div>
                     </div>
                     
-                    <div>
-                       <h1>Total Trades</h1>
-                       <div>
+                    <div className="mt-3">
+                       <h1 className="text-xl font-bold text-gray-800">Total Trades</h1>
+                       <div className="bg-white p-3 flex justify-center ms-6 me-9 mt-2 font-bold rounded-lg shadow-xl hover:scale-110 transition duration-200">
                           {totalDepartment}
                        </div>
                     </div>
