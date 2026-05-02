@@ -29,7 +29,7 @@ function isAuthenticated (req, res, next) {
             return;
         }
     }
-router.post('/attendance', async (req, res) => {
+router.post('/attendance', isAuthenticated, async (req, res) => {
     //     student, class, marked_by, date status
 
     try {
@@ -58,7 +58,7 @@ router.post('/attendance', async (req, res) => {
     }
 });
 
-router.get('/attendanceList', async (req, res) => {
+router.get('/attendanceList', isAuthenticated, async (req, res) => {
     try {
         const attendanceList = await AttendanceSchema.find().populate("student").populate("class").populate("marked_by");
 
@@ -74,7 +74,7 @@ router.get('/attendanceList', async (req, res) => {
 });
 
 // get attendance by date/class
-router.get('/', async (req, res) => {
+router.get('/', isAuthenticated, async (req, res) => {
     try {
         const { day, month, class_id } = req.query;
         
@@ -104,7 +104,7 @@ router.get('/', async (req, res) => {
 });
 
 // get attendance by date/class/student
-router.get('/get', async (req, res) => {
+router.get('/get', isAuthenticated, async (req, res) => {
     try {
         const { day, month, full_name, class_name } = req.query;
 
@@ -164,7 +164,7 @@ router.get('/get', async (req, res) => {
 });
 
 // full reprort of attendance per class
-router.get('/full/:_id', async (req, res) => {
+router.get('/full/:_id', isAuthenticated, async (req, res) => {
     try {
         const _id = req.params._id;
 
@@ -195,7 +195,7 @@ router.get('/full/:_id', async (req, res) => {
 });
 
 // get fully atteandance per student
-router.get('/stud/:_id', async (req, res) => {
+router.get('/stud/:_id', isAuthenticated, async (req, res) => {
     try {
         const _id =  req.params._id;
         if (!_id) {
@@ -223,7 +223,7 @@ router.get('/stud/:_id', async (req, res) => {
     }
 });
 
-router.delete('/delete/:_id', async (req, res) => {
+router.delete('/delete/:_id', isAuthenticated, async (req, res) => {
     try {
         const _id = req.params._id;
 

@@ -24,7 +24,7 @@ function isAdmin (req, res, next) {
 }
 
 // * report
-router.get('/report', async (req, res) => {
+router.get('/report', isAdmin, async (req, res) => {
     try {
         const totalStudent = await StudentSchema.countDocuments();
         const totalSubject = await SubjectSchema.countDocuments();
@@ -48,7 +48,7 @@ router.get('/report', async (req, res) => {
     }
 });
 
-router.get('/:_id', async (req, res) => {
+router.get('/:_id', isAdmin, async (req, res) => {
     try {
         const { _id } = req.params;
 
@@ -68,7 +68,7 @@ router.get('/:_id', async (req, res) => {
     }
 });
 
-router.put('/update/:_id', async ( req, res) => {
+router.put('/update/:_id', isAdmin, async ( req, res) => {
     try {
         const { full_name, email, phone, location, password } = req.body;
         const { _id } = req.params;
@@ -109,7 +109,7 @@ router.put('/update/:_id', async ( req, res) => {
     }
 });
 
-router.delete('/delete/:_id', async (req, res) => {
+router.delete('/delete/:_id', isAdmin, async (req, res) => {
     try {
         const { _id } = req.params;
 
