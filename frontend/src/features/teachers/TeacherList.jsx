@@ -48,8 +48,8 @@ const TeacherList = () => {
         try {
             setLoading(true);
             if (confrim) {
-                  await axios.delete(`${BACKEND_URL}/class/delete/${_id}`, { withCredentials: true });
-                  await handleGetClass();
+                  await axios.delete(`${BACKEND_URL}/teacher/delete/${_id}`, { withCredentials: true });
+                  await handleGetTeacher();
                  setLoading(false);
             }
         } catch (err) {
