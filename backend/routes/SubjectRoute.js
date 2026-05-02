@@ -16,7 +16,7 @@ function isAuthenticated (req, res, next) {
         }
 }
 
-router.post('/add', async (req, res) => {
+router.post('/add', isAuthenticated, async (req, res) => {
     //    subject_id, subject_name, code,   instructor, students, credits
 
     try {
@@ -45,7 +45,7 @@ router.post('/add', async (req, res) => {
     }
 });
 
-router.get('/subjectList', async (req, res) => {
+router.get('/subjectList', isAuthenticated, async (req, res) => {
     try {
         const result = await SubjectSchema.find().populate("instructor").populate("class");
 
@@ -63,7 +63,7 @@ router.get('/subjectList', async (req, res) => {
     }
 });
 
-router.get('/:_id', async ( req, res) => {
+router.get('/:_id', isAuthenticated, async ( req, res) => {
     try {
         const _id = req.params._id;
 
@@ -90,7 +90,7 @@ router.get('/:_id', async ( req, res) => {
 });
 
 // subjects in class
-router.get('/class/:class', async ( req, res) => {
+router.get('/class/:class', isAuthenticated, async ( req, res) => {
     try {
         const { class: classe } = req.params;
 
@@ -116,7 +116,7 @@ router.get('/class/:class', async ( req, res) => {
     }
 });
 
-router.put('/update/:_id', async (req, res) => {
+router.put('/update/:_id', isAuthenticated, async (req, res) => {
     try {
         const _id = req.params;
                
@@ -141,7 +141,7 @@ router.put('/update/:_id', async (req, res) => {
 });
 
 
-router.delete('/delete/:_id', async (req, res) => {
+router.delete('/delete/:_id', isAuthenticated, async (req, res) => {
     try {
         const _id = req.params;
 

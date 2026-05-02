@@ -17,7 +17,7 @@ function isAuthenticated (req, res, next) {
         }
 }
 
-router.get("/studentList", async (req, res) => {
+router.get("/studentList", isAuthenticated, async (req, res) => {
     try {
         const StudentList = await StudentSchema.find();
 
@@ -36,7 +36,7 @@ router.get("/studentList", async (req, res) => {
 
 // get student based on class
 
-router.get('/class/:class_id', async (req, res) => {
+router.get('/class/:class_id', isAuthenticated, async (req, res) => {
     try {
         const class_id = req.params.class_id;
 
@@ -53,7 +53,7 @@ router.get('/class/:class_id', async (req, res) => {
     }
 });
 
-router.get("/:_id", async (req, res) => {
+router.get("/:_id", isAuthenticated, async (req, res) => {
     try {
         const { _id }   = req.params;
 
@@ -76,7 +76,7 @@ router.get("/:_id", async (req, res) => {
 });
 
 
-router.put('/update/:_id', async (req, res) => {
+router.put('/update/:_id', isAuthenticated, async (req, res) => {
     try {
         const _id = req.params;
         const { full_name, gender, email, trade, phone, location, classe, password } = req.body;
@@ -120,7 +120,7 @@ router.put('/update/:_id', async (req, res) => {
     }
 });
 
-router.delete('/delete/:_id', async (req, res) => {
+router.delete('/delete/:_id', isAuthenticated, async (req, res) => {
     try {
         const _id = req.params;
 
