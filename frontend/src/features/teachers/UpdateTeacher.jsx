@@ -69,7 +69,7 @@ const UpdateTeacher = () => {
             const TeacherData = trRes.data.teacher || "";
 
             console.log("Teacher name", TeacherData);
-            
+
             setFull_name(TeacherData.full_name || "");
             setDpeartment(TeacherData.department?._id || "");
             setClasse(TeacherData.class?._id || "");
@@ -77,6 +77,8 @@ const UpdateTeacher = () => {
             setQualification(TeacherData.qualification || "");
             setGender(TeacherData.gender || "");
             setSalary(TeacherData.salary || "");
+            setPhone(TeacherData.phone || "");
+            setExperience(TeacherData.experience || "");
 
             setIsLoading(false);
           } catch (err) {
