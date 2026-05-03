@@ -18,12 +18,12 @@ const GetStudentList = () => {
         } catch (err) {
             console.error(err);
             const errorMessage = err.response?.data?.message;
-            if (errorMessage === "No subject in the system") {
+            if (errorMessage === "No student in database") {
                 setError(errorMessage);
             }
 
 
-            if (errorMessage === "Internal server error") {
+            if (errorMessage === "Server error") {
                 setError(errorMessage);
             }
         setLoading(false);
