@@ -1,8 +1,10 @@
 import { useState } from 'react'
 import AdminLogin from './features/auth/admin/Login'
 import AdminRegister from './features/auth/admin/Register'
+
 import StudentLogin from './features/auth/student/Login'
 import StudentRegister from './features/auth/student/Register'
+import GetStudentList from './features/students/StudentLIst'
 
 // teacher portal
 import TeacherRegister from './features/auth/teacher/Register'
@@ -52,9 +54,10 @@ function App() {
                <Route path='/admin/login' element={<AdminLogin />}/>
                <Route path='/admin/register' element={<AdminRegister />}/>
 
-
+               {/* Student route */}
                <Route path='/student/login' element={<StudentLogin />}/>
                <Route path='/student/register' element={<StudentRegister />}/>
+               <Route path='/student/list' element={<GetStudentList />}/>
 
                {/* Teacher routes */}
                <Route path='/teacher/register' element={<TeacherRegister />}/>
