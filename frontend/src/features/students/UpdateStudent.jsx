@@ -125,8 +125,10 @@ const UpdateStudent = () => {
             setFull_name(StudentData.full_name || "");
             setEmail(StudentData.email || "");
             setGender(StudentData.gender || "");
-            setTrade(StudentData.full_name || "");
-            setSubject_name(StudentData.full_name || "");
+            setTrade(StudentData.trade?._id || "");
+            setClasse(StudentData.class?._id || "");
+            setLocation(StudentData.location|| "");
+            setClasse(StudentData.class?._id || "");
 
             setLoading(false);
           } catch (err) {
