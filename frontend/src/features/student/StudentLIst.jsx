@@ -17,7 +17,7 @@ const GetStudentList = () => {
             setLoading(false);
         } catch (err) {
             console.error(err);
-            const errorMessage = err.response?.data?.error;
+            const errorMessage = err.response?.data?.message;
             if (errorMessage === "No subject in the system") {
                 setError(errorMessage);
             }
