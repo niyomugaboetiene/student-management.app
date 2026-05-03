@@ -12,8 +12,8 @@ const GetStudentList = () => {
     const handleGetStudentList = async () => {
         try {
             setLoading(true);
-            const subRes = await axios.get(`${BACKEND_URL}/students/studentList`, { withCredentials: true });
-            setSubject(subRes.data.student);
+            const stRes = await axios.get(`${BACKEND_URL}/students/studentList`, { withCredentials: true });
+            setStudent(stRes.data.student);
             setLoading(false);
         } catch (err) {
             console.error(err);
