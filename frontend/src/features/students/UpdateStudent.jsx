@@ -110,10 +110,10 @@ const UpdateStudent = () => {
           try {
             if (!_id) return;
             setLoading(true);
-            const subRes = await axios.get(`${BACKEND_URL}/subjects/${_id}`, { withCredentials: true });
-            const subjectData = subRes.data.subject || "";
+            const trRes = await axios.get(`${BACKEND_URL}/student/${_id}`, { withCredentials: true });
+            const TeacherData = trRes.data.student || "";
 
-            console.log("Subject name", subjectData);
+            console.log("class name", subjectData);
             setSubject_name(subjectData.subject_name || "");
             setCode(subjectData.code || "");
             setInstructor(subjectData.instructor || "");
