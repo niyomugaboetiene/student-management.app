@@ -19,6 +19,7 @@ const UpdateStudent = () => {
 
     const [tradeToSelect, setTradeToSelect] = useState(null);
     const [classToSelect, setClassToSelect] = useState(null);
+
     const navigate = useNavigate();
 
     const { _id } = useParams();
@@ -28,7 +29,6 @@ const UpdateStudent = () => {
     const handleRegisterStudent = async () => {
         try {
              setLoading(true);
-              console.log("Received data", classe);
             //  full_name, gender, email, trade, phone, location, classe, password 
             if (!full_name || !phone || !password || !phone || !location || !gender || !classe || !password) {
                 setMessage("");
@@ -36,7 +36,7 @@ const UpdateStudent = () => {
                 return;
             }
             const BACKEND_URL = import.meta.env.VITE_BACKEND_URL;
-            const res = await axios.post(`${BACKEND_URL}/student/auth/register`, {
+            const res = await axios.post(`${BACKEND_URL}/student/update/${_id}`, {
                 full_name,
                 gender,
                 email,
@@ -109,7 +109,7 @@ const UpdateStudent = () => {
     const handleGetSubject = async () => {
           try {
             if (!_id) return;
-            setIsLoading(true);
+            setLoading(true);
             const subRes = await axios.get(`${BACKEND_URL}/subjects/${_id}`, { withCredentials: true });
             const subjectData = subRes.data.subject || "";
 
@@ -117,13 +117,13 @@ const UpdateStudent = () => {
             setSubject_name(subjectData.subject_name || "");
             setCode(subjectData.code || "");
             setInstructor(subjectData.instructor || "");
-            setClasses(subjectData.class || "");
+            setClasse(subjectData.class || "");
             setCredits(subjectData.credits || 0);
 
-            setIsLoading(false);
+            setLoading(false);
           } catch (err) {
             console.error(err);
-            setIsLoading(false);
+            setLoading(false);
           }
     }
 
@@ -228,10 +228,6 @@ const UpdateStudent = () => {
                 <hr />
 
                 <Link className="flex items-center justify-center mt-2 text-cyan-500 hover:underline" to='/student/login'>login</Link>
-            </div>
-
-            <div className="absolute w-110 bottom-13 bg-red-400 p-2 rounded-lg">
-                <p className="text-white font-bold">By default your account is not approved by administration . after account creation you can call administration to approve it</p>
             </div>
         </div>
     )
