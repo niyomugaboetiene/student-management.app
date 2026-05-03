@@ -35,7 +35,7 @@ const GetStudentList = () => {
     handleGetStudentList();
   }, []);
 
-  const handleDeleteSubject = async (_id) => {
+  const handleDeleteStudent = async (_id) => {
     const confrim = window.confirm("Are you sure ?");
     try {
         setLoading(true);
@@ -81,7 +81,7 @@ const GetStudentList = () => {
 
                                 <td className="py-3 px-3 font-bold flex justify-between space-x-5">
                                     <Link className="bg-green-500 py-1 px-5 rounded-xl text-white hover:bg-green-600 transition-colors" to={`/student/update/${stu._id}`}>Update</Link>
-                                    <button className="bg-red-500 py-1 px-5 rounded-xl text-white hover:bg-red-600 transition-colors" onClick={() => handleDeleteSubject(stu._id)}>Delete</button>
+                                    <button className="bg-red-500 py-1 px-5 rounded-xl text-white hover:bg-red-600 transition-colors" onClick={() => handleDeleteStudent(stu._id)}>Delete</button>
                                 </td>
                             </tr>
                         ))}
