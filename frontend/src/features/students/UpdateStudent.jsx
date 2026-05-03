@@ -128,7 +128,7 @@ const UpdateStudent = () => {
             setTrade(StudentData.trade?._id || "");
             setClasse(StudentData.class?._id || "");
             setLocation(StudentData.location|| "");
-            setClasse(StudentData.class?._id || "");
+            setPhone(StudentData.phone || "");
 
             setLoading(false);
           } catch (err) {
