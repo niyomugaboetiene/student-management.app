@@ -40,14 +40,14 @@ const GetStudentList = () => {
     try {
         setLoading(true);
       if (confrim) {
-         await axios.delete(`${BACKEND_URL}/subjects/delete/${_id}`, { withCredentials: true });
+         await axios.delete(`${BACKEND_URL}/student/delete/${_id}`, { withCredentials: true });
       } 
 
-      await handleGetSubjectList();
+      await handleGetStudentList();
       setLoading(false);
     } catch (err) {
         console.error("Error", err);
-        setError("Failed to delete subject");
+        setError("Failed to delete student");
         setLoading(false);
     }
   }
