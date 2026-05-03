@@ -26,7 +26,7 @@ const UpdateStudent = () => {
 
     const BACKEND_URL = import.meta.env.VITE_BACKEND_URL;
 
-    const handleRegisterStudent = async () => {
+    const handleAddStudent = async () => {
         try {
              setLoading(true);
             //  full_name, gender, email, trade, phone, location, classe, password 
@@ -228,7 +228,7 @@ const UpdateStudent = () => {
                     />
                 </div>
 
-                <button onClick={handleRegisterStudent} className="w-full bg-cyan-500 p-3 rounded-full text-white font-bold hover:bg-cyan-400 transition-colors mb-4">Create account</button>
+                <button onClick={handleAddStudent} className="w-full bg-cyan-500 p-3 rounded-full text-white font-bold hover:bg-cyan-400 transition-colors mb-4">Update Student</button>
                 <hr />
 
                 <Link className="flex items-center justify-center mt-2 text-cyan-500 hover:underline" to='/student/login'>login</Link>
