@@ -111,14 +111,14 @@ const UpdateStudent = () => {
             if (!_id) return;
             setLoading(true);
             const trRes = await axios.get(`${BACKEND_URL}/student/${_id}`, { withCredentials: true });
-            const TeacherData = trRes.data.student || "";
+            const StudentData = trRes.data.student || "";
 
-            console.log("class name", subjectData);
-            setSubject_name(subjectData.subject_name || "");
-            setCode(subjectData.code || "");
-            setInstructor(subjectData.instructor || "");
-            setClasse(subjectData.class || "");
-            setCredits(subjectData.credits || 0);
+            console.log("student name", StudentData);
+            setFull_name(StudentData.full_name || "");
+            setEmail(StudentData.email || "");
+            setGender(StudentData.gender || "");
+            setSubject_name(StudentData.full_name || "");
+            setSubject_name(StudentData.full_name || "");
 
             setLoading(false);
           } catch (err) {
