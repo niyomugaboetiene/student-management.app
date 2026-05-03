@@ -49,6 +49,7 @@ const UpdateStudent = () => {
  
           setLoading(false);
           setMessage(res.data.message);
+          navigate('/student/list');
           setError("");
         } catch (err) {
             setLoading(false);
@@ -106,7 +107,7 @@ const UpdateStudent = () => {
         }
     }, [trade]);
 
-    const handleGetSubject = async () => {
+    const handleGetStudent = async () => {
           try {
             if (!_id) return;
             setLoading(true);
@@ -114,14 +115,7 @@ const UpdateStudent = () => {
             const StudentData = trRes.data.student || "";
 
             console.log("student name", StudentData);
-            /*                 full_name,
-                gender,
-                email,
-                trade,
-                phone,
-                location,
-                classe,
-                password*/
+
             setFull_name(StudentData.full_name || "");
             setEmail(StudentData.email || "");
             setGender(StudentData.gender || "");
@@ -139,7 +133,7 @@ const UpdateStudent = () => {
 
     useEffect(() => {
         if (_id) {
-            handleGetSubject();
+            handleGetStudent();
         }
     }, [_id]);
 
