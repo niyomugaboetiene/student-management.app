@@ -22,7 +22,7 @@ router.get("/studentList", isAuthenticated, async (req, res) => {
         const StudentList = await StudentSchema.find();
 
         if (StudentList.length === 0) {
-            return res.status(404).json({ message: 'Id does not exist' });
+            return res.status(404).json({ message: 'No student in database' });
         }
 
         console.log("Student length", StudentList.length);
