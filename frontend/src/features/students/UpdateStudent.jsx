@@ -216,14 +216,14 @@ const UpdateStudent = () => {
                 
                 <div className="mt-3">
                     <input type="text"  
-                    onChange={(e) => setGender(e.target.value)} required
+                    onChange={(e) => setGender(e.target.value)}
                     className="bg-gray-100 w-full p-3 rounded-full focus:outline-1 focus:outline-gray-500" placeholder="Gender"
                 />
                 </div>
                 
                 <div className="mt-3 mb-4">
                     <input type="password"  
-                       onChange={(e) => setPassword(e.target.value)} required
+                       onChange={(e) => setPassword(e.target.value)}
                        className="bg-gray-100 w-full rounded-full p-3 focus:outline-1 focus:outline-gray-500" placeholder="Password"
                     />
                 </div>
