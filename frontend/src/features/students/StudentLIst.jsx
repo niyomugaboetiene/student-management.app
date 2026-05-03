@@ -70,12 +70,6 @@ const GetStudentList = () => {
                     </thead>
 
                     <tbody>
-                        {/* full_name
-"Kayinamura eric"
-email
-phone
-location
-createdAt */}
                         {student?.map((stu, index) => (
                             <tr key={stu._id} className={`${index % 2 === 0 ? 'bg-gray-200' : 'bg-cyan-300'} hover:${index % 2 === 0 ? 'bg-gray-500' : 'bg-cyan-400'} transition-colors`}>
                                 <td className="py-3 text-gray-700 px-7 font-bold">{stu.student_id}</td>
