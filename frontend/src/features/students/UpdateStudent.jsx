@@ -30,13 +30,8 @@ const UpdateStudent = () => {
         try {
              setLoading(true);
             //  full_name, gender, email, trade, phone, location, classe, password 
-            if (!full_name || !phone || !password || !phone || !location || !gender || !classe || !password) {
-                setMessage("");
-                setError("Fill out some missing fields");
-                return;
-            }
             const BACKEND_URL = import.meta.env.VITE_BACKEND_URL;
-            const res = await axios.post(`${BACKEND_URL}/student/update/${_id}`, {
+            const res = await axios.put(`${BACKEND_URL}/student/update/${_id}`, {
                 full_name,
                 gender,
                 email,
