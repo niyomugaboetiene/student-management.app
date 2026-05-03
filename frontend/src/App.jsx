@@ -2,9 +2,11 @@ import { useState } from 'react'
 import AdminLogin from './features/auth/admin/Login'
 import AdminRegister from './features/auth/admin/Register'
 
+// student portal
 import StudentLogin from './features/auth/student/Login'
 import StudentRegister from './features/auth/student/Register'
 import GetStudentList from './features/students/StudentLIst'
+import UpdateStudent from './features/students/UpdateStudent'
 
 // teacher portal
 import TeacherRegister from './features/auth/teacher/Register'
@@ -58,6 +60,7 @@ function App() {
                <Route path='/student/login' element={<StudentLogin />}/>
                <Route path='/student/register' element={<StudentRegister />}/>
                <Route path='/student/list' element={<GetStudentList />}/>
+               <Route path='/student/update/:_id' element={<UpdateStudent />}/>
 
                {/* Teacher routes */}
                <Route path='/teacher/register' element={<TeacherRegister />}/>
