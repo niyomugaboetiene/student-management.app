@@ -114,10 +114,18 @@ const UpdateStudent = () => {
             const StudentData = trRes.data.student || "";
 
             console.log("student name", StudentData);
+            /*                 full_name,
+                gender,
+                email,
+                trade,
+                phone,
+                location,
+                classe,
+                password*/
             setFull_name(StudentData.full_name || "");
             setEmail(StudentData.email || "");
             setGender(StudentData.gender || "");
-            setSubject_name(StudentData.full_name || "");
+            setTrade(StudentData.full_name || "");
             setSubject_name(StudentData.full_name || "");
 
             setLoading(false);
