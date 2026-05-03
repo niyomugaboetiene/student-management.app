@@ -55,33 +55,39 @@ const GetStudentList = () => {
     return (
         <div className="bg-gray-100 min-h-screen">
             <div className="max-w-6xl mx-auto">
-                <h1 className="ms-120 text-2xl mb-3 text-cyan-700 font-bold">Subject List</h1>
+                <h1 className="ms-120 text-2xl mb-3 text-cyan-700 font-bold">Students List</h1>
                 <table className="w-full overflow-hidden overflow-x-auto">
                     <thead className="bg-cyan-400 rounded-2xl">
                         <tr className="">
                             <th className="py-3 text-white font-bold">Id</th>
-                            <th className="py-3 text-white font-bold">Code</th>
-                            <th className="py-3 text-white font-bold">Subject name</th>
-                            <th className="py-3 text-white font-bold">Instructor</th>
-                            <th className="py-3 text-white font-bold">Class</th>
-                            <th className="py-3 text-white font-bold">Credits</th>
+                            <th className="py-3 text-white font-bold">Full name</th>
+                            <th className="py-3 text-white font-bold">Email</th>
+                            <th className="py-3 text-white font-bold">Phone</th>
+                            <th className="py-3 text-white font-bold">Location</th>
+                            <th className="py-3 text-white font-bold">Joined at</th>
                             <th colSpan={2} className="py-2 text-white font-bold">Opearation</th>
                         </tr>
                     </thead>
 
                     <tbody>
-                        {subject.map((sub, index) => (
-                            <tr key={sub._id} className={`${index % 2 === 0 ? 'bg-gray-200' : 'bg-cyan-300'} hover:${index % 2 === 0 ? 'bg-gray-500' : 'bg-cyan-400'} transition-colors`}>
-                                <td className="py-3 text-gray-700 px-7 font-bold">{sub.subject_id}</td>
-                                <td className="py-3 text-gray-700 px-7 font-bold">{sub.code}</td>
-                                <td className="py-3 text-gray-700 px-7 font-bold">{sub.subject_name}</td>
-                                <td className="py-3 text-gray-700 px-7 font-bold">{sub.instructor?.full_name ? sub.instructor?.full_name : "No instructor"}</td>
-                                <td className="py-3 text-gray-700 px-7 font-bold">{sub.class?.class_name ? sub.class?.class_name : "No class"}</td>
-                                <td className="py-3 text-gray-700 px-7 font-bold">{sub.credits}</td>
+                        {/* full_name
+"Kayinamura eric"
+email
+phone
+location
+createdAt */}
+                        {student?.map((stu, index) => (
+                            <tr key={stu._id} className={`${index % 2 === 0 ? 'bg-gray-200' : 'bg-cyan-300'} hover:${index % 2 === 0 ? 'bg-gray-500' : 'bg-cyan-400'} transition-colors`}>
+                                <td className="py-3 text-gray-700 px-7 font-bold">{stu.subject_id}</td>
+                                <td className="py-3 text-gray-700 px-7 font-bold">{stu.code}</td>
+                                <td className="py-3 text-gray-700 px-7 font-bold">{stu.subject_name}</td>
+                                <td className="py-3 text-gray-700 px-7 font-bold">{stu.instructor?.full_name ? stu.instructor?.full_name : "No instructor"}</td>
+                                <td className="py-3 text-gray-700 px-7 font-bold">{stu.class?.class_name ? stu.class?.class_name : "No class"}</td>
+                                <td className="py-3 text-gray-700 px-7 font-bold">{stu.credits}</td>
 
                                 <td className="py-3 px-3 font-bold flex justify-between space-x-5">
-                                    <Link className="bg-green-500 py-1 px-5 rounded-xl text-white hover:bg-green-600 transition-colors" to={`/subject/update/${sub._id}`}>Update</Link>
-                                    <button className="bg-red-500 py-1 px-5 rounded-xl text-white hover:bg-red-600 transition-colors" onClick={() => handleDeleteSubject(sub._id)}>Delete</button>
+                                    <Link className="bg-green-500 py-1 px-5 rounded-xl text-white hover:bg-green-600 transition-colors" to={`/subject/update/${stu._id}`}>Update</Link>
+                                    <button className="bg-red-500 py-1 px-5 rounded-xl text-white hover:bg-red-600 transition-colors" onClick={() => handleDeleteSubject(stu._id)}>Delete</button>
                                 </td>
                             </tr>
                         ))}
