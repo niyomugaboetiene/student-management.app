@@ -61,7 +61,7 @@ router.get("/:_id", isAuthenticated, async (req, res) => {
             return res.status(403).json({ message: 'Id required' });
         }
 
-        const student = await StudentSchema.findById(_id);
+        const student = await StudentSchema.findById(_id).populate("trade").populate("class");
 
         if (!student) {
             return res.status(404).json({ message: 'Id does not exist' });
