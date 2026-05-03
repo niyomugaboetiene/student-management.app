@@ -82,8 +82,8 @@ createdAt */}
                                 <td className="py-3 text-gray-700 px-7 font-bold">{stu.full_name}</td>
                                 <td className="py-3 text-gray-700 px-7 font-bold">{stu.email}</td>
                                 <td className="py-3 text-gray-700 px-7 font-bold">{stu.phone}</td>
-                                <td className="py-3 text-gray-700 px-7 font-bold">{stu.class?.class_name ? stu.class?.class_name : "No class"}</td>
-                                <td className="py-3 text-gray-700 px-7 font-bold">{stu.credits}</td>
+                                <td className="py-3 text-gray-700 px-7 font-bold">{stu.location}</td>
+                                <td className="py-3 text-gray-700 px-7 font-bold">{new Date(stu.createdAt).toLocaleDateString()}</td>
 
                                 <td className="py-3 px-3 font-bold flex justify-between space-x-5">
                                     <Link className="bg-green-500 py-1 px-5 rounded-xl text-white hover:bg-green-600 transition-colors" to={`/student/update/${stu._id}`}>Update</Link>
