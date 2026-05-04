@@ -75,6 +75,11 @@ const DashboardPage = () => {
     return (
         <div className="bg-gray-100 min-h-screen">
             <div className="flex justify-between bg-cyan-400 w-full">
+                {isLoading && (
+                    <div className="flex justify-center items-center">
+                        <div className="h-8 w-8 text-cyan-500 border-transparent animate-spin"></div>
+                    </div>
+                )}
                <div>
                    <p>Logo</p>
                </div>
