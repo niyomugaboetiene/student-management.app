@@ -63,6 +63,8 @@ const GetStudentList = () => {
                             <th className="py-3 text-white font-bold">Full name</th>
                             <th className="py-3 text-white font-bold">Email</th>
                             <th className="py-3 text-white font-bold">Phone</th>
+                            <th className="py-3 text-white font-bold">Trade</th>
+                            <th className="py-3 text-white font-bold">Class</th>
                             <th className="py-3 text-white font-bold">Location</th>
                             <th className="py-3 text-white font-bold">Joined at</th>
                             <th colSpan={2} className="py-2 text-white font-bold">Opearation</th>
@@ -75,6 +77,8 @@ const GetStudentList = () => {
                                 <td className="py-3 text-gray-700 px-7 font-bold">{stu.student_id}</td>
                                 <td className="py-3 text-gray-700 px-7 font-bold">{stu.full_name}</td>
                                 <td className="py-3 text-gray-700 px-7 font-bold">{stu.email}</td>
+                                <td className="py-3 text-gray-700 px-7 font-bold">{stu.trade?.trade_name ? stu.trade?.trade_name : "No trade"}</td>
+                                <td className="py-3 text-gray-700 px-7 font-bold">{stu.class?.class_name ? stu.class?.class_name : "No class"}</td>
                                 <td className="py-3 text-gray-700 px-7 font-bold">{stu.phone}</td>
                                 <td className="py-3 text-gray-700 px-7 font-bold">{stu.location}</td>
                                 <td className="py-3 text-gray-700 px-7 font-bold">{new Date(stu.createdAt).toLocaleDateString()}</td>
