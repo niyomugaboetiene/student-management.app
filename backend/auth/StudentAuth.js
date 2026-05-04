@@ -48,7 +48,7 @@ router.post('/login', async (req, res) => {
 
 router.get('/getMarks', async (req, res) => {
     try {
-        const marks = await MarksSchema.find({})
+        const marks = await MarksSchema.find({ student: req.session?.user.id }).populate("class").populate("subject");
     }
 })
 // get trade and class
