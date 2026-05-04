@@ -137,4 +137,6 @@ export default router;
 
 // 15 math -> kinya
 // 16 frontend-design and development -> english
-// 17
+// 17 devops and software testing
+// 20 backend development and database
+// 21 
