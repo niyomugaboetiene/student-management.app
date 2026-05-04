@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { FaTimes } from 'react-icons/fa';
 import { useParams } from 'react-router-dom';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 
 const UpdateStudent = () => {
     const [full_name, setFull_name] = useState("");
@@ -150,6 +150,7 @@ const UpdateStudent = () => {
 
                 <div className="mt-3">
                     <input type="text"  
+                        value={full_name}
                        onChange={(e) => setFull_name(e.target.value)} required
                        className="bg-gray-100  w-full p-3 rounded-full focus:outline-1 focus:outline-gray-500" placeholder="Full name"
                     />
