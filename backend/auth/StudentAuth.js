@@ -139,4 +139,6 @@ export default router;
 // 16 frontend-design and development -> english
 // 17 devops and software testing
 // 20 backend development and database
-// 21 
+// 21 phyiscs
+// 22 system administration -> Enterpreneurship
+// 23 Web3 and machine learning
