@@ -26,6 +26,10 @@ const StudentMarks = () => {
             if (errorMessage === "No marks") {
                 setError("You dont have any marks yet");
             }
+            
+            if (errorMessage === "Internal server error") {
+                setError(errorMessage);
+            }
 
             setLoading(false);
         }
