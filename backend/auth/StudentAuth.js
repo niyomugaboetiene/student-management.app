@@ -51,14 +51,14 @@ router.get('/getMarks', async (req, res) => {
         if (!req.session.user) {
             return res.status(401).json({ message: 'Login please' });
         }
-        
+
         const marks = await MarksSchema.find({ student: req.session?.user.id }).populate("class").populate("subject").populate("student");
       if (!marks) {
         return res.status(404).json({ message: 'No marks' });
       }
 
       return res.status(200).json({ message: 'Your marks', mark: marks });
-    }
+    } catch 
 })
 // get trade and class
 router.get('/trade', async (req, res) => {
@@ -134,3 +134,7 @@ router.post('/register', async (req, res) => {
 });
 
 export default router;
+
+// 15 math -> kinya
+// 16 frontend-design and development -> english
+// 17
