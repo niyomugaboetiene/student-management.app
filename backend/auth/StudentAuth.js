@@ -3,6 +3,7 @@ import StudentSchema from "../schema/StudentSchema.js";
 import TradeSchema from "../schema/TradeSchema.js";
 import ClassSchema from "../schema/ClassSchema.js";
 import bcrypt from "bcrypt";
+import MarksSchema from "../schema/MarksSchema.js";
 
 const router = express.Router();
 
@@ -45,6 +46,11 @@ router.post('/login', async (req, res) => {
     }
 });
 
+router.get('/getMarks', async (req, res) => {
+    try {
+        const marks = await MarksSchema.find({})
+    }
+})
 // get trade and class
 router.get('/trade', async (req, res) => {
     try {
