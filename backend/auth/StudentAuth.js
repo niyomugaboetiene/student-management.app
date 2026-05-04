@@ -58,8 +58,11 @@ router.get('/getMarks', async (req, res) => {
       }
 
       return res.status(200).json({ message: 'Your marks', mark: marks });
-    } catch 
-})
+    } catch (err) {
+        console.error(err);
+        return res.status(500).json({ message: 'Internal server error' });
+    }
+});
 // get trade and class
 router.get('/trade', async (req, res) => {
     try {
