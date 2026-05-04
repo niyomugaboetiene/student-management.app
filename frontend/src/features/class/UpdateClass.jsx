@@ -114,6 +114,11 @@ const UpdateClass = () => {
                         <p>{error}</p> <p className="text-lg mt-1" onClick={() => setError("")}><FaTimes /></p>
                     </div>
                 )}
+               {isLoading && (
+                    <div className="flex justify-center items-center">
+                        <div className="h-8 w-8 text-cyan-500 border-transparent animate-spin"></div>
+                    </div>
+                )}
                
                 <h1 className="text-xl text-gray-600 font-bold">Update Class Portal</h1>
               
