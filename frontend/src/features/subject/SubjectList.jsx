@@ -55,6 +55,11 @@ const GetSubjectList = () => {
     return (
         <div className="bg-gray-100 min-h-screen">
             <div className="max-w-6xl mx-auto">
+                 {loading && (
+                    <div className="flex justify-center items-center">
+                        <div className="h-8 w-8 text-cyan-500 border-transparent animate-spin"></div>
+                    </div>
+                )}
                 <h1 className="ms-120 text-2xl mb-3 text-cyan-700 font-bold">Subject List</h1>
                 <table className="w-full overflow-hidden overflow-x-auto">
                     <thead className="bg-cyan-400 rounded-2xl">
