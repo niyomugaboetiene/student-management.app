@@ -230,9 +230,6 @@ const UpdateStudent = () => {
                 </div>
 
                 <button onClick={handleAddStudent} className="w-full bg-cyan-500 p-3 rounded-full text-white font-bold hover:bg-cyan-400 transition-colors mb-4">Update Student</button>
-                <hr />
-
-                <Link className="flex items-center justify-center mt-2 text-cyan-500 hover:underline" to='/student/login'>login</Link>
             </div>
         </div>
     )
