@@ -158,6 +158,7 @@ const UpdateStudent = () => {
                 
                 <div className="mt-3">
                     <input type="text"  
+                        value={location}
                        onChange={(e) => setLocation(e.target.value)} required
                        className="bg-gray-100  w-full p-3 rounded-full focus:outline-1 focus:outline-gray-500" placeholder="District"
                     />
@@ -165,6 +166,7 @@ const UpdateStudent = () => {
                 
                 <div className="mt-3">
                     <input type="text"  
+                       value={email}
                        onChange={(e) => setEmail(e.target.value)} required
                        className="bg-gray-100  w-full p-3 rounded-full focus:outline-1 focus:outline-gray-500" placeholder="Email"
                     />
@@ -172,6 +174,7 @@ const UpdateStudent = () => {
                 
                 <div className="mt-3">
                     <input type="text"  
+                    value={phone}
                     onChange={(e) => setPhone(e.target.value)} required
                     className="bg-gray-100 w-full p-3 rounded-full focus:outline-1 focus:outline-gray-500" placeholder="Phone"
                 />
@@ -179,6 +182,7 @@ const UpdateStudent = () => {
                 
                 <div className="mt-3">
                     <select
+                        value={trade}
                         onChange={(e) => setTrade(e.target.value)}
                        className="bg-gray-100 w-full p-3 rounded-full focus:outline-1 focus:outline-gray-500" placeholder="Class"
                    > 
@@ -212,6 +216,7 @@ const UpdateStudent = () => {
                 
                 <div className="mt-3">
                     <input type="text"  
+                    value={gender}
                     onChange={(e) => setGender(e.target.value)}
                     className="bg-gray-100 w-full p-3 rounded-full focus:outline-1 focus:outline-gray-500" placeholder="Gender"
                 />
