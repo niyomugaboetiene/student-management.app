@@ -39,29 +39,6 @@ const StudentMarks = () => {
         handleGetMarks();
     }, []);
 
-    const DeleteMarks = async (_id) => {
-        const confrim = window.confirm("Are you sure ?");
-        try {
-            setLoading(true);
-            if (confrim) {
-                  await axios.delete(`${BACKEND_URL}/marks/delete/${_id}`, { withCredentials: true });
-                  await handleGetMarks();
-                 setLoading(false);
-            }
-        } catch (err) {
-            console.error(err);
-            const errorMessage = err.response?.data?.message || "Error occured";
-            if (errorMessage === "No IDs in the system") {
-                setError(errorMessage);
-            }
-
-            if (errorMessage === "Internal server error") {
-                setError(errorMessage);
-            }
-
-            setLoading(false);
-        }
-    }
 
     return (
         <div className="bg-cyan-100 min-h-screen">
@@ -76,7 +53,6 @@ const StudentMarks = () => {
                             <th className="py-3 px-4 text-left">Subject</th>
                             <th className="py-3 px-4 text-left">Marks</th>
                             <th className="py-3 px-4 text-left">Done at</th>
-                            <th className="py-3 px-4 text-left" colSpan={2}>Operations</th>
                         </tr>
                     </thead>
 
@@ -89,11 +65,6 @@ const StudentMarks = () => {
                                 <td className="py-3 px-4 text-left">{mark.subject?.subject_name}</td>
                                 <td className="py-3 px-4 text-left">{mark.marks}</td>
                                 <td className="py-3 px-4 text-left">{new Date(mark.createdAt).toLocaleDateString()}</td>
-
-                                <td className="flex justify-between p-3">
-                                    <Link className="inline-flex gap-2 bg-green-500 py-1 px-3 rounded-lg font-bold text-white" to={`/marks/update/${mark._id}`}><FaEdit /> Update</Link>
-                                    <button className="inline-flex gap-2 bg-red-500 py-1 px-3 font-bold text-white rounded-lg" onClick={() => DeleteMarks(mark._id)}><FaTrash /> Delete</button>
-                                </td>
                             </tr>
                         ))}
                     </tbody>
