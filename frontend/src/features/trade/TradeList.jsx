@@ -66,7 +66,11 @@ const GetTradeList = () => {
     return (
         <div className="bg-cyan-50 min-h-screen p-3">
             <div className="max-w-6xl mx-auto">
-
+             {isLoading && (
+                    <div className="flex justify-center items-center">
+                        <div className="h-8 w-8 text-cyan-500 border-transparent animate-spin"></div>
+                    </div>
+                )}
                 <h1 className="text-2xl font-bold text-cyan-700 mb-4 text-center">Trade List</h1>
                 <div className="rounded-xl border-cyan-300">
                   <table className="w-full border border-cyan-300 rounded-xl overflow-hidden">
