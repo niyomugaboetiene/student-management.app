@@ -64,6 +64,11 @@ const DepartmentList = () => {
     return (
         <div className="bg-cyan-50 p-3 min-h-screen">
             <div className="max-w-7xl mx-auto mt-5">
+                {loading && (
+                    <div className="flex justify-center items-center">
+                        <div className="h-8 w-8 text-cyan-500 border-transparent animate-spin"></div>
+                    </div>
+                )}
                 <h2 className="text-center text-2xl mb-4 font-bold text-cyan-700">Department list</h2>
 
                 <div className="rounded-lg ">
