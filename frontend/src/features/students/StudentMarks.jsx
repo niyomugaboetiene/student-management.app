@@ -13,18 +13,18 @@ const StudentMarks = () => {
     const handleGetMarks = async() => {
         try {
             setLoading(true);
-            const res = await axios.get(`${BACKEND_URL}/marks/marks_list`, { withCredentials: true });
-            setMarks(res.data.marks);
+            const res = await axios.get(`${BACKEND_URL}/student/auth/getMarks`, { withCredentials: true });
+            setMarks(res.data.mark);
             setLoading(false);
         } catch (err) {
             console.error("Error", err);
             const errorMessage = err.response?.data?.message;
-            if (errorMessage === "No marks in the system") {
-                setError("No marks in the system");
+            if (errorMessage === "Login please") {
+                setError("Unauthorized please login.");
             }
 
-            if (errorMessage === "Internal server error") {
-                setError("Internal server error");
+            if (errorMessage === "No marks") {
+                setError("You dont have any marks yet");
             }
 
             setLoading(false);
