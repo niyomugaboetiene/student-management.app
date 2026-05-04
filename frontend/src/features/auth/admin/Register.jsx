@@ -2,7 +2,7 @@ import React from "react";
 import { useState } from "react";
 import axios from "axios";
 import { FaTimes } from "react-icons/fa";
-import { Link } from "react-router-dom"; 
+import { Link, useNavigate } from "react-router-dom"; 
 
 
 const AdminRegister = () => {
@@ -13,6 +13,7 @@ const AdminRegister = () => {
     const [email, setEmail] = useState("");
     const [message, setMessage] = useState("");
     const [error, setError] = useState("");
+    const navigate = useNavigate();
     const [loading, setLoading] = useState(false);
     // full_name, email, phone, location, password 
 
@@ -37,6 +38,7 @@ const AdminRegister = () => {
           setLoading(false);
           setMessage(res.data.message);
           setError("");
+          navigate('/admin/login')
         } catch (err) {
             setLoading(false);
             const errorMessage = err.response?.data?.message || "Error occured";
