@@ -77,7 +77,7 @@ const DashboardPage = () => {
     const handleGetMonthlyStudent = async () => {
       try {
         setIsLoading(true);
-        const student = await axios.get(`${BACKEND_URL}/admin/monthlyStudents`, { withCredentials: true });
+        const student = await axios.get(`${BACKEND_URL}/admin/auth/monthlyStudents`, { withCredentials: true });
         setMothlyStudent(student.data.student)
         setIsLoading(false);
       } catch (err) {
@@ -207,7 +207,8 @@ const DashboardPage = () => {
                     </div>
             </div>
 
-            <div>
+           {montlyStudent ? (
+                   <div>
                <h2>Monthly Student</h2>
 
                <div>
@@ -228,19 +229,7 @@ const DashboardPage = () => {
                            <th>Role</th>
                         </tr>
                      </thead>
-                        {/* full_name
-gender
-email
-trade
-phone
-location
-class
-is_approved
-createdAt
 
-student_id
-
-role */}
                      <tbody>
                         {montlyStudent?.map((student, index) => {
                            <tr key={index}>
@@ -260,6 +249,11 @@ role */}
                   </table>
                </div>
             </div>
+           ) : (
+            <div>
+               <p>No students added in this month}</p>
+            </div>
+           )}
         </div>
         </div>
     )
