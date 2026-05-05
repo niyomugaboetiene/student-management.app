@@ -38,7 +38,7 @@ const AdminRegister = () => {
           setLoading(false);
           setMessage(res.data.message);
           setError("");
-          navigate('/admin/login')
+          navigate('/admin/login');
         } catch (err) {
             setLoading(false);
             const errorMessage = err.response?.data?.message || "Error occured";
