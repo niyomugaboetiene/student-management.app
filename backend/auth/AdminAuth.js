@@ -4,6 +4,37 @@ import bcrypt from "bcrypt";
 import StudentSchema from "../schema/StudentSchema.js";
 
 const router = express.Router();
+// monthly students
+router.get('/monthlyStudents', async (req, res) => {
+    try {
+        const now = new Date.now();
+
+        const m = now.getMonth() + 1;
+        const y = now.getFullYear()
+
+        const start = new Date(y, m - 1, 1, 0, 0, 0);
+        const end = new Date(y, m, 0, 23, 59, 59);
+
+        console.log("Start", start);
+        console.log("End", end);
+
+        const MonthlyStudent = await StudentSchema.find({
+            createdAt: {
+                $gte: start,
+                $lte: end
+            }
+        }).populate("trade").populate("class");
+
+        if (MonthlyStudent.length === 0) {
+            return res.status(404).json({ message: 'No students added in this month' });
+        }
+
+        return res.status(200).json({ message: 'Monthly students', student: MonthlyStudent });
+    } catch (err) {
+        console.error("ERROR:", err);
+        return res.status(500).json({ message: 'Intenral server error' });
+    }
+});
 
 router.post('/login', async (req, res) => {
     try {
@@ -88,38 +119,6 @@ router.post('/register', async (req, res) => {
         console.error("ERROR", err);
         return res.status(500).json({ message: "Server error" });
    }
-});
-
-// monthly students
-router.get('/monthlyStudents', async (req, res) => {
-    try {
-        const now = new Date.now();
-
-        const m = now.getMonth() + 1;
-        const y = now.getFullYear()
-
-        const start = new Date(y, m - 1, 1, 0, 0, 0);
-        const end = new Date(y, m, 0, 23, 59, 59);
-
-        console.log("Start", start);
-        console.log("End", end);
-
-        const MonthlyStudent = await StudentSchema.find({
-            createdAt: {
-                $gte: start,
-                $lte: end
-            }
-        }).populate("trade").populate("class");
-
-        if (MonthlyStudent.length === 0) {
-            return res.status(404).json({ message: 'No students added in this month' });
-        }
-
-        return res.status(200).json({ message: 'Monthly students', student: MonthlyStudent });
-    } catch (err) {
-        console.error("ERROR:", err);
-        return res.status(500).json({ message: 'Intenral server error' });
-    }
 });
 
 export default router;
