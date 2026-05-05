@@ -251,7 +251,7 @@ const DashboardPage = () => {
             </div>
            ) : (
             <div>
-               <p>No students added in this month}</p>
+               <p>No students added in this month</p>
             </div>
            )}
         </div>
