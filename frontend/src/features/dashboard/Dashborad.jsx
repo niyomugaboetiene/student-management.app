@@ -217,16 +217,16 @@ const DashboardPage = () => {
 
                         <tr>
                            <th className="py-2 px-24">Id</th>
-                           <th>Full name</th>
-                           <th>Gender</th>
-                           <th>Email</th>
-                           <th>Trade</th>
-                           <th>Phone</th>
-                           <th>Location</th>
-                           <th>CLass</th>
-                           <th>Status</th>
-                           <th>Joined at</th>
-                           <th>Role</th>
+                           <th className="py-2 px-4">Full name</th>
+                           <th className="py-2 px-24">Gender</th>
+                           <th className="py-2 px-24">Email</th>
+                           <th className="py-2 px-24">Trade</th>
+                           <th className="py-2 px-24">Phone</th>
+                           <th className="py-2 px-24">Location</th>
+                           <th className="py-2 px-24">CLass</th>
+                           <th className="py-2 px-24">Status</th>
+                           <th className="py-2 px-24">Joined at</th>
+                           <th className="py-2 px-24">Role</th>
                         </tr>
                      </thead>
 
