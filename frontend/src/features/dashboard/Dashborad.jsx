@@ -232,18 +232,18 @@ const DashboardPage = () => {
 
                      <tbody>
                         {montlyStudent?.map((student, index) => (
-                           <tr key={index} className="text-gray-800">
-                              <td>{student.student_id}</td>
-                              <td>{student.full_name}</td>
-                              <td>{student.gender}</td>
-                              <td>{student.email}</td>
-                              <td>{student.trade?.trade_name}</td>
-                              <td>{student.phone}</td>
-                              <td>{student.location}</td>
-                              <td>{student.class?.class_name}</td>
-                              <td>{student.is_approved}</td>
-                              <td>{new Date(student.createdAt).toLocaleDateString()}</td>
-                              <td>{student.role}</td>
+                           <tr key={index} className="text-gray-800 text-lg">
+                              <td className="py-2 px-12">{student.student_id}</td>
+                              <td className="py-2 px-10">{student.full_name}</td>
+                              <td className="py-2 px-12">{student.gender}</td>
+                              <td className="py-2 px-12">{student.email}</td>
+                              <td className="py-2 px-2">{student.trade?.trade_name}</td>
+                              <td className="py-2 ">{student.phone}</td>
+                              <td className="py-2 ">{student.location}</td>
+                              <td className="py-2 ">{student.class?.class_name}</td>
+                              <td className="py-2 ">{student.is_approved}</td>
+                              <td className="py-2 ">{new Date(student.createdAt).toLocaleDateString()}</td>
+                              <td className="py-2 ">{student.role}</td>
                            </tr>
                         ))}
                      </tbody>
