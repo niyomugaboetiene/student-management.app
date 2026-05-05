@@ -63,7 +63,7 @@ router.get('/tradeList', async (req, res) => {
     }
 });
 
-router.get('/:_id', async (req, res) => {
+router.get('/get/:_id', async (req, res) => {
     try {
         const _id = req.params;
 

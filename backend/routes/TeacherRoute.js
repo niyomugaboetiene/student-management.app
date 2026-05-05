@@ -35,7 +35,7 @@
         }
     });
     
-    router.get('/:_id', isAdmin, async (req, res) => {
+    router.get('/get/:_id', isAdmin, async (req, res) => {
         try {
             const _id  = req.params;
  
