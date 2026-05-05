@@ -7,6 +7,7 @@ import StudentLogin from './features/auth/student/Login'
 import StudentRegister from './features/auth/student/Register'
 import GetStudentList from './features/students/StudentLIst'
 import UpdateStudent from './features/students/UpdateStudent'
+import StudentMarks from './features/students/StudentMarks'
 
 // teacher portal
 import TeacherRegister from './features/auth/teacher/Register'
@@ -47,12 +48,13 @@ import AttendanceList from './features/attendance/AttendanceList'
 import HandleGetStudentAttendance from './features/attendance/AttendanceById'
 
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
-import StudentMarks from './features/students/StudentMarks'
 
+import Nav from './features/dashboard/Nav'
 function App() {
 
   return (
        <BrowserRouter>
+          <Nav />
            <Routes>
                <Route path='/admin/login' element={<AdminLogin />}/>
                <Route path='/admin/register' element={<AdminRegister />}/>
