@@ -17,7 +17,7 @@ function isAuthenticated (req, res, next) {
             return;
         }
 }
-    function isAdmin (req, res, next) {
+function isAdmin (req, res, next) {
         if (!req.session.user) {
             return res.status(401).json({ message: 'Login first'});
         }
@@ -28,7 +28,8 @@ function isAuthenticated (req, res, next) {
             res.status(403).json({ message: 'You dont have access to this data'});
             return;
         }
-    }
+}
+
 router.post('/attendance', isAuthenticated, async (req, res) => {
     //     student, class, marked_by, date status
 
