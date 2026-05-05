@@ -99,8 +99,11 @@ router.get('/monthlyStudents', async (req, res) => {
             return res.status(403).json({ message: 'Month and year required' });
         }
 
-        const start = new Date(month, year, 0, 0, 0);
-        const end = new Date(month, year, 30, 59, 59);
+        const m = Number(month)
+        const y = Number(year);
+
+        const start = new Date(m, y, -1, 1, 0, 0, 0);
+        const end = new Date(m, y, 0, 23, 59, 59);
         const MonthlyStudent = await StudentSchema.find({
             createdAt
         })
