@@ -211,11 +211,21 @@ role */}
                         <tr>
                            <th>Id</th>
                            <th>Full name</th>
-                           <th>Id</th>
-                           <th>Id</th>
-                           <th>Id</th>
+                           <th>Gender</th>
+                           <th>Email</th>
+                           <th>Trade</th>
+                           <th>Phone</th>
+                           <th>Location</th>
+                           <th>CLass</th>
+                           <th>Status</th>
+                           <th>Joined at</th>
+                           <th>Role</th>
                         </tr>
                      </thead>
+
+                     <tbody>
+                        
+                     </tbody>
                   </table>
                </div>
             </div>
