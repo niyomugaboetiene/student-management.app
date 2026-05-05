@@ -102,8 +102,11 @@ router.get('/monthlyStudents', async (req, res) => {
         const m = Number(month)
         const y = Number(year);
 
-        const start = new Date(m, y, -1, 1, 0, 0, 0);
-        const end = new Date(m, y, 0, 23, 59, 59);
+        const start = new Date(y, m, -1, 1, 0, 0, 0);
+        const end = new Date(y, m, 0, 23, 59, 59);
+        console.log("Start", start);
+        console.log("End", end);
+
         const MonthlyStudent = await StudentSchema.find({
             createdAt: { $gte: start, $lte: end }
         });
