@@ -14,6 +14,8 @@ const DashboardPage = () => {
   const [totalTrade, setTotalTrade] = useState(0);
   const [totalDepartment, setTotalDepartment] = useState(0);
 
+  const [monlyStudent, setMothlyStudent] = useState(null);
+
   const [isNameClicked, setIsNameClicked] = useState(false);
 
   const navigate = useNavigate();
@@ -75,13 +77,8 @@ const DashboardPage = () => {
     const handleGetMonthlyStudent = async () => {
       try {
         setIsLoading(true);
-        const report = await axios.get(`${BACKEND_URL}/admin/report`, { withCredentials: true });
-        setTotalClass(report.data.class);
-        setTotalStudent(report.data.student);
-        setTotalDepartment(report.data.department);
-        setTotalTeacher(report.data.teacher);
-        setTotalSubject(report.data.subject);
-        setTotalTrade(report.data.trade);
+        const student = await axios.get(`${BACKEND_URL}/admin/monthlyStudents`, { withCredentials: true });
+        
         setIsLoading(false);
       } catch (err) {
         setIsLoading(false);
