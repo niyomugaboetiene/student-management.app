@@ -108,7 +108,7 @@ router.get('/monthlyStudents', async (req, res) => {
             createdAt: { $gte: start, $lte: end }
         });
 
-        return res.status
+        return res.status(200).json({ message: 'Monthly students', student: MonthlyStudent });
     } catch (err) {
         console.error("ERROR:", err);
         return res.status(500).json({ message: 'Intenral server error' });
