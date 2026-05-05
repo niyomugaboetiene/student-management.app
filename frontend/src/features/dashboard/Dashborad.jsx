@@ -232,7 +232,7 @@ const DashboardPage = () => {
 
                      <tbody>
                         {montlyStudent?.map((student, index) => (
-                           <tr key={index} className="text-gray-800 text-lg">
+                           <tr key={index} className={`text-gray-800 font-light text-lg ${index % 2 === 0 ? 'bg-cyan-300 hover:bg-cyan-400' : 'bg-gray-300 hover:bg-gray-400'}`}>
                               <td className="py-2 px-12">{student.student_id}</td>
                               <td className="py-2 px-2">{student.full_name}</td>
                               <td className="py-2 px-2">{student.gender}</td>
