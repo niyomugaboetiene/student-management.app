@@ -1,6 +1,7 @@
 import AdminSchema from "../schema/AdminSchema.js";
 import express from "express";
 import bcrypt from "bcrypt";
+import StudentSchema from "../schema/StudentSchema.js";
 
 const router = express.Router();
 
@@ -87,6 +88,26 @@ router.post('/register', async (req, res) => {
         console.error("ERROR", err);
         return res.status(500).json({ message: "Server error" });
    }
+});
+
+// monthly students
+router.get('/monthlyStudents', async (req, res) => {
+    try {
+        const { month, year } =  req.query;
+
+        if (!month || !year) {
+            return res.status(403).json({ message: 'Month and year required' });
+        }
+
+        const start = new Date(month, year, 0, 0, 0);
+        const end = new Date(month, year, 30, 59, 59);
+        const MonthlyStudent = await StudentSchema.find({
+            createdAt
+        })
+    } catch (err) {
+        console.error("ERROR:", err);
+        return res.status(500).json({ message: 'Intenral server error' });
+    }
 });
 
 export default router;
