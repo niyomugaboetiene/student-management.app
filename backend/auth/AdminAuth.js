@@ -87,14 +87,15 @@ router.post('/register', async (req, res) => {
     }
 
     const isEmailExist = await AdminSchema.find({ email: email });
+    console.log("Email exist", isEmailExist);
 
-    if (isEmailExist) {
+    if (isEmailExist.length > 0) {
         return res.status(403).json({ message: 'Email must be unique' });
     }
     
     const isPhoneExist = await AdminSchema.find({ phone: phone });
 
-    if (isPhoneExist) {
+    if (isPhoneExist.length > 0) {
         return res.status(403).json({ message: 'Phone must be unique' });
     }
     
