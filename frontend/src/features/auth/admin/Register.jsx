@@ -46,7 +46,7 @@ const AdminRegister = () => {
             if (errorMessage === "Email must be unique") {
                setMessage("");
                setError(errorMessage);
-               console.message(errorMessage);
+               console.log(errorMessage);
           }
           if (errorMessage === "Phone must be unique") {
                setMessage("");
