@@ -4,6 +4,7 @@ import bcrypt from "bcrypt";
 import StudentSchema from "../schema/StudentSchema.js";
 
 const router = express.Router();
+
 // monthly students
 router.get('/monthlyStudents', async (req, res) => {
     try {
