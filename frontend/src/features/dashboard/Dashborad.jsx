@@ -216,23 +216,23 @@ const DashboardPage = () => {
                      <thead className="bg-cyan-400 text-white">
 
                         <tr>
-                           <th className="py-2 px-24">Id</th>
-                           <th className="py-1 px-2">Full name</th>
-                           <th className="py-1 px-2">Gender</th>
-                           <th className="py-1 px-2">Email</th>
-                           <th className="py-1 px-2">Trade</th>
-                           <th className="py-1 px-2">Phone</th>
-                           <th className="py-1 px-2">Location</th>
-                           <th className="py-1 px-2">CLass</th>
-                           <th className="py-1 px-2">Status</th>
-                           <th className="py-1 px-2">Joined at</th>
-                           <th className="py-1 px-2">Role</th>
+                           <th className="py-4 px-16">Id</th>
+                           <th className="py-2 px-2">Full name</th>
+                           <th className="py-2 px-2">Gender</th>
+                           <th className="py-2 px-2">Email</th>
+                           <th className="py-2 px-2">Trade</th>
+                           <th className="py-2 px-2">Phone</th>
+                           <th className="py-2 px-2">Location</th>
+                           <th className="py-2 px-2">CLass</th>
+                           <th className="py-2 px-2">Status</th>
+                           <th className="py-2 px-2">Joined at</th>
+                           <th className="py-2 px-2">Role</th>
                         </tr>
                      </thead>
 
                      <tbody>
                         {montlyStudent?.map((student, index) => (
-                           <tr key={index}>
+                           <tr key={index} className="text-gray-800">
                               <td>{student.student_id}</td>
                               <td>{student.full_name}</td>
                               <td>{student.gender}</td>
