@@ -212,11 +212,11 @@ const DashboardPage = () => {
                <h2 className="font-bold text-cyan-600 mb-4">Monthly Student</h2>
 
                <div className="flex max-w-9xl">
-                  <table border={2}>
-                     <thead>
+                  <table border={2} className="overflow-hidden overflow-x-auto">
+                     <thead className="bg-cyan-400 text-white">
 
                         <tr>
-                           <th>Id</th>
+                           <th className="py-2 px-24">Id</th>
                            <th>Full name</th>
                            <th>Gender</th>
                            <th>Email</th>
