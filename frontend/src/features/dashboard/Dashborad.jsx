@@ -208,10 +208,10 @@ const DashboardPage = () => {
                     </div>
             </div>
            {montlyStudent ? (
-             <div className="mt-12 text-2xl font-bold">
-               <h2>Monthly Student</h2>
+             <div className="mt-12 text-2xl">
+               <h2 className="font-bold text-cyan-600 mb-4">Monthly Student</h2>
 
-               <div>
+               <div className="flex max-w-9xl">
                   <table border={2}>
                      <thead>
 
