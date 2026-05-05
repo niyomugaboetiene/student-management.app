@@ -105,8 +105,10 @@ router.get('/monthlyStudents', async (req, res) => {
         const start = new Date(m, y, -1, 1, 0, 0, 0);
         const end = new Date(m, y, 0, 23, 59, 59);
         const MonthlyStudent = await StudentSchema.find({
-            createdAt
-        })
+            createdAt: { $gte: start, $lte: end }
+        });
+
+        return res.status
     } catch (err) {
         console.error("ERROR:", err);
         return res.status(500).json({ message: 'Intenral server error' });
