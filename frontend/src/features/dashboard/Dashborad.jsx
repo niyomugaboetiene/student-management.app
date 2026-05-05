@@ -71,6 +71,27 @@ const DashboardPage = () => {
     useEffect(() => {
       handleGetReport();
     }, []);
+    
+    const handleGetMonthlyStudent = async () => {
+      try {
+        setIsLoading(true);
+        const report = await axios.get(`${BACKEND_URL}/admin/report`, { withCredentials: true });
+        setTotalClass(report.data.class);
+        setTotalStudent(report.data.student);
+        setTotalDepartment(report.data.department);
+        setTotalTeacher(report.data.teacher);
+        setTotalSubject(report.data.subject);
+        setTotalTrade(report.data.trade);
+        setIsLoading(false);
+      } catch (err) {
+        setIsLoading(false);
+        console.error(err);
+      }
+    }
+
+    useEffect(() => {
+      handleGetMonthlyStudent();
+    }, []);
 
     return (
         <div className="bg-gray-100 min-h-screen">
