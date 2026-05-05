@@ -194,7 +194,28 @@ const DashboardPage = () => {
 
                <div>
                   <table border={2}>
-                     
+                     <thead>
+                        {/* full_name
+gender
+email
+trade
+phone
+location
+class
+is_approved
+createdAt
+
+student_id
+
+role */}
+                        <tr>
+                           <th>Id</th>
+                           <th>Full name</th>
+                           <th>Id</th>
+                           <th>Id</th>
+                           <th>Id</th>
+                        </tr>
+                     </thead>
                   </table>
                </div>
             </div>
