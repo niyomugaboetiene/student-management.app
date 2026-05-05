@@ -17,7 +17,7 @@ function isAuthenticated (req, res, next) {
         }
 }
 
-router.get("/studentList", isAuthenticated, async (req, res) => {
+router.get("/studentList", async (req, res) => {
     try {
         const StudentList = await StudentSchema.find();
 
@@ -36,7 +36,7 @@ router.get("/studentList", isAuthenticated, async (req, res) => {
 
 // get student based on class
 
-router.get('/class/:class_id', isAuthenticated, async (req, res) => {
+router.get('/class/:class_id', async (req, res) => {
     try {
         const class_id = req.params.class_id;
 
@@ -53,7 +53,7 @@ router.get('/class/:class_id', isAuthenticated, async (req, res) => {
     }
 });
 
-router.get("/:_id", isAuthenticated, async (req, res) => {
+router.get("/:_id", async (req, res) => {
     try {
         const { _id }   = req.params;
 

@@ -65,7 +65,7 @@ router.post('/add', isAdmin, async (req, res) => {
     }
 });
 
-router.get('/department_list', isAuthenticated, async (req, res) => {
+router.get('/department_list', async (req, res) => {
     try {
         const result = await DepartmentSchema.find().populate("HOD");
 
@@ -83,7 +83,7 @@ router.get('/department_list', isAuthenticated, async (req, res) => {
     }
 });
 
-router.get('/:_id', isAuthenticated, async (req, res) => {
+router.get('/:_id', async (req, res) => {
     try {
         const  _id = req.params;
 

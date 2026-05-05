@@ -63,7 +63,7 @@ function isAuthenticated (req, res, next) {
             }
     });
 
-router.get("/class_list", isAuthenticated, async (req, res) => {
+router.get("/class_list", async (req, res) => {
     try {
 
         const ClassList = await ClassSchema.find().populate("teacher").populate("trade");
@@ -80,7 +80,7 @@ router.get("/class_list", isAuthenticated, async (req, res) => {
     }
 });
 
-router.get("/:_id", isAuthenticated, async (req, res) => {
+router.get("/:_id", async (req, res) => {
     try {
         const _id  = req.params._id;
 

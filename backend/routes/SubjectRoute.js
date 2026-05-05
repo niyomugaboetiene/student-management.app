@@ -63,7 +63,7 @@ router.get('/subjectList', isAuthenticated, async (req, res) => {
     }
 });
 
-router.get('/:_id', isAuthenticated, async ( req, res) => {
+router.get('/:_id', async ( req, res) => {
     try {
         const _id = req.params._id;
 
@@ -90,7 +90,7 @@ router.get('/:_id', isAuthenticated, async ( req, res) => {
 });
 
 // subjects in class
-router.get('/class/:class', isAuthenticated, async ( req, res) => {
+router.get('/class/:class', async ( req, res) => {
     try {
         const { class: classe } = req.params;
 

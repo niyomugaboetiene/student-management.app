@@ -44,7 +44,7 @@ router.post('/add', isAdmin, async (req, res) => {
 });
 
 
-router.get('/tradeList', isAdmin, async (req, res) => {
+router.get('/tradeList', async (req, res) => {
     try {
         const list = await TradeSchema.find().populate("department");
   
@@ -63,7 +63,7 @@ router.get('/tradeList', isAdmin, async (req, res) => {
     }
 });
 
-router.get('/:_id', isAdmin, async (req, res) => {
+router.get('/:_id', async (req, res) => {
     try {
         const _id = req.params;
 
