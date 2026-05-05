@@ -159,7 +159,7 @@ const StudentRegister = () => {
                         onChange={(e) => setTrade(e.target.value)}
                        className="bg-gray-100 w-full p-3 rounded-full focus:outline-1 focus:outline-gray-500" placeholder="Class"
                    > 
-                   <option disabled={true} value="">-----Select trade-----</option>
+                   <option value="">-----Select trade-----</option>
                    {tradeToSelect?.map((item) => (
                           <option value={item._id} key={item._id}>
                                {item.trade_name}

@@ -1,7 +1,5 @@
 import axios from "axios";
 import { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
-import { FaEdit, FaTrash } from "react-icons/fa";
 
 const StudentMarks = () => {
     const [marks, setMarks] = useState([]);

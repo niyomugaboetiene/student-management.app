@@ -65,7 +65,7 @@ const UpdateTeacher = () => {
           try {
             if (!_id) return;
             setIsLoading(true);
-            const trRes = await axios.get(`${BACKEND_URL}/teacher/${_id}`, { withCredentials: true });
+            const trRes = await axios.get(`${BACKEND_URL}/teacher/get/${_id}`, { withCredentials: true });
             const TeacherData = trRes.data.teacher || "";
 
             console.log("Teacher name", TeacherData);

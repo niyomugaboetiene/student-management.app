@@ -80,7 +80,7 @@ const UpdateMarks = () => {
         const handleGetMarks = async () => {
           try {
             setIsLoading(true);
-            const marksRes = await axios.get(`${BACKEND_URL}/marks/${_id}`, { withCredentials: true });
+            const marksRes = await axios.get(`${BACKEND_URL}/marks/get/${_id}`, { withCredentials: true });
             const marksData = marksRes.data.marks;
 
             console.log("Data", marksData.subject?.subject_name);

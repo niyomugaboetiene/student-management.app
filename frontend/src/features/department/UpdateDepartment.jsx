@@ -36,7 +36,7 @@ const UpdateDepartment = () => {
     const GetExistingDepartment = async () => {
           try {
             setIsLoading(true);
-            const trRes = await axios.get(`${BACKEND_URL}/department/${_id}`, { withCredentials: true });
+            const trRes = await axios.get(`${BACKEND_URL}/department/get/${_id}`, { withCredentials: true });
             console.log("Dep", trRes.data.department);
             const values = trRes.data.department;
 

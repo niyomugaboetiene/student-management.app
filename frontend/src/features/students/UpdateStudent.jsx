@@ -106,7 +106,7 @@ const UpdateStudent = () => {
           try {
             if (!_id) return;
             setLoading(true);
-            const trRes = await axios.get(`${BACKEND_URL}/student/${_id}`, { withCredentials: true });
+            const trRes = await axios.get(`${BACKEND_URL}/student/get/${_id}`, { withCredentials: true });
             const StudentData = trRes.data.student || "";
 
             console.log("student name", StudentData);

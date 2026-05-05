@@ -39,7 +39,7 @@ const UpdateTrade = () => {
     const handleGetTrade = async () => {
           try {
             setIsLoading(true);
-            const tradeRes = await axios.get(`${BACKEND_URL}/trade/${_id}`, { withCredentials: true });
+            const tradeRes = await axios.get(`${BACKEND_URL}/trade/get/${_id}`, { withCredentials: true });
             const tradeData = tradeRes.data.trade;
 
             // console.log("Trade name", tradeRes.data.trade[0].trade_name);
