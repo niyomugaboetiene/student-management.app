@@ -78,7 +78,8 @@ const DashboardPage = () => {
       try {
         setIsLoading(true);
         const student = await axios.get(`${BACKEND_URL}/admin/auth/monthlyStudents`, { withCredentials: true });
-        setMothlyStudent(student.data.student)
+        console.log("Student data", student.data.student);
+        setMothlyStudent(student.data.student);
         setIsLoading(false);
       } catch (err) {
         setIsLoading(false);
@@ -206,9 +207,8 @@ const DashboardPage = () => {
                        </div>
                     </div>
             </div>
-
            {montlyStudent ? (
-                   <div>
+             <div className="mt-12 text-2xl font-bold">
                <h2>Monthly Student</h2>
 
                <div>
@@ -231,7 +231,7 @@ const DashboardPage = () => {
                      </thead>
 
                      <tbody>
-                        {montlyStudent?.map((student, index) => {
+                        {montlyStudent?.map((student, index) => (
                            <tr key={index}>
                               <td>{student.student_id}</td>
                               <td>{student.full_name}</td>
@@ -244,7 +244,7 @@ const DashboardPage = () => {
                               <td>{new Date(student.createdAt).toLocaleDateString()}</td>
                               <td>{student.role}</td>
                            </tr>
-                        })}
+                        ))}
                      </tbody>
                   </table>
                </div>
