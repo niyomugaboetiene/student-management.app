@@ -14,7 +14,7 @@ const DashboardPage = () => {
   const [totalTrade, setTotalTrade] = useState(0);
   const [totalDepartment, setTotalDepartment] = useState(0);
 
-  const [monlyStudent, setMothlyStudent] = useState(null);
+  const [montlyStudent, setMothlyStudent] = useState(null);
 
   const [isNameClicked, setIsNameClicked] = useState(false);
 
@@ -78,7 +78,7 @@ const DashboardPage = () => {
       try {
         setIsLoading(true);
         const student = await axios.get(`${BACKEND_URL}/admin/monthlyStudents`, { withCredentials: true });
-        
+        setMothlyStudent(student.data.student)
         setIsLoading(false);
       } catch (err) {
         setIsLoading(false);
