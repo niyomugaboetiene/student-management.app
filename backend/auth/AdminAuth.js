@@ -111,6 +111,10 @@ router.get('/monthlyStudents', async (req, res) => {
             createdAt: { $gte: start, $lte: end }
         });
 
+        if (MonthlyStudent.length === 0) {
+            return res.status(404).json({ message: 'No students added in this month' });
+        }
+
         return res.status(200).json({ message: 'Monthly students', student: MonthlyStudent });
     } catch (err) {
         console.error("ERROR:", err);
