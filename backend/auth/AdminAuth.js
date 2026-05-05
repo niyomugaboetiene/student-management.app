@@ -93,18 +93,14 @@ router.post('/register', async (req, res) => {
 // monthly students
 router.get('/monthlyStudents', async (req, res) => {
     try {
-        const { month, year } =  req.query;
+        const now = new Date.now();
 
-        if (!month || !year) {
-            return res.status(403).json({ message: 'Month and year required' });
-        }
-
-        const m = Number(month)
-        const y = Number(year);
+        const m = now.getMonth() + 1;
+        const y = now.getFullYear()
 
         const start = new Date(y, m - 1, 1, 0, 0, 0);
         const end = new Date(y, m, 0, 23, 59, 59);
-        
+
         console.log("Start", start);
         console.log("End", end);
 
@@ -113,7 +109,7 @@ router.get('/monthlyStudents', async (req, res) => {
                 $gte: start,
                 $lte: end
             }
-        });
+        }).populate("trade").populate("class");
 
         if (MonthlyStudent.length === 0) {
             return res.status(404).json({ message: 'No students added in this month' });
