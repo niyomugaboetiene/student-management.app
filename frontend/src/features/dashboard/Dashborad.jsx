@@ -216,7 +216,7 @@ const DashboardPage = () => {
                      <thead className="bg-cyan-400 text-white">
 
                         <tr>
-                           <th className="py-4 px-16">Id</th>
+                           <th className="py-4 px-12">Id</th>
                            <th className="py-2 px-2">Full name</th>
                            <th className="py-2 px-2">Gender</th>
                            <th className="py-2 px-2">Email</th>
@@ -234,16 +234,16 @@ const DashboardPage = () => {
                         {montlyStudent?.map((student, index) => (
                            <tr key={index} className="text-gray-800 text-lg">
                               <td className="py-2 px-12">{student.student_id}</td>
-                              <td className="py-2 px-10">{student.full_name}</td>
-                              <td className="py-2 px-12">{student.gender}</td>
-                              <td className="py-2 px-12">{student.email}</td>
+                              <td className="py-2 px-2">{student.full_name}</td>
+                              <td className="py-2 px-2">{student.gender}</td>
+                              <td className="py-2 px-2">{student.email}</td>
                               <td className="py-2 px-2">{student.trade?.trade_name}</td>
-                              <td className="py-2 ">{student.phone}</td>
-                              <td className="py-2 ">{student.location}</td>
-                              <td className="py-2 ">{student.class?.class_name}</td>
-                              <td className="py-2 ">{student.is_approved}</td>
-                              <td className="py-2 ">{new Date(student.createdAt).toLocaleDateString()}</td>
-                              <td className="py-2 ">{student.role}</td>
+                              <td className="py-2 px-2">{student.phone}</td>
+                              <td className="py-2 px-2">{student.location}</td>
+                              <td className="py-2 px-2">{student.class?.class_name}</td>
+                              <td className="py-2 px-2">{student.is_approved}</td>
+                              <td className="py-2 px-2">{new Date(student.createdAt).toLocaleDateString()}</td>
+                              <td className="py-2 px-2">{student.role}</td>
                            </tr>
                         ))}
                      </tbody>
