@@ -213,19 +213,7 @@ const DashboardPage = () => {
                <div>
                   <table border={2}>
                      <thead>
-                        {/* full_name
-gender
-email
-trade
-phone
-location
-class
-is_approved
-createdAt
 
-student_id
-
-role */}
                         <tr>
                            <th>Id</th>
                            <th>Full name</th>
@@ -240,9 +228,34 @@ role */}
                            <th>Role</th>
                         </tr>
                      </thead>
+                        {/* full_name
+gender
+email
+trade
+phone
+location
+class
+is_approved
+createdAt
 
+student_id
+
+role */}
                      <tbody>
-                        
+                        {montlyStudent?.map((student, index) => {
+                           <tr key={index}>
+                              <td>{student.student_id}</td>
+                              <td>{student.full_name}</td>
+                              <td>{student.gender}</td>
+                              <td>{student.trade?.trade_name}</td>
+                              <td>{student.phone}</td>
+                              <td>{student.location}</td>
+                              <td>{student.class?.class_name}</td>
+                              <td>{student.is_approved}</td>
+                              <td>{new Date(student.createdAt).toLocaleDateString()}</td>
+                              <td>{student.role}</td>
+                           </tr>
+                        })}
                      </tbody>
                   </table>
                </div>
