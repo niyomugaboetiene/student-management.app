@@ -188,6 +188,16 @@ const DashboardPage = () => {
                        </div>
                     </div>
             </div>
+
+            <div>
+               <h2>Monthly Student</h2>
+
+               <div>
+                  <table border={2}>
+                     
+                  </table>
+               </div>
+            </div>
         </div>
         </div>
     )
