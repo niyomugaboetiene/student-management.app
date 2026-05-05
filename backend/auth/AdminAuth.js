@@ -7,7 +7,7 @@ const router = express.Router();
 // monthly students
 router.get('/monthlyStudents', async (req, res) => {
     try {
-        const now = new Date.now();
+        const now = new Date();
 
         const m = now.getMonth() + 1;
         const y = now.getFullYear()
