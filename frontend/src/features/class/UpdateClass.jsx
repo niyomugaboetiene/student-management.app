@@ -61,7 +61,7 @@ const UpdateClass = () => {
         const handleGetClass = async () => {
           try {
             setIsLoading(true);
-            const classRes = await axios.get(`${BACKEND_URL}/class/${_id}`, { withCredentials: true });
+            const classRes = await axios.get(`${BACKEND_URL}/class/get/${_id}`, { withCredentials: true });
             const classData = classRes.data.classes;
 
             // console.log("Data", classRes.subject?.subject_name);
